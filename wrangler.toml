@@ -1,0 +1,14 @@
+name = "remarkablebnb"
+compatibility_date = "2026-07-14"
+pages_build_output_dir = "./dist"
+
+# Phase 3+: uncomment when D1 is created
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "remarkablebnb"
+# database_id = "<created-later>"
+
+# Phase 4: KV for /go/{room} QR redirects
+# [[kv_namespaces]]
+# binding = "GO_REDIRECTS"
+# id = "<created-later>"

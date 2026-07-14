@@ -1,0 +1,31 @@
+---
+interface Props {
+  amenities: string[];
+}
+
+const { amenities } = Astro.props;
+
+const iconMap: Record<string, string> = {
+  'Own entrance': '🚪',
+  'Full kitchen': '🍳',
+  'Kitchen': '🍳',
+  'Laundry': '🧺',
+  'Dedicated bathroom': '🚿',
+  'Mountain views': '🏔️',
+  'Parking': '🅿️',
+  'Ski storage': '🎿',
+  'WiFi': '📶',
+  'Queen bed': '🛏️',
+  'Private tiled ensuite': '🚿',
+  'Custom wardrobe': '👔',
+};
+---
+
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+  {amenities.map((amenity) => (
+    <div class="flex items-center gap-2 rounded-lg bg-[var(--color-stone-light)]/50 dark:bg-[var(--color-slate-mid)]/30 px-3 py-2.5">
+      <span class="text-lg flex-shrink-0" aria-hidden="true">{iconMap[amenity] || '✓'}</span>
+      <span class="text-sm font-medium text-[var(--color-slate-deep)] dark:text-[var(--color-stone-light)]">{amenity}</span>
+    </div>
+  ))}
+</div>

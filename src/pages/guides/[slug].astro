@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides.map((guide) => ({
+    params: { slug: guide.data.slug },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+const { Content } = await render(guide);
+---
+
+<BaseLayout
+  title={guide.data.seoTitle}
+  description={guide.data.seoDescription}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <!-- Breadcrumb -->
+    <nav class="mb-6 text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+      <a href="/" class="hover:text-[var(--color-alpine)] transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span>Guides</span>
+      <span class="mx-2">›</span>
+      <span class="text-[var(--color-slate-deep)] dark:text-[var(--color-snow)]">{guide.data.title}</span>
+    </nav>
+
+    <div class="max-w-3xl">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">{guide.data.icon}</span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold">{guide.data.title}</h1>
+      </div>
+
+      <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-8 border-l-4 border-[var(--color-alpine)] pl-4">
+        {guide.data.description}
+      </p>
+
+      <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-[var(--color-slate-mid)] dark:prose-p:text-[var(--color-stone-warm)] prose-p:leading-relaxed">
+        <Content />
+      </div>
+      
+      <!-- Back CTA -->
+      <div class="mt-12 pt-8 border-t border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]">
+        <a href="/" class="inline-flex items-center gap-2 text-[var(--color-alpine)] font-semibold hover:underline">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>
+          Back to home
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

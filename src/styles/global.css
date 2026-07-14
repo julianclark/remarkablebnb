@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* ============================================
+   Remarkable BnB — Design Tokens
+   Mountain-inspired palette, Inter typography
+   ============================================ */
+
+@theme {
+  /* Colours — mountain palette */
+  --color-slate-deep: #1e293b;
+  --color-slate-mid: #334155;
+  --color-stone-warm: #d6cfc7;
+  --color-stone-light: #e7e5e0;
+  --color-snow: #fafaf9;
+  --color-alpine: #3b82f6;
+  --color-alpine-dark: #2563eb;
+  --color-gold: #d97706;
+  --color-gold-light: #f59e0b;
+  --color-forest: #166534;
+  --color-forest-light: #22c55e;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing scale */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 3rem;
+}
+
+/* ============================================
+   Base styles
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-slate-deep);
+  background-color: var(--color-snow);
+  line-height: 1.7;
+}
+
+/* ============================================
+   Dark mode
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--color-stone-light);
+    background-color: #0f172a;
+  }
+
+  .card {
+    background-color: var(--color-slate-deep);
+    border-color: var(--color-slate-mid);
+  }
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-slate-deep);
+}
+
+@media (prefers-color-scheme: dark) {
+  h1, h2, h3, h4 {
+    color: var(--color-snow);
+  }
+}
+
+/* ============================================
+   Utility classes
+   ============================================ */
+
+.gradient-scrim {
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.85) 0%,
+    rgba(15, 23, 42, 0.4) 40%,
+    transparent 100%
+  );
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-gold {
+  background-color: color-mix(in srgb, var(--color-gold) 15%, transparent);
+  color: var(--color-gold);
+}
+
+.badge-alpine {
+  background-color: color-mix(in srgb, var(--color-alpine) 15%, transparent);
+  color: var(--color-alpine);
+}
+
+.badge-forest {
+  background-color: color-mix(in srgb, var(--color-forest) 15%, transparent);
+  color: var(--color-forest);
+}

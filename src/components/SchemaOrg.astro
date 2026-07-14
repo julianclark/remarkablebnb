@@ -1,0 +1,38 @@
+---
+interface Props {
+  stayName: string;
+  stayType: string;
+  address?: string;
+}
+
+const { stayName, stayType } = Astro.props;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "VacationRental",
+  "name": `Remarkable BnB — ${stayName}`,
+  "url": Astro.url.href,
+  "description": `${stayName} at Holly and Julian's home in Hanley's Farm, Queenstown. Near The Remarkables ski field and Jack's Point golf course.`,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Queenstown",
+    "addressRegion": "Otago",
+    "postalCode": "9371",
+    "addressCountry": "NZ",
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -45.037,
+    "longitude": 168.735,
+  },
+  "containsPlace": {
+    "@type": "Accommodation",
+    "numberOfBedrooms": stayType === 'unit' ? 2 : 1,
+    "numberOfBathroomsTotal": 1,
+    "occupancy": {
+      "@type": "QuantitativeValue",
+      "maxValue": stayType === 'unit' ? 4 : 2,
+    },
+  },
+})} />

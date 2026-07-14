@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Guest Reviews"
+  description="Read what our guests say about their stay at Remarkable BnB in Hanley's Farm, Queenstown."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <div class="text-center mb-12">
+      <span class="badge badge-gold mb-3">★ ★ ★ ★ ★</span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold mb-4">Guest Reviews</h1>
+      <p class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] max-w-xl mx-auto">
+        We pride ourselves on providing a consistent 5-star hosting experience. Here is what some of our guests have said about staying with us.
+      </p>
+    </div>
+
+    <!-- Featured Review Summary -->
+    <div class="bg-[var(--color-stone-light)]/30 dark:bg-[var(--color-slate-mid)]/10 rounded-2xl p-8 mb-12 border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] text-center">
+      <div class="text-5xl font-extrabold text-[var(--color-slate-deep)] dark:text-white mb-2">5.0</div>
+      <div class="flex justify-center text-[var(--color-gold)] text-xl gap-0.5 mb-2">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+        Average rating from stays across our guest suite and guest room
+      </p>
+      
+      <div class="mt-6">
+        <a 
+          href="https://search.google.com/local/writereview?placeid=PLACE_ID" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-[var(--color-alpine)] hover:bg-[var(--color-alpine-dark)] text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors"
+          id="btn-leave-review"
+        >
+          Leave us a Google Review
+        </a>
+      </div>
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="space-y-6">
+      <div class="card bg-white dark:bg-[var(--color-slate-deep)] p-6 rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] shadow-sm">
+        <div class="flex items-center gap-1 text-[var(--color-gold)] mb-3">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">
+          "Absolutely stunning location under the mountains! The two-bedroom unit was spotless, modern, and had everything we needed for our ski trip. Holly and Julian were amazing hosts who went out of their way to make sure we had chains for our car and knew the best routes up the mountain."
+        </p>
+        <div class="text-xs font-semibold text-[var(--color-slate-deep)] dark:text-[var(--color-snow)]">— Sarah, via Airbnb (Unit Guest)</div>
+      </div>
+
+      <div class="card bg-white dark:bg-[var(--color-slate-deep)] p-6 rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] shadow-sm">
+        <div class="flex items-center gap-1 text-[var(--color-gold)] mb-3">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">
+          "Highly recommend the guest room! The tiled ensuite was luxurious and the queen bed was incredibly comfortable after long days hiking around Jack's Point. Very quiet and peaceful area."
+        </p>
+        <div class="text-xs font-semibold text-[var(--color-slate-deep)] dark:text-[var(--color-snow)]">— Michael, via Airbnb (Guest Room)</div>
+      </div>
+
+      <div class="card bg-white dark:bg-[var(--color-slate-deep)] p-6 rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] shadow-sm">
+        <div class="flex items-center gap-1 text-[var(--color-gold)] mb-3">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">
+          "Great hosts, beautiful house and the best views of The Remarkables. Jack's Point Golf Course is practically on the doorstep. We will definitely be booking direct for our next trip back!"
+        </p>
+        <div class="text-xs font-semibold text-[var(--color-slate-deep)] dark:text-[var(--color-snow)]">— Sherry, via Airbnb (Guest Room)</div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
