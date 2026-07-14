@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import BookingCTA from '../components/BookingCTA.astro';
 import { getCollection } from 'astro:content';
 
+export const prerender = true;
+
 const stays = await getCollection('stays');
 ---
 
@@ -54,7 +56,7 @@ const stays = await getCollection('stays');
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
         <!-- Airbnb rate -->
         <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6 text-center">
           <div class="text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] uppercase tracking-wider mb-2">Airbnb</div>
@@ -72,14 +74,6 @@ const stays = await getCollection('stays');
           <div class="text-2xl font-bold mb-1">5% off</div>
           <div class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">No service fees</div>
           <div class="text-xs text-[var(--color-alpine)] font-medium mt-3">Deal with Holly & Julian directly</div>
-        </div>
-
-        <!-- Returning rate -->
-        <div class="rounded-xl border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/5 dark:bg-[var(--color-gold)]/10 p-6 text-center">
-          <div class="text-sm font-medium text-[var(--color-gold)] uppercase tracking-wider mb-2">Returning Guest</div>
-          <div class="text-2xl font-bold mb-1">15% off</div>
-          <div class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">No service fees</div>
-          <div class="text-xs text-[var(--color-gold)] font-medium mt-3">Our thanks for coming back</div>
         </div>
       </div>
     </div>

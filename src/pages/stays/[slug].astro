@@ -5,6 +5,8 @@ import AmenityGrid from '../../components/AmenityGrid.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
 import { getCollection, render } from 'astro:content';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const stays = await getCollection('stays');
   return stays.map((stay) => ({

@@ -1,0 +1,14 @@
+---
+// SSR Page - Redirects base /stay/{token} to /stay/{token}/check-in
+
+export const prerender = false;
+
+const { token } = Astro.params;
+
+if (!token) {
+  return new Response("Not Found", { status: 404 });
+}
+
+// Redirect to check-in
+return Astro.redirect(`/stay/${token}/check-in`);
+---

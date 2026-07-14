@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
+
+export const prerender = false;
+
+const { token, page } = Astro.params;
+const allowedPages = ['check-in', 'manual', 'rules', 'extras', 'checkout'];
+
+if (!token || !page || !allowedPages.includes(page)) {
+  return new Response("Not Found", { status: 404 });
+}
+
+// 1. Fetch stay data from D1 or fallback to Mock stay for local development
+let stay = null;
+const db = Astro.locals.runtime?.env?.DB;
+
+if (db) {
+  try {
+    const { results } = await db.prepare("SELECT * FROM stays WHERE token = ?").bind(token).all();
+    if (results && results.length > 0) {
+      const row = results[0];
+      stay = {
+        token: row.token,
+        room: row.room,
+        source: row.source,
+        checkIn: row.check_in,
+        checkOut: row.check_out,
+        hotTubOffered: Boolean(row.hot_tub_offered)
+      };
+    }
+  } catch (err) {
+    console.error("D1 database query failed: ", err);
+  }
+}
+
+// Dev fallback for previewing
+if (!stay && token === 'demo') {
+  stay = {
+    token: 'demo',
+    room: 'two-bedroom-unit',
+    source: 'airbnb',
+    checkIn: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Started 2 days ago
+    checkOut: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Ends in 3 days
+    hotTubOffered: true
+  };
+}
+
+if (!stay) {
+  return new Response("Invalid stay token", { status: 404 });
+}
+
+// 2. Validate checking window (valid 3 days before check-in to 7 days after checkout)
+const now = new Date();
+const checkInDate = new Date(stay.checkIn);
+const checkOutDate = new Date(stay.checkOut);
+
+const accessStart = new Date(checkInDate);
+accessStart.setDate(accessStart.getDate() - 3);
+accessStart.setHours(0, 0, 0, 0);
+
+const accessEnd = new Date(checkOutDate);
+accessEnd.setDate(accessEnd.getDate() + 7);
+accessEnd.setHours(23, 59, 59, 999);
+
+const tooEarly = now < accessStart;
+const tooLate = now > accessEnd;
+
+if (tooEarly) {
+  // If accessing too early, return a 404 to avoid leaking valid token presence
+  return new Response("Not Found", { status: 404 });
+}
+
+if (tooLate) {
+  // If stay has ended, display a polite 410 Gone page
+  Astro.response.status = 410;
+}
+
+// Map slug to content collection entry
+const collectionPageMap: Record<string, string> = {
+  'check-in': 'check-in',
+  'manual': 'house-manual',
+  'rules': 'rules',
+  'checkout': 'checkout'
+};
+
+// 3. Render content
+let contentHtml = '';
+let pageTitle = '';
+let pageIcon = '';
+
+if (page !== 'extras') {
+  const collectionKey = collectionPageMap[page];
+  const entry = await getEntry('manual', collectionKey);
+  if (entry) {
+    const rendered = await render(entry);
+    Content = rendered.Content;
+    pageTitle = entry.data.title;
+    pageIcon = entry.data.icon;
+  }
+} else {
+  // "Extras" is generated dynamically since it includes interactive Stripe links / requests
+  pageTitle = "Paid Extras";
+  pageIcon = "🛁";
+}
+
+let Content; // Placeholder variable for JSX compiler
+---
+
+{tooLate ? (
+  <BaseLayout title="Stay Ended" description="This stay has ended.">
+    <div class="max-w-md mx-auto px-4 py-20 text-center">
+      <div class="text-6xl mb-6">🏔️</div>
+      <h1 class="text-2xl font-bold mb-4">This stay page has ended</h1>
+      <p class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-6 text-sm">
+        Stay links are valid until 7 days after checkout. If you need to contact Holly & Julian, please get in touch directly.
+      </p>
+      <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-alpine)] hover:bg-[var(--color-alpine-dark)] text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors">
+        Contact Hosts
+      </a>
+    </div>
+  </BaseLayout>
+) : (
+  <BaseLayout title={`${pageTitle} — Guest Hub`} description="Your personal stays hub for Remarkable BnB.">
+    <!-- Guest navigation tabs -->
+    <div class="sticky top-16 z-40 bg-[var(--color-snow)] dark:bg-[#0f172a] border-b border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]">
+      <div class="max-w-4xl mx-auto px-4">
+        <div class="flex items-center gap-1 overflow-x-auto py-3 no-scrollbar scroll-smooth">
+          <a
+            href={`/stay/${token}/check-in`}
+            class:list={[
+              'flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors',
+              page === 'check-in' 
+                ? 'bg-[var(--color-alpine)]/10 text-[var(--color-alpine)]' 
+                : 'text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:bg-[var(--color-stone-light)]/50 dark:hover:bg-[var(--color-slate-mid)]/30'
+            ]}
+          >
+            🔑 Check-in
+          </a>
+          <a
+            href={`/stay/${token}/manual`}
+            class:list={[
+              'flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors',
+              page === 'manual' 
+                ? 'bg-[var(--color-alpine)]/10 text-[var(--color-alpine)]' 
+                : 'text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:bg-[var(--color-stone-light)]/50 dark:hover:bg-[var(--color-slate-mid)]/30'
+            ]}
+          >
+            🏠 Manual
+          </a>
+          <a
+            href={`/stay/${token}/rules`}
+            class:list={[
+              'flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors',
+              page === 'rules' 
+                ? 'bg-[var(--color-alpine)]/10 text-[var(--color-alpine)]' 
+                : 'text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:bg-[var(--color-stone-light)]/50 dark:hover:bg-[var(--color-slate-mid)]/30'
+            ]}
+          >
+            📋 Rules
+          </a>
+          
+          {stay.hotTubOffered && (
+            <a
+              href={`/stay/${token}/extras`}
+              class:list={[
+                'flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors',
+                page === 'extras' 
+                  ? 'bg-[var(--color-alpine)]/10 text-[var(--color-alpine)]' 
+                  : 'text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:bg-[var(--color-stone-light)]/50 dark:hover:bg-[var(--color-slate-mid)]/30'
+              ]}
+            >
+              🛁 Extras
+            </a>
+          )}
+          
+          <a
+            href={`/stay/${token}/checkout`}
+            class:list={[
+              'flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors',
+              page === 'checkout' 
+                ? 'bg-[var(--color-alpine)]/10 text-[var(--color-alpine)]' 
+                : 'text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:bg-[var(--color-stone-light)]/50 dark:hover:bg-[var(--color-slate-mid)]/30'
+            ]}
+          >
+            👋 Checkout
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Body -->
+    <div class="max-w-3xl mx-auto px-4 py-8 sm:py-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-3xl" aria-hidden="true">{pageIcon}</span>
+        <h1 class="text-3xl font-extrabold">{pageTitle}</h1>
+      </div>
+
+      <!-- Render dynamically generated extras page -->
+      {page === 'extras' ? (
+        <div class="space-y-6">
+          <div class="rounded-2xl border-2 border-[var(--color-alpine)] bg-[var(--color-alpine)]/5 dark:bg-[var(--color-alpine)]/10 p-6 sm:p-8">
+            <h2 class="text-xl font-bold mb-3">Hot Tub Access</h2>
+            <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4 leading-relaxed">
+              We offer hot tub access as a paid extra when available. Want to soak under the stars and watch the snow on The Remarkables? 
+            </p>
+            <div class="text-lg font-bold text-[var(--color-slate-deep)] dark:text-white mb-6">
+              $30 / per session
+            </div>
+            
+            <div class="space-y-3">
+              <a 
+                href="/contact" 
+                class="inline-flex justify-center items-center w-full rounded-xl bg-[var(--color-alpine)] hover:bg-[var(--color-alpine-dark)] text-white px-5 py-3 font-semibold text-sm transition-colors text-center"
+              >
+                Request Hot Tub Access
+              </a>
+              <p class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] text-center">
+                Once confirmed by us, we'll send a Stripe Payment Link.
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4 prose-p:leading-relaxed prose-li:leading-relaxed">
+          {Content && <Content />}
+        </div>
+      )}
+
+      <!-- Adapt checkout page based on token source -->
+      {page === 'checkout' && (
+        <div class="mt-12 pt-8 border-t border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]">
+          {stay.source === 'airbnb' ? (
+            <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6 bg-white dark:bg-[var(--color-slate-deep)]">
+              <h3 class="font-bold text-lg mb-2">✨ Save 15% on your next stay!</h3>
+              <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
+                Thank you for staying with us. We hope you enjoyed your time under The Remarkables. 
+              </p>
+              <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
+                If you book directly on our website for your next trip, we'll give you a **15% returning guest discount** (and you'll save on platform fees). 
+              </p>
+              <p class="text-sm font-semibold text-[var(--color-slate-deep)] dark:text-white">
+                Save our details: <span class="text-[var(--color-alpine)]">stay@remarkablebnb.nz</span>
+              </p>
+            </div>
+          ) : (
+            <div class="rounded-xl border border-[var(--color-gold)]/30 p-6 bg-[var(--color-gold)]/5 dark:bg-[var(--color-gold)]/10">
+              <h3 class="font-bold text-lg text-[var(--color-gold)] mb-2">👋 Welcome back discount active</h3>
+              <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
+                Thank you for booking directly with us again. As a valued return guest, you saved **15%** on this stay.
+              </p>
+              <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">
+                Whenever you're ready to come back to Queenstown, just drop us an email or book direct for your 15% repeat-guest rate.
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  </BaseLayout>
+)}
