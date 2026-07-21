@@ -1,8 +1,9 @@
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ params, locals, url }) => {
+export const GET: APIRoute = async ({ params, url }) => {
   const { room } = params;
   
   if (!room) {
@@ -24,7 +25,7 @@ export const GET: APIRoute = async ({ params, locals, url }) => {
   };
 
   let token = null;
-  const kv = locals.runtime?.env?.GO_REDIRECTS;
+  const kv = env.GO_REDIRECTS;
 
   if (kv) {
     try {

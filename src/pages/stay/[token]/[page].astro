@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getEntry, render } from 'astro:content';
+import { env } from 'cloudflare:workers';
 
 export const prerender = false;
 
@@ -13,7 +14,7 @@ if (!token || !page || !allowedPages.includes(page)) {
 
 // 1. Fetch stay data from D1 or fallback to Mock stay for local development
 let stay = null;
-const db = Astro.locals.runtime?.env?.DB;
+const db = env.DB;
 
 if (db) {
   try {
@@ -85,9 +86,9 @@ const collectionPageMap: Record<string, string> = {
 };
 
 // 3. Render content
-let contentHtml = '';
 let pageTitle = '';
 let pageIcon = '';
+let Content;
 
 if (page !== 'extras') {
   const collectionKey = collectionPageMap[page];
@@ -103,8 +104,6 @@ if (page !== 'extras') {
   pageTitle = "Paid Extras";
   pageIcon = "🛁";
 }
-
-let Content; // Placeholder variable for JSX compiler
 ---
 
 {tooLate ? (
