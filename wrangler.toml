@@ -21,3 +21,9 @@ database_id = "10874395-ab52-47f2-914f-380731049425"
 [[kv_namespaces]]
 binding = "GO_REDIRECTS"
 id = "a73ee7444f254669b90c6b014a58c9ab"
+
+# Enquiry notifications. Restricted to the verified Email Routing address so
+# the endpoint can never be abused as an open relay.
+[[send_email]]
+name = "EMAIL"
+destination_address = "clarkjj@gmail.com"

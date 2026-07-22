@@ -52,9 +52,36 @@ export const prerender = true;
 
       <!-- Enquiry Form -->
       <div class="md:col-span-2">
-        <form class="space-y-4 rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6 sm:p-8 bg-white dark:bg-[var(--color-slate-deep)]" id="enquiry-form">
+        <div id="enquiry-form"></div>
+        <div
+          class="hidden rounded-xl border border-[var(--color-forest)]/40 bg-[var(--color-forest)]/10 p-4 mb-4 text-sm"
+          id="enquiry-success"
+          role="status"
+        >
+          <strong>Thanks — your enquiry is on its way.</strong> We'll get back to you soon. For anything urgent, email us at <a class="text-[var(--color-alpine)] underline" href="mailto:stay@remarkablebnb.nz">stay@remarkablebnb.nz</a>.
+        </div>
+        <div
+          class="hidden rounded-xl border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10 p-4 mb-4 text-sm"
+          id="enquiry-error"
+          role="alert"
+        >
+          Sorry, something went wrong sending that. Please email us directly at <a class="text-[var(--color-alpine)] underline" href="mailto:stay@remarkablebnb.nz">stay@remarkablebnb.nz</a>.
+        </div>
+
+        <form
+          class="space-y-4 rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6 sm:p-8 bg-white dark:bg-[var(--color-slate-deep)]"
+          id="enquiry-form-el"
+          method="POST"
+          action="/api/enquiry"
+        >
           <h2 class="text-lg font-bold mb-4">Send an Enquiry</h2>
-          
+
+          <!-- Honeypot: hidden from users, catches bots -->
+          <div class="hidden" aria-hidden="true">
+            <label for="company">Company (leave blank)</label>
+            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
+          </div>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">Your Name</label>
@@ -116,9 +143,10 @@ export const prerender = true;
           </div>
 
           <div class="pt-2">
-            <button 
-              type="submit" 
-              class="w-full rounded-lg bg-[var(--color-alpine)] hover:bg-[var(--color-alpine-dark)] text-white px-4 py-3 font-semibold text-sm transition-colors cursor-pointer"
+            <button
+              type="submit"
+              id="enquiry-submit"
+              class="w-full rounded-lg bg-[var(--color-alpine)] hover:bg-[var(--color-alpine-dark)] text-white px-4 py-3 font-semibold text-sm transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
             >
               Submit Enquiry
             </button>
@@ -127,4 +155,69 @@ export const prerender = true;
       </div>
     </div>
   </div>
+
+  <script>
+    function initEnquiry() {
+      const form = document.getElementById('enquiry-form-el') as HTMLFormElement | null;
+      if (!form) return;
+
+      const success = document.getElementById('enquiry-success');
+      const errorBox = document.getElementById('enquiry-error');
+      const submit = document.getElementById('enquiry-submit') as HTMLButtonElement | null;
+      const params = new URLSearchParams(location.search);
+
+      const fmt = (iso: string) =>
+        new Date(iso + 'T00:00:00Z').toLocaleDateString('en-NZ', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+
+      // Prefill from calendar deep-links (?stay=&date= or ?checkin=&checkout=)
+      const stayParam = params.get('stay');
+      if (stayParam) {
+        const sel = form.elements.namedItem('stay') as HTMLSelectElement | null;
+        if (sel && Array.from(sel.options).some((o) => o.value === stayParam)) sel.value = stayParam;
+      }
+      const checkin = params.get('checkin');
+      const checkout = params.get('checkout');
+      const single = params.get('date');
+      const datesInput = form.elements.namedItem('dates') as HTMLInputElement | null;
+      if (datesInput) {
+        if (checkin && checkout) datesInput.value = `${fmt(checkin)} – ${fmt(checkout)}`;
+        else if (single) datesInput.value = fmt(single);
+      }
+
+      // Show status banner if we came back from a no-JS POST redirect
+      if (params.get('sent')) success?.classList.remove('hidden');
+      if (params.get('error')) errorBox?.classList.remove('hidden');
+
+      // Progressive enhancement: submit via fetch, no page reload
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        success?.classList.add('hidden');
+        errorBox?.classList.add('hidden');
+        if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
+
+        try {
+          const res = await fetch('/api/enquiry', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(Object.fromEntries(new FormData(form) as any)),
+          });
+          const data = await res.json().catch(() => ({ ok: res.ok }));
+          if (data.ok) {
+            form.reset();
+            success?.classList.remove('hidden');
+            success?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            errorBox?.classList.remove('hidden');
+          }
+        } catch {
+          errorBox?.classList.remove('hidden');
+        } finally {
+          if (submit) { submit.disabled = false; submit.textContent = 'Submit Enquiry'; }
+        }
+      });
+    }
+
+    initEnquiry();
+    document.addEventListener('astro:page-load', initEnquiry);
+  </script>
 </BaseLayout>

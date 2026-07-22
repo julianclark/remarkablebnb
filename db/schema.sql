@@ -33,3 +33,16 @@ CREATE TABLE IF NOT EXISTS ical_sync_log (
   last_error TEXT,
   event_count INTEGER DEFAULT 0
 );
+
+-- Guest enquiries submitted via the contact form. Persisted first so an
+-- enquiry is never lost even if the notification email fails to send.
+CREATE TABLE IF NOT EXISTS enquiries (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  stay TEXT,
+  dates TEXT,
+  message TEXT NOT NULL,
+  emailed INTEGER DEFAULT 0,       -- 1 once the notification email was sent
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);

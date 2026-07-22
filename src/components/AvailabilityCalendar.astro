@@ -3,48 +3,296 @@ import { buildMonths, type DateRange } from '../lib/availability';
 
 interface Props {
   bookedRanges: DateRange[];
+  staySlug: string;
+  stayType: string;
   monthsToShow?: number;
 }
 
-const { bookedRanges, monthsToShow = 2 } = Astro.props;
+const { bookedRanges, staySlug, stayType, monthsToShow = 2 } = Astro.props;
 
 const months = buildMonths(monthsToShow, bookedRanges, new Date());
 const weekdayLabels = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+
+function longDate(iso: string): string {
+  return new Date(iso + 'T00:00:00Z').toLocaleDateString('en-NZ', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+// No-JS fallback: each available day links to the contact form pre-filled
+// with that date. JS enhances this into check-in/check-out range selection.
+function enquireHref(date: string): string {
+  return `/contact?stay=${encodeURIComponent(stayType)}&date=${date}`;
+}
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-  {months.map((month) => (
-    <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-4">
-      <div class="text-sm font-semibold mb-3 text-center">{month.label}</div>
-      <div class="grid grid-cols-7 gap-1 text-xs text-center text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">
-        {weekdayLabels.map((w) => <div>{w}</div>)}
+<div class="availability" data-availability data-stay-type={stayType} data-stay-slug={staySlug}>
+  <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4" data-hint>
+    Green dates are open. <span class="hidden sm:inline">Tap a check-in then a check-out date to enquire, or tap a single date.</span><span class="sm:hidden">Tap a date to enquire.</span>
+  </p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    {months.map((month) => (
+      <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-4">
+        <div class="text-sm font-semibold mb-3 text-center">{month.label}</div>
+        <div class="grid grid-cols-7 gap-1 text-xs text-center text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">
+          {weekdayLabels.map((w) => <div aria-hidden="true">{w}</div>)}
+        </div>
+        <div class="grid grid-cols-7 gap-1">
+          {month.weeks.flatMap((week) =>
+            week.map((day) => {
+              if (!day.inMonth) return <div />;
+              if (day.isPast) {
+                return (
+                  <div class="cal-day cal-past" aria-hidden="true">{day.day}</div>
+                );
+              }
+              if (day.booked) {
+                return (
+                  <div class="cal-day cal-booked" aria-label={`${longDate(day.date)}, booked`}>
+                    <span>{day.day}</span>
+                  </div>
+                );
+              }
+              return (
+                <a
+                  href={enquireHref(day.date)}
+                  class="cal-day cal-available"
+                  data-date={day.date}
+                  aria-label={`${longDate(day.date)}, available — enquire`}
+                >
+                  {day.day}
+                </a>
+              );
+            })
+          )}
+        </div>
       </div>
-      <div class="grid grid-cols-7 gap-1">
-        {month.weeks.flatMap((week) =>
-          week.map((day) =>
-            day.inMonth ? (
-              <div
-                class:list={[
-                  'aspect-square flex items-center justify-center rounded-lg text-xs',
-                  day.isPast
-                    ? 'text-[var(--color-slate-mid)]/30 dark:text-[var(--color-stone-warm)]/20'
-                    : day.booked
-                      ? 'bg-[var(--color-slate-mid)]/15 dark:bg-[var(--color-slate-mid)]/40 text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] line-through'
-                      : 'bg-[var(--color-alpine)]/10 text-[var(--color-slate-deep)] dark:text-white font-medium'
-                ]}
-              >
-                {day.day}
-              </div>
-            ) : (
-              <div />
-            )
-          )
-        )}
-      </div>
+    ))}
+  </div>
+
+  <!-- Legend -->
+  <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+    <span class="flex items-center gap-1.5"><span class="legend-swatch legend-available" aria-hidden="true"></span> Available</span>
+    <span class="flex items-center gap-1.5"><span class="legend-swatch legend-booked" aria-hidden="true"></span> Booked</span>
+  </div>
+
+  <!-- Enquiry bar (revealed by JS once a range/date is chosen) -->
+  <div class="cal-enquire-bar" data-enquire-bar hidden>
+    <div class="cal-enquire-text">
+      <span data-enquire-summary></span>
     </div>
-  ))}
+    <div class="cal-enquire-actions">
+      <button type="button" class="cal-enquire-clear" data-enquire-clear>Clear</button>
+      <a class="cal-enquire-cta" data-enquire-cta href="#">Enquire about these dates →</a>
+    </div>
+  </div>
 </div>
-<div class="flex items-center gap-4 mt-4 text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
-  <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-[var(--color-alpine)]/10 inline-block"></span> Available</span>
-  <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-[var(--color-slate-mid)]/15 dark:bg-[var(--color-slate-mid)]/40 inline-block"></span> Booked</span>
-</div>
+
+<style>
+  .cal-day {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    text-decoration: none;
+  }
+
+  /* Available — green fill, high contrast, clearly interactive */
+  .cal-available {
+    background: color-mix(in srgb, var(--color-forest) 16%, white);
+    color: var(--color-forest);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.12s, transform 0.12s;
+  }
+  .cal-available:hover {
+    background: color-mix(in srgb, var(--color-forest) 30%, white);
+  }
+  .cal-available:focus-visible {
+    outline: 3px solid var(--color-alpine);
+    outline-offset: 1px;
+  }
+  :global(.dark) .cal-available {
+    background: color-mix(in srgb, var(--color-forest) 40%, transparent);
+    color: var(--color-forest-light);
+  }
+  :global(.dark) .cal-available:hover {
+    background: color-mix(in srgb, var(--color-forest) 60%, transparent);
+  }
+
+  /* Booked — diagonal stripes + strikethrough (not colour-alone) */
+  .cal-booked {
+    background: repeating-linear-gradient(
+      -45deg,
+      color-mix(in srgb, var(--color-slate-mid) 22%, white),
+      color-mix(in srgb, var(--color-slate-mid) 22%, white) 3px,
+      color-mix(in srgb, var(--color-slate-mid) 10%, white) 3px,
+      color-mix(in srgb, var(--color-slate-mid) 10%, white) 6px
+    );
+    color: var(--color-slate-mid);
+  }
+  .cal-booked span { text-decoration: line-through; opacity: 0.75; }
+  :global(.dark) .cal-booked {
+    background: repeating-linear-gradient(
+      -45deg,
+      color-mix(in srgb, var(--color-slate-mid) 70%, transparent),
+      color-mix(in srgb, var(--color-slate-mid) 70%, transparent) 3px,
+      color-mix(in srgb, var(--color-slate-mid) 40%, transparent) 3px,
+      color-mix(in srgb, var(--color-slate-mid) 40%, transparent) 6px
+    );
+    color: var(--color-stone-warm);
+  }
+
+  .cal-past { color: color-mix(in srgb, var(--color-slate-mid) 35%, transparent); }
+  :global(.dark) .cal-past { color: color-mix(in srgb, var(--color-stone-warm) 25%, transparent); }
+
+  /* Selected range state (JS) */
+  .cal-available.is-selected-end,
+  .cal-available.is-selected-start {
+    background: var(--color-alpine);
+    color: #fff;
+  }
+  :global(.dark) .cal-available.is-selected-start,
+  :global(.dark) .cal-available.is-selected-end {
+    background: var(--color-alpine);
+    color: #fff;
+  }
+  .cal-available.is-in-range {
+    background: color-mix(in srgb, var(--color-alpine) 22%, white);
+    color: var(--color-alpine-dark);
+    border-radius: 0;
+  }
+  :global(.dark) .cal-available.is-in-range {
+    background: color-mix(in srgb, var(--color-alpine) 35%, transparent);
+    color: #fff;
+  }
+
+  .legend-swatch { width: 0.9rem; height: 0.9rem; border-radius: 0.25rem; display: inline-block; }
+  .legend-available { background: color-mix(in srgb, var(--color-forest) 16%, white); border: 1px solid var(--color-forest); }
+  :global(.dark) .legend-available { background: color-mix(in srgb, var(--color-forest) 40%, transparent); }
+  .legend-booked {
+    background: repeating-linear-gradient(-45deg,
+      color-mix(in srgb, var(--color-slate-mid) 40%, white),
+      color-mix(in srgb, var(--color-slate-mid) 40%, white) 2px,
+      color-mix(in srgb, var(--color-slate-mid) 12%, white) 2px,
+      color-mix(in srgb, var(--color-slate-mid) 12%, white) 4px);
+  }
+
+  .cal-enquire-bar {
+    display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between;
+    margin-top: 1rem; padding: 0.85rem 1rem; border-radius: 0.75rem;
+    background: color-mix(in srgb, var(--color-alpine) 8%, white);
+    border: 1px solid color-mix(in srgb, var(--color-alpine) 35%, transparent);
+  }
+  :global(.dark) .cal-enquire-bar { background: color-mix(in srgb, var(--color-alpine) 15%, transparent); }
+  .cal-enquire-text { font-size: 0.85rem; font-weight: 600; }
+  .cal-enquire-actions { display: flex; align-items: center; gap: 0.75rem; }
+  .cal-enquire-clear {
+    background: none; border: 0; cursor: pointer; font-size: 0.8rem;
+    color: var(--color-slate-mid); text-decoration: underline;
+  }
+  .cal-enquire-cta {
+    display: inline-block; background: var(--color-alpine); color: #fff;
+    padding: 0.5rem 0.9rem; border-radius: 0.6rem; font-size: 0.85rem; font-weight: 600; text-decoration: none;
+    transition: background 0.12s;
+  }
+  .cal-enquire-cta:hover { background: var(--color-alpine-dark); }
+</style>
+
+<script>
+  function initAvailability() {
+    document.querySelectorAll<HTMLElement>('[data-availability]').forEach((root) => {
+      const stayType = root.dataset.stayType ?? 'general';
+      const days = Array.from(root.querySelectorAll<HTMLAnchorElement>('.cal-available'));
+      const bar = root.querySelector<HTMLElement>('[data-enquire-bar]');
+      const summary = root.querySelector<HTMLElement>('[data-enquire-summary]');
+      const cta = root.querySelector<HTMLAnchorElement>('[data-enquire-cta]');
+      const clearBtn = root.querySelector<HTMLButtonElement>('[data-enquire-clear]');
+      if (days.length === 0 || !bar || !summary || !cta) return;
+
+      const dates = days.map((d) => d.dataset.date!).sort();
+      let checkin: string | null = null;
+      let checkout: string | null = null;
+
+      const fmt = (iso: string) =>
+        new Date(iso + 'T00:00:00Z').toLocaleDateString('en-NZ', {
+          day: 'numeric', month: 'short', timeZone: 'UTC',
+        });
+
+      const clearClasses = () =>
+        days.forEach((d) => d.classList.remove('is-selected-start', 'is-selected-end', 'is-in-range'));
+
+      // Are all nights in [a, b) available? Booked days aren't in `dates`,
+      // so a gap means the range crosses a booked night.
+      const availableSet = new Set(dates);
+      const rangeIsClear = (a: string, b: string) => {
+        let cur = a;
+        while (cur < b) {
+          if (!availableSet.has(cur)) return false;
+          const next = new Date(cur + 'T00:00:00Z');
+          next.setUTCDate(next.getUTCDate() + 1);
+          cur = next.toISOString().slice(0, 10);
+        }
+        return true;
+      };
+
+      const render = () => {
+        clearClasses();
+        if (checkin && !checkout) {
+          const el = days.find((d) => d.dataset.date === checkin);
+          el?.classList.add('is-selected-start');
+          summary.textContent = `Check-in ${fmt(checkin)} — now pick a check-out date`;
+          cta.href = `/contact?stay=${encodeURIComponent(stayType)}&date=${checkin}`;
+          bar.hidden = false;
+        } else if (checkin && checkout) {
+          days.forEach((d) => {
+            const dt = d.dataset.date!;
+            if (dt === checkin) d.classList.add('is-selected-start');
+            else if (dt === checkout) d.classList.add('is-selected-end');
+            else if (dt > checkin && dt < checkout) d.classList.add('is-in-range');
+          });
+          summary.textContent = `${fmt(checkin)} → ${fmt(checkout)}`;
+          cta.href = `/contact?stay=${encodeURIComponent(stayType)}&checkin=${checkin}&checkout=${checkout}`;
+          bar.hidden = false;
+        } else {
+          bar.hidden = true;
+        }
+      };
+
+      days.forEach((day) => {
+        day.addEventListener('click', (e) => {
+          e.preventDefault(); // JS takes over; link is the no-JS fallback
+          const date = day.dataset.date!;
+          if (!checkin || checkout) {
+            checkin = date;
+            checkout = null;
+          } else if (date <= checkin) {
+            checkin = date; // restart if they pick an earlier/same day
+            checkout = null;
+          } else if (rangeIsClear(checkin, date)) {
+            checkout = date;
+          } else {
+            checkin = date; // range crossed a booked night — restart
+            checkout = null;
+          }
+          render();
+        });
+      });
+
+      clearBtn?.addEventListener('click', () => {
+        checkin = null;
+        checkout = null;
+        render();
+      });
+    });
+  }
+
+  initAvailability();
+  document.addEventListener('astro:page-load', initAvailability);
+</script>
