@@ -8,7 +8,7 @@ interface Props {
   monthsToShow?: number;
 }
 
-const { bookedRanges, staySlug, stayType, monthsToShow = 2 } = Astro.props;
+const { bookedRanges, staySlug, stayType, monthsToShow = 12 } = Astro.props;
 
 const months = buildMonths(monthsToShow, bookedRanges, new Date());
 const weekdayLabels = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
@@ -34,9 +34,20 @@ function enquireHref(date: string): string {
     Green dates are open. <span class="hidden sm:inline">Tap a check-in then a check-out date to enquire, or tap a single date.</span><span class="sm:hidden">Tap a date to enquire.</span>
   </p>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-    {months.map((month) => (
-      <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-4">
+  <!-- Pager (revealed by JS; without JS all months stack and remain browsable) -->
+  <div class="cal-pager" data-pager hidden>
+    <button type="button" class="cal-pager-btn" data-page-prev aria-label="Earlier months">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+    </button>
+    <span class="cal-pager-label" data-page-label aria-live="polite"></span>
+    <button type="button" class="cal-pager-btn" data-page-next aria-label="Later months">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" data-months>
+    {months.map((month, mi) => (
+      <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-4 cal-month" data-month-index={mi} data-month-label={month.label}>
         <div class="text-sm font-semibold mb-3 text-center">{month.label}</div>
         <div class="grid grid-cols-7 gap-1 text-xs text-center text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">
           {weekdayLabels.map((w) => <div aria-hidden="true">{w}</div>)}
@@ -184,6 +195,24 @@ function enquireHref(date: string): string {
       color-mix(in srgb, var(--color-slate-mid) 12%, white) 4px);
   }
 
+  .cal-pager {
+    display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;
+  }
+  .cal-pager-label { font-size: 0.9rem; font-weight: 600; min-width: 11rem; text-align: center; }
+  .cal-pager-btn {
+    width: 2.25rem; height: 2.25rem; border-radius: 9999px; border: 1px solid var(--color-stone-light);
+    background: var(--color-snow); color: var(--color-slate-deep); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: background 0.12s, opacity 0.12s;
+  }
+  :global(.dark) .cal-pager-btn { background: var(--color-slate-deep); color: var(--color-snow); border-color: var(--color-slate-mid); }
+  .cal-pager-btn:hover:not(:disabled) { background: var(--color-stone-light); }
+  :global(.dark) .cal-pager-btn:hover:not(:disabled) { background: var(--color-slate-mid); }
+  .cal-pager-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .cal-pager-btn:focus-visible { outline: 3px solid var(--color-alpine); outline-offset: 2px; }
+  .cal-pager-btn svg { width: 1.1rem; height: 1.1rem; }
+  /* When JS enables paging, only the active pair of months is shown. */
+  .cal-month.is-hidden { display: none; }
+
   .cal-enquire-bar {
     display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between;
     margin-top: 1rem; padding: 0.85rem 1rem; border-radius: 0.75rem;
@@ -290,6 +319,37 @@ function enquireHref(date: string): string {
         checkout = null;
         render();
       });
+
+      // --- Month paging (show 2 months at a time) ---
+      const monthCards = Array.from(root.querySelectorAll<HTMLElement>('.cal-month'));
+      const pager = root.querySelector<HTMLElement>('[data-pager]');
+      const pagePrev = root.querySelector<HTMLButtonElement>('[data-page-prev]');
+      const pageNext = root.querySelector<HTMLButtonElement>('[data-page-next]');
+      const pageLabel = root.querySelector<HTMLElement>('[data-page-label]');
+      const PER_PAGE = 2;
+
+      if (pager && monthCards.length > PER_PAGE) {
+        pager.hidden = false;
+        const pageCount = Math.ceil(monthCards.length / PER_PAGE);
+        let page = 0;
+
+        const showPage = (p: number) => {
+          page = Math.max(0, Math.min(pageCount - 1, p));
+          monthCards.forEach((card, i) => {
+            const onPage = i >= page * PER_PAGE && i < (page + 1) * PER_PAGE;
+            card.classList.toggle('is-hidden', !onPage);
+          });
+          const visible = monthCards.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
+          const labels = visible.map((c) => c.dataset.monthLabel ?? '');
+          if (pageLabel) pageLabel.textContent = labels.join(' – ');
+          if (pagePrev) pagePrev.disabled = page === 0;
+          if (pageNext) pageNext.disabled = page === pageCount - 1;
+        };
+
+        pagePrev?.addEventListener('click', () => showPage(page - 1));
+        pageNext?.addEventListener('click', () => showPage(page + 1));
+        showPage(0);
+      }
     });
   }
 
