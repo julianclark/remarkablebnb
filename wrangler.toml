@@ -1,11 +1,23 @@
 name = "remarkablebnb"
 compatibility_date = "2026-07-14"
+main = "./src/worker.ts"
+
+[triggers]
+crons = ["*/30 * * * *"]
+
+[[routes]]
+pattern = "remarkablebnb.nz"
+custom_domain = true
+
+[[routes]]
+pattern = "remarkablebnb.co.nz"
+custom_domain = true
 
 [[d1_databases]]
 binding = "DB"
 database_name = "remarkablebnb"
-database_id = "11111111-2222-3333-4444-555555555555"
+database_id = "10874395-ab52-47f2-914f-380731049425"
 
 [[kv_namespaces]]
 binding = "GO_REDIRECTS"
-id = "22222222-3333-4444-5555-666666666666"
+id = "a73ee7444f254669b90c6b014a58c9ab"

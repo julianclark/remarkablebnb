@@ -3,20 +3,33 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BookingCTA from '../../components/BookingCTA.astro';
 import AmenityGrid from '../../components/AmenityGrid.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
+import AvailabilityCalendar from '../../components/AvailabilityCalendar.astro';
 import { getCollection, render } from 'astro:content';
+import { env } from 'cloudflare:workers';
 
-export const prerender = true;
+export const prerender = false;
 
-export async function getStaticPaths() {
-  const stays = await getCollection('stays');
-  return stays.map((stay) => ({
-    params: { slug: stay.data.slug },
-    props: { stay },
-  }));
+const { slug } = Astro.params;
+const stays = await getCollection('stays');
+const stay = stays.find((s) => s.data.slug === slug);
+
+if (!stay) {
+  return new Response('Not Found', { status: 404 });
 }
 
-const { stay } = Astro.props;
 const { Content } = await render(stay);
+
+let bookedRanges: { start: string; end: string }[] = [];
+try {
+  const { results } = await env.DB.prepare(
+    'SELECT start_date, end_date FROM ical_events WHERE room = ? AND end_date >= date("now") ORDER BY start_date'
+  )
+    .bind(stay.data.slug)
+    .all();
+  bookedRanges = (results ?? []).map((r: any) => ({ start: r.start_date, end: r.end_date }));
+} catch (err) {
+  console.error('Failed to load availability:', err);
+}
 ---
 
 <BaseLayout
@@ -45,6 +58,11 @@ const { Content } = await render(stay);
       <p class="text-lg text-white/80">{stay.data.tagline}</p>
     </div>
   </section>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
+    <h2 class="text-2xl font-bold mb-6">Availability</h2>
+    <AvailabilityCalendar bookedRanges={bookedRanges} />
+  </div>
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">

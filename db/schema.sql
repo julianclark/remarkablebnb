@@ -13,3 +13,23 @@ CREATE TABLE IF NOT EXISTS stays (
 
 -- Index for fast token lookups
 CREATE INDEX IF NOT EXISTS idx_stays_token ON stays (token);
+
+-- Cached availability blocks pulled from Airbnb iCal feeds
+CREATE TABLE IF NOT EXISTS ical_events (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  room TEXT NOT NULL,               -- 'two-bedroom-unit' | 'guest-room'
+  start_date TEXT NOT NULL,         -- ISO date YYYY-MM-DD, inclusive
+  end_date TEXT NOT NULL,           -- ISO date YYYY-MM-DD, exclusive (iCal DTEND convention)
+  uid TEXT,                         -- iCal UID, for reference/debugging
+  fetched_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_ical_events_room ON ical_events (room);
+
+-- Tracks last successful poll per room, so the UI can show staleness / errors
+CREATE TABLE IF NOT EXISTS ical_sync_log (
+  room TEXT PRIMARY KEY,
+  last_synced_at DATETIME,
+  last_error TEXT,
+  event_count INTEGER DEFAULT 0
+);
