@@ -13,3 +13,46 @@ CREATE TABLE IF NOT EXISTS stays (
 
 -- Index for fast token lookups
 CREATE INDEX IF NOT EXISTS idx_stays_token ON stays (token);
+
+-- Cached availability blocks pulled from Airbnb iCal feeds
+CREATE TABLE IF NOT EXISTS ical_events (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  room TEXT NOT NULL,               -- 'two-bedroom-unit' | 'guest-room'
+  start_date TEXT NOT NULL,         -- ISO date YYYY-MM-DD, inclusive
+  end_date TEXT NOT NULL,           -- ISO date YYYY-MM-DD, exclusive (iCal DTEND convention)
+  uid TEXT,                         -- iCal UID, for reference/debugging
+  fetched_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_ical_events_room ON ical_events (room);
+
+-- Tracks last successful poll per room, so the UI can show staleness / errors
+CREATE TABLE IF NOT EXISTS ical_sync_log (
+  room TEXT PRIMARY KEY,
+  last_synced_at DATETIME,
+  last_error TEXT,
+  event_count INTEGER DEFAULT 0
+);
+
+-- Per-night pricing per room, captured occasionally from Airbnb host
+-- calendar screenshots via vision extraction (scripts/import-prices.js).
+CREATE TABLE IF NOT EXISTS prices (
+  room TEXT NOT NULL,              -- 'two-bedroom-unit' | 'guest-room'
+  date TEXT NOT NULL,             -- ISO date YYYY-MM-DD (the night)
+  price_nzd INTEGER NOT NULL,     -- Airbnb nightly rate, whole NZD
+  captured_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (room, date)
+);
+
+-- Guest enquiries submitted via the contact form. Persisted first so an
+-- enquiry is never lost even if the notification email fails to send.
+CREATE TABLE IF NOT EXISTS enquiries (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  stay TEXT,
+  dates TEXT,
+  message TEXT NOT NULL,
+  emailed INTEGER DEFAULT 0,       -- 1 once the notification email was sent
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);

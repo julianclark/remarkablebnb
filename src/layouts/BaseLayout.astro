@@ -46,27 +46,26 @@ const canonical = canonicalUrl || Astro.url.href;
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <!-- Navigation -->
-  <header class="sticky top-0 z-50 backdrop-blur-md bg-[var(--color-snow)]/80 dark:bg-[#0f172a]/80 border-b border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]">
+  <!-- Navigation (navy accent band) -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-[var(--color-slate-deep)]/95 border-b border-white/10">
     <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
       <a href="/" class="flex items-center gap-2 group" id="nav-home">
-        <span class="text-lg font-bold text-[var(--color-slate-deep)] dark:text-[var(--color-snow)] group-hover:text-[var(--color-alpine)] transition-colors">
+        <span class="text-lg font-bold text-white group-hover:text-[var(--color-alpine)] transition-colors">
           Remarkable BnB
         </span>
       </a>
 
       <!-- Desktop nav -->
       <div class="hidden md:flex items-center gap-8">
-        <a href="/stays/two-bedroom-unit" class="text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:text-[var(--color-alpine)] transition-colors" id="nav-stays-unit">Stays</a>
-        <a href="/reviews" class="text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:text-[var(--color-alpine)] transition-colors" id="nav-reviews">Reviews</a>
-        <a href="/contact" class="text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:text-[var(--color-alpine)] transition-colors" id="nav-contact">Contact</a>
-        <a href="/manual/check-in" class="text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:text-[var(--color-alpine)] transition-colors" id="nav-manual">Guest Manual</a>
+        <a href="/stays/two-bedroom-unit" class="text-sm font-medium text-white/80 hover:text-white transition-colors" id="nav-stays-unit">Stays</a>
+        <a href="/reviews" class="text-sm font-medium text-white/80 hover:text-white transition-colors" id="nav-reviews">Reviews</a>
+        <a href="/contact" class="text-sm font-medium text-white/80 hover:text-white transition-colors" id="nav-contact">Contact</a>
       </div>
 
       <!-- Mobile menu button -->
       <button
         type="button"
-        class="md:hidden p-2 rounded-lg text-[var(--color-slate-mid)] hover:bg-[var(--color-stone-light)] dark:hover:bg-[var(--color-slate-mid)] transition-colors"
+        class="md:hidden p-2 rounded-lg text-white/80 hover:bg-white/10 transition-colors"
         id="mobile-menu-btn"
         aria-label="Toggle navigation menu"
         aria-expanded="false"
@@ -78,13 +77,12 @@ const canonical = canonicalUrl || Astro.url.href;
     </nav>
 
     <!-- Mobile menu -->
-    <div class="md:hidden hidden border-t border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]" id="mobile-menu">
+    <div class="md:hidden hidden border-t border-white/10" id="mobile-menu">
       <div class="px-4 py-3 space-y-1">
-        <a href="/stays/two-bedroom-unit" class="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:bg-[var(--color-stone-light)] dark:hover:bg-[var(--color-slate-mid)]">Two Bedroom Unit</a>
-        <a href="/stays/guest-room" class="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:bg-[var(--color-stone-light)] dark:hover:bg-[var(--color-slate-mid)]">Guest Room</a>
-        <a href="/reviews" class="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:bg-[var(--color-stone-light)] dark:hover:bg-[var(--color-slate-mid)]">Reviews</a>
-        <a href="/contact" class="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:bg-[var(--color-stone-light)] dark:hover:bg-[var(--color-slate-mid)]">Contact</a>
-        <a href="/manual/check-in" class="block px-3 py-2 rounded-lg text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:bg-[var(--color-stone-light)] dark:hover:bg-[var(--color-slate-mid)]">Guest Manual</a>
+        <a href="/stays/two-bedroom-unit" class="block px-3 py-2 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10">Two Bedroom Unit</a>
+        <a href="/stays/guest-room" class="block px-3 py-2 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10">Guest Room</a>
+        <a href="/reviews" class="block px-3 py-2 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10">Reviews</a>
+        <a href="/contact" class="block px-3 py-2 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10">Contact</a>
       </div>
     </div>
   </header>
@@ -94,14 +92,14 @@ const canonical = canonicalUrl || Astro.url.href;
     <slot />
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] bg-[var(--color-snow)] dark:bg-[#0f172a]">
+  <!-- Footer (navy accent band) -->
+  <footer class="bg-[var(--color-slate-deep)] text-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Brand -->
         <div>
-          <h3 class="text-lg font-bold mb-2">Remarkable BnB</h3>
-          <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+          <h3 class="text-lg font-bold mb-2 text-white">Remarkable BnB</h3>
+          <p class="text-sm text-white/70">
             Under The Remarkables.<br />
             Holly & Julian, your hosts.
           </p>
@@ -109,26 +107,25 @@ const canonical = canonicalUrl || Astro.url.href;
 
         <!-- Stays -->
         <div>
-          <h4 class="text-sm font-semibold uppercase tracking-wider text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-3">Our Stays</h4>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-3">Our Stays</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="/stays/two-bedroom-unit" class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:text-[var(--color-alpine)] transition-colors">Two Bedroom Unit</a></li>
-            <li><a href="/stays/guest-room" class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:text-[var(--color-alpine)] transition-colors">Guest Room</a></li>
+            <li><a href="/stays/two-bedroom-unit" class="text-white/80 hover:text-white transition-colors">Two Bedroom Unit</a></li>
+            <li><a href="/stays/guest-room" class="text-white/80 hover:text-white transition-colors">Guest Room</a></li>
           </ul>
         </div>
 
         <!-- Quick links -->
         <div>
-          <h4 class="text-sm font-semibold uppercase tracking-wider text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-3">Quick Links</h4>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-3">Quick Links</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="/manual/check-in" class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:text-[var(--color-alpine)] transition-colors">Guest Manual</a></li>
-            <li><a href="/reviews" class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:text-[var(--color-alpine)] transition-colors">Reviews</a></li>
-            <li><a href="/contact" class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] hover:text-[var(--color-alpine)] transition-colors">Contact Us</a></li>
+            <li><a href="/reviews" class="text-white/80 hover:text-white transition-colors">Reviews</a></li>
+            <li><a href="/contact" class="text-white/80 hover:text-white transition-colors">Contact Us</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="mt-8 pt-6 border-t border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]">
-        <p class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] text-center">
+      <div class="mt-8 pt-6 border-t border-white/10">
+        <p class="text-xs text-white/60 text-center">
           &copy; {new Date().getFullYear()} Remarkable BnB. Hanley's Farm, Queenstown, New Zealand.
         </p>
       </div>

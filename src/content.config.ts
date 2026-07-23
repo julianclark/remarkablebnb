@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { glob, file } from 'astro/loaders';
 
 const stays = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/stays' }),
@@ -15,11 +15,14 @@ const stays = defineCollection({
       count: z.number(),
     })),
     maxGuests: z.number(),
+    // Short, honest at-a-glance facts shown as pills on cards + detail pages.
+    facts: z.array(z.string()).default([]),
     amenities: z.array(z.string()),
     airbnbUrl: z.string().url(),
     airbnbListingId: z.string(),
     directOnly: z.boolean().default(false),
     guestFavourite: z.boolean().default(false),
+    topOnePercent: z.boolean().default(false),
     rating: z.number().optional(),
     reviewCount: z.number().optional(),
     heroImage: z.string(),
@@ -53,4 +56,28 @@ const manual = defineCollection({
   }),
 });
 
-export const collections = { stays, guides, manual };
+const faqs = defineCollection({
+  loader: file('./src/content/faqs.json'),
+  schema: z.object({
+    id: z.string(),
+    question: z.string(),
+    answer: z.string(),
+    order: z.number(),
+  }),
+});
+
+const reviews = defineCollection({
+  loader: file('./src/content/reviews.json'),
+  schema: z.object({
+    id: z.string(),
+    stay: z.enum(['guest-room', 'two-bedroom-unit']),
+    name: z.string(),
+    date: z.string(),
+    location: z.string().default(''),
+    quote: z.string(),          // English text shown (translation for non-English reviews)
+    original: z.string().default(''), // non-English source, shown above the translation
+    themes: z.array(z.enum(['dogs', 'hot-tub', 'ski', 'families'])).default([]),
+  }),
+});
+
+export const collections = { stays, guides, manual, faqs, reviews };

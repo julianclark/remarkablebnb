@@ -1,5 +1,6 @@
 # build output
 dist/
+.wrangler/
 # generated types
 .astro/
 
@@ -16,9 +17,13 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.dev.vars
 
 # macOS-specific files
 .DS_Store
 
 # jetbrains setting folder
 .idea/
+
+# local pricing import (derived from Airbnb calendar)
+/prices-import.sql

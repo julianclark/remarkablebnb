@@ -1,0 +1,406 @@
+---
+import { buildMonths, type DateRange } from '../lib/availability';
+
+interface Props {
+  bookedRanges: DateRange[];
+  prices?: Record<string, number>;
+  staySlug: string;
+  stayType: string;
+  monthsToShow?: number;
+}
+
+const { bookedRanges, prices = {}, staySlug, stayType, monthsToShow = 12 } = Astro.props;
+const hasPrices = Object.keys(prices).length > 0;
+const DIRECT_MULTIPLIER = 0.95; // 5% off Airbnb when booking direct
+
+const months = buildMonths(monthsToShow, bookedRanges, new Date());
+const weekdayLabels = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+
+function longDate(iso: string): string {
+  return new Date(iso + 'T00:00:00Z').toLocaleDateString('en-NZ', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+// No-JS fallback: each available day links to the contact form pre-filled
+// with that date. JS enhances this into check-in/check-out range selection.
+function enquireHref(date: string): string {
+  return `/contact?stay=${encodeURIComponent(stayType)}&date=${date}`;
+}
+---
+
+<div class="availability" data-availability data-stay-type={stayType} data-stay-slug={staySlug}>
+  <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4" data-hint>
+    Green dates are open. <span class="hidden sm:inline">Tap a check-in then a check-out date to enquire, or tap a single date.</span><span class="sm:hidden">Tap a date to enquire.</span>
+  </p>
+
+  <!-- Pager (revealed by JS; without JS all months stack and remain browsable) -->
+  <div class="cal-pager" data-pager hidden>
+    <button type="button" class="cal-pager-btn" data-page-prev aria-label="Earlier months">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+    </button>
+    <span class="cal-pager-label" data-page-label aria-live="polite"></span>
+    <button type="button" class="cal-pager-btn" data-page-next aria-label="Later months">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" data-months>
+    {months.map((month, mi) => (
+      <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-4 cal-month" data-month-index={mi} data-month-label={month.label}>
+        <div class="text-sm font-semibold mb-3 text-center">{month.label}</div>
+        <div class="grid grid-cols-7 gap-1 text-xs text-center text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">
+          {weekdayLabels.map((w) => <div aria-hidden="true">{w}</div>)}
+        </div>
+        <div class="grid grid-cols-7 gap-1">
+          {month.weeks.flatMap((week) =>
+            week.map((day) => {
+              if (!day.inMonth) return <div />;
+              if (day.isPast) {
+                return (
+                  <div class="cal-day cal-past" aria-hidden="true">{day.day}</div>
+                );
+              }
+              if (day.booked) {
+                return (
+                  <div class="cal-day cal-booked" aria-label={`${longDate(day.date)}, booked`}>
+                    <span>{day.day}</span>
+                  </div>
+                );
+              }
+              const airbnb = prices[day.date];
+              const direct = airbnb ? Math.round(airbnb * DIRECT_MULTIPLIER) : null;
+              const label = direct
+                ? `${longDate(day.date)}, available, $${direct} per night direct, enquire`
+                : `${longDate(day.date)}, available, enquire`;
+              return (
+                <a
+                  href={enquireHref(day.date)}
+                  class="cal-day cal-available"
+                  data-date={day.date}
+                  data-price={airbnb ?? ''}
+                  aria-label={label}
+                >
+                  <span class="cal-daynum">{day.day}</span>
+                  {direct !== null && <span class="cal-price">${direct}</span>}
+                </a>
+              );
+            })
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Legend -->
+  <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+    <span class="flex items-center gap-1.5"><span class="legend-swatch legend-available" aria-hidden="true"></span> Available</span>
+    <span class="flex items-center gap-1.5"><span class="legend-swatch legend-booked" aria-hidden="true"></span> Booked</span>
+  </div>
+
+  <!-- Enquiry bar (revealed by JS once a range/date is chosen) -->
+  <div class="cal-enquire-bar" data-enquire-bar hidden>
+    <div class="cal-enquire-text">
+      <span data-enquire-summary></span>
+    </div>
+    <div class="cal-enquire-actions">
+      <button type="button" class="cal-enquire-clear" data-enquire-clear>Clear</button>
+      <a class="cal-enquire-cta" data-enquire-cta href="#">Enquire about these dates →</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cal-day {
+    min-height: 2.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    font-size: 0.78rem;
+    text-decoration: none;
+    line-height: 1.1;
+    padding: 2px;
+  }
+  .cal-price { font-size: 0.6rem; opacity: 0.9; margin-top: 1px; }
+  .cal-available.is-selected-start .cal-price,
+  .cal-available.is-selected-end .cal-price { opacity: 1; }
+
+  /* Available, green fill, high contrast, clearly interactive */
+  .cal-available {
+    background: color-mix(in srgb, var(--color-forest) 16%, white);
+    color: var(--color-forest);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.12s, transform 0.12s;
+  }
+  .cal-available:hover {
+    background: color-mix(in srgb, var(--color-forest) 30%, white);
+  }
+  .cal-available:focus-visible {
+    outline: 3px solid var(--color-alpine);
+    outline-offset: 1px;
+  }
+  :global(.dark) .cal-available {
+    background: color-mix(in srgb, var(--color-forest) 40%, transparent);
+    color: var(--color-forest-light);
+  }
+  :global(.dark) .cal-available:hover {
+    background: color-mix(in srgb, var(--color-forest) 60%, transparent);
+  }
+
+  /* Booked, diagonal stripes + strikethrough (not colour-alone) */
+  .cal-booked {
+    background: repeating-linear-gradient(
+      -45deg,
+      color-mix(in srgb, var(--color-slate-mid) 22%, white),
+      color-mix(in srgb, var(--color-slate-mid) 22%, white) 3px,
+      color-mix(in srgb, var(--color-slate-mid) 10%, white) 3px,
+      color-mix(in srgb, var(--color-slate-mid) 10%, white) 6px
+    );
+    color: var(--color-slate-mid);
+  }
+  .cal-booked span { text-decoration: line-through; opacity: 0.75; }
+  :global(.dark) .cal-booked {
+    background: repeating-linear-gradient(
+      -45deg,
+      color-mix(in srgb, var(--color-slate-mid) 70%, transparent),
+      color-mix(in srgb, var(--color-slate-mid) 70%, transparent) 3px,
+      color-mix(in srgb, var(--color-slate-mid) 40%, transparent) 3px,
+      color-mix(in srgb, var(--color-slate-mid) 40%, transparent) 6px
+    );
+    color: var(--color-stone-warm);
+  }
+
+  .cal-past { color: color-mix(in srgb, var(--color-slate-mid) 35%, transparent); }
+  :global(.dark) .cal-past { color: color-mix(in srgb, var(--color-stone-warm) 25%, transparent); }
+
+  /* Selected range state (JS) */
+  .cal-available.is-selected-end,
+  .cal-available.is-selected-start {
+    background: var(--color-alpine);
+    color: #fff;
+  }
+  :global(.dark) .cal-available.is-selected-start,
+  :global(.dark) .cal-available.is-selected-end {
+    background: var(--color-alpine);
+    color: #fff;
+  }
+  .cal-available.is-in-range {
+    background: color-mix(in srgb, var(--color-alpine) 22%, white);
+    color: var(--color-alpine-dark);
+    border-radius: 0;
+  }
+  :global(.dark) .cal-available.is-in-range {
+    background: color-mix(in srgb, var(--color-alpine) 35%, transparent);
+    color: #fff;
+  }
+
+  .legend-swatch { width: 0.9rem; height: 0.9rem; border-radius: 0.25rem; display: inline-block; }
+  .legend-available { background: color-mix(in srgb, var(--color-forest) 16%, white); border: 1px solid var(--color-forest); }
+  :global(.dark) .legend-available { background: color-mix(in srgb, var(--color-forest) 40%, transparent); }
+  .legend-booked {
+    background: repeating-linear-gradient(-45deg,
+      color-mix(in srgb, var(--color-slate-mid) 40%, white),
+      color-mix(in srgb, var(--color-slate-mid) 40%, white) 2px,
+      color-mix(in srgb, var(--color-slate-mid) 12%, white) 2px,
+      color-mix(in srgb, var(--color-slate-mid) 12%, white) 4px);
+  }
+
+  .cal-pager {
+    display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;
+  }
+  .cal-pager-label { font-size: 0.9rem; font-weight: 600; min-width: 11rem; text-align: center; }
+  .cal-pager-btn {
+    width: 2.25rem; height: 2.25rem; border-radius: 9999px; border: 1px solid var(--color-stone-light);
+    background: var(--color-snow); color: var(--color-slate-deep); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: background 0.12s, opacity 0.12s;
+  }
+  :global(.dark) .cal-pager-btn { background: var(--color-slate-deep); color: var(--color-snow); border-color: var(--color-slate-mid); }
+  .cal-pager-btn:hover:not(:disabled) { background: var(--color-stone-light); }
+  :global(.dark) .cal-pager-btn:hover:not(:disabled) { background: var(--color-slate-mid); }
+  .cal-pager-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .cal-pager-btn:focus-visible { outline: 3px solid var(--color-alpine); outline-offset: 2px; }
+  .cal-pager-btn svg { width: 1.1rem; height: 1.1rem; }
+  /* When JS enables paging, only the active pair of months is shown. */
+  .cal-month.is-hidden { display: none; }
+
+  .cal-enquire-bar {
+    display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between;
+    margin-top: 1rem; padding: 0.85rem 1rem; border-radius: 0.75rem;
+    background: color-mix(in srgb, var(--color-alpine) 8%, white);
+    border: 1px solid color-mix(in srgb, var(--color-alpine) 35%, transparent);
+  }
+  :global(.dark) .cal-enquire-bar { background: color-mix(in srgb, var(--color-alpine) 15%, transparent); }
+  .cal-enquire-text { font-size: 0.85rem; font-weight: 600; }
+  .cal-was { font-weight: 400; text-decoration: line-through; opacity: 0.6; margin-left: 0.25rem; }
+  .cal-enquire-actions { display: flex; align-items: center; gap: 0.75rem; }
+  .cal-enquire-clear {
+    background: none; border: 0; cursor: pointer; font-size: 0.8rem;
+    color: var(--color-slate-mid); text-decoration: underline;
+  }
+  .cal-enquire-cta {
+    display: inline-block; background: var(--color-alpine); color: #fff;
+    padding: 0.5rem 0.9rem; border-radius: 0.6rem; font-size: 0.85rem; font-weight: 600; text-decoration: none;
+    transition: background 0.12s;
+  }
+  .cal-enquire-cta:hover { background: var(--color-alpine-dark); }
+</style>
+
+<script>
+  function initAvailability() {
+    document.querySelectorAll<HTMLElement>('[data-availability]').forEach((root) => {
+      const stayType = root.dataset.stayType ?? 'general';
+      const days = Array.from(root.querySelectorAll<HTMLAnchorElement>('.cal-available'));
+      const bar = root.querySelector<HTMLElement>('[data-enquire-bar]');
+      const summary = root.querySelector<HTMLElement>('[data-enquire-summary]');
+      const cta = root.querySelector<HTMLAnchorElement>('[data-enquire-cta]');
+      const clearBtn = root.querySelector<HTMLButtonElement>('[data-enquire-clear]');
+      if (days.length === 0 || !bar || !summary || !cta) return;
+
+      const dates = days.map((d) => d.dataset.date!).sort();
+      const priceOf: Record<string, number> = {};
+      days.forEach((d) => {
+        const p = Number(d.dataset.price);
+        if (p > 0) priceOf[d.dataset.date!] = p;
+      });
+      let checkin: string | null = null;
+      let checkout: string | null = null;
+
+      const fmt = (iso: string) =>
+        new Date(iso + 'T00:00:00Z').toLocaleDateString('en-NZ', {
+          day: 'numeric', month: 'short', timeZone: 'UTC',
+        });
+
+      const nextDay = (iso: string) => {
+        const d = new Date(iso + 'T00:00:00Z');
+        d.setUTCDate(d.getUTCDate() + 1);
+        return d.toISOString().slice(0, 10);
+      };
+
+      // Sum Airbnb nightly prices across [a, b). allPriced=false if any night
+      // has no captured price.
+      const totalFor = (a: string, b: string) => {
+        let nights = 0, airbnb = 0, allPriced = true;
+        for (let cur = a; cur < b; cur = nextDay(cur)) {
+          nights++;
+          const p = priceOf[cur];
+          if (p) airbnb += p; else allPriced = false;
+        }
+        return { nights, airbnb, direct: Math.round(airbnb * 0.95), allPriced };
+      };
+
+      const clearClasses = () =>
+        days.forEach((d) => d.classList.remove('is-selected-start', 'is-selected-end', 'is-in-range'));
+
+      // Are all nights in [a, b) available? Booked days aren't in `dates`,
+      // so a gap means the range crosses a booked night.
+      const availableSet = new Set(dates);
+      const rangeIsClear = (a: string, b: string) => {
+        let cur = a;
+        while (cur < b) {
+          if (!availableSet.has(cur)) return false;
+          const next = new Date(cur + 'T00:00:00Z');
+          next.setUTCDate(next.getUTCDate() + 1);
+          cur = next.toISOString().slice(0, 10);
+        }
+        return true;
+      };
+
+      const render = () => {
+        clearClasses();
+        if (checkin && !checkout) {
+          const el = days.find((d) => d.dataset.date === checkin);
+          el?.classList.add('is-selected-start');
+          summary.textContent = `Check-in ${fmt(checkin)}, now pick a check-out date`;
+          cta.href = `/contact?stay=${encodeURIComponent(stayType)}&date=${checkin}`;
+          bar.hidden = false;
+        } else if (checkin && checkout) {
+          days.forEach((d) => {
+            const dt = d.dataset.date!;
+            if (dt === checkin) d.classList.add('is-selected-start');
+            else if (dt === checkout) d.classList.add('is-selected-end');
+            else if (dt > checkin && dt < checkout) d.classList.add('is-in-range');
+          });
+          const { nights, airbnb, direct, allPriced } = totalFor(checkin, checkout);
+          const nightsLabel = `${nights} night${nights > 1 ? 's' : ''}`;
+          if (allPriced && airbnb > 0) {
+            summary.innerHTML =
+              `${fmt(checkin)} → ${fmt(checkout)} · ${nightsLabel} · ` +
+              `<strong>$${direct}</strong> direct <span class="cal-was">$${airbnb} on Airbnb</span>`;
+          } else {
+            summary.textContent = `${fmt(checkin)} → ${fmt(checkout)} · ${nightsLabel}`;
+          }
+          cta.href = `/contact?stay=${encodeURIComponent(stayType)}&checkin=${checkin}&checkout=${checkout}`;
+          bar.hidden = false;
+        } else {
+          bar.hidden = true;
+        }
+      };
+
+      days.forEach((day) => {
+        day.addEventListener('click', (e) => {
+          e.preventDefault(); // JS takes over; link is the no-JS fallback
+          const date = day.dataset.date!;
+          if (!checkin || checkout) {
+            checkin = date;
+            checkout = null;
+          } else if (date <= checkin) {
+            checkin = date; // restart if they pick an earlier/same day
+            checkout = null;
+          } else if (rangeIsClear(checkin, date)) {
+            checkout = date;
+          } else {
+            checkin = date; // range crossed a booked night, restart
+            checkout = null;
+          }
+          render();
+        });
+      });
+
+      clearBtn?.addEventListener('click', () => {
+        checkin = null;
+        checkout = null;
+        render();
+      });
+
+      // --- Month paging (show 2 months at a time) ---
+      const monthCards = Array.from(root.querySelectorAll<HTMLElement>('.cal-month'));
+      const pager = root.querySelector<HTMLElement>('[data-pager]');
+      const pagePrev = root.querySelector<HTMLButtonElement>('[data-page-prev]');
+      const pageNext = root.querySelector<HTMLButtonElement>('[data-page-next]');
+      const pageLabel = root.querySelector<HTMLElement>('[data-page-label]');
+      const PER_PAGE = 2;
+
+      if (pager && monthCards.length > PER_PAGE) {
+        pager.hidden = false;
+        const pageCount = Math.ceil(monthCards.length / PER_PAGE);
+        let page = 0;
+
+        const showPage = (p: number) => {
+          page = Math.max(0, Math.min(pageCount - 1, p));
+          monthCards.forEach((card, i) => {
+            const onPage = i >= page * PER_PAGE && i < (page + 1) * PER_PAGE;
+            card.classList.toggle('is-hidden', !onPage);
+          });
+          const visible = monthCards.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
+          const labels = visible.map((c) => c.dataset.monthLabel ?? '');
+          if (pageLabel) pageLabel.textContent = labels.join(' – ');
+          if (pagePrev) pagePrev.disabled = page === 0;
+          if (pageNext) pageNext.disabled = page === pageCount - 1;
+        };
+
+        pagePrev?.addEventListener('click', () => showPage(page - 1));
+        pageNext?.addEventListener('click', () => showPage(page + 1));
+        showPage(0);
+      }
+    });
+  }
+
+  initAvailability();
+  document.addEventListener('astro:page-load', initAvailability);
+</script>

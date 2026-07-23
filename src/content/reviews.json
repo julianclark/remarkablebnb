@@ -1,0 +1,130 @@
+[
+  {
+    "id": "gr-amy",
+    "stay": "guest-room",
+    "name": "Amy",
+    "date": "Mar 2026",
+    "location": "",
+    "quote": "Super clean and comfortable room and they made you feel right at home. Plus Luna and Rocket are absolutely adorable.",
+    "themes": ["dogs"]
+  },
+  {
+    "id": "gr-katie",
+    "stay": "guest-room",
+    "name": "Katie",
+    "date": "Feb 2026",
+    "location": "UK",
+    "quote": "The room and en suite was very spacious and comfortable! Their dogs Rocket and Luna are so lovely and friendly we will miss them!",
+    "themes": ["dogs"]
+  },
+  {
+    "id": "gr-sonal",
+    "stay": "guest-room",
+    "name": "Sonal",
+    "date": "Feb 2026",
+    "location": "USA",
+    "quote": "The space was lovely, private, and pristine... Jack's Point is very walkable and has some great trails around the neighborhood. It's also an outstanding place to catch a sunset and do some stargazing.",
+    "themes": []
+  },
+  {
+    "id": "gr-wai-loon",
+    "stay": "guest-room",
+    "name": "Wai Loon",
+    "date": "Jul 2026",
+    "location": "Malaysia",
+    "quote": "The house was spotless, warm, and very comfortable... Our host is a ski instructor and he even offered to drive us up the mountain... Thanks to his help, I was able to drive up the mountain with confidence.",
+    "themes": ["ski"]
+  },
+  {
+    "id": "gr-laura",
+    "stay": "guest-room",
+    "name": "Laura",
+    "date": "Jan 2026",
+    "location": "Canada",
+    "quote": "They are a lovely family and I really enjoyed the time I spent with them in their beautiful home... Thank you for making my time in Queenstown so special!",
+    "themes": []
+  },
+  {
+    "id": "gr-wai-ching",
+    "stay": "guest-room",
+    "name": "Wai Ching",
+    "date": "Jul 2026",
+    "location": "",
+    "original": "還有 Rocket 和 Luna 兩隻可愛的小狗，他們很熱情又親人。",
+    "quote": "And Rocket and Luna, two adorable little dogs, so warm and affectionate.",
+    "themes": ["dogs", "hot-tub"]
+  },
+  {
+    "id": "bu-riaz",
+    "stay": "two-bedroom-unit",
+    "name": "Riaz",
+    "date": "Jul 2026",
+    "location": "South Africa",
+    "quote": "The best Airbnb that we have stayed in by far... Ultra modern home with the latest amenities. Would highly recommend.",
+    "themes": []
+  },
+  {
+    "id": "bu-sherry",
+    "stay": "two-bedroom-unit",
+    "name": "Sherry",
+    "date": "Jul 2026",
+    "location": "NZ",
+    "quote": "This stay was perfect for our family. Close to the Remarks so perfect for that ski trip. Spotless clean and warm throughout the whole space. Would love to be back next winter!",
+    "themes": ["ski", "families"]
+  },
+  {
+    "id": "bu-hamish",
+    "stay": "two-bedroom-unit",
+    "name": "Hamish",
+    "date": "Mar 2026",
+    "location": "",
+    "quote": "The attached but private accommodation is clean, modern and well equipped. There are spectacular views of the Remarkable mountains from the living area and bedrooms.",
+    "themes": []
+  },
+  {
+    "id": "bu-rita",
+    "stay": "two-bedroom-unit",
+    "name": "Rita",
+    "date": "Mar 2026",
+    "location": "USA",
+    "quote": "A pleasant evening in the hot tub was very relaxing... We highly recommend!",
+    "themes": ["hot-tub"]
+  },
+  {
+    "id": "bu-sauda",
+    "stay": "two-bedroom-unit",
+    "name": "Sauda",
+    "date": "Feb 2026",
+    "location": "Canada",
+    "quote": "I would highly recommend it to anyone travelling with young children as there are many playgrounds around (one with the best view of Queenstown), and the second bedroom is stocked with toys and books.",
+    "themes": ["families"]
+  },
+  {
+    "id": "bu-guilherme",
+    "stay": "two-bedroom-unit",
+    "name": "Guilherme",
+    "date": "Dec 2025",
+    "location": "",
+    "quote": "Great house, beautiful location... They also provided us a big container of toys for our two-year-old.",
+    "themes": ["families"]
+  },
+  {
+    "id": "bu-eleanor",
+    "stay": "two-bedroom-unit",
+    "name": "Eleanor",
+    "date": "Feb 2026",
+    "location": "UK",
+    "quote": "Peaceful at night, about 20 minute drive to central Queenstown. Lovely hosts, really welcoming and went above and beyond for our stay.",
+    "themes": []
+  },
+  {
+    "id": "bu-catharina",
+    "stay": "two-bedroom-unit",
+    "name": "Catharina",
+    "date": "Mar 2026",
+    "location": "",
+    "original": "Das Airbnb war sehr sauber und gut eingerichtet... Wir würden dieses Airbnb immer wieder buchen ;)",
+    "quote": "The Airbnb was very clean and well furnished... We would book this Airbnb again and again ;)",
+    "themes": []
+  }
+]

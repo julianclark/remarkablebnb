@@ -3,20 +3,58 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BookingCTA from '../../components/BookingCTA.astro';
 import AmenityGrid from '../../components/AmenityGrid.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
+import AvailabilityCalendar from '../../components/AvailabilityCalendar.astro';
+import Carousel from '../../components/Carousel.astro';
+import Review from '../../components/Review.astro';
 import { getCollection, render } from 'astro:content';
+import { getGallery } from '../../lib/galleries';
+import { env } from 'cloudflare:workers';
 
-export const prerender = true;
+export const prerender = false;
 
-export async function getStaticPaths() {
-  const stays = await getCollection('stays');
-  return stays.map((stay) => ({
-    params: { slug: stay.data.slug },
-    props: { stay },
-  }));
+const { slug } = Astro.params;
+const stays = await getCollection('stays');
+const stay = stays.find((s) => s.data.slug === slug);
+
+if (!stay) {
+  return new Response('Not Found', { status: 404 });
 }
 
-const { stay } = Astro.props;
 const { Content } = await render(stay);
+const gallery = getGallery(stay.data.slug, stay.data.title);
+
+// Real guest reviews for this specific stay (up to 4, spread across themes).
+const allReviews = (await getCollection('reviews')).map((r) => r.data);
+const stayReviews = allReviews.filter((r) => r.stay === stay.data.slug).slice(0, 4);
+
+let bookedRanges: { start: string; end: string }[] = [];
+try {
+  const { results } = await env.DB.prepare(
+    'SELECT start_date, end_date FROM ical_events WHERE room = ? AND end_date >= date("now") ORDER BY start_date'
+  )
+    .bind(stay.data.slug)
+    .all();
+  bookedRanges = (results ?? []).map((r: any) => ({ start: r.start_date, end: r.end_date }));
+} catch (err) {
+  console.error('Failed to load availability:', err);
+}
+
+// Per-night Airbnb pricing (captured from screenshots). Direct rate is 5% less.
+let prices: Record<string, number> = {};
+let fromPrice: number | null = null;
+try {
+  const { results } = await env.DB.prepare(
+    'SELECT date, price_nzd FROM prices WHERE room = ? AND date >= date("now") ORDER BY date'
+  )
+    .bind(stay.data.slug)
+    .all();
+  for (const r of results ?? []) prices[(r as any).date] = (r as any).price_nzd;
+  const vals = Object.values(prices);
+  if (vals.length) fromPrice = Math.min(...vals);
+} catch (err) {
+  console.error('Failed to load prices:', err);
+}
+const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.95) : null;
 ---
 
 <BaseLayout
@@ -38,13 +76,28 @@ const { Content } = await render(stay);
     </div>
     <div class="absolute inset-0 gradient-scrim"></div>
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 w-full">
-      {stay.data.guestFavourite && (
-        <span class="badge badge-gold mb-3">⭐ Guest Favourite · {stay.data.rating} from {stay.data.reviewCount} reviews</span>
-      )}
+      <div class="flex flex-wrap gap-2 mb-3">
+        {stay.data.guestFavourite && (
+          <span class="badge badge-gold">⭐ Guest Favourite · {stay.data.rating} from {stay.data.reviewCount} reviews</span>
+        )}
+        {stay.data.topOnePercent && <span class="badge badge-alpine">Top 1% on Airbnb</span>}
+      </div>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-2 !text-white">{stay.data.title}</h1>
       <p class="text-lg text-white/80">{stay.data.tagline}</p>
     </div>
   </section>
+
+  {gallery.length > 0 && (
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
+      <h2 class="text-2xl font-bold mb-6">Photos</h2>
+      <Carousel images={gallery} id={`gallery-${stay.data.slug}`} />
+    </div>
+  )}
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
+    <h2 class="text-2xl font-bold mb-6">Availability & pricing</h2>
+    <AvailabilityCalendar bookedRanges={bookedRanges} prices={prices} staySlug={stay.data.slug} stayType={stay.data.type} />
+  </div>
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -68,6 +121,15 @@ const { Content } = await render(stay);
           ))}
         </div>
 
+        <!-- At-a-glance facts -->
+        {stay.data.facts.length > 0 && (
+          <ul class="flex flex-wrap gap-2 mb-8">
+            {stay.data.facts.map((fact) => (
+              <li class="text-xs font-medium bg-[var(--color-alpine)]/10 text-[var(--color-alpine-dark)] dark:text-[var(--color-alpine)] rounded-full px-3 py-1.5">{fact}</li>
+            ))}
+          </ul>
+        )}
+
         <!-- Content from markdown -->
         <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-[var(--color-slate-mid)] dark:prose-p:text-[var(--color-stone-warm)] prose-p:leading-relaxed">
           <Content />
@@ -86,7 +148,19 @@ const { Content } = await render(stay);
           <!-- Booking card -->
           <div class="rounded-2xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] bg-white dark:bg-[var(--color-slate-deep)] p-6 shadow-sm">
             <h3 class="text-lg font-bold mb-1">Book this stay</h3>
-            <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-6">{stay.data.title} · Hanley's Farm</p>
+            <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">{stay.data.title} · Hanley's Farm</p>
+            {fromDirect !== null && (
+              <div class="mb-6 pb-6 border-b border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">from</span>
+                  <span class="text-2xl font-extrabold">${fromDirect}</span>
+                  <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">/ night direct</span>
+                </div>
+                <div class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mt-1">
+                  <span class="line-through">${fromPrice}</span> on Airbnb · you save 5% booking direct
+                </div>
+              </div>
+            )}
             <BookingCTA airbnbUrl={stay.data.airbnbUrl} stayTitle={stay.data.title} />
           </div>
 
@@ -96,19 +170,19 @@ const { Content } = await render(stay);
             <ul class="space-y-2 text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
               <li class="flex items-start gap-2">
                 <span class="mt-0.5">🏔️</span>
-                <span>The Remarkables — short drive</span>
+                <span>The Remarkables: short drive</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="mt-0.5">⛳</span>
-                <span>Jack's Point Golf — walking distance</span>
+                <span>Jack's Point Golf: walking distance</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="mt-0.5">🛍️</span>
-                <span>Remarkables Park — 5 min drive</span>
+                <span>Remarkables Park: 5 min drive</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="mt-0.5">🏙️</span>
-                <span>Queenstown CBD — 15 min drive</span>
+                <span>Queenstown CBD: 15 min drive</span>
               </li>
             </ul>
           </div>
@@ -116,4 +190,26 @@ const { Content } = await render(stay);
       </div>
     </div>
   </div>
+
+  {stayReviews.length > 0 && (
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
+      <div class="flex flex-wrap items-baseline justify-between gap-3 mb-6">
+        <h2 class="text-2xl font-bold">What guests say</h2>
+        <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+          <span class="text-[var(--color-gold)] font-semibold">★ {stay.data.rating}</span> · {stay.data.reviewCount} reviews on Airbnb
+        </span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {stayReviews.map((r) => (
+          <Review quote={r.quote} name={r.name} date={r.date} location={r.location} original={r.original} />
+        ))}
+      </div>
+      <div class="mt-6">
+        <a href={stay.data.airbnbUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[var(--color-alpine)] font-semibold text-sm hover:underline">
+          Read all {stay.data.reviewCount} reviews on Airbnb
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+        </a>
+      </div>
+    </div>
+  )}
 </BaseLayout>
