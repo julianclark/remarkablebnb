@@ -1,14 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BookingCTA from '../components/BookingCTA.astro';
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import dogPhoto from '../assets/photos/guest-room/dogs.avif';
+import hotTubPhoto from '../assets/photos/two-bedroom-unit/Aurora.avif';
 
 export const prerender = true;
 
 const stays = await getCollection('stays');
+const faqs = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.order);
+
+const segments = [
+  { icon: '🎿', title: 'Ski trips', copy: '20 min to The Remarkables, a warm house, gear-drying space, and honest winter-driving advice.' },
+  { icon: '🐾', title: 'Dog-loving couples', copy: 'Meet Rocket & Luna — for many guests, the highlight of the stay.' },
+  { icon: '👨‍👩‍👧', title: 'Families', copy: 'Travel cot available, a bunk room, playgrounds and short walks nearby, wet-weather ideas on tap.' },
+  { icon: '💼', title: 'Work trips & contractors', copy: 'Self-contained unit, fast Wi-Fi, and repeat-stay direct rates.' },
+];
+
+const locationRows = [
+  { icon: '🏔️', label: 'The Remarkables ski field', detail: '~20 min drive · Coronet Peak ~35 min' },
+  { icon: '🏙️', label: 'Queenstown CBD', detail: '15–20 min drive (~16 km)' },
+  { icon: '✈️', label: 'Frankton & the airport', detail: '5–8 min drive' },
+  { icon: '⛳', label: 'Jack\'s Point golf', detail: 'Walking distance' },
+  { icon: '🚌', label: 'Orbus bus stop', detail: '~10-min walk · regular but infrequent · cash or Bee Card only (no cards on board)' },
+  { icon: '🚐', label: 'Milford Sound & coach tours', detail: 'Choose Frankton pickup — far easier than town' },
+];
+
+const bookDirectExtras = [
+  { icon: '🔥', text: 'Wood-fired hot tub sessions, bookable as an add-on' },
+  { icon: '🕐', text: 'Early check-in and bag drop where we can' },
+  { icon: '🎁', text: 'The occasional homely extra when we\'re around (nothing promised)' },
+  { icon: '📅', text: 'Flexible date changes — deal with us, not a platform' },
+  { icon: '🔁', text: 'Repeat-stay rates for regular Queenstown trips' },
+];
 ---
 
-<BaseLayout title="Remarkable BnB" description="Accommodation at Holly and Julian's home in Hanley's Farm, Queenstown. Near The Remarkables ski field and Jack's Point golf course. Book direct and save 5%.">
+<BaseLayout title="Remarkable BnB" description="Accommodation at Holly and Julian's home in Hanley's Farm, Queenstown. Near The Remarkables ski field and Jack's Point. Book direct and save 5%.">
 
   <!-- Hero section -->
   <section class="relative h-[70vh] min-h-[500px] flex items-end overflow-hidden">
@@ -38,6 +65,9 @@ const stays = await getCollection('stays');
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
           </svg>
         </a>
+        <a href="#dogs" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white border border-white/25 font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-all duration-200" id="hero-cta-dogs">
+          Meet the dogs 🐾
+        </a>
         <a href="/contact" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white border border-white/25 font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-all duration-200" id="hero-cta-contact">
           Get in touch
         </a>
@@ -45,36 +75,18 @@ const stays = await getCollection('stays');
     </div>
   </section>
 
-  <!-- Why Book Direct -->
-  <section class="py-16 sm:py-20 bg-gradient-to-b from-[var(--color-alpine)]/5 to-transparent dark:from-[var(--color-alpine)]/10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl mx-auto text-center mb-10">
-        <span class="badge badge-alpine mb-3">Save when you book direct</span>
-        <h2 class="text-3xl font-bold mb-4">Why book with us?</h2>
-        <p class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
-          We're on Airbnb too, but booking directly means a better deal and a more personal experience.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-        <!-- Airbnb rate -->
-        <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6 text-center">
-          <div class="text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] uppercase tracking-wider mb-2">Airbnb</div>
-          <div class="text-2xl font-bold mb-1">Full rate</div>
-          <div class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">+ Airbnb service fee</div>
-          <div class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mt-3">AirCover protection included</div>
+  <!-- Social proof strip -->
+  <section class="border-b border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] bg-[var(--color-snow)] dark:bg-[#0f172a]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <span class="flex items-center gap-1.5 font-semibold"><span class="text-[var(--color-gold)]">★ 5.0</span></span>
+          <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">27+ reviews on Airbnb</span>
+          <span class="badge badge-gold">⭐ Guest Favourite</span>
         </div>
-
-        <!-- Direct rate -->
-        <div class="rounded-xl border-2 border-[var(--color-alpine)] bg-[var(--color-alpine)]/5 dark:bg-[var(--color-alpine)]/10 p-6 text-center relative">
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-            <span class="badge badge-alpine">Best value</span>
-          </div>
-          <div class="text-sm font-medium text-[var(--color-alpine)] uppercase tracking-wider mb-2">Book Direct</div>
-          <div class="text-2xl font-bold mb-1">5% off</div>
-          <div class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">No service fees</div>
-          <div class="text-xs text-[var(--color-alpine)] font-medium mt-3">Deal with Holly & Julian directly</div>
-        </div>
+        <blockquote class="text-sm sm:text-base italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] md:border-l md:border-[var(--color-stone-light)] md:dark:border-[var(--color-slate-mid)] md:pl-8">
+          “Their home is beautiful and they have two very friendly big dogs — although they are big, they are really friendly!”
+        </blockquote>
       </div>
     </div>
   </section>
@@ -85,7 +97,7 @@ const stays = await getCollection('stays');
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold mb-4">Our stays</h2>
         <p class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] max-w-xl mx-auto">
-          Two ways to stay at our home in Hanley's Farm — both with mountain views and easy access to The Remarkables.
+          Two ways to stay at our home in Hanley's Farm — a private room inside the house, or your own self-contained unit.
         </p>
       </div>
 
@@ -96,7 +108,6 @@ const stays = await getCollection('stays');
             class="group card rounded-2xl overflow-hidden border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] bg-white dark:bg-[var(--color-slate-deep)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             id={`stay-card-${stay.data.slug}`}
           >
-            <!-- Photo -->
             <div class="relative h-56 sm:h-64 overflow-hidden bg-[var(--color-stone-light)]">
               <img
                 src={stay.data.heroImage}
@@ -112,23 +123,17 @@ const stays = await getCollection('stays');
               )}
             </div>
 
-            <!-- Content -->
             <div class="p-6">
               <h3 class="text-xl font-bold mb-1 group-hover:text-[var(--color-alpine)] transition-colors">{stay.data.title}</h3>
               <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">{stay.data.tagline}</p>
 
-              <!-- Stats -->
-              <div class="flex flex-wrap gap-4 text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
-                <span class="flex items-center gap-1">
-                  🛏️ {stay.data.bedrooms} {stay.data.bedrooms === 1 ? 'bedroom' : 'bedrooms'}
-                </span>
-                <span class="flex items-center gap-1">
-                  🚿 {stay.data.bathrooms} {stay.data.bathrooms === 1 ? 'bathroom' : 'bathrooms'}
-                </span>
-                <span class="flex items-center gap-1">
-                  👥 Up to {stay.data.maxGuests} guests
-                </span>
-              </div>
+              {stay.data.facts.length > 0 && (
+                <ul class="flex flex-wrap gap-2 mb-1">
+                  {stay.data.facts.map((fact) => (
+                    <li class="text-xs bg-[var(--color-stone-light)]/60 dark:bg-[var(--color-slate-mid)]/30 text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] rounded-full px-2.5 py-1">{fact}</li>
+                  ))}
+                </ul>
+              )}
 
               {stay.data.rating && (
                 <div class="mt-3 flex items-center gap-1 text-sm">
@@ -145,7 +150,166 @@ const stays = await getCollection('stays');
     </div>
   </section>
 
-  <!-- About / Personal touch -->
+  <!-- Meet Rocket & Luna -->
+  <section id="dogs" class="py-16 sm:py-20 bg-[var(--color-stone-light)]/30 dark:bg-[var(--color-slate-mid)]/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div class="rounded-2xl overflow-hidden shadow-sm order-2 lg:order-1">
+          <Image src={dogPhoto} alt="Rocket and Luna, our two friendly dogs" widths={[480, 768, 1024]} sizes="(max-width: 1024px) 100vw, 560px" class="w-full h-full object-cover" />
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="badge badge-forest mb-3">🐾 Meet the dogs</span>
+          <h2 class="text-3xl font-bold mb-4">Rocket & Luna</h2>
+          <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
+            Rocket and Luna are our two big, friendly dogs, and for a lot of our guests, they're the highlight of the stay. Rocket will greet you hoping for treats; Luna will supervise proceedings. Join us for a 45-minute dog walk along Lake Wakatipu, or just enjoy the company.
+          </p>
+          <div class="rounded-xl border border-[var(--color-alpine)]/30 bg-[var(--color-alpine)]/5 dark:bg-[var(--color-alpine)]/10 p-4 mb-4">
+            <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">
+              <strong>Not a dog person, or a bit nervous?</strong> No problem. We'll keep them away from you completely, and the unit has its own private entrance. Just tell us when you book.
+            </p>
+          </div>
+          <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">
+            Dogs are never in the Two Bedroom Unit unless you invite them. Travelling with your own dog? Ask us — we're dog-friendly by arrangement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wood-fired hot tub -->
+  <section class="relative py-20 sm:py-28 overflow-hidden">
+    <div class="absolute inset-0 bg-[var(--color-slate-deep)]">
+      <Image src={hotTubPhoto} alt="Evening sky over The Remarkables from Hanley's Farm" widths={[768, 1280, 1920]} sizes="100vw" class="w-full h-full object-cover opacity-60" />
+    </div>
+    <div class="absolute inset-0 gradient-scrim"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+      <span class="badge badge-gold mb-3">🔥 Add-on</span>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4 !text-white">Wood-fired hot tub, under the Southern sky</h2>
+      <p class="text-lg text-white/85 leading-relaxed mb-4">
+        Book an evening in our wood-fired hot tub under the Southern sky. We light the fire, manage the temperature, and leave the stars to do the rest. Sessions run about 1.5 hours — the 9pm slot catches the sunset fading over The Remarkables.
+      </p>
+      <p class="text-white/70 text-sm leading-relaxed mb-6">
+        Up to 4 people. Bookable as an add-on when you book direct, with pricing on request. Swimwear required; please shower before use. Add-ons like this are easiest to arrange when you book directly with us.
+      </p>
+      <a href="/contact" class="inline-flex items-center gap-2 bg-white text-[var(--color-slate-deep)] font-semibold px-6 py-3 rounded-xl hover:bg-[var(--color-stone-light)] transition-all duration-200">
+        Ask about the hot tub
+      </a>
+    </div>
+  </section>
+
+  <!-- Who we're great for -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Who we're great for</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {segments.map((s) => (
+          <div class="rounded-2xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6">
+            <div class="text-3xl mb-3" aria-hidden="true">{s.icon}</div>
+            <h3 class="font-bold mb-2">{s.title}</h3>
+            <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">{s.copy}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & getting around -->
+  <section class="py-16 sm:py-20 bg-[var(--color-stone-light)]/30 dark:bg-[var(--color-slate-mid)]/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold mb-4">Location & getting around</h2>
+        <p class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] max-w-xl mx-auto">
+          We're in Hanley's Farm, at the Jack's Point end, under The Remarkables.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {locationRows.map((row) => (
+          <div class="flex items-start gap-3 rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] bg-white dark:bg-[var(--color-slate-deep)] p-4">
+            <span class="text-xl mt-0.5" aria-hidden="true">{row.icon}</span>
+            <div>
+              <div class="font-semibold text-sm">{row.label}</div>
+              <div class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">{row.detail}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mt-8">
+        Full address, parking and arrival directions are sent as soon as you book.
+      </p>
+    </div>
+  </section>
+
+  <!-- Why Book Direct -->
+  <section class="py-16 sm:py-20 bg-gradient-to-b from-[var(--color-alpine)]/5 to-transparent dark:from-[var(--color-alpine)]/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto text-center mb-10">
+        <span class="badge badge-alpine mb-3">Save when you book direct</span>
+        <h2 class="text-3xl font-bold mb-4">Why book with us?</h2>
+        <p class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+          We're on Airbnb too, but booking directly means a better deal and a more personal experience.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-10">
+        <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6 text-center">
+          <div class="text-sm font-medium text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] uppercase tracking-wider mb-2">Airbnb</div>
+          <div class="text-2xl font-bold mb-1">Full rate</div>
+          <div class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">+ Airbnb service fee</div>
+          <div class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mt-3">AirCover protection included</div>
+        </div>
+
+        <div class="rounded-xl border-2 border-[var(--color-alpine)] bg-[var(--color-alpine)]/5 dark:bg-[var(--color-alpine)]/10 p-6 text-center relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+            <span class="badge badge-alpine">Best value</span>
+          </div>
+          <div class="text-sm font-medium text-[var(--color-alpine)] uppercase tracking-wider mb-2">Book Direct</div>
+          <div class="text-2xl font-bold mb-1">5% off</div>
+          <div class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">No service fees</div>
+          <div class="text-xs text-[var(--color-alpine)] font-medium mt-3">Deal with Holly & Julian directly</div>
+        </div>
+      </div>
+
+      <div class="max-w-2xl mx-auto">
+        <p class="text-center text-sm font-semibold uppercase tracking-wider text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">And the personal extras, only easy direct</p>
+        <ul class="space-y-2">
+          {bookDirectExtras.map((extra) => (
+            <li class="flex items-start gap-3 text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+              <span aria-hidden="true">{extra.icon}</span>
+              <span>{extra.text}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mt-4">
+          Regular work trips to Queenstown? <a href="/contact" class="text-[var(--color-alpine)] font-medium hover:underline">Talk to us about direct rates for repeat stays.</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold mb-4">Before you book</h2>
+        <p class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">The questions guests ask us most.</p>
+      </div>
+      <div class="space-y-3">
+        {faqs.map((faq) => (
+          <details class="group rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] bg-white dark:bg-[var(--color-slate-deep)] p-5">
+            <summary class="flex items-center justify-between cursor-pointer font-semibold list-none">
+              {faq.data.question}
+              <svg class="w-5 h-5 flex-shrink-0 transition-transform group-open:rotate-180 text-[var(--color-slate-mid)]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <p class="mt-3 text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">{faq.data.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Hosts -->
   <section class="py-16 sm:py-20 bg-[var(--color-stone-light)]/30 dark:bg-[var(--color-slate-mid)]/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
@@ -153,8 +317,11 @@ const stays = await getCollection('stays');
         <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
           We live here — this is our home in Hanley's Farm, on the edge of Jack's Point, under The Remarkables. We host because we genuinely enjoy it, and because Queenstown is worth sharing properly — not just through a listing page.
         </p>
-        <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-8">
+        <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-6">
           Our 5-star record comes from caring about the details: a warm house when you arrive, honest local tips, and being here when you need us. We think that's worth more than a generic welcome booklet.
+        </p>
+        <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-8">
+          We regularly host guests in Chinese, Korean and German: 我们欢迎中文客人 · 한국어 문의 환영 · Wir freuen uns auf deutschsprachige Gäste.
         </p>
         <a href="/contact" class="inline-flex items-center gap-2 text-[var(--color-alpine)] font-semibold hover:underline" id="about-contact-link">
           Get in touch with us

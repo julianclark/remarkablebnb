@@ -113,6 +113,15 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.95) : null;
           ))}
         </div>
 
+        <!-- At-a-glance facts -->
+        {stay.data.facts.length > 0 && (
+          <ul class="flex flex-wrap gap-2 mb-8">
+            {stay.data.facts.map((fact) => (
+              <li class="text-xs font-medium bg-[var(--color-alpine)]/10 text-[var(--color-alpine-dark)] dark:text-[var(--color-alpine)] rounded-full px-3 py-1.5">{fact}</li>
+            ))}
+          </ul>
+        )}
+
         <!-- Content from markdown -->
         <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-[var(--color-slate-mid)] dark:prose-p:text-[var(--color-stone-warm)] prose-p:leading-relaxed">
           <Content />

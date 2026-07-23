@@ -1,0 +1,50 @@
+[
+  {
+    "id": "late-check-in",
+    "order": 1,
+    "question": "Can I check in late?",
+    "answer": "Yes, genuinely fine. Self check-in from 3pm — arrive whenever suits."
+  },
+  {
+    "id": "early-check-in",
+    "order": 2,
+    "question": "Can I check in early or drop bags?",
+    "answer": "Often yes — just ask us. On back-to-back days the unit is usually ready from about 1:30pm."
+  },
+  {
+    "id": "shared-kitchen",
+    "order": 3,
+    "question": "Is the kitchen shared?",
+    "answer": "In the Guest Room, yes — you'll share our kitchen and have your own labelled fridge shelf. The Two Bedroom Unit has its own full kitchen, completely separate from us."
+  },
+  {
+    "id": "heating",
+    "order": 4,
+    "question": "What's the heating like?",
+    "answer": "Underfloor heating throughout. It's very cosy but slow to respond, so we pre-warm the space before you arrive."
+  },
+  {
+    "id": "bunk-adults",
+    "order": 5,
+    "question": "Can adults sleep in the bunk?",
+    "answer": "The bunk room is best suited to kids or smaller adults. The queen room is the one for couples."
+  },
+  {
+    "id": "need-a-car",
+    "order": 6,
+    "question": "Do I need a car?",
+    "answer": "Recommended. There's an Orbus stop about a 10-minute walk away, but buses are infrequent and take cash or a Bee Card only (no credit cards on board). A car is the practical option out here."
+  },
+  {
+    "id": "dogs-around",
+    "order": 7,
+    "question": "Are the dogs around?",
+    "answer": "As much or as little as you like. Rocket and Luna are friendly and part of the home, but if you'd rather not, we'll keep them away from you completely — just tell us when you book."
+  },
+  {
+    "id": "tap-water",
+    "order": 8,
+    "question": "Is the tap water safe to drink?",
+    "answer": "Yes — straight from the tap."
+  }
+]
