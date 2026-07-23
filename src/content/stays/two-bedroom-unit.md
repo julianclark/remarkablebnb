@@ -26,7 +26,7 @@ amenities:
   - "Free parking"
   - "Ski storage"
   - "WiFi"
-airbnbUrl: "https://www.airbnb.co.nz/h/hanleysfarm2bedunit"
+airbnbUrl: "https://www.airbnb.co.nz/h/remarkablebnb"
 airbnbListingId: "1546885102092776257"
 directOnly: false
 guestFavourite: true
