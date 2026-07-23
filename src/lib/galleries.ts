@@ -1,10 +1,11 @@
 import type { ImageMetadata } from 'astro';
 
 // Eagerly import every stay photo so Astro optimises them at build time.
-const modules = import.meta.glob<ImageMetadata>('../assets/photos/**/*.{jpeg,jpg,avif,png}', {
-  eager: true,
-  import: 'default',
-});
+// Scoped to the two stay folders (hot-tub photos are wired in directly).
+const modules = import.meta.glob<ImageMetadata>(
+  ['../assets/photos/two-bedroom-unit/*.{jpeg,jpg,avif,png}', '../assets/photos/guest-room/*.{jpeg,jpg,avif,png}'],
+  { eager: true, import: 'default' }
+);
 
 // Curated, narrative order per room (exterior/view → living → kitchen →
 // bedrooms → bathroom → wow shot). Filenames must match those on disk.
