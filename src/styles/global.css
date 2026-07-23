@@ -49,6 +49,15 @@ body {
   line-height: 1.7;
 }
 
+/* Form controls don't inherit font-family by default (inputs fall back to
+   the system UI font, textareas to monospace). Force the site font. */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
 /* ============================================
    Typography
    ============================================ */
