@@ -22,7 +22,6 @@ amenities:
   - "Own laundry"
   - "Dedicated bathroom"
   - "Underfloor heating"
-  - "Outdoor BBQ"
   - "Mountain views"
   - "Free parking"
   - "Ski storage"
@@ -54,14 +53,14 @@ The unit is fully self-contained with its own entrance and a lockable internal d
 
 ## Good to know
 
-- **Underfloor heating** keeps the unit very cosy, but it's slow to respond — so we pre-warm the space before you arrive.
-- The **kitchen is fully stocked**, including a cast-iron pan, and there's an **outdoor BBQ** for the long evenings.
+- **Underfloor heating** keeps the unit very cosy, but it's slow to respond, so we pre-warm the space before you arrive.
+- The **kitchen is fully stocked**, including a cast-iron pan.
 - **Parking** is free on the street and driveway (there's no garage).
 
 ## The dogs
 
-Rocket and Luna are part of our home next door, but they're never in the unit unless you invite them. Travelling with your own dog? Ask us — we're dog-friendly by arrangement.
+Rocket and Luna are part of our home next door, but they're never in the unit unless you invite them. Travelling with your own dog? Ask us, we're dog-friendly by arrangement.
 
 ## Location
 
-Hanley's Farm sits at the Jack's Point end, under The Remarkables — a quieter, mountain-side alternative to Queenstown's CBD, without giving up easy access to the region. Remarkables Park (groceries and essentials) is a few minutes away, and the town centre is about 15 minutes by car. Full address, parking and arrival directions are sent as soon as you book.
+Hanley's Farm sits at the Jack's Point end, under The Remarkables, a quieter, mountain-side alternative to Queenstown's CBD, without giving up easy access to the region. Remarkables Park (groceries and essentials) is a few minutes away, and the town centre is about 15 minutes by car. Full address, parking and arrival directions are sent as soon as you book.

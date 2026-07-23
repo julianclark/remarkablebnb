@@ -1,36 +1,49 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Review from '../components/Review.astro';
+import { getCollection } from 'astro:content';
 
 export const prerender = true;
+
+const stays = await getCollection('stays');
+const allReviews = (await getCollection('reviews')).map((r) => r.data);
+
+// Group real reviews under the correct stay. Never mix listings.
+const grouped = stays
+  .map((stay) => ({
+    stay: stay.data,
+    reviews: allReviews.filter((r) => r.stay === stay.data.slug),
+  }))
+  .filter((g) => g.reviews.length > 0)
+  .sort((a, b) => (b.stay.reviewCount ?? 0) - (a.stay.reviewCount ?? 0));
 ---
 
 <BaseLayout
   title="Guest Reviews"
-  description="Read what our guests say about their stay at Remarkable BnB in Hanley's Farm, Queenstown."
+  description="Real reviews from guests who have stayed at Remarkable BnB in Hanley's Farm, Queenstown."
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <div class="text-center mb-12">
       <span class="badge badge-gold mb-3">★ ★ ★ ★ ★</span>
       <h1 class="text-3xl sm:text-4xl font-extrabold mb-4">Guest Reviews</h1>
-      <p class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] max-w-xl mx-auto">
-        We pride ourselves on providing a consistent 5-star hosting experience. Here is what some of our guests have said about staying with us.
+      <p class="text-[var(--color-slate-mid)] max-w-xl mx-auto">
+        Both of our stays are rated 5.0 on Airbnb. These are real guest reviews, shown under the stay they were written for.
       </p>
     </div>
 
-    <!-- Featured Review Summary -->
-    <div class="bg-[var(--color-stone-light)]/30 dark:bg-[var(--color-slate-mid)]/10 rounded-2xl p-8 mb-12 border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] text-center">
-      <div class="text-5xl font-extrabold text-[var(--color-slate-deep)] dark:text-white mb-2">5.0</div>
-      <div class="flex justify-center text-[var(--color-gold)] text-xl gap-0.5 mb-2">
+    <!-- Rating summary + Google review CTA -->
+    <div class="bg-[var(--color-stone-light)]/40 rounded-2xl p-8 mb-12 border border-[var(--color-stone-light)] text-center">
+      <div class="text-5xl font-extrabold text-[var(--color-slate-deep)] mb-2">5.0</div>
+      <div class="flex justify-center text-[var(--color-gold)] text-xl gap-0.5 mb-2" aria-hidden="true">
         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
       </div>
-      <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
-        Average rating from stays across our guest suite and guest room
+      <p class="text-sm text-[var(--color-slate-mid)]">
+        Across both stays on Airbnb, with the Two Bedroom Unit a Guest Favourite in the top 1% of eligible listings.
       </p>
-      
       <div class="mt-6">
-        <a 
-          href="https://search.google.com/local/writereview?placeid=PLACE_ID" 
-          target="_blank" 
+        <a
+          href="https://search.google.com/local/writereview?placeid=PLACE_ID"
+          target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 bg-[var(--color-alpine)] hover:bg-[var(--color-alpine-dark)] text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors"
           id="btn-leave-review"
@@ -40,37 +53,28 @@ export const prerender = true;
       </div>
     </div>
 
-    <!-- Reviews Grid -->
-    <div class="space-y-6">
-      <div class="card bg-white dark:bg-[var(--color-slate-deep)] p-6 rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] shadow-sm">
-        <div class="flex items-center gap-1 text-[var(--color-gold)] mb-3">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+    {grouped.map((group) => (
+      <section class="mb-12">
+        <div class="flex flex-wrap items-baseline justify-between gap-3 mb-6">
+          <h2 class="text-2xl font-bold">
+            <a href={`/stays/${group.stay.slug}`} class="hover:text-[var(--color-alpine)] transition-colors">{group.stay.title}</a>
+          </h2>
+          <span class="text-sm text-[var(--color-slate-mid)]">
+            <span class="text-[var(--color-gold)] font-semibold">★ {group.stay.rating}</span> · {group.stay.reviewCount} reviews on Airbnb
+          </span>
         </div>
-        <p class="italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">
-          "Absolutely stunning location under the mountains! The two-bedroom unit was spotless, modern, and had everything we needed for our ski trip. Holly and Julian were amazing hosts who went out of their way to make sure we had chains for our car and knew the best routes up the mountain."
-        </p>
-        <div class="text-xs font-semibold text-[var(--color-slate-deep)] dark:text-[var(--color-snow)]">— Sarah, via Airbnb (Unit Guest)</div>
-      </div>
-
-      <div class="card bg-white dark:bg-[var(--color-slate-deep)] p-6 rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] shadow-sm">
-        <div class="flex items-center gap-1 text-[var(--color-gold)] mb-3">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {group.reviews.map((r) => (
+            <Review quote={r.quote} name={r.name} date={r.date} location={r.location} original={r.original} />
+          ))}
         </div>
-        <p class="italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">
-          "Highly recommend the guest room! The tiled ensuite was luxurious and the queen bed was incredibly comfortable after long days hiking around Jack's Point. Very quiet and peaceful area."
-        </p>
-        <div class="text-xs font-semibold text-[var(--color-slate-deep)] dark:text-[var(--color-snow)]">— Michael, via Airbnb (Guest Room)</div>
-      </div>
-
-      <div class="card bg-white dark:bg-[var(--color-slate-deep)] p-6 rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] shadow-sm">
-        <div class="flex items-center gap-1 text-[var(--color-gold)] mb-3">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        <div class="mt-5">
+          <a href={group.stay.airbnbUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[var(--color-alpine)] font-semibold text-sm hover:underline">
+            Read all {group.stay.reviewCount} reviews for the {group.stay.title} on Airbnb
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+          </a>
         </div>
-        <p class="italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">
-          "Great hosts, beautiful house and the best views of The Remarkables. Jack's Point Golf Course is practically on the doorstep. We will definitely be booking direct for our next trip back!"
-        </p>
-        <div class="text-xs font-semibold text-[var(--color-slate-deep)] dark:text-[var(--color-snow)]">— Sherry, via Airbnb (Guest Room)</div>
-      </div>
-    </div>
+      </section>
+    ))}
   </div>
 </BaseLayout>

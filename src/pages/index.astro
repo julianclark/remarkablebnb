@@ -21,7 +21,7 @@ const testimonials = testimonialIds.map(reviewById);
 
 const segments = [
   { icon: '🎿', title: 'Ski trips', copy: '20 min to The Remarkables, a warm house, gear-drying space, and honest winter-driving advice.', reviewId: 'gr-wai-loon' },
-  { icon: '🐾', title: 'Dog-loving couples', copy: 'Meet Rocket & Luna — for many guests, the highlight of the stay.', reviewId: '' },
+  { icon: '🐾', title: 'Dog-loving couples', copy: 'Meet Rocket & Luna, for many guests, the highlight of the stay.', reviewId: '' },
   { icon: '👨‍👩‍👧', title: 'Families', copy: 'Travel cot available, a bunk room, playgrounds and short walks nearby, wet-weather ideas on tap.', reviewId: 'bu-sauda' },
   { icon: '💼', title: 'Work trips & contractors', copy: 'Self-contained unit, fast Wi-Fi, and repeat-stay direct rates.', reviewId: '' },
 ];
@@ -32,15 +32,35 @@ const locationRows = [
   { icon: '✈️', label: 'Frankton & the airport', detail: '5–8 min drive' },
   { icon: '⛳', label: 'Jack\'s Point golf', detail: 'Walking distance' },
   { icon: '🚌', label: 'Orbus bus stop', detail: '~10-min walk · regular but infrequent · cash or Bee Card only (no cards on board)' },
-  { icon: '🚐', label: 'Milford Sound & coach tours', detail: 'Choose Frankton pickup — far easier than town' },
+  { icon: '🚐', label: 'Milford Sound & coach tours', detail: 'Choose Frankton pickup, far easier than town' },
 ];
 
 const bookDirectExtras = [
   { icon: '🔥', text: 'Wood-fired hot tub sessions, bookable as an add-on' },
   { icon: '🕐', text: 'Early check-in and bag drop where we can' },
   { icon: '🎁', text: 'The occasional homely extra when we\'re around (nothing promised)' },
-  { icon: '📅', text: 'Flexible date changes — deal with us, not a platform' },
+  { icon: '📅', text: 'Flexible date changes, deal with us, not a platform' },
   { icon: '🔁', text: 'Repeat-stay rates for regular Queenstown trips' },
+];
+
+// ─── Seasonal hero ────────────────────────────────────────────────────
+// Swap these values (and the image at /public/images/hero.jpg) to re-theme
+// the hero by season. Winter: snow imagery + ski messaging. Summer: trails,
+// sunsets, hot tub. Same layout and palette, seasonal content only.
+const hero = {
+  image: '/images/hero.jpg',
+  imageAlt: "The Remarkables mountain range from Hanley's Farm",
+  kicker: "Hanley's Farm, Queenstown",
+  heading: 'Remarkable BnB',
+  subcopy: "Under The Remarkables. Hosted by Holly & Julian. Your base for mountains, snow, and Jack's Point.",
+};
+
+// Winter conditions links (plain outbound links, opened in a new tab).
+const winterLinks = [
+  { label: 'The Remarkables snow report', detail: 'Snow base, season snowfall, road and chain status, lifts', url: 'https://www.theremarkables.co.nz/weather-report/' },
+  { label: 'MetService ski forecast, The Remarkables', detail: 'Mountain weather forecast', url: 'https://www.metservice.com/mountains-and-parks/ski-fields/remarkables' },
+  { label: 'MetService Queenstown', detail: 'Current town temperature and 7-day forecast', url: 'https://www.metservice.com/towns-cities/regions/southern-lakes/locations/queenstown' },
+  { label: 'Coronet Peak snow report', detail: 'The other local ski field', url: 'https://www.coronetpeak.co.nz/weather-report/' },
 ];
 ---
 
@@ -50,8 +70,8 @@ const bookDirectExtras = [
   <section class="relative h-[70vh] min-h-[500px] flex items-end overflow-hidden">
     <div class="absolute inset-0 bg-[var(--color-slate-deep)]">
       <img
-        src="/images/hero.jpg"
-        alt="The Remarkables mountain range from Hanley's Farm"
+        src={hero.image}
+        alt={hero.imageAlt}
         class="w-full h-full object-cover opacity-70"
         loading="eager"
         decoding="async"
@@ -59,13 +79,12 @@ const bookDirectExtras = [
     </div>
     <div class="absolute inset-0 gradient-scrim"></div>
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 w-full">
-      <p class="text-sm font-medium text-white/70 uppercase tracking-widest mb-3">Hanley's Farm, Queenstown</p>
+      <p class="text-sm font-medium text-white/70 uppercase tracking-widest mb-3">{hero.kicker}</p>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight !text-white">
-        Remarkable BnB
+        {hero.heading}
       </h1>
       <p class="text-lg sm:text-xl text-white/85 max-w-xl mb-6 leading-relaxed">
-        Under The Remarkables. Hosted by Holly & Julian.
-        Your base for mountains, snow, and Jack's Point.
+        {hero.subcopy}
       </p>
       <div class="flex flex-wrap gap-3">
         <a href="#stays" class="inline-flex items-center gap-2 bg-white text-[var(--color-slate-deep)] font-semibold px-6 py-3 rounded-xl hover:bg-[var(--color-stone-light)] transition-all duration-200 hover:shadow-lg" id="hero-cta-stays">
@@ -101,7 +120,7 @@ const bookDirectExtras = [
             data-testimonial
           >
             “{t.quote}”
-            <cite class="not-italic font-semibold text-xs block mt-1 text-[var(--color-slate-deep)] dark:text-white">— {[t.name, t.location].filter(Boolean).join(', ')}, {t.stay === 'two-bedroom-unit' ? 'Two Bedroom Unit' : 'Guest Room'}</cite>
+            <cite class="not-italic font-semibold text-xs block mt-1 text-[var(--color-slate-deep)] dark:text-white">{[t.name, t.location].filter(Boolean).join(', ')}, {t.stay === 'two-bedroom-unit' ? 'Two Bedroom Unit' : 'Guest Room'}</cite>
           </blockquote>
         ))}
       </div>
@@ -114,7 +133,7 @@ const bookDirectExtras = [
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold mb-4">Our stays</h2>
         <p class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] max-w-xl mx-auto">
-          Two ways to stay at our home in Hanley's Farm — a private room inside the house, or your own self-contained unit.
+          Two ways to stay at our home in Hanley's Farm, a private room inside the house, or your own self-contained unit.
         </p>
       </div>
 
@@ -185,7 +204,7 @@ const bookDirectExtras = [
             </p>
           </div>
           <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">
-            Dogs are never in the Two Bedroom Unit unless you invite them. Travelling with your own dog? Ask us — we're dog-friendly by arrangement.
+            Dogs are never in the Two Bedroom Unit unless you invite them. Travelling with your own dog? Ask us, we're dog-friendly by arrangement.
           </p>
         </div>
       </div>
@@ -208,7 +227,7 @@ const bookDirectExtras = [
       <span class="badge badge-gold mb-3">🔥 Add-on</span>
       <h2 class="text-3xl sm:text-4xl font-bold mb-4 !text-white">Wood-fired hot tub, under the Southern sky</h2>
       <p class="text-lg text-white/85 leading-relaxed mb-4">
-        Book an evening in our wood-fired hot tub under the Southern sky. We light the fire, manage the temperature, and leave the stars to do the rest. Sessions run about 1.5 hours — the 9pm slot catches the sunset fading over The Remarkables.
+        Book an evening in our wood-fired hot tub under the Southern sky. We light the fire, manage the temperature, and leave the stars to do the rest. Sessions run about 1.5 hours, the 9pm slot catches the sunset fading over The Remarkables.
       </p>
       <p class="text-white/70 text-sm leading-relaxed mb-6">
         Up to 4 people. Bookable as an add-on when you book direct, with pricing on request. Swimwear required; please shower before use. Add-ons like this are easiest to arrange when you book directly with us.
@@ -245,7 +264,7 @@ const bookDirectExtras = [
             {s.reviewId && (
               <blockquote class="mt-4 pt-4 border-t border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] text-xs italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
                 “{reviewById(s.reviewId).quote}”
-                <cite class="not-italic font-semibold block mt-1">— {reviewById(s.reviewId).name}</cite>
+                <cite class="not-italic font-semibold block mt-1">{reviewById(s.reviewId).name}</cite>
               </blockquote>
             )}
           </div>
@@ -277,6 +296,30 @@ const bookDirectExtras = [
       <p class="text-center text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mt-8">
         Full address, parking and arrival directions are sent as soon as you book.
       </p>
+
+      <!-- Winter conditions links -->
+      <div class="mt-10 rounded-2xl border border-[var(--color-stone-light)] bg-white p-6">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-xl" aria-hidden="true">❄️</span>
+          <h3 class="font-bold">Winter conditions</h3>
+        </div>
+        <p class="text-sm text-[var(--color-slate-mid)] mb-4">
+          Heading up the hill? These are the pages we check every winter morning. Road and chain status live on the snow report, and we're always happy to talk through winter driving before you arrive.
+        </p>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {winterLinks.map((link) => (
+            <li>
+              <a href={link.url} target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2 rounded-xl border border-[var(--color-stone-light)] hover:border-[var(--color-alpine)] p-3 transition-colors">
+                <span class="text-[var(--color-alpine)] mt-0.5" aria-hidden="true">↗</span>
+                <span>
+                  <span class="block text-sm font-semibold group-hover:text-[var(--color-alpine)] transition-colors">{link.label}</span>
+                  <span class="block text-xs text-[var(--color-slate-mid)]">{link.detail}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -354,13 +397,13 @@ const bookDirectExtras = [
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-3xl font-bold mb-6">Your hosts, Holly & Julian</h2>
         <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
-          We live here — this is our home in Hanley's Farm, on the edge of Jack's Point, under The Remarkables. We host because we genuinely enjoy it, and because Queenstown is worth sharing properly — not just through a listing page.
+          We live here, this is our home in Hanley's Farm, on the edge of Jack's Point, under The Remarkables. We host because we genuinely enjoy it, and because Queenstown is worth sharing properly, not just through a listing page.
         </p>
         <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-6">
           Our 5-star record comes from caring about the details: a warm house when you arrive, honest local tips, and being here when you need us. We think that's worth more than a generic welcome booklet.
         </p>
         <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-8">
-          We host in English, but we're happy to message in your language — our Chinese-, Korean- and German-speaking guests will tell you nothing gets lost in translation.
+          We host in English, but we're happy to message in your language, our Chinese-, Korean- and German-speaking guests will tell you nothing gets lost in translation.
         </p>
         <a href="/contact" class="inline-flex items-center gap-2 text-[var(--color-alpine)] font-semibold hover:underline" id="about-contact-link">
           Get in touch with us

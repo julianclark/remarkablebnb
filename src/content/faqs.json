@@ -3,19 +3,19 @@
     "id": "late-check-in",
     "order": 1,
     "question": "Can I check in late?",
-    "answer": "Yes, genuinely fine. Self check-in from 3pm — arrive whenever suits."
+    "answer": "Yes, genuinely fine. Self check-in from 3pm, arrive whenever suits."
   },
   {
     "id": "early-check-in",
     "order": 2,
     "question": "Can I check in early or drop bags?",
-    "answer": "Often yes — just ask us."
+    "answer": "Often yes, just ask us."
   },
   {
     "id": "shared-kitchen",
     "order": 3,
     "question": "Is the kitchen shared?",
-    "answer": "In the Guest Room, yes — you'll share our kitchen and have your own labelled fridge shelf. The Two Bedroom Unit has its own full kitchen, completely separate from us."
+    "answer": "In the Guest Room, yes: you'll share our kitchen, and we clear the top shelf of the fridge for you. The Two Bedroom Unit has its own full kitchen, completely separate from us."
   },
   {
     "id": "heating",
@@ -33,12 +33,12 @@
     "id": "dogs-around",
     "order": 7,
     "question": "Are the dogs around?",
-    "answer": "As much or as little as you like. Rocket and Luna are friendly and part of the home, but if you'd rather not, we'll keep them away from you completely — just tell us when you book."
+    "answer": "As much or as little as you like. Rocket and Luna are friendly and part of the home, but if you'd rather not, we'll keep them away from you completely, just tell us when you book."
   },
   {
     "id": "tap-water",
     "order": 8,
     "question": "Is the tap water safe to drink?",
-    "answer": "Yes — straight from the tap. New Zealand tap water is safe to drink."
+    "answer": "Yes, straight from the tap. New Zealand tap water is safe to drink."
   }
 ]

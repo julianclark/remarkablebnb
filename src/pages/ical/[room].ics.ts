@@ -5,8 +5,8 @@ import { buildIcal } from '../../lib/ical-export';
 export const prerender = false;
 
 const ROOM_LABELS: Record<string, string> = {
-  'two-bedroom-unit': 'Remarkable BnB — Two Bedroom Unit',
-  'guest-room': 'Remarkable BnB — Guest Room',
+  'two-bedroom-unit': 'Remarkable BnB, Two Bedroom Unit',
+  'guest-room': 'Remarkable BnB, Guest Room',
 };
 
 export const GET: APIRoute = async ({ params }) => {
@@ -27,7 +27,7 @@ export const GET: APIRoute = async ({ params }) => {
     uid: `${row.token}@remarkablebnb.nz`,
     start: row.check_in,
     end: row.check_out,
-    summary: 'Reserved — Remarkable BnB (direct)',
+    summary: 'Reserved, Remarkable BnB (direct)',
   }));
 
   const body = buildIcal(ROOM_LABELS[room], events);

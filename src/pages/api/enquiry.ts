@@ -70,7 +70,7 @@ export const POST: APIRoute = async ({ request }) => {
       : redirectBack('error');
   }
 
-  // 1. Persist first — an enquiry must never be lost, even if email fails.
+  // 1. Persist first, an enquiry must never be lost, even if email fails.
   let enquiryId: number | null = null;
   try {
     const res = await env.DB.prepare(
@@ -85,14 +85,14 @@ export const POST: APIRoute = async ({ request }) => {
 
   // 2. Try to send a notification email to the hosts.
   const stayLabel = STAY_LABELS[stay] ?? stay;
-  const subject = `New enquiry — ${stayLabel}${dates ? ` (${dates})` : ''}`;
+  const subject = `New enquiry, ${stayLabel}${dates ? ` (${dates})` : ''}`;
   const textBody = [
     `New enquiry from the Remarkable BnB website`,
     ``,
     `Name:  ${name}`,
     `Email: ${email}`,
     `Stay:  ${stayLabel}`,
-    `Dates: ${dates || '—'}`,
+    `Dates: ${dates || ', '}`,
     ``,
     `Message:`,
     message,
@@ -102,7 +102,7 @@ export const POST: APIRoute = async ({ request }) => {
     <p><strong>Name:</strong> ${escapeHtml(name)}<br>
     <strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a><br>
     <strong>Stay:</strong> ${escapeHtml(stayLabel)}<br>
-    <strong>Dates:</strong> ${escapeHtml(dates || '—')}</p>
+    <strong>Dates:</strong> ${escapeHtml(dates || ', ')}</p>
     <p><strong>Message:</strong></p>
     <p style="white-space:pre-wrap">${escapeHtml(message)}</p>`;
 

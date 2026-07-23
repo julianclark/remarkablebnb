@@ -74,8 +74,8 @@ function enquireHref(date: string): string {
               const airbnb = prices[day.date];
               const direct = airbnb ? Math.round(airbnb * DIRECT_MULTIPLIER) : null;
               const label = direct
-                ? `${longDate(day.date)}, available, $${direct} per night direct — enquire`
-                : `${longDate(day.date)}, available — enquire`;
+                ? `${longDate(day.date)}, available, $${direct} per night direct, enquire`
+                : `${longDate(day.date)}, available, enquire`;
               return (
                 <a
                   href={enquireHref(day.date)}
@@ -130,7 +130,7 @@ function enquireHref(date: string): string {
   .cal-available.is-selected-start .cal-price,
   .cal-available.is-selected-end .cal-price { opacity: 1; }
 
-  /* Available — green fill, high contrast, clearly interactive */
+  /* Available, green fill, high contrast, clearly interactive */
   .cal-available {
     background: color-mix(in srgb, var(--color-forest) 16%, white);
     color: var(--color-forest);
@@ -153,7 +153,7 @@ function enquireHref(date: string): string {
     background: color-mix(in srgb, var(--color-forest) 60%, transparent);
   }
 
-  /* Booked — diagonal stripes + strikethrough (not colour-alone) */
+  /* Booked, diagonal stripes + strikethrough (not colour-alone) */
   .cal-booked {
     background: repeating-linear-gradient(
       -45deg,
@@ -316,7 +316,7 @@ function enquireHref(date: string): string {
         if (checkin && !checkout) {
           const el = days.find((d) => d.dataset.date === checkin);
           el?.classList.add('is-selected-start');
-          summary.textContent = `Check-in ${fmt(checkin)} — now pick a check-out date`;
+          summary.textContent = `Check-in ${fmt(checkin)}, now pick a check-out date`;
           cta.href = `/contact?stay=${encodeURIComponent(stayType)}&date=${checkin}`;
           bar.hidden = false;
         } else if (checkin && checkout) {
@@ -355,7 +355,7 @@ function enquireHref(date: string): string {
           } else if (rangeIsClear(checkin, date)) {
             checkout = date;
           } else {
-            checkin = date; // range crossed a booked night — restart
+            checkin = date; // range crossed a booked night, restart
             checkout = null;
           }
           render();

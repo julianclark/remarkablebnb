@@ -18,7 +18,7 @@ order: 2
 
 <!-- TODO: Add specific heating instructions for each space -->
 
-The house has central heating. Controls are located in the hallway. Set the temperature to a comfortable level — we recommend around 20–22°C.
+The house has central heating. Controls are located in the hallway. Set the temperature to a comfortable level, we recommend around 20–22°C.
 
 ---
 
@@ -58,7 +58,7 @@ Washer and dryer are available. Laundry detergent is provided.
 
 ## Hot water
 
-Continuous hot water — no need to worry about running out.
+Continuous hot water, no need to worry about running out.
 
 ---
 

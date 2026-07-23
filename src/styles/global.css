@@ -1,12 +1,17 @@
 @import "tailwindcss";
 
+/* Commit to a single light, airy base with navy as the brand accent.
+   `dark:` utilities only apply under a `.dark` ancestor, which we never
+   add, so the site renders light everywhere and text stays high-contrast. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ============================================
-   Remarkable BnB — Design Tokens
+   Remarkable BnB Design Tokens
    Mountain-inspired palette, Inter typography
    ============================================ */
 
 @theme {
-  /* Colours — mountain palette */
+  /* Colours, mountain palette */
   --color-slate-deep: #1e293b;
   --color-slate-mid: #334155;
   --color-stone-warm: #d6cfc7;
@@ -45,22 +50,6 @@ body {
 }
 
 /* ============================================
-   Dark mode
-   ============================================ */
-
-@media (prefers-color-scheme: dark) {
-  body {
-    color: var(--color-stone-light);
-    background-color: #0f172a;
-  }
-
-  .card {
-    background-color: var(--color-slate-deep);
-    border-color: var(--color-slate-mid);
-  }
-}
-
-/* ============================================
    Typography
    ============================================ */
 
@@ -69,12 +58,6 @@ h1, h2, h3, h4 {
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--color-slate-deep);
-}
-
-@media (prefers-color-scheme: dark) {
-  h1, h2, h3, h4 {
-    color: var(--color-snow);
-  }
 }
 
 /* ============================================

@@ -5,7 +5,7 @@ icon: "📋"
 order: 3
 ---
 
-We keep things simple. Our home is your home while you're here — we just ask that you treat it the way you'd want yours treated.
+We keep things simple. Our home is your home while you're here, we just ask that you treat it the way you'd want yours treated.
 
 ---
 
@@ -13,8 +13,8 @@ We keep things simple. Our home is your home while you're here — we just ask t
 
 - **No smoking** inside the house or unit. There's outdoor space if you need it.
 - **No parties or events.** We live here and our neighbours are close.
-- **Quiet hours** from 10 PM to 7 AM — Hanley's Farm is a residential neighbourhood.
-- **Maximum guests** as per your booking — no unregistered visitors overnight, please.
+- **Quiet hours** from 10 PM to 7 AM, Hanley's Farm is a residential neighbourhood.
+- **Maximum guests** as per your booking, no unregistered visitors overnight, please.
 
 ---
 
@@ -28,7 +28,7 @@ Please check with us before bringing pets. We have our own dogs and want to make
 
 ## Shoes
 
-We'd appreciate shoes off inside — it keeps the place clean for everyone. There's space at the door for your shoes and boots.
+We'd appreciate shoes off inside, it keeps the place clean for everyone. There's space at the door for your shoes and boots.
 
 ---
 
@@ -48,4 +48,4 @@ See the [checkout checklist](/manual/checkout) for everything you need to do whe
 
 ## And finally
 
-If something breaks, spills, or goes wrong — just let us know. We'd much rather fix it than find out later. No drama, we promise.
+If something breaks, spills, or goes wrong, just let us know. We'd much rather fix it than find out later. No drama, we promise.

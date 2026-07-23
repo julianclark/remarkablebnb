@@ -72,7 +72,7 @@ export function getGallery(slug: string, stayTitle: string): GalleryImage[] {
     const meta = byFilename.get(filename);
     if (meta) {
       const caption = captionFor(filename);
-      result.push({ image: meta, alt: `${stayTitle} — ${caption}` });
+      result.push({ image: meta, alt: `${stayTitle}: ${caption}` });
     }
   }
   return result;

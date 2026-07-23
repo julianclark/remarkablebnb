@@ -13,7 +13,7 @@ order: 4
 
 ## Before you go
 
-- [ ] Strip the beds and leave linen in a pile — no need to remake them
+- [ ] Strip the beds and leave linen in a pile, no need to remake them
 - [ ] Run the dishwasher if there are dishes, or leave them stacked by the sink
 - [ ] Take any rubbish out to the bins
 - [ ] Check the fridge for anything you want to take with you
@@ -27,7 +27,7 @@ order: 4
 
 ## Had a good stay?
 
-We'd really appreciate a Google review — it helps other travellers find us and means a lot to us personally.
+We'd really appreciate a Google review, it helps other travellers find us and means a lot to us personally.
 
 <!-- TODO: Add Google Review deep-link when GBP is set up -->
 
@@ -46,4 +46,4 @@ Save our details:
 - **Website:** [remarkablebnb.nz](https://remarkablebnb.nz)
 - **Email:** <!-- TODO: Add contact email -->
 
-We'll remember you — no account needed, just mention you've stayed before when you get in touch.
+We'll remember you, no account needed, just mention you've stayed before when you get in touch.
