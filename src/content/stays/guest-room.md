@@ -23,7 +23,7 @@ amenities:
   - "WiFi"
   - "Free street parking"
   - "Ski storage"
-airbnbUrl: "https://www.airbnb.co.nz/h/guestqueen"
+airbnbUrl: "https://www.airbnb.co.nz/h/remarkablebnb-guest"
 airbnbListingId: "1547499256999390723"
 directOnly: false
 guestFavourite: true
