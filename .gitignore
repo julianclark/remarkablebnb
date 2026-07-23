@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local pricing import (derived from Airbnb calendar)
+/prices-import.sql

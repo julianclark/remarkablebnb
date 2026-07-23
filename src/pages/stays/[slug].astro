@@ -33,6 +33,23 @@ try {
 } catch (err) {
   console.error('Failed to load availability:', err);
 }
+
+// Per-night Airbnb pricing (captured from screenshots). Direct rate is 5% less.
+let prices: Record<string, number> = {};
+let fromPrice: number | null = null;
+try {
+  const { results } = await env.DB.prepare(
+    'SELECT date, price_nzd FROM prices WHERE room = ? AND date >= date("now") ORDER BY date'
+  )
+    .bind(stay.data.slug)
+    .all();
+  for (const r of results ?? []) prices[(r as any).date] = (r as any).price_nzd;
+  const vals = Object.values(prices);
+  if (vals.length) fromPrice = Math.min(...vals);
+} catch (err) {
+  console.error('Failed to load prices:', err);
+}
+const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.95) : null;
 ---
 
 <BaseLayout
@@ -70,8 +87,8 @@ try {
   )}
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
-    <h2 class="text-2xl font-bold mb-6">Availability</h2>
-    <AvailabilityCalendar bookedRanges={bookedRanges} staySlug={stay.data.slug} stayType={stay.data.type} />
+    <h2 class="text-2xl font-bold mb-6">Availability & pricing</h2>
+    <AvailabilityCalendar bookedRanges={bookedRanges} prices={prices} staySlug={stay.data.slug} stayType={stay.data.type} />
   </div>
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -114,7 +131,19 @@ try {
           <!-- Booking card -->
           <div class="rounded-2xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] bg-white dark:bg-[var(--color-slate-deep)] p-6 shadow-sm">
             <h3 class="text-lg font-bold mb-1">Book this stay</h3>
-            <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-6">{stay.data.title} · Hanley's Farm</p>
+            <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">{stay.data.title} · Hanley's Farm</p>
+            {fromDirect !== null && (
+              <div class="mb-6 pb-6 border-b border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">from</span>
+                  <span class="text-2xl font-extrabold">${fromDirect}</span>
+                  <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">/ night direct</span>
+                </div>
+                <div class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mt-1">
+                  <span class="line-through">${fromPrice}</span> on Airbnb · you save 5% booking direct
+                </div>
+              </div>
+            )}
             <BookingCTA airbnbUrl={stay.data.airbnbUrl} stayTitle={stay.data.title} />
           </div>
 

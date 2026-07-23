@@ -3,12 +3,15 @@ import { buildMonths, type DateRange } from '../lib/availability';
 
 interface Props {
   bookedRanges: DateRange[];
+  prices?: Record<string, number>;
   staySlug: string;
   stayType: string;
   monthsToShow?: number;
 }
 
-const { bookedRanges, staySlug, stayType, monthsToShow = 12 } = Astro.props;
+const { bookedRanges, prices = {}, staySlug, stayType, monthsToShow = 12 } = Astro.props;
+const hasPrices = Object.keys(prices).length > 0;
+const DIRECT_MULTIPLIER = 0.95; // 5% off Airbnb when booking direct
 
 const months = buildMonths(monthsToShow, bookedRanges, new Date());
 const weekdayLabels = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
@@ -68,14 +71,21 @@ function enquireHref(date: string): string {
                   </div>
                 );
               }
+              const airbnb = prices[day.date];
+              const direct = airbnb ? Math.round(airbnb * DIRECT_MULTIPLIER) : null;
+              const label = direct
+                ? `${longDate(day.date)}, available, $${direct} per night direct — enquire`
+                : `${longDate(day.date)}, available — enquire`;
               return (
                 <a
                   href={enquireHref(day.date)}
                   class="cal-day cal-available"
                   data-date={day.date}
-                  aria-label={`${longDate(day.date)}, available — enquire`}
+                  data-price={airbnb ?? ''}
+                  aria-label={label}
                 >
-                  {day.day}
+                  <span class="cal-daynum">{day.day}</span>
+                  {direct !== null && <span class="cal-price">${direct}</span>}
                 </a>
               );
             })
@@ -105,14 +115,20 @@ function enquireHref(date: string): string {
 
 <style>
   .cal-day {
-    aspect-ratio: 1 / 1;
+    min-height: 2.75rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 0.5rem;
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     text-decoration: none;
+    line-height: 1.1;
+    padding: 2px;
   }
+  .cal-price { font-size: 0.6rem; opacity: 0.9; margin-top: 1px; }
+  .cal-available.is-selected-start .cal-price,
+  .cal-available.is-selected-end .cal-price { opacity: 1; }
 
   /* Available — green fill, high contrast, clearly interactive */
   .cal-available {
@@ -221,6 +237,7 @@ function enquireHref(date: string): string {
   }
   :global(.dark) .cal-enquire-bar { background: color-mix(in srgb, var(--color-alpine) 15%, transparent); }
   .cal-enquire-text { font-size: 0.85rem; font-weight: 600; }
+  .cal-was { font-weight: 400; text-decoration: line-through; opacity: 0.6; margin-left: 0.25rem; }
   .cal-enquire-actions { display: flex; align-items: center; gap: 0.75rem; }
   .cal-enquire-clear {
     background: none; border: 0; cursor: pointer; font-size: 0.8rem;
@@ -246,6 +263,11 @@ function enquireHref(date: string): string {
       if (days.length === 0 || !bar || !summary || !cta) return;
 
       const dates = days.map((d) => d.dataset.date!).sort();
+      const priceOf: Record<string, number> = {};
+      days.forEach((d) => {
+        const p = Number(d.dataset.price);
+        if (p > 0) priceOf[d.dataset.date!] = p;
+      });
       let checkin: string | null = null;
       let checkout: string | null = null;
 
@@ -253,6 +275,24 @@ function enquireHref(date: string): string {
         new Date(iso + 'T00:00:00Z').toLocaleDateString('en-NZ', {
           day: 'numeric', month: 'short', timeZone: 'UTC',
         });
+
+      const nextDay = (iso: string) => {
+        const d = new Date(iso + 'T00:00:00Z');
+        d.setUTCDate(d.getUTCDate() + 1);
+        return d.toISOString().slice(0, 10);
+      };
+
+      // Sum Airbnb nightly prices across [a, b). allPriced=false if any night
+      // has no captured price.
+      const totalFor = (a: string, b: string) => {
+        let nights = 0, airbnb = 0, allPriced = true;
+        for (let cur = a; cur < b; cur = nextDay(cur)) {
+          nights++;
+          const p = priceOf[cur];
+          if (p) airbnb += p; else allPriced = false;
+        }
+        return { nights, airbnb, direct: Math.round(airbnb * 0.95), allPriced };
+      };
 
       const clearClasses = () =>
         days.forEach((d) => d.classList.remove('is-selected-start', 'is-selected-end', 'is-in-range'));
@@ -286,7 +326,15 @@ function enquireHref(date: string): string {
             else if (dt === checkout) d.classList.add('is-selected-end');
             else if (dt > checkin && dt < checkout) d.classList.add('is-in-range');
           });
-          summary.textContent = `${fmt(checkin)} → ${fmt(checkout)}`;
+          const { nights, airbnb, direct, allPriced } = totalFor(checkin, checkout);
+          const nightsLabel = `${nights} night${nights > 1 ? 's' : ''}`;
+          if (allPriced && airbnb > 0) {
+            summary.innerHTML =
+              `${fmt(checkin)} → ${fmt(checkout)} · ${nightsLabel} · ` +
+              `<strong>$${direct}</strong> direct <span class="cal-was">$${airbnb} on Airbnb</span>`;
+          } else {
+            summary.textContent = `${fmt(checkin)} → ${fmt(checkout)} · ${nightsLabel}`;
+          }
           cta.href = `/contact?stay=${encodeURIComponent(stayType)}&checkin=${checkin}&checkout=${checkout}`;
           bar.hidden = false;
         } else {
