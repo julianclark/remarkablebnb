@@ -3,9 +3,9 @@ import { env } from 'cloudflare:workers';
 
 export const prerender = false;
 
-// Where enquiry notifications are delivered. Must be a verified Cloudflare
-// Email Routing destination address on this account.
-const NOTIFY_TO = 'clarkjj@gmail.com';
+// Where enquiry notifications are delivered. stay@remarkablebnb.nz is an
+// Email Routing custom address that forwards to the hosts' verified inbox.
+const NOTIFY_TO = 'stay@remarkablebnb.nz';
 const FROM_ADDRESS = 'enquiries@remarkablebnb.nz';
 
 const STAY_LABELS: Record<string, string> = {
