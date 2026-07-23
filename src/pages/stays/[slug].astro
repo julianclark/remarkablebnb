@@ -5,6 +5,7 @@ import AmenityGrid from '../../components/AmenityGrid.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
 import AvailabilityCalendar from '../../components/AvailabilityCalendar.astro';
 import Carousel from '../../components/Carousel.astro';
+import Review from '../../components/Review.astro';
 import { getCollection, render } from 'astro:content';
 import { getGallery } from '../../lib/galleries';
 import { env } from 'cloudflare:workers';
@@ -21,6 +22,10 @@ if (!stay) {
 
 const { Content } = await render(stay);
 const gallery = getGallery(stay.data.slug, stay.data.title);
+
+// Real guest reviews for this specific stay (up to 4, spread across themes).
+const allReviews = (await getCollection('reviews')).map((r) => r.data);
+const stayReviews = allReviews.filter((r) => r.stay === stay.data.slug).slice(0, 4);
 
 let bookedRanges: { start: string; end: string }[] = [];
 try {
@@ -71,9 +76,12 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.95) : null;
     </div>
     <div class="absolute inset-0 gradient-scrim"></div>
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 w-full">
-      {stay.data.guestFavourite && (
-        <span class="badge badge-gold mb-3">⭐ Guest Favourite · {stay.data.rating} from {stay.data.reviewCount} reviews</span>
-      )}
+      <div class="flex flex-wrap gap-2 mb-3">
+        {stay.data.guestFavourite && (
+          <span class="badge badge-gold">⭐ Guest Favourite · {stay.data.rating} from {stay.data.reviewCount} reviews</span>
+        )}
+        {stay.data.topOnePercent && <span class="badge badge-alpine">Top 1% on Airbnb</span>}
+      </div>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-2 !text-white">{stay.data.title}</h1>
       <p class="text-lg text-white/80">{stay.data.tagline}</p>
     </div>
@@ -182,4 +190,26 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.95) : null;
       </div>
     </div>
   </div>
+
+  {stayReviews.length > 0 && (
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
+      <div class="flex flex-wrap items-baseline justify-between gap-3 mb-6">
+        <h2 class="text-2xl font-bold">What guests say</h2>
+        <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+          <span class="text-[var(--color-gold)] font-semibold">★ {stay.data.rating}</span> · {stay.data.reviewCount} reviews on Airbnb
+        </span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {stayReviews.map((r) => (
+          <Review quote={r.quote} name={r.name} date={r.date} location={r.location} original={r.original} />
+        ))}
+      </div>
+      <div class="mt-6">
+        <a href={stay.data.airbnbUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[var(--color-alpine)] font-semibold text-sm hover:underline">
+          Read all {stay.data.reviewCount} reviews on Airbnb
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+        </a>
+      </div>
+    </div>
+  )}
 </BaseLayout>

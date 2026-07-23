@@ -30,7 +30,10 @@ amenities:
 airbnbUrl: "https://www.airbnb.co.nz/h/hanleysfarm2bedunit"
 airbnbListingId: "1546885102092776257"
 directOnly: false
-guestFavourite: false
+guestFavourite: true
+topOnePercent: true
+rating: 5.0
+reviewCount: 34
 heroImage: "/images/stays/unit-hero.jpg"
 heroAlt: "Two Bedroom Unit with The Remarkables mountain range behind"
 seoTitle: "Private 2 Bedroom Unit near The Remarkables and Jack's Point | Remarkable BnB"

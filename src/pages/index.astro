@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Review from '../components/Review.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import dogPhoto from '../assets/photos/guest-room/dogs.avif';
@@ -10,11 +11,19 @@ export const prerender = true;
 const stays = await getCollection('stays');
 const faqs = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.order);
 
+const reviews = (await getCollection('reviews')).map((r) => r.data);
+const reviewById = (id: string) => reviews.find((r) => r.id === id)!;
+const totalReviews = stays.reduce((sum, s) => sum + (s.data.reviewCount ?? 0), 0);
+
+// Rotating testimonial strip: lead with Riaz, cycle through strong picks.
+const testimonialIds = ['bu-riaz', 'gr-amy', 'bu-sherry', 'bu-eleanor', 'gr-katie'];
+const testimonials = testimonialIds.map(reviewById);
+
 const segments = [
-  { icon: '🎿', title: 'Ski trips', copy: '20 min to The Remarkables, a warm house, gear-drying space, and honest winter-driving advice.' },
-  { icon: '🐾', title: 'Dog-loving couples', copy: 'Meet Rocket & Luna — for many guests, the highlight of the stay.' },
-  { icon: '👨‍👩‍👧', title: 'Families', copy: 'Travel cot available, a bunk room, playgrounds and short walks nearby, wet-weather ideas on tap.' },
-  { icon: '💼', title: 'Work trips & contractors', copy: 'Self-contained unit, fast Wi-Fi, and repeat-stay direct rates.' },
+  { icon: '🎿', title: 'Ski trips', copy: '20 min to The Remarkables, a warm house, gear-drying space, and honest winter-driving advice.', reviewId: 'gr-wai-loon' },
+  { icon: '🐾', title: 'Dog-loving couples', copy: 'Meet Rocket & Luna — for many guests, the highlight of the stay.', reviewId: '' },
+  { icon: '👨‍👩‍👧', title: 'Families', copy: 'Travel cot available, a bunk room, playgrounds and short walks nearby, wet-weather ideas on tap.', reviewId: 'bu-sauda' },
+  { icon: '💼', title: 'Work trips & contractors', copy: 'Self-contained unit, fast Wi-Fi, and repeat-stay direct rates.', reviewId: '' },
 ];
 
 const locationRows = [
@@ -78,15 +87,23 @@ const bookDirectExtras = [
   <!-- Social proof strip -->
   <section class="border-b border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] bg-[var(--color-snow)] dark:bg-[#0f172a]">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
-        <div class="flex items-center gap-4 flex-shrink-0">
-          <span class="flex items-center gap-1.5 font-semibold"><span class="text-[var(--color-gold)]">★ 5.0</span></span>
-          <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">27+ reviews on Airbnb</span>
-          <span class="badge badge-gold">⭐ Guest Favourite</span>
-        </div>
-        <blockquote class="text-sm sm:text-base italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] md:border-l md:border-[var(--color-stone-light)] md:dark:border-[var(--color-slate-mid)] md:pl-8">
-          “Their home is beautiful and they have two very friendly big dogs — although they are big, they are really friendly!”
-        </blockquote>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
+        <span class="font-semibold text-[var(--color-gold)]">★ 5.0</span>
+        <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">across {totalReviews} Airbnb reviews</span>
+        <span class="badge badge-gold">⭐ Guest Favourite</span>
+        <span class="badge badge-alpine">Top 1% of eligible listings</span>
+      </div>
+      <!-- Rotating testimonial (shows first without JS) -->
+      <div data-testimonials aria-live="polite">
+        {testimonials.map((t, i) => (
+          <blockquote
+            class:list={['testimonial text-sm sm:text-base italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]', i !== 0 && 'hidden']}
+            data-testimonial
+          >
+            “{t.quote}”
+            <cite class="not-italic font-semibold text-xs block mt-1 text-[var(--color-slate-deep)] dark:text-white">— {[t.name, t.location].filter(Boolean).join(', ')}, {t.stay === 'two-bedroom-unit' ? 'Two Bedroom Unit' : 'Guest Room'}</cite>
+          </blockquote>
+        ))}
       </div>
     </div>
   </section>
@@ -116,11 +133,10 @@ const bookDirectExtras = [
                 loading="lazy"
                 decoding="async"
               />
-              {stay.data.guestFavourite && (
-                <div class="absolute top-3 left-3">
-                  <span class="badge badge-gold">⭐ Guest Favourite</span>
-                </div>
-              )}
+              <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                {stay.data.guestFavourite && <span class="badge badge-gold">⭐ Guest Favourite</span>}
+                {stay.data.topOnePercent && <span class="badge badge-alpine">Top 1%</span>}
+              </div>
             </div>
 
             <div class="p-6">
@@ -173,6 +189,12 @@ const bookDirectExtras = [
           </p>
         </div>
       </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+        {[reviewById('gr-amy'), reviewById('gr-katie')].map((r) => (
+          <Review quote={r.quote} name={r.name} date={r.date} location={r.location} />
+        ))}
+      </div>
     </div>
   </section>
 
@@ -194,6 +216,17 @@ const bookDirectExtras = [
       <a href="/contact" class="inline-flex items-center gap-2 bg-white text-[var(--color-slate-deep)] font-semibold px-6 py-3 rounded-xl hover:bg-[var(--color-stone-light)] transition-all duration-200">
         Ask about the hot tub
       </a>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+        {[reviewById('bu-rita'), reviewById('gr-wai-ching')].map((r) => (
+          <figure class="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/15 p-5">
+            <div class="text-[var(--color-gold-light)] text-sm mb-2" aria-hidden="true">★★★★★</div>
+            {r.original && <blockquote lang="und" class="text-sm leading-relaxed mb-2 text-white/90">“{r.original}”</blockquote>}
+            <blockquote class:list={['text-sm leading-relaxed text-white/80', r.original && 'italic']}>{r.original ? r.quote : `“${r.quote}”`}</blockquote>
+            <figcaption class="mt-3 text-xs font-semibold text-white">{[r.name, r.location, r.date].filter(Boolean).join(' · ')}</figcaption>
+          </figure>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -205,10 +238,16 @@ const bookDirectExtras = [
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {segments.map((s) => (
-          <div class="rounded-2xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6">
+          <div class="rounded-2xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6 flex flex-col">
             <div class="text-3xl mb-3" aria-hidden="true">{s.icon}</div>
             <h3 class="font-bold mb-2">{s.title}</h3>
             <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">{s.copy}</p>
+            {s.reviewId && (
+              <blockquote class="mt-4 pt-4 border-t border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] text-xs italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+                “{reviewById(s.reviewId).quote}”
+                <cite class="not-italic font-semibold block mt-1">— {reviewById(s.reviewId).name}</cite>
+              </blockquote>
+            )}
           </div>
         ))}
       </div>
@@ -332,5 +371,22 @@ const bookDirectExtras = [
       </div>
     </div>
   </section>
+
+  <script>
+    function initTestimonials() {
+      const root = document.querySelector('[data-testimonials]');
+      if (!root) return;
+      const items = Array.from(root.querySelectorAll<HTMLElement>('[data-testimonial]'));
+      if (items.length < 2) return;
+      let i = 0;
+      setInterval(() => {
+        items[i].classList.add('hidden');
+        i = (i + 1) % items.length;
+        items[i].classList.remove('hidden');
+      }, 6000);
+    }
+    initTestimonials();
+    document.addEventListener('astro:page-load', initTestimonials);
+  </script>
 
 </BaseLayout>

@@ -22,6 +22,7 @@ const stays = defineCollection({
     airbnbListingId: z.string(),
     directOnly: z.boolean().default(false),
     guestFavourite: z.boolean().default(false),
+    topOnePercent: z.boolean().default(false),
     rating: z.number().optional(),
     reviewCount: z.number().optional(),
     heroImage: z.string(),
@@ -65,4 +66,18 @@ const faqs = defineCollection({
   }),
 });
 
-export const collections = { stays, guides, manual, faqs };
+const reviews = defineCollection({
+  loader: file('./src/content/reviews.json'),
+  schema: z.object({
+    id: z.string(),
+    stay: z.enum(['guest-room', 'two-bedroom-unit']),
+    name: z.string(),
+    date: z.string(),
+    location: z.string().default(''),
+    quote: z.string(),          // English text shown (translation for non-English reviews)
+    original: z.string().default(''), // non-English source, shown above the translation
+    themes: z.array(z.enum(['dogs', 'hot-tub', 'ski', 'families'])).default([]),
+  }),
+});
+
+export const collections = { stays, guides, manual, faqs, reviews };

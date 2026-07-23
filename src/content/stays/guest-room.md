@@ -28,7 +28,7 @@ airbnbListingId: "1547499256999390723"
 directOnly: false
 guestFavourite: true
 rating: 5.0
-reviewCount: 27
+reviewCount: 28
 heroImage: "/images/stays/guest-room-hero.avif"
 heroAlt: "Guest room with queen bed, warm lighting and mountain view"
 seoTitle: "Private Queen Room with Ensuite near The Remarkables | Remarkable BnB"
