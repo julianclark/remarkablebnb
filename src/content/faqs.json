@@ -9,7 +9,7 @@
     "id": "early-check-in",
     "order": 2,
     "question": "Can I check in early or drop bags?",
-    "answer": "Often yes — just ask us. On back-to-back days the unit is usually ready from about 1:30pm."
+    "answer": "Often yes — just ask us."
   },
   {
     "id": "shared-kitchen",
@@ -22,12 +22,6 @@
     "order": 4,
     "question": "What's the heating like?",
     "answer": "Underfloor heating throughout. It's very cosy but slow to respond, so we pre-warm the space before you arrive."
-  },
-  {
-    "id": "bunk-adults",
-    "order": 5,
-    "question": "Can adults sleep in the bunk?",
-    "answer": "The bunk room is best suited to kids or smaller adults. The queen room is the one for couples."
   },
   {
     "id": "need-a-car",
@@ -45,6 +39,6 @@
     "id": "tap-water",
     "order": 8,
     "question": "Is the tap water safe to drink?",
-    "answer": "Yes — straight from the tap."
+    "answer": "Yes — straight from the tap. New Zealand tap water is safe to drink."
   }
 ]

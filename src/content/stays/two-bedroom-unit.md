@@ -46,7 +46,7 @@ searchThemes:
   - "Self-contained unit near Jack's Point golf course"
 ---
 
-Your own completely separate, brand-new two-bedroom unit with its own bathroom, laundry and kitchen. The unit is attached to our family home. We're right there if you need anything, and otherwise you won't see us. Sleeps up to 4: a queen room, plus a bunk room best suited to kids or smaller adults.
+Your own completely separate, brand-new two-bedroom unit with its own bathroom, laundry and kitchen. The unit is attached to our family home. We're right there if you need anything, and otherwise you won't see us. Sleeps up to 4: a queen room, plus a second bunk room.
 
 ## Your own space
 
@@ -56,7 +56,6 @@ The unit is fully self-contained with its own entrance and a lockable internal d
 
 - **Underfloor heating** keeps the unit very cosy, but it's slow to respond — so we pre-warm the space before you arrive.
 - The **kitchen is fully stocked**, including a cast-iron pan, and there's an **outdoor BBQ** for the long evenings.
-- **The bunk room** is best suited to kids or smaller adults; the queen room is the one for couples.
 - **Parking** is free on the street and driveway (there's no garage).
 
 ## The dogs
