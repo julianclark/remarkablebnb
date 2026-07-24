@@ -1,108 +1,46 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GuideEntry from '../../components/GuideEntry.astro';
+import { getEntry, getCollection } from 'astro:content';
 
 export const prerender = true;
 
-// Draft: awaiting host sign-off (Claude Build Brief 7). Ships noindex and
-// unlinked from nav/footer until Holly & Julian approve and flip this page
-// to published.
-const DRAFT = true;
-
-const sections = [
-  {
-    title: 'Walks from our door (free)',
-    intro: 'The strongest local story we have, and it starts right outside.',
-    entries: [
-      { name: "Jack's Point Track", tier: 'proven', meta: ['Free', 'From our door'], note: 'Guests consistently love the trails and the sunsets here.' },
-      { name: 'Lake Wakatipu dog walks with us', tier: 'proven', meta: ['Free', '~45 min'], note: "One of our signatures. Join Rocket and Luna, most guests say it's a highlight." },
-      { name: 'Neighbourhood loop, beach & Jardine Park', tier: 'proven', meta: ['Free', 'Young families'], note: 'A good easy loop for families with younger kids.' },
-      { name: 'Stargazing from the hammock spot', tier: 'proven', meta: ['Free', 'Evening'], note: 'Another of our signatures, worth staying up for on a clear night.' },
-      { name: 'Homestead Bay', tier: 'proven', meta: ['Free'], note: 'One we regularly send guests to.' },
-    ],
-  },
-  {
-    title: 'Easy wins nearby',
-    intro: 'Low cost, half a day or less.',
-    entries: [
-      { name: 'Lake Hayes Walkway', tier: 'proven', meta: ['~8 km loop', '2-3 hours'], note: 'A reliable, popular recommendation.' },
-      { name: "Bob's Cove", tier: 'proven', meta: [], note: 'One we send multiple guests to.' },
-      { name: 'Tobins Track & Wye Creek', tier: 'proven', meta: ['Moderate'], note: 'Our picks for guests after something a bit more of a workout.' },
-      { name: 'Arrowtown wander', tier: 'proven', meta: ['Half day'], note: 'Pairs nicely with lunch at Mantra or Ayrburn.' },
-      { name: 'Onsen Hot Pools', tier: 'proven', meta: ['Book ahead'], note: 'Our rainy-day and recovery-day pick. Book ahead.' },
-    ],
-  },
-  {
-    title: 'On the mountain (winter)',
-    intro: '',
-    entries: [],
-    linkOut: { href: '/guides/snow', label: 'See our Snow Access Guide' },
-  },
-  {
-    title: 'Big day trips',
-    intro: '',
-    entries: [
-      { name: 'Milford Sound', tier: 'proven', meta: ['Full day'], note: 'Book Frankton pickup rather than town, and bring waterproofs.' },
-      { name: 'Doubtful Sound overnight cruise', tier: 'proven', meta: ['Overnight'], note: 'One we regularly recommend for something special.' },
-      { name: 'Glenorchy & Routeburn day walk', tier: 'proven', meta: ['Full day'], note: 'A favourite for our more active guests.' },
-      { name: 'Wanaka & Cardrona', tier: 'proven', meta: ['Full day'], note: 'Hotel lunch plus the sightseeing chairlift makes a good combination.' },
-      { name: 'Te Anau glowworm caves', tier: 'proven', meta: ['Full day'], note: 'One we regularly recommend.' },
-    ],
-  },
-  {
-    title: 'Rainy day',
-    intro: 'The zero-effort option is always our movie room.',
-    entries: [
-      { name: 'Onsen Hot Pools, Skyline gondola & luge, iFLY, Thrillzone, escape rooms', tier: 'research', meta: ['Rainy day'], note: 'Our go-to list when the weather turns.', todo: 'verify each is still operating before publishing.' },
-    ],
-  },
-  {
-    title: 'Adrenaline',
-    intro: '',
-    entries: [
-      { name: 'Bungy & Shotover canyon swing', tier: 'research', meta: ['Adrenaline'], note: "Guests have done these and come back buzzing, a hot tub session afterwards works well.", todo: 'confirm current operators before naming any.' },
-      { name: 'Diving', tier: 'research', meta: ['Adrenaline'], note: 'One guest has done this.', todo: 'verify the operator before naming anyone.' },
-    ],
-  },
-];
-
-const guestTypes = [
-  { type: 'Families', note: 'Playgrounds (one has the best view of Queenstown, according to a guest review), short walks, the luge, Cookie Time, and a lukewarm hot tub session.' },
-  { type: 'Older active guests', note: 'Moderate hikes, wineries, and scenic drives.' },
-  { type: 'Couples', note: 'A hot tub under the stars, sunset at Jack\'s Point, and a Gibbston wine day.' },
-  { type: 'Car-free guests', note: 'The honest version: the Orbus stop is about a 10-minute walk away, buses are regular but infrequent, and it\'s cash or Bee Card only, no cards on board. Walks from the door and tour pickups from Frankton are still genuinely easy without a car.' },
-];
+const guide = await getEntry('guides', 'things-to-do');
+const sections = (await getCollection('guideSections'))
+  .filter((s) => s.data.guide === 'things-to-do')
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((s) => s.data);
+const guestTypes = guide!.data.guestTypes ?? [];
 ---
 
 <BaseLayout
-  title="Things to do near The Remarkables | Remarkable BnB"
-  description="What Holly & Julian actually send their guests to do, from walks out our door to day trips around Queenstown, by mood and weather."
-  noindex={DRAFT}
+  title={guide!.data.seoTitle}
+  description={guide!.data.seoDescription}
+  noindex={guide!.data.draft}
 >
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-    {DRAFT && (
+    {guide!.data.draft && (
       <p class="badge badge-gold mb-6">Draft, awaiting host edit and sign-off</p>
     )}
 
     <nav class="mb-6 text-sm text-[var(--color-stone-grey)]">
       <a href="/" class="hover:text-[var(--color-ember)] transition-colors">Home</a>
       <span class="mx-2">›</span>
-      <span class="text-[var(--color-graphite)]">Things to do</span>
+      <span class="text-[var(--color-graphite)]">{guide!.data.title}</span>
     </nav>
 
-    <span class="text-4xl" aria-hidden="true">🧭</span>
-    <h1 class="text-4xl sm:text-5xl font-medium mt-4 mb-4">Things to do near The Remarkables</h1>
-    <p class="text-lg font-serif italic text-[var(--color-ember)] leading-relaxed mb-8">
-      We live here for the mountains. Here's what we actually send guests to do, by mood and weather.
-    </p>
+    <span class="text-4xl" aria-hidden="true">{guide!.data.icon}</span>
+    <h1 class="text-4xl sm:text-5xl font-medium mt-4 mb-4">{guide!.data.title}</h1>
+    {guide!.data.tagline && (
+      <p class="text-lg font-serif italic text-[var(--color-ember)] leading-relaxed mb-8">{guide!.data.tagline}</p>
+    )}
 
-    <div class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-fill)] p-5 mb-10">
-      <h3 class="text-lg font-medium mb-1">Two things worth knowing before you book anything</h3>
-      <ul class="text-sm text-[var(--color-stone-grey)] leading-relaxed space-y-1.5 list-none pl-0">
-        <li><strong class="text-[var(--color-graphite)]">Frankton pickup:</strong> for Milford Sound and coach tours, choose Frankton over central Queenstown, it's far easier from here.</li>
-        <li><strong class="text-[var(--color-graphite)]">Bookme:</strong> worth checking for up to 50% off paid activities before you book direct.</li>
-      </ul>
-    </div>
+    {guide!.data.extraBoxTitle && (
+      <div class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-fill)] p-5 mb-10">
+        <h3 class="text-lg font-medium mb-1">{guide!.data.extraBoxTitle}</h3>
+        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">{guide!.data.extraBoxText}</p>
+      </div>
+    )}
 
     <div class="space-y-12">
       {sections.map((section) => (
@@ -112,7 +50,7 @@ const guestTypes = [
           {section.entries.length > 0 && (
             <div class="space-y-3">
               {section.entries.map((e) => (
-                <GuideEntry name={e.name} tier={e.tier as 'proven' | 'research'} meta={e.meta} note={e.note} todo={e.todo} />
+                <GuideEntry name={e.name} tier={e.tier} meta={e.meta} note={e.note} todo={e.todo} />
               ))}
             </div>
           )}
@@ -124,26 +62,30 @@ const guestTypes = [
         </section>
       ))}
 
-      <section>
-        <h2 class="text-2xl font-medium mb-4">By guest type</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {guestTypes.map((g) => (
-            <div class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-snow)] p-4">
-              <span class="block font-semibold text-[var(--color-graphite)] mb-1">{g.type}</span>
-              <span class="text-sm text-[var(--color-stone-grey)] leading-relaxed">{g.note}</span>
-            </div>
-          ))}
-        </div>
-      </section>
+      {guestTypes.length > 0 && (
+        <section>
+          <h2 class="text-2xl font-medium mb-4">By guest type</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {guestTypes.map((g) => (
+              <div class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-snow)] p-4">
+                <span class="block font-semibold text-[var(--color-graphite)] mb-1">{g.type}</span>
+                <span class="text-sm text-[var(--color-stone-grey)] leading-relaxed">{g.note}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
 
-    <div class="mt-12 pt-8 border-t border-[var(--color-hairline)]">
-      <h2 class="text-2xl font-medium mb-2">Ask us</h2>
-      <p class="text-[var(--color-stone-grey)] leading-relaxed">
-        Nature, adventure, foodie, sporty, scenic, relaxation or wine: tell us your style and we'll share favourites.
-        <a href="/contact" class="text-[var(--color-ember)] font-semibold hover:underline">Get in touch</a>.
-      </p>
-    </div>
+    {guide!.data.askUsText && (
+      <div class="mt-12 pt-8 border-t border-[var(--color-hairline)]">
+        <h2 class="text-2xl font-medium mb-2">Ask us</h2>
+        <p class="text-[var(--color-stone-grey)] leading-relaxed">
+          {guide!.data.askUsText}
+          {' '}<a href="/contact" class="text-[var(--color-ember)] font-semibold hover:underline">Get in touch</a>.
+        </p>
+      </div>
+    )}
 
     <div class="mt-12">
       <a href="/" class="inline-flex items-center gap-2 text-[var(--color-ember)] font-semibold hover:underline">

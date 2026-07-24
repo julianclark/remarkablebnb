@@ -46,6 +46,56 @@ const guides = defineCollection({
     draft: z.boolean().default(true),
     seoTitle: z.string(),
     seoDescription: z.string(),
+    // Italic host-voice tagline shown under the H1, used by eat-and-drink /
+    // things-to-do (Claude Build Brief 7). Optional: older guide stubs don't set it.
+    tagline: z.string().optional(),
+    askUsText: z.string().optional(),
+    extraBoxTitle: z.string().optional(),
+    extraBoxText: z.string().optional(),
+    guestTypes: z.array(z.object({
+      type: z.string(),
+      note: z.string(),
+    })).optional(),
+  }),
+});
+
+// Homepage "Meet your hosts" / "Meet Rocket & Luna" sections. Markdown body
+// is the prose (paragraphs + a blockquote for the highlighted callout);
+// frontmatter carries the small structured bits (badge, heading, photo alt,
+// sign-off) the template renders around it.
+const homeSections = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/home' }),
+  schema: z.object({
+    slug: z.enum(['hosts', 'dogs']),
+    badge: z.string(),
+    heading: z.string(),
+    photoAlt: z.string(),
+    signoffLine: z.string().optional(),
+    signoffNames: z.string().optional(),
+  }),
+});
+
+// Structured entry cards for the /guides/eat-and-drink and
+// /guides/things-to-do pages (Claude Build Brief 7). One flat file, each
+// section tagged with which guide it belongs to, same pattern as
+// faqs.json/reviews.json below.
+const guideSections = defineCollection({
+  loader: file('./src/content/guide-sections.json'),
+  schema: z.object({
+    id: z.string(),
+    guide: z.enum(['eat-and-drink', 'things-to-do']),
+    order: z.number(),
+    title: z.string(),
+    intro: z.string().default(''),
+    entries: z.array(z.object({
+      name: z.string(),
+      tier: z.enum(['proven', 'research']),
+      meta: z.array(z.string()).default([]),
+      note: z.string(),
+      todo: z.string().optional(),
+    })).default([]),
+    linkOut: z.object({ href: z.string(), label: z.string() }).optional(),
+    todoSection: z.string().optional(),
   }),
 });
 
@@ -83,4 +133,4 @@ const reviews = defineCollection({
   }),
 });
 
-export const collections = { stays, guides, manual, faqs, reviews };
+export const collections = { stays, guides, manual, faqs, reviews, homeSections, guideSections };
