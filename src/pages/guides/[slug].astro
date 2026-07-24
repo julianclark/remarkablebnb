@@ -19,34 +19,35 @@ const { Content } = await render(guide);
 <BaseLayout
   title={guide.data.seoTitle}
   description={guide.data.seoDescription}
+  noindex={guide.data.draft}
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <!-- Breadcrumb -->
-    <nav class="mb-6 text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
-      <a href="/" class="hover:text-[var(--color-alpine)] transition-colors">Home</a>
+    <nav class="mb-6 text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">
+      <a href="/" class="hover:text-[var(--color-ember)] transition-colors">Home</a>
       <span class="mx-2">›</span>
       <span>Guides</span>
       <span class="mx-2">›</span>
-      <span class="text-[var(--color-slate-deep)] dark:text-[var(--color-snow)]">{guide.data.title}</span>
+      <span class="text-[var(--color-graphite)] dark:text-[var(--color-snow)]">{guide.data.title}</span>
     </nav>
 
     <div class="max-w-3xl">
       <div class="flex items-center gap-3 mb-6">
         <span class="text-4xl">{guide.data.icon}</span>
-        <h1 class="text-4xl sm:text-5xl font-extrabold">{guide.data.title}</h1>
+        <h1 class="text-4xl sm:text-5xl font-medium">{guide.data.title}</h1>
       </div>
 
-      <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-8 border-l-4 border-[var(--color-alpine)] pl-4">
+      <p class="text-lg text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] leading-relaxed mb-8 border-l-4 border-[var(--color-ember)] pl-4">
         {guide.data.description}
       </p>
 
-      <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-[var(--color-slate-mid)] dark:prose-p:text-[var(--color-stone-warm)] prose-p:leading-relaxed">
+      <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-medium prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-[var(--color-stone-grey)] dark:prose-p:text-[var(--color-stone)] prose-p:leading-relaxed">
         <Content />
       </div>
       
       <!-- Back CTA -->
-      <div class="mt-12 pt-8 border-t border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]">
-        <a href="/" class="inline-flex items-center gap-2 text-[var(--color-alpine)] font-semibold hover:underline">
+      <div class="mt-12 pt-8 border-t border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)]">
+        <a href="/" class="inline-flex items-center gap-2 text-[var(--color-ember)] font-semibold hover:underline">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
           </svg>

@@ -10,9 +10,9 @@ export const prerender = true;
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <div class="text-center mb-12">
-      <span class="badge badge-alpine mb-3">Enquiries & Direct Bookings</span>
-      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Contact Holly & Julian</h1>
-      <p class="text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] max-w-xl mx-auto">
+      <span class="badge badge-ember mb-3">Enquiries & Direct Bookings</span>
+      <h1 class="text-4xl sm:text-5xl font-medium mb-4">Contact Holly & Julian</h1>
+      <p class="text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] max-w-xl mx-auto">
         Have questions about the stays, availability, or planning your trip? Send us a message and we'll get right back to you.
       </p>
     </div>
@@ -20,28 +20,28 @@ export const prerender = true;
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Contact Info -->
       <div class="md:col-span-1 space-y-6">
-        <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6 bg-white dark:bg-[var(--color-slate-deep)]">
-          <h2 class="text-sm font-semibold uppercase tracking-widest text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">Direct Contact</h2>
+        <div class="rounded-xl border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] p-6 bg-white dark:bg-[var(--color-schist-ink)]">
+          <h2 class="font-sans text-sm font-semibold uppercase tracking-widest text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4">Direct Contact</h2>
           <div class="space-y-4">
             <div>
-              <p class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">Your Hosts</p>
+              <p class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">Your Hosts</p>
               <p class="text-sm font-medium">Holly & Julian</p>
             </div>
             <div>
-              <p class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">Location</p>
+              <p class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">Location</p>
               <p class="text-sm font-medium">Hanley's Farm, Queenstown, NZ</p>
             </div>
             <div>
-              <p class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">Email Enquiries</p>
+              <p class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">Email Enquiries</p>
               <!-- Placeholder for email as per TODO -->
-              <p class="text-sm font-medium text-[var(--color-alpine)]">stay@remarkablebnb.nz</p>
+              <p class="text-sm font-medium text-[var(--color-ember)]">stay@remarkablebnb.nz</p>
             </div>
           </div>
         </div>
 
-        <div class="rounded-xl bg-[var(--color-stone-light)]/40 p-6 text-sm">
-          <h3 class="text-lg font-bold mb-2">💡 Direct Booking Benefits</h3>
-          <ul class="space-y-1.5 list-disc pl-5 marker:text-[var(--color-alpine)] text-[var(--color-slate-mid)]">
+        <div class="rounded-xl bg-[var(--color-hairline)]/40 p-6 text-sm">
+          <h3 class="text-lg font-medium mb-2">💡 Direct Booking Benefits</h3>
+          <ul class="space-y-1.5 list-disc pl-5 marker:text-[var(--color-ember)] text-[var(--color-stone-grey)]">
             <li>10% discount on Airbnb rates</li>
             <li>No platform service fees</li>
             <li>Returning guest loyalty rates</li>
@@ -58,23 +58,23 @@ export const prerender = true;
           id="enquiry-success"
           role="status"
         >
-          <strong>Thanks, your enquiry is on its way.</strong> We'll get back to you soon. For anything urgent, email us at <a class="text-[var(--color-alpine)] underline" href="mailto:stay@remarkablebnb.nz">stay@remarkablebnb.nz</a>.
+          <strong>Thanks, your enquiry is on its way.</strong> We'll get back to you soon. For anything urgent, email us at <a class="text-[var(--color-ember)] underline" href="mailto:stay@remarkablebnb.nz">stay@remarkablebnb.nz</a>.
         </div>
         <div
-          class="hidden rounded-xl border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10 p-4 mb-4 text-sm"
+          class="hidden rounded-xl border border-[var(--color-sun-gold)]/40 bg-[var(--color-sun-gold)]/10 p-4 mb-4 text-sm"
           id="enquiry-error"
           role="alert"
         >
-          Sorry, something went wrong sending that. Please email us directly at <a class="text-[var(--color-alpine)] underline" href="mailto:stay@remarkablebnb.nz">stay@remarkablebnb.nz</a>.
+          Sorry, something went wrong sending that. Please email us directly at <a class="text-[var(--color-ember)] underline" href="mailto:stay@remarkablebnb.nz">stay@remarkablebnb.nz</a>.
         </div>
 
         <form
-          class="space-y-4 rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-6 sm:p-8 bg-white dark:bg-[var(--color-slate-deep)]"
+          class="space-y-4 rounded-xl border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] p-6 sm:p-8 bg-white dark:bg-[var(--color-schist-ink)]"
           id="enquiry-form-el"
           method="POST"
           action="/api/enquiry"
         >
-          <h2 class="text-lg font-bold mb-4">Send an Enquiry</h2>
+          <h2 class="text-lg font-medium mb-4">Send an Enquiry</h2>
 
           <!-- Honeypot: hidden from users, catches bots -->
           <div class="hidden" aria-hidden="true">
@@ -84,34 +84,34 @@ export const prerender = true;
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="name" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">Your Name</label>
+              <label for="name" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-1">Your Name</label>
               <input 
                 type="text" 
                 id="name" 
                 name="name" 
                 required 
-                class="w-full min-w-0 box-border font-sans rounded-lg border border-[var(--color-stone-light)] px-3 py-2 text-sm bg-white text-[var(--color-slate-deep)] placeholder:text-[var(--color-slate-mid)]/70 focus:ring-1 focus:ring-[var(--color-alpine)] focus:border-[var(--color-alpine)] focus:outline-none"
+                class="w-full min-w-0 box-border font-sans rounded-lg border border-[var(--color-hairline)] px-3 py-2 text-sm bg-white text-[var(--color-graphite)] placeholder:text-[var(--color-stone-grey)]/70 focus:ring-1 focus:ring-[var(--color-ember)] focus:border-[var(--color-ember)] focus:outline-none"
               />
             </div>
             <div>
-              <label for="email" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">Email Address</label>
+              <label for="email" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-1">Email Address</label>
               <input 
                 type="email" 
                 id="email" 
                 name="email" 
                 required 
-                class="w-full min-w-0 box-border font-sans rounded-lg border border-[var(--color-stone-light)] px-3 py-2 text-sm bg-white text-[var(--color-slate-deep)] placeholder:text-[var(--color-slate-mid)]/70 focus:ring-1 focus:ring-[var(--color-alpine)] focus:border-[var(--color-alpine)] focus:outline-none"
+                class="w-full min-w-0 box-border font-sans rounded-lg border border-[var(--color-hairline)] px-3 py-2 text-sm bg-white text-[var(--color-graphite)] placeholder:text-[var(--color-stone-grey)]/70 focus:ring-1 focus:ring-[var(--color-ember)] focus:border-[var(--color-ember)] focus:outline-none"
               />
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="stay" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">Which Stay?</label>
+              <label for="stay" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-1">Which Stay?</label>
               <select 
                 id="stay" 
                 name="stay" 
-                class="w-full min-w-0 box-border font-sans rounded-lg border border-[var(--color-stone-light)] px-3 py-2 text-sm bg-white text-[var(--color-slate-deep)] placeholder:text-[var(--color-slate-mid)]/70 focus:ring-1 focus:ring-[var(--color-alpine)] focus:border-[var(--color-alpine)] focus:outline-none"
+                class="w-full min-w-0 box-border font-sans rounded-lg border border-[var(--color-hairline)] px-3 py-2 text-sm bg-white text-[var(--color-graphite)] placeholder:text-[var(--color-stone-grey)]/70 focus:ring-1 focus:ring-[var(--color-ember)] focus:border-[var(--color-ember)] focus:outline-none"
               >
                 <option value="unit">Two Bedroom Unit</option>
                 <option value="room">Guest Room</option>
@@ -119,26 +119,26 @@ export const prerender = true;
               </select>
             </div>
             <div>
-              <label for="dates" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">Proposed Dates</label>
+              <label for="dates" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-1">Proposed Dates</label>
               <input 
                 type="text" 
                 id="dates" 
                 name="dates" 
                 placeholder="e.g. 15-20 Aug"
-                class="w-full min-w-0 box-border font-sans rounded-lg border border-[var(--color-stone-light)] px-3 py-2 text-sm bg-white text-[var(--color-slate-deep)] placeholder:text-[var(--color-slate-mid)]/70 focus:ring-1 focus:ring-[var(--color-alpine)] focus:border-[var(--color-alpine)] focus:outline-none"
+                class="w-full min-w-0 box-border font-sans rounded-lg border border-[var(--color-hairline)] px-3 py-2 text-sm bg-white text-[var(--color-graphite)] placeholder:text-[var(--color-stone-grey)]/70 focus:ring-1 focus:ring-[var(--color-ember)] focus:border-[var(--color-ember)] focus:outline-none"
               />
             </div>
           </div>
 
           <div>
-            <label for="message" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">Message</label>
+            <label for="message" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-1">Message</label>
             <textarea 
               id="message" 
               name="message" 
               rows="4" 
               required 
               placeholder="Tell us about your plans, guest numbers, or any specific questions..."
-              class="w-full min-w-0 box-border font-sans rounded-lg border border-[var(--color-stone-light)] px-3 py-2 text-sm bg-white text-[var(--color-slate-deep)] placeholder:text-[var(--color-slate-mid)]/70 focus:ring-1 focus:ring-[var(--color-alpine)] focus:border-[var(--color-alpine)] focus:outline-none"
+              class="w-full min-w-0 box-border font-sans rounded-lg border border-[var(--color-hairline)] px-3 py-2 text-sm bg-white text-[var(--color-graphite)] placeholder:text-[var(--color-stone-grey)]/70 focus:ring-1 focus:ring-[var(--color-ember)] focus:border-[var(--color-ember)] focus:outline-none"
             ></textarea>
           </div>
 
@@ -146,7 +146,7 @@ export const prerender = true;
             <button
               type="submit"
               id="enquiry-submit"
-              class="w-full box-border font-sans rounded-lg bg-[var(--color-alpine)] hover:bg-[var(--color-alpine-dark)] text-white px-4 py-3 font-semibold text-sm transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+              class="w-full box-border font-sans rounded-lg bg-[var(--color-ember)] hover:bg-[var(--color-link-hover)] text-white px-4 py-3 font-semibold text-sm transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
             >
               Submit Enquiry
             </button>

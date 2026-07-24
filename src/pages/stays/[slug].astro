@@ -65,7 +65,7 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
 
   <!-- Hero -->
   <section class="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
-    <div class="absolute inset-0 bg-[var(--color-slate-deep)]">
+    <div class="absolute inset-0 bg-[var(--color-schist-ink)]">
       <img
         src={stay.data.heroImage}
         alt={stay.data.heroAlt}
@@ -80,22 +80,22 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
         {stay.data.guestFavourite && (
           <span class="badge badge-gold">⭐ Guest Favourite · {stay.data.rating} from {stay.data.reviewCount} reviews</span>
         )}
-        {stay.data.topPercent && <span class="badge badge-alpine">Top {stay.data.topPercent}% on Airbnb</span>}
+        {stay.data.topPercent && <span class="badge badge-ember">Top {stay.data.topPercent}% on Airbnb</span>}
       </div>
-      <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-2 !text-white">{stay.data.title}</h1>
-      <p class="text-lg text-white/80">{stay.data.tagline}</p>
+      <h1 class="text-4xl sm:text-5xl font-medium text-[var(--color-cream)] mb-2 !text-[var(--color-cream)]">{stay.data.title}</h1>
+      <p class="text-lg text-[var(--color-cream)]/80">{stay.data.tagline}</p>
     </div>
   </section>
 
   {gallery.length > 0 && (
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
-      <h2 class="text-3xl font-bold mb-6">Photos</h2>
+      <h2 class="text-3xl font-medium mb-6">Photos</h2>
       <Carousel images={gallery} id={`gallery-${stay.data.slug}`} />
     </div>
   )}
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
-    <h2 class="text-3xl font-bold mb-6">Availability & pricing</h2>
+    <h2 class="text-3xl font-medium mb-6">Availability & pricing</h2>
     <AvailabilityCalendar bookedRanges={bookedRanges} prices={prices} staySlug={stay.data.slug} stayType={stay.data.type} cleaningFee={stay.data.cleaningFee} />
   </div>
 
@@ -105,17 +105,17 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
       <div class="lg:col-span-2">
         <!-- Quick stats -->
         <div class="flex flex-wrap gap-4 mb-8 text-sm">
-          <div class="flex items-center gap-2 bg-[var(--color-stone-light)]/50 dark:bg-[var(--color-slate-mid)]/30 rounded-full px-4 py-2">
+          <div class="flex items-center gap-2 bg-[var(--color-fill)] dark:bg-[var(--color-stone-grey)]/30 rounded-full px-4 py-2">
             🛏️ <span class="font-medium">{stay.data.bedrooms} {stay.data.bedrooms === 1 ? 'bedroom' : 'bedrooms'}</span>
           </div>
-          <div class="flex items-center gap-2 bg-[var(--color-stone-light)]/50 dark:bg-[var(--color-slate-mid)]/30 rounded-full px-4 py-2">
+          <div class="flex items-center gap-2 bg-[var(--color-fill)] dark:bg-[var(--color-stone-grey)]/30 rounded-full px-4 py-2">
             🚿 <span class="font-medium">{stay.data.bathrooms} {stay.data.bathrooms === 1 ? 'bathroom' : 'bathrooms'}</span>
           </div>
-          <div class="flex items-center gap-2 bg-[var(--color-stone-light)]/50 dark:bg-[var(--color-slate-mid)]/30 rounded-full px-4 py-2">
+          <div class="flex items-center gap-2 bg-[var(--color-fill)] dark:bg-[var(--color-stone-grey)]/30 rounded-full px-4 py-2">
             👥 <span class="font-medium">Up to {stay.data.maxGuests} guests</span>
           </div>
           {stay.data.beds.map((bed) => (
-            <div class="flex items-center gap-2 bg-[var(--color-stone-light)]/50 dark:bg-[var(--color-slate-mid)]/30 rounded-full px-4 py-2">
+            <div class="flex items-center gap-2 bg-[var(--color-fill)] dark:bg-[var(--color-stone-grey)]/30 rounded-full px-4 py-2">
               🛏️ <span class="font-medium">{bed.count} {bed.type} {bed.count === 1 ? 'bed' : 'beds'}</span>
             </div>
           ))}
@@ -125,19 +125,19 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
         {stay.data.facts.length > 0 && (
           <ul class="flex flex-wrap gap-2 mb-8">
             {stay.data.facts.map((fact) => (
-              <li class="text-xs font-medium bg-[var(--color-alpine)]/10 text-[var(--color-alpine-dark)] dark:text-[var(--color-alpine)] rounded-full px-3 py-1.5">{fact}</li>
+              <li class="text-xs font-medium bg-[var(--color-ember)]/10 text-[var(--color-link-hover)] dark:text-[var(--color-ember)] rounded-full px-3 py-1.5">{fact}</li>
             ))}
           </ul>
         )}
 
         <!-- Content from markdown -->
-        <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-[var(--color-slate-mid)] dark:prose-p:text-[var(--color-stone-warm)] prose-p:leading-relaxed">
+        <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-medium prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-[var(--color-stone-grey)] dark:prose-p:text-[var(--color-stone)] prose-p:leading-relaxed">
           <Content />
         </div>
 
         <!-- Amenities -->
         <div class="mt-12">
-          <h2 class="text-3xl font-bold mb-6">What's included</h2>
+          <h2 class="text-3xl font-medium mb-6">What's included</h2>
           <AmenityGrid amenities={stay.data.amenities} />
         </div>
       </div>
@@ -146,31 +146,31 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
       <div class="lg:col-span-1">
         <div class="sticky top-24 space-y-6">
           <!-- Booking card -->
-          <div class="rounded-2xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] bg-white dark:bg-[var(--color-slate-deep)] p-6 shadow-sm">
-            <h3 class="text-lg font-bold mb-1">Book this stay</h3>
-            <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">{stay.data.title} · Hanley's Farm</p>
+          <div class="rounded-2xl border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] bg-white dark:bg-[var(--color-schist-ink)] p-6 shadow-sm">
+            <h3 class="text-lg font-medium mb-1">Book this stay</h3>
+            <p class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4">{stay.data.title} · Hanley's Farm</p>
             {fromDirect !== null && (
-              <div class="mb-6 pb-6 border-b border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]">
+              <div class="mb-6 pb-6 border-b border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)]">
                 <div class="flex items-baseline gap-2">
-                  <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">from</span>
+                  <span class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">from</span>
                   <span class="text-2xl font-extrabold">${fromDirect}</span>
-                  <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">/ night direct</span>
+                  <span class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">/ night direct</span>
                 </div>
-                <div class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mt-1">
+                <div class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mt-1">
                   <span class="line-through">${fromPrice}</span> on Airbnb · you save 10% booking direct
                 </div>
               </div>
             )}
-            <p class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4">
+            <p class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4">
               + ${stay.data.cleaningFee} one-time cleaning fee, applies whether you book direct or via Airbnb
             </p>
             <BookingCTA airbnbUrl={stay.data.airbnbUrl} stayTitle={stay.data.title} />
           </div>
 
           <!-- Location callout -->
-          <div class="rounded-2xl bg-[var(--color-stone-light)]/30 dark:bg-[var(--color-slate-mid)]/20 p-6">
-            <h3 class="text-sm font-semibold uppercase tracking-widest text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-3">Location</h3>
-            <ul class="space-y-2 text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+          <div class="rounded-2xl bg-[var(--color-hairline)]/30 dark:bg-[var(--color-stone-grey)]/20 p-6">
+            <h3 class="font-sans text-sm font-semibold uppercase tracking-widest text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-3">Location</h3>
+            <ul class="space-y-2 text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">
               <li class="flex items-start gap-2">
                 <span class="mt-0.5">🏔️</span>
                 <span>The Remarkables: base ~5 min drive, top ~30 min</span>
@@ -197,9 +197,9 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
   {stayReviews.length > 0 && (
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
       <div class="flex flex-wrap items-baseline justify-between gap-3 mb-6">
-        <h2 class="text-3xl font-bold">What guests say</h2>
-        <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
-          <span class="text-[var(--color-gold-dark)] font-semibold">★ {stay.data.rating}</span> · {stay.data.reviewCount} reviews on Airbnb
+        <h2 class="text-3xl font-medium">What guests say</h2>
+        <span class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">
+          <span class="text-[var(--color-sun-gold-dark)] font-semibold">★ {stay.data.rating}</span> · {stay.data.reviewCount} reviews on Airbnb
         </span>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -208,7 +208,7 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
         ))}
       </div>
       <div class="mt-6">
-        <a href={stay.data.airbnbUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[var(--color-alpine)] font-semibold text-sm hover:underline">
+        <a href={stay.data.airbnbUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[var(--color-ember)] font-semibold text-sm hover:underline">
           Read all {stay.data.reviewCount} reviews on Airbnb
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
         </a>

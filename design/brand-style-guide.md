@@ -21,51 +21,74 @@ any design tool) to brief it on the brand before asking it to build screens.
 
 ## Color
 
-Mountain-inspired palette, defined once as CSS custom properties
-(`--color-*`) and used everywhere via `var()`: never a raw hex in a
-component.
+Warm alpenglow palette, pulled from the schist, snow, cedar and alpenglow
+of the site itself. Defined once as CSS custom properties (`--color-*`)
+and used everywhere via `var()`: never a raw hex in a component.
 
 | Name | Value | Use |
 |---|---|---|
-| `slate-deep` | `#1e293b` | Body text, headings, dark section backgrounds |
-| `slate-mid` | `#334155` | Secondary/muted text, borders on dark surfaces |
-| `stone-warm` | `#d6cfc7` | Warm neutral accents on dark backgrounds |
-| `stone-light` | `#e7e5e0` | Card borders, section dividers, subtle fills |
-| `snow` | `#fafaf9` | Page background (the site is light-mode only) |
-| `alpine` | `#3b82f6` | Primary brand accent: links, primary CTA |
-| `alpine-dark` | `#2563eb` | Primary CTA hover/active state |
-| `gold` | `#d97706` | Borders, decorative fills, large text only: fails contrast (~3:1) as small text on snow |
-| `gold-dark` | `#92400e` | Gold as text-xs/text-sm (review stars, badge text, host tip labels): ~6.8:1 on snow |
-| `forest` | `#166534` / `#22c55e` (light) | Positive/nature accent (dogs, outdoors) |
+| `schist-ink` | `#1a1714` | Dark UI surfaces: footer, TV mode, dark section bands |
+| `graphite` | `#262320` | Headings, primary body text |
+| `stone-grey` | `#5c564c` | Secondary/body copy, borders on dark (6.5:1 on plaster) |
+| `taupe` | `#857c6f` | Muted meta and caption text |
+| `plaster` | `#f5f1ea` | Page background (the site is light-mode only) |
+| `snow` | `#fffefb` | Card and panel surfaces |
+| `hairline` | `#e4dcce` | Borders, dividers |
+| `fill` | `#efe7d9` | Fact-pill and chip tinted backgrounds |
+| `stone` | `#d9cdb8` | Input borders, decorative fills |
+| `larch` | `#b79a6d` | Warm wood, decorative only, never text |
+| `cedar` | `#8a6b45` | Deep wood, large text only |
+| `ember` | `#99502f` | Primary CTA and default links (5.9:1 on plaster, AA) |
+| `link-hover` | `#7f3f24` | Link/CTA hover and press, light surfaces |
+| `visited` | `#7a4a3e` | Visited links, never browser purple |
+| `ember-dark-hover` | `#c76d47` | Ember CTA hover specifically on dark surfaces |
+| `alpenglow` | `#b5613e` | Accent, large display text and icon fills only (~4.4:1) |
+| `sun-gold` | `#cf8a3c` | Favourite marks, stars: decorative only, fails contrast (~2.5-2.8:1) as text on light |
+| `sun-gold-dark` | `#a86a1f` | AA-safe gold variant for badge text |
+| `pine-teal` | `#47716f` | Secondary accent badges (e.g. "Top 1%") |
+| `forest` | `#4b6b4a` | Success, positive/nature accent (dogs, outdoors) |
+| `cream` | `#f0e6d8` | Text on dark surfaces |
+| `cream-muted` | `#b3a795` | Muted text on dark surfaces |
 
 The site never uses dark mode (`.dark` is never toggled): always design
-for the light surface (`snow` background, `slate-deep` text). Dark section
-*bands* using `slate-deep` are fine and used deliberately (e.g. the hot tub
-section); a full dark *page* surface is not: this is a light-mode site.
+for the light surface (`plaster` background, `graphite` text). Dark section
+*bands* using `schist-ink` are fine and used deliberately (e.g. the hot tub
+section, roughly 10% of the page); a full dark *page* surface is not, this
+is a light-mode site (TV mode is the one dark-by-design exception, and it
+is never public).
 
 ### Link states
 
-All four states are explicit in `global.css`, from the token palette:
-`alpine` sits close to default browser link blue, which is only acceptable
-because nothing is left to fall back to browser-default blue or purple:
+All four states are explicit in `global.css`, from the token palette,
+per the design system's ground rules. Focus rings are never removed, only
+restyled:
 
 | State | Colour |
 |---|---|
-| Link | `alpine` |
-| Hover | `alpine-dark` |
-| Visited | `alpine-dark` (never purple) |
-| Focus | 2px `alpine` outline (`:focus-visible`) |
+| Link | `ember` (#99502F) |
+| Hover | `link-hover` (#7F3F24) |
+| Visited | `visited` (#7A4A3E, never purple) |
+| Focus | 2px `ember` outline (`:focus-visible`), always kept |
 
 ## Typography
 
-- Typeface: **Inter** (system-ui fallback), loaded at 400/500/600/700/800.
-- Headings (`h1`–`h4`): bold, `line-height: 1.2`, `letter-spacing: -0.02em`.
+- Typefaces: **Newsreader** (display serif: headlines, taglines,
+  pull-quotes, warm italic) + **Hanken Grotesk** (text and UI, tabular
+  numerals for rates and dates). Both self-hosted as subset WOFF2 with
+  `font-display: swap`, not loaded from the Google Fonts CDN, so pages
+  stay readable on slow ski-field wifi before webfonts arrive.
+- Headings (`h1`–`h4`): `font-family: var(--font-serif)`, weight 500,
+  `line-height: 1.15`, `letter-spacing: -0.02em`. Small uppercase
+  overline-style labels that happen to use an `h2`/`h3` tag (e.g. form
+  section headers) get an explicit `font-sans` override to stay in Hanken
+  Grotesk.
 - Scale actually in use, and the only sizes that should appear anywhere:
-  kicker `text-sm uppercase tracking-widest` → hero headline `text-4xl
-  sm:text-5xl font-extrabold` → section headline `text-3xl font-bold` →
-  card/panel title `text-lg font-bold` → lead `text-lg` → body `text-sm`
-  (body line-height 1.7) → meta/caption `text-xs`. Don't introduce a new
-  size without adding it here and to `/style-guide` first.
+  overline `text-sm uppercase tracking-widest` → hero/display headline
+  `text-4xl sm:text-5xl font-medium` → section headline `text-3xl
+  font-medium` → card/panel title `text-lg font-medium` → tagline italic
+  (`font-serif italic`, ember) → lead `text-lg` → body `text-sm` (body
+  line-height 1.7) → meta/caption `text-xs`. Don't introduce a new size
+  without adding it here and to `/style-guide` first.
 
 ## Spacing & layout
 
@@ -79,26 +102,30 @@ Every section shares one wrapper shape:
 
 Text-heavy pages narrow the inner max-width to `max-w-3xl` or `max-w-4xl`.
 Section headers are usually centered: `max-w-2xl mx-auto text-center`, a
-`text-3xl font-bold` title, one line of `slate-mid` supporting copy.
+`text-3xl font-medium` serif title, one line of `stone-grey` supporting copy.
 
 ## Components / patterns
 
 - **Badges**: pill shape, near-opaque white fill (legible over photos),
-  color-tinted border + text: gold, alpine, forest variants.
-- **Buttons/CTAs**: always paired: primary "Book Direct" (solid `alpine`
+  color-tinted border + text: `badge-gold`, `badge-ember`, `badge-pine`,
+  `badge-forest` variants.
+- **Buttons/CTAs**: always paired: primary "Book Direct" (solid `ember`
   fill, white text, rounded-xl, lifts on hover) + secondary "Book on
-  Airbnb" (2px `stone-light` border, no fill). A one-line honest comparison
+  Airbnb" (2px `hairline` border, no fill). A one-line honest comparison
   note sits underneath, never omitted: *"Direct is cheaper and personal.
   Airbnb offers AirCover mediation. Choose what works for you."*
 - **Cards/panels**: two nesting depths: outer panel `rounded-2xl border
-  border-stone-light bg-white p-6`, inner tile `rounded-xl border p-3`.
-  Review cards: 5 gold stars, quote, then a small bold attribution line
-  (name · location · date).
-- **Amenity chips**: icon + label pairs in a `rounded-lg` tinted
+  border-hairline bg-snow p-6`, inner tile `rounded-xl border p-3`.
+  Review cards: 5 `sun-gold-dark` stars, quote, then a small bold
+  attribution line (name · location · date).
+- **Amenity chips**: icon + label pairs in a `rounded-lg` `fill`-tinted
   background, used for room amenity lists.
 - Rounded corners throughout: `rounded-lg` (chips) → `rounded-xl` (inner
   tiles, buttons) → `rounded-2xl` (outer cards/panels). No sharp corners
   anywhere in the UI.
+- **Icons visible by default**: never hide an icon or action behind hover.
+  Stars, arrows and status dots carry meaning, so they render at rest, on
+  touch and with a keyboard. Hover only enhances, it never reveals.
 
 ## Copy rules
 
@@ -112,12 +139,15 @@ Section headers are usually centered: `max-w-2xl mx-auto text-center`, a
 
 ## Imagery rules
 
-- Real photos only, never stock, not even temporarily. A styled placeholder
-  with the correct aspect ratio is fine while a real photo is pending.
-- Hero text readability via a gradient scrim behind the text, never a
-  highlight box.
+- Real photos only, never stock, not even temporarily. A striped
+  placeholder with a mono label and the correct aspect ratio is fine while
+  a real photo is pending.
+- Hero text readability via a gradient scrim (ink-tinted, from
+  `schist-ink`) behind the text, never a highlight box.
 - Badges over photos are near-opaque pill chips, not translucent glass,
   translucency loses to unpredictable photo content underneath.
+- Descriptive alt text on every image. No guest faces without consent.
+  Never hand-drawn SVG scenes.
 
 ## What to avoid
 

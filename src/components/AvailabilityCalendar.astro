@@ -34,7 +34,7 @@ function enquireHref(date: string): string {
 ---
 
 <div class="availability" data-availability data-stay-type={stayType} data-stay-slug={staySlug} data-cleaning-fee={cleaningFee}>
-  <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4" data-hint>
+  <p class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4" data-hint>
     Green dates are open. <span class="hidden sm:inline">Tap a check-in then a check-out date to enquire, or tap a single date.</span><span class="sm:hidden">Tap a date to enquire.</span>
   </p>
 
@@ -51,9 +51,9 @@ function enquireHref(date: string): string {
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" data-months>
     {months.map((month, mi) => (
-      <div class="rounded-xl border border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] p-4 cal-month" data-month-index={mi} data-month-label={month.label}>
+      <div class="rounded-xl border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] p-4 cal-month" data-month-index={mi} data-month-label={month.label}>
         <div class="text-sm font-semibold mb-3 text-center">{month.label}</div>
-        <div class="grid grid-cols-7 gap-1 text-xs text-center text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-1">
+        <div class="grid grid-cols-7 gap-1 text-xs text-center text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-1">
           {weekdayLabels.map((w) => <div aria-hidden="true">{w}</div>)}
         </div>
         <div class="grid grid-cols-7 gap-1">
@@ -97,7 +97,7 @@ function enquireHref(date: string): string {
   </div>
 
   <!-- Legend -->
-  <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
+  <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">
     <span class="flex items-center gap-1.5"><span class="legend-swatch legend-available" aria-hidden="true"></span> Available</span>
     <span class="flex items-center gap-1.5"><span class="legend-swatch legend-booked" aria-hidden="true"></span> Booked</span>
   </div>
@@ -143,12 +143,12 @@ function enquireHref(date: string): string {
     background: color-mix(in srgb, var(--color-forest) 30%, white);
   }
   .cal-available:focus-visible {
-    outline: 3px solid var(--color-alpine);
+    outline: 3px solid var(--color-ember);
     outline-offset: 1px;
   }
   :global(.dark) .cal-available {
     background: color-mix(in srgb, var(--color-forest) 40%, transparent);
-    color: var(--color-forest-light);
+    color: var(--color-forest);
   }
   :global(.dark) .cal-available:hover {
     background: color-mix(in srgb, var(--color-forest) 60%, transparent);
@@ -158,46 +158,46 @@ function enquireHref(date: string): string {
   .cal-booked {
     background: repeating-linear-gradient(
       -45deg,
-      color-mix(in srgb, var(--color-slate-mid) 22%, white),
-      color-mix(in srgb, var(--color-slate-mid) 22%, white) 3px,
-      color-mix(in srgb, var(--color-slate-mid) 10%, white) 3px,
-      color-mix(in srgb, var(--color-slate-mid) 10%, white) 6px
+      color-mix(in srgb, var(--color-stone-grey) 22%, white),
+      color-mix(in srgb, var(--color-stone-grey) 22%, white) 3px,
+      color-mix(in srgb, var(--color-stone-grey) 10%, white) 3px,
+      color-mix(in srgb, var(--color-stone-grey) 10%, white) 6px
     );
-    color: var(--color-slate-mid);
+    color: var(--color-stone-grey);
   }
   .cal-booked span { text-decoration: line-through; opacity: 0.75; }
   :global(.dark) .cal-booked {
     background: repeating-linear-gradient(
       -45deg,
-      color-mix(in srgb, var(--color-slate-mid) 70%, transparent),
-      color-mix(in srgb, var(--color-slate-mid) 70%, transparent) 3px,
-      color-mix(in srgb, var(--color-slate-mid) 40%, transparent) 3px,
-      color-mix(in srgb, var(--color-slate-mid) 40%, transparent) 6px
+      color-mix(in srgb, var(--color-stone-grey) 70%, transparent),
+      color-mix(in srgb, var(--color-stone-grey) 70%, transparent) 3px,
+      color-mix(in srgb, var(--color-stone-grey) 40%, transparent) 3px,
+      color-mix(in srgb, var(--color-stone-grey) 40%, transparent) 6px
     );
-    color: var(--color-stone-warm);
+    color: var(--color-stone);
   }
 
-  .cal-past { color: color-mix(in srgb, var(--color-slate-mid) 35%, transparent); }
-  :global(.dark) .cal-past { color: color-mix(in srgb, var(--color-stone-warm) 25%, transparent); }
+  .cal-past { color: color-mix(in srgb, var(--color-stone-grey) 35%, transparent); }
+  :global(.dark) .cal-past { color: color-mix(in srgb, var(--color-stone) 25%, transparent); }
 
   /* Selected range state (JS) */
   .cal-available.is-selected-end,
   .cal-available.is-selected-start {
-    background: var(--color-alpine);
+    background: var(--color-ember);
     color: white;
   }
   :global(.dark) .cal-available.is-selected-start,
   :global(.dark) .cal-available.is-selected-end {
-    background: var(--color-alpine);
+    background: var(--color-ember);
     color: white;
   }
   .cal-available.is-in-range {
-    background: color-mix(in srgb, var(--color-alpine) 22%, white);
-    color: var(--color-alpine-dark);
+    background: color-mix(in srgb, var(--color-ember) 22%, white);
+    color: var(--color-link-hover);
     border-radius: 0;
   }
   :global(.dark) .cal-available.is-in-range {
-    background: color-mix(in srgb, var(--color-alpine) 35%, transparent);
+    background: color-mix(in srgb, var(--color-ember) 35%, transparent);
     color: white;
   }
 
@@ -206,10 +206,10 @@ function enquireHref(date: string): string {
   :global(.dark) .legend-available { background: color-mix(in srgb, var(--color-forest) 40%, transparent); }
   .legend-booked {
     background: repeating-linear-gradient(-45deg,
-      color-mix(in srgb, var(--color-slate-mid) 40%, white),
-      color-mix(in srgb, var(--color-slate-mid) 40%, white) 2px,
-      color-mix(in srgb, var(--color-slate-mid) 12%, white) 2px,
-      color-mix(in srgb, var(--color-slate-mid) 12%, white) 4px);
+      color-mix(in srgb, var(--color-stone-grey) 40%, white),
+      color-mix(in srgb, var(--color-stone-grey) 40%, white) 2px,
+      color-mix(in srgb, var(--color-stone-grey) 12%, white) 2px,
+      color-mix(in srgb, var(--color-stone-grey) 12%, white) 4px);
   }
 
   .cal-pager {
@@ -217,15 +217,15 @@ function enquireHref(date: string): string {
   }
   .cal-pager-label { font-size: 0.9rem; font-weight: 600; min-width: 11rem; text-align: center; }
   .cal-pager-btn {
-    width: 2.25rem; height: 2.25rem; border-radius: 9999px; border: 1px solid var(--color-stone-light);
-    background: var(--color-snow); color: var(--color-slate-deep); cursor: pointer;
+    width: 2.25rem; height: 2.25rem; border-radius: 9999px; border: 1px solid var(--color-hairline);
+    background: var(--color-snow); color: var(--color-schist-ink); cursor: pointer;
     display: flex; align-items: center; justify-content: center; transition: background 0.12s, opacity 0.12s;
   }
-  :global(.dark) .cal-pager-btn { background: var(--color-slate-deep); color: var(--color-snow); border-color: var(--color-slate-mid); }
-  .cal-pager-btn:hover:not(:disabled) { background: var(--color-stone-light); }
-  :global(.dark) .cal-pager-btn:hover:not(:disabled) { background: var(--color-slate-mid); }
+  :global(.dark) .cal-pager-btn { background: var(--color-schist-ink); color: var(--color-snow); border-color: var(--color-stone-grey); }
+  .cal-pager-btn:hover:not(:disabled) { background: var(--color-hairline); }
+  :global(.dark) .cal-pager-btn:hover:not(:disabled) { background: var(--color-stone-grey); }
   .cal-pager-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-  .cal-pager-btn:focus-visible { outline: 3px solid var(--color-alpine); outline-offset: 2px; }
+  .cal-pager-btn:focus-visible { outline: 3px solid var(--color-ember); outline-offset: 2px; }
   .cal-pager-btn svg { width: 1.1rem; height: 1.1rem; }
   /* When JS enables paging, only the active pair of months is shown. */
   .cal-month.is-hidden { display: none; }
@@ -233,24 +233,24 @@ function enquireHref(date: string): string {
   .cal-enquire-bar {
     display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between;
     margin-top: 1rem; padding: 0.85rem 1rem; border-radius: 0.75rem;
-    background: color-mix(in srgb, var(--color-alpine) 8%, white);
-    border: 1px solid color-mix(in srgb, var(--color-alpine) 35%, transparent);
+    background: color-mix(in srgb, var(--color-ember) 8%, white);
+    border: 1px solid color-mix(in srgb, var(--color-ember) 35%, transparent);
   }
-  :global(.dark) .cal-enquire-bar { background: color-mix(in srgb, var(--color-alpine) 15%, transparent); }
+  :global(.dark) .cal-enquire-bar { background: color-mix(in srgb, var(--color-ember) 15%, transparent); }
   .cal-enquire-text { font-size: 0.85rem; font-weight: 600; }
   .cal-was { font-weight: 400; text-decoration: line-through; opacity: 0.6; margin-left: 0.25rem; }
   .cal-fee { font-weight: 400; opacity: 0.75; margin-left: 0.25rem; }
   .cal-enquire-actions { display: flex; align-items: center; gap: 0.75rem; }
   .cal-enquire-clear {
     background: none; border: 0; cursor: pointer; font-size: 0.8rem;
-    color: var(--color-slate-mid); text-decoration: underline;
+    color: var(--color-stone-grey); text-decoration: underline;
   }
   .cal-enquire-cta {
-    display: inline-block; background: var(--color-alpine); color: white;
+    display: inline-block; background: var(--color-ember); color: white;
     padding: 0.5rem 0.9rem; border-radius: 0.6rem; font-size: 0.85rem; font-weight: 600; text-decoration: none;
     transition: background 0.12s;
   }
-  .cal-enquire-cta:hover { background: var(--color-alpine-dark); }
+  .cal-enquire-cta:hover { background: var(--color-link-hover); }
 </style>
 
 <script>

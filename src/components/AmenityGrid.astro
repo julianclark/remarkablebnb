@@ -23,9 +23,9 @@ const iconMap: Record<string, string> = {
 
 <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
   {amenities.map((amenity) => (
-    <div class="flex items-center gap-2 rounded-lg bg-[var(--color-stone-light)]/50 dark:bg-[var(--color-slate-mid)]/30 px-3 py-2.5">
+    <div class="flex items-center gap-2 rounded-lg bg-[var(--color-fill)] dark:bg-[var(--color-stone-grey)]/30 px-3 py-2.5">
       <span class="text-lg flex-shrink-0" aria-hidden="true">{iconMap[amenity] || '✓'}</span>
-      <span class="text-sm font-medium text-[var(--color-slate-deep)] dark:text-[var(--color-stone-light)]">{amenity}</span>
+      <span class="text-sm font-medium text-[var(--color-graphite)] dark:text-[var(--color-hairline)]">{amenity}</span>
     </div>
   ))}
 </div>

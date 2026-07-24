@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideEntry from '../../components/GuideEntry.astro';
+
+export const prerender = true;
+
+// Draft: awaiting host sign-off (Claude Build Brief 7). Ships noindex and
+// unlinked from nav/footer until Holly & Julian approve and flip this page
+// to published.
+const DRAFT = true;
+
+const sections = [
+  {
+    title: "Closest to us (Jack's Point & Hanley's Farm)",
+    intro: 'For the first night, or whenever you just want food without a drive.',
+    entries: [
+      { name: "Jack's Point Golf Clubhouse", tier: 'proven', meta: ['Jack\'s Point', 'A few minutes away'], note: "The next nearest good coffee, and a lovely place to spend an hour or two with a stunning view. We send people here for breakfast and work calls too." },
+      { name: "Jack's Point food trucks", tier: 'proven', meta: ['Jack\'s Point'], note: 'An easy dinner option without leaving the neighbourhood.' },
+      { name: 'The Farmhouse (Ayrburn area)', tier: 'proven', meta: ['Ayrburn area'], note: 'A family favourite of ours.', todo: 'confirm exact name and location before publishing.' },
+    ],
+  },
+  {
+    title: 'Frankton, Five Mile & Remarkables Park',
+    intro: 'The practical everyday tier, good for a quick meal on your way through.',
+    entries: [
+      { name: 'Frankton Alehouse', tier: 'proven', meta: ['Frankton'], note: 'One we regularly recommend.' },
+      { name: 'No.8 Noodle House', tier: 'proven', meta: ['Frankton'], note: 'One we regularly recommend.' },
+      { name: 'Boatshed', tier: 'proven', meta: ['Frankton', 'Breakfast'], note: 'Our pick for breakfast in this area.' },
+    ],
+  },
+  {
+    title: 'Queenstown CBD',
+    intro: 'The occasion and icon tier, worth the drive into town.',
+    entries: [
+      { name: 'Fergburger', tier: 'proven', meta: ['CBD'], note: 'The Queenstown icon. Non-beef options exist if that\'s not your thing.' },
+      { name: 'Little India', tier: 'proven', meta: ['CBD', 'Indian'], note: 'Our go-to when guests ask for a good Indian meal in town.' },
+      { name: 'Wakatipu Grill', tier: 'proven', meta: ['CBD'], note: 'One we regularly recommend.' },
+      { name: 'The Cow, The Bunker & Public Kitchen and Bar', tier: 'research', meta: ['CBD'], note: 'On our list for a proper roast.', todo: 'verify roast availability and days before publishing.' },
+    ],
+  },
+  {
+    title: 'Arrowtown & Gibbston',
+    intro: 'The day-out tier, easy to pair with a wander or a wine trail.',
+    entries: [
+      { name: 'Ayrburn precinct', tier: 'proven', meta: ['Between Lake Hayes & Arrowtown'], note: 'A favourite for a half-day out.' },
+      { name: 'Mantra, Arrowtown', tier: 'proven', meta: ['Arrowtown', 'Indian'], note: 'Our Indian pick in Arrowtown.' },
+      { name: 'Amisfield', tier: 'proven', meta: ['Gibbston'], note: 'Our pick for a big occasion.', todo: 'note current booking lead time.' },
+      { name: 'Gibbston Valley wineries', tier: 'proven', meta: ['Gibbston'], note: 'A theme we send our wine-loving guests to.' },
+      { name: 'Cardrona Hotel lunch', tier: 'proven', meta: ['Cardrona'], note: 'Usually part of a bigger Cardrona day trip.' },
+    ],
+  },
+  {
+    title: 'Quick and cheap',
+    intro: '',
+    entries: [
+      { name: 'Sangas pies', tier: 'proven', meta: ['Budget'], note: 'Our go-to for a quick, cheap feed.' },
+      { name: 'Food trucks', tier: 'proven', meta: ['Budget'], note: 'What we point tired late arrivals towards.' },
+      { name: 'Queenstown Arts & Crafts Market', tier: 'research', meta: ['Earnslaw Park / Steamer Wharf', 'Saturdays'], note: 'Good for a browse and a bite on a Saturday.', todo: 'verify current hours seasonally.' },
+    ],
+  },
+  {
+    title: 'Family-friendly',
+    intro: '',
+    entries: [
+      { name: 'The Farmhouse', tier: 'proven', meta: ['Family-friendly'], note: 'A hit with the kids in families we\'ve hosted.' },
+      { name: 'Food trucks', tier: 'proven', meta: ['Family-friendly'], note: 'Easy and low-fuss with children in tow.' },
+      { name: 'Fergburger takeaway by the lake', tier: 'proven', meta: ['Family-friendly'], note: 'A good one for a lakeside picnic dinner.' },
+    ],
+    todoSection: 'we need 2 or 3 more verified family picks here rather than padding this section out.',
+  },
+];
+---
+
+<BaseLayout
+  title="Where to eat and drink | Remarkable BnB"
+  description="Where Holly & Julian actually send their guests to eat, from Jack's Point to Queenstown CBD, Arrowtown and Gibbston."
+  noindex={DRAFT}
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    {DRAFT && (
+      <p class="badge badge-gold mb-6">Draft, awaiting host edit and sign-off</p>
+    )}
+
+    <nav class="mb-6 text-sm text-[var(--color-stone-grey)]">
+      <a href="/" class="hover:text-[var(--color-ember)] transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-[var(--color-graphite)]">Where to eat and drink</span>
+    </nav>
+
+    <span class="text-4xl" aria-hidden="true">🍽️</span>
+    <h1 class="text-4xl sm:text-5xl font-medium mt-4 mb-4">Where to eat and drink</h1>
+    <p class="text-lg font-serif italic text-[var(--color-ember)] leading-relaxed mb-8">
+      Honestly, the best coffee is our own kitchen, and Julian's sous-vide steak is hard to beat. But when you do want to head out, here's where we actually send people.
+    </p>
+
+    <div class="space-y-12">
+      {sections.map((section) => (
+        <section>
+          <h2 class="text-2xl font-medium mb-2">{section.title}</h2>
+          {section.intro && <p class="text-sm text-[var(--color-stone-grey)] mb-4">{section.intro}</p>}
+          <div class="space-y-3">
+            {section.entries.map((e) => (
+              <GuideEntry name={e.name} tier={e.tier as 'proven' | 'research'} meta={e.meta} note={e.note} todo={e.todo} />
+            ))}
+          </div>
+          {section.todoSection && (
+            <p class="text-xs text-[var(--color-sun-gold-dark)] mt-3 font-semibold">Draft, awaiting host edit: {section.todoSection}</p>
+          )}
+        </section>
+      ))}
+
+      <section class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-fill)] p-5">
+        <h3 class="text-lg font-medium mb-1">First Table</h3>
+        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">
+          Our go-to money-saving tip: First Table offers a discount on the first bookings of the evening at a rotating list of Queenstown restaurants, worth a look before you book anywhere in town.
+        </p>
+      </section>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-[var(--color-hairline)]">
+      <h2 class="text-2xl font-medium mb-2">Ask us</h2>
+      <p class="text-[var(--color-stone-grey)] leading-relaxed">
+        Tell us the kind of food you're into and we'll point you at our favourites.
+        <a href="/contact" class="text-[var(--color-ember)] font-semibold hover:underline">Get in touch</a>.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <a href="/" class="inline-flex items-center gap-2 text-[var(--color-ember)] font-semibold hover:underline">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+        Back to home
+      </a>
+    </div>
+  </div>
+</BaseLayout>

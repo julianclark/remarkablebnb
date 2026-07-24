@@ -8,33 +8,85 @@
 
 /* ============================================
    Remarkable BnB Design Tokens
-   Mountain-inspired palette, Inter typography
+   Warm alpenglow palette, Newsreader + Hanken Grotesk
    ============================================ */
 
 @theme {
-  /* Colours, mountain palette */
-  --color-slate-deep: #1e293b;
-  --color-slate-mid: #334155;
-  --color-stone-warm: #d6cfc7;
-  --color-stone-light: #e7e5e0;
-  --color-snow: #fafaf9;
-  --color-alpine: #3b82f6;
-  --color-alpine-dark: #2563eb;
-  --color-gold: #d97706;
-  --color-gold-light: #f59e0b;
-  /* Gold fails contrast (~3:1) as small text on snow/white — use this for
-     text-xs/text-sm gold usage instead (review stars, badge text, host tip
-     labels). ~6.8:1 against snow, comfortably passes WCAG AA. */
-  --color-gold-dark: #92400e;
-  --color-forest: #166534;
-  --color-forest-light: #22c55e;
+  /* Ink & surfaces */
+  --color-schist-ink: #1a1714;
+  --color-graphite: #262320;
+  --color-stone-grey: #5c564c;
+  --color-taupe: #857c6f;
+  --color-plaster: #f5f1ea;
+  --color-snow: #fffefb;
+
+  /* Larch & stone neutrals */
+  --color-hairline: #e4dcce;
+  --color-fill: #efe7d9;
+  --color-stone: #d9cdb8;
+  --color-larch: #b79a6d;
+  --color-cedar: #8a6b45;
+
+  /* Alpenglow accents */
+  --color-ember: #99502f;
+  --color-link-hover: #7f3f24;
+  --color-visited: #7a4a3e;
+  /* Ember lightens (not darkens) on hover specifically on dark surfaces
+     (schist-ink bands, TV mode, footer): link-hover is for light-surface
+     links/buttons only. */
+  --color-ember-dark-hover: #c76d47;
+  /* Alpenglow reads ~4.4:1: large display text and fills behind icons only,
+     never small body text. */
+  --color-alpenglow: #b5613e;
+  /* Sun Gold reads 2.5-2.8:1 on light surfaces: decorative only (stars,
+     marks), never text on a light surface. Use sun-gold-dark for text. */
+  --color-sun-gold: #cf8a3c;
+  --color-sun-gold-dark: #a86a1f;
+  --color-pine-teal: #47716f;
+  --color-forest: #4b6b4a;
+
+  /* Text on dark surfaces */
+  --color-cream: #f0e6d8;
+  --color-cream-muted: #b3a795;
 
   /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
 
   /* Spacing scale */
   --spacing-section: 6rem;
   --spacing-section-sm: 3rem;
+}
+
+/* ============================================
+   Self-hosted fonts (latin subset, variable weight)
+   Loaded locally rather than from Google Fonts CDN so pages render (with
+   swap fallback) even on slow ski-field wifi or with third-party requests
+   blocked.
+   ============================================ */
+
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/hanken-grotesk-variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/fonts/newsreader-variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('/fonts/newsreader-variable-italic.woff2') format('woff2');
 }
 
 /* ============================================
@@ -49,8 +101,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-slate-deep);
-  background-color: var(--color-snow);
+  color: var(--color-graphite);
+  background-color: var(--color-plaster);
   line-height: 1.7;
 }
 
@@ -68,10 +120,11 @@ button {
    ============================================ */
 
 h1, h2, h3, h4 {
-  font-weight: 700;
-  line-height: 1.2;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.15;
   letter-spacing: -0.02em;
-  color: var(--color-slate-deep);
+  color: var(--color-graphite);
 }
 
 /* Brand link colour everywhere a link doesn't set its own (prose content,
@@ -79,25 +132,23 @@ h1, h2, h3, h4 {
    back to browser-default blue with a purple :visited state. Components
    that set their own text/utility colour classes are unaffected, class
    selectors outrank this element selector.
-   All four states are deliberate, from the token palette: alpine sits close
-   to default link blue, which is only acceptable because every state below
-   is explicitly set — nothing is left to render as browser-default blue or
-   purple. */
+   All four states are deliberate, from the token palette, per the design
+   system's "links & interactive states" ground rule. */
 a {
-  color: var(--color-alpine);
-  text-decoration-color: color-mix(in srgb, var(--color-alpine) 40%, transparent);
+  color: var(--color-ember);
+  text-decoration-color: color-mix(in srgb, var(--color-ember) 40%, transparent);
 }
 
 a:hover {
-  color: var(--color-alpine-dark);
+  color: var(--color-link-hover);
 }
 
 a:visited {
-  color: var(--color-alpine-dark);
+  color: var(--color-visited);
 }
 
 a:focus-visible {
-  outline: 2px solid var(--color-alpine);
+  outline: 2px solid var(--color-ember);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -109,8 +160,8 @@ a:focus-visible {
 .gradient-scrim {
   background: linear-gradient(
     to top,
-    rgba(15, 23, 42, 0.85) 0%,
-    rgba(15, 23, 42, 0.4) 40%,
+    rgba(26, 23, 20, 0.85) 0%,
+    rgba(26, 23, 20, 0.4) 40%,
     transparent 100%
   );
 }
@@ -127,17 +178,22 @@ a:focus-visible {
   letter-spacing: 0.05em;
   /* Near-opaque so badges stay legible over photos, not just plain backgrounds. */
   background-color: color-mix(in srgb, white 92%, transparent);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 1px 2px rgba(26, 23, 20, 0.08);
 }
 
 .badge-gold {
-  color: var(--color-gold-dark);
-  border: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent);
+  color: var(--color-sun-gold-dark);
+  border: 1px solid color-mix(in srgb, var(--color-sun-gold) 35%, transparent);
 }
 
-.badge-alpine {
-  color: var(--color-alpine);
-  border: 1px solid color-mix(in srgb, var(--color-alpine) 35%, transparent);
+.badge-ember {
+  color: var(--color-ember);
+  border: 1px solid color-mix(in srgb, var(--color-ember) 35%, transparent);
+}
+
+.badge-pine {
+  color: var(--color-pine-teal);
+  border: 1px solid color-mix(in srgb, var(--color-pine-teal) 35%, transparent);
 }
 
 .badge-forest {
