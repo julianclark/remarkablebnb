@@ -27,6 +27,7 @@ airbnbUrl: "https://www.airbnb.co.nz/h/remarkablebnb-guest"
 airbnbListingId: "1547499256999390723"
 directOnly: false
 guestFavourite: true
+topPercent: 5
 rating: 5.0
 reviewCount: 28
 heroImage: "/images/stays/guest-room-hero.avif"

@@ -30,7 +30,7 @@ airbnbUrl: "https://www.airbnb.co.nz/h/remarkablebnb"
 airbnbListingId: "1546885102092776257"
 directOnly: false
 guestFavourite: true
-topOnePercent: true
+topPercent: 1
 rating: 5.0
 reviewCount: 34
 heroImage: "/images/stays/unit-hero.jpg"

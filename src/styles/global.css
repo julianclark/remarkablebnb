@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Commit to a single light, airy base with navy as the brand accent.
    `dark:` utilities only apply under a `.dark` ancestor, which we never
@@ -106,19 +107,22 @@ a:hover {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  /* Near-opaque so badges stay legible over photos, not just plain backgrounds. */
+  background-color: color-mix(in srgb, white 92%, transparent);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
 }
 
 .badge-gold {
-  background-color: color-mix(in srgb, var(--color-gold) 15%, transparent);
   color: var(--color-gold);
+  border: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent);
 }
 
 .badge-alpine {
-  background-color: color-mix(in srgb, var(--color-alpine) 15%, transparent);
   color: var(--color-alpine);
+  border: 1px solid color-mix(in srgb, var(--color-alpine) 35%, transparent);
 }
 
 .badge-forest {
-  background-color: color-mix(in srgb, var(--color-forest) 15%, transparent);
   color: var(--color-forest);
+  border: 1px solid color-mix(in srgb, var(--color-forest) 35%, transparent);
 }

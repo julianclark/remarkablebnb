@@ -88,16 +88,19 @@ const hero = {
         {hero.subcopy}
       </p>
       <div class="flex flex-wrap gap-3">
-        <a href="#stays" class="inline-flex items-center gap-2 bg-white text-[var(--color-slate-deep)] font-semibold px-6 py-3 rounded-xl hover:bg-[var(--color-stone-light)] transition-all duration-200 hover:shadow-lg" id="hero-cta-stays">
+        <a href="#stays" class="no-underline inline-flex items-center gap-2 bg-white text-[var(--color-slate-deep)] font-semibold px-6 py-3 rounded-xl hover:bg-[var(--color-stone-light)] transition-all duration-200 hover:shadow-lg" id="hero-cta-stays">
           View our stays
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
           </svg>
         </a>
-        <a href="#dogs" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white border border-white/25 font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-all duration-200" id="hero-cta-dogs">
+        <a href="#hosts" class="no-underline inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white border border-white/25 font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-all duration-200" id="hero-cta-hosts">
+          Meet your hosts 👋
+        </a>
+        <a href="#dogs" class="no-underline inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white border border-white/25 font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-all duration-200" id="hero-cta-dogs">
           Meet the dogs 🐾
         </a>
-        <a href="/contact" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white border border-white/25 font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-all duration-200" id="hero-cta-contact">
+        <a href="/contact" class="no-underline inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white border border-white/25 font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-all duration-200" id="hero-cta-contact">
           Get in touch
         </a>
       </div>
@@ -111,7 +114,7 @@ const hero = {
         <span class="font-semibold text-[var(--color-gold)]">★ 5.0</span>
         <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">across {totalReviews} Airbnb reviews</span>
         <span class="badge badge-gold">⭐ Guest Favourite</span>
-        <span class="badge badge-alpine">Top 1% of eligible listings</span>
+        <span class="badge badge-alpine">Top-rated on Airbnb</span>
       </div>
       <!-- Rotating testimonial (shows first without JS) -->
       <div data-testimonials aria-live="polite">
@@ -155,7 +158,7 @@ const hero = {
               />
               <div class="absolute top-3 left-3 flex flex-wrap gap-2">
                 {stay.data.guestFavourite && <span class="badge badge-gold">⭐ Guest Favourite</span>}
-                {stay.data.topOnePercent && <span class="badge badge-alpine">Top 1%</span>}
+                {stay.data.topPercent && <span class="badge badge-alpine">Top {stay.data.topPercent}%</span>}
               </div>
             </div>
 
@@ -200,7 +203,7 @@ const hero = {
             Fair warning: Rocket is an attention hog. He wants the pats, he'll try to sit on you, and he'll push his head into your legs like a bulldozer. Hold firm and push back, that's the game. Luna is perpetually hungry, sneaky, and an absolute slave for food.
           </p>
           <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
-            Two small asks: please don't feed them human food or from the table, and please don't let them into the kitchen. They're basically gremlins (the lovable kind).
+            Two small asks: please don't feed them human food or from the table, and please don't let them into the kitchen.
           </p>
           <div class="rounded-xl border border-[var(--color-alpine)]/30 bg-[var(--color-alpine)]/5 dark:bg-[var(--color-alpine)]/10 p-4 mb-4">
             <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T09:53:14.748Z",
+  "generatedAt": "2026-07-24T10:15:58.149Z",
   "items": [
     {
       "id": "snowfall-depth",
@@ -23,7 +23,7 @@
       "sourceUrl": "https://open-meteo.com/",
       "linkLabel": "Weather data by Open-Meteo.com",
       "ok": true,
-      "value": "-4°C · Overcast"
+      "value": "-4°C · Snow showers"
     },
     {
       "id": "forecast-3day",

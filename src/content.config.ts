@@ -22,7 +22,8 @@ const stays = defineCollection({
     airbnbListingId: z.string(),
     directOnly: z.boolean().default(false),
     guestFavourite: z.boolean().default(false),
-    topOnePercent: z.boolean().default(false),
+    // Airbnb's "top X% of eligible listings" distinction, when they have one.
+    topPercent: z.number().optional(),
     rating: z.number().optional(),
     reviewCount: z.number().optional(),
     heroImage: z.string(),

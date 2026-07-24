@@ -80,7 +80,7 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
         {stay.data.guestFavourite && (
           <span class="badge badge-gold">⭐ Guest Favourite · {stay.data.rating} from {stay.data.reviewCount} reviews</span>
         )}
-        {stay.data.topOnePercent && <span class="badge badge-alpine">Top 1% on Airbnb</span>}
+        {stay.data.topPercent && <span class="badge badge-alpine">Top {stay.data.topPercent}% on Airbnb</span>}
       </div>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-2 !text-white">{stay.data.title}</h1>
       <p class="text-lg text-white/80">{stay.data.tagline}</p>
