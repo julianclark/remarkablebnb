@@ -1,53 +1,44 @@
 {
-  "generatedAt": "2026-07-24T09:26:07.878Z",
+  "generatedAt": "2026-07-24T09:53:14.748Z",
   "items": [
     {
-      "id": "queenstown-temp",
-      "label": "Queenstown temperature",
-      "sourceUrl": "https://www.metservice.com/towns-cities/regions/southern-lakes/locations/queenstown",
-      "linkLabel": "MetService Queenstown",
-      "ok": false,
-      "value": null
-    },
-    {
-      "id": "remarkables-temp",
-      "label": "The Remarkables temperature",
-      "sourceUrl": "https://www.metservice.com/mountains-and-parks/ski-fields/remarkables",
-      "linkLabel": "MetService, The Remarkables",
-      "ok": false,
-      "value": null
-    },
-    {
       "id": "snowfall-depth",
-      "label": "Last snowfall & current base",
+      "label": "The Remarkables: last snowfall & current base",
       "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
       "linkLabel": "The Remarkables snow report",
       "ok": true,
       "value": "Base 15 - 80cm · 3cm in the last 24 hours"
     },
     {
-      "id": "forecast-3day",
-      "label": "3-day forecast",
-      "sourceUrl": "https://www.metservice.com/mountains-and-parks/ski-fields/remarkables",
-      "linkLabel": "MetService, The Remarkables",
-      "ok": false,
-      "value": null
-    },
-    {
-      "id": "mountainwatch",
-      "label": "Mountainwatch snow forecast",
-      "sourceUrl": "https://www.mountainwatch.com/new-zealand/the-remarkables/weather/",
-      "linkLabel": "Mountainwatch, The Remarkables",
-      "ok": false,
-      "value": null
-    },
-    {
       "id": "chain-road",
-      "label": "Chain / road status",
+      "label": "The Remarkables: chain / road status",
       "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
       "linkLabel": "The Remarkables snow report",
       "ok": true,
       "value": "Road open · Chains: 2WD"
+    },
+    {
+      "id": "remarkables-temp",
+      "label": "The Remarkables: current temperature",
+      "sourceUrl": "https://open-meteo.com/",
+      "linkLabel": "Weather data by Open-Meteo.com",
+      "ok": true,
+      "value": "-4°C · Overcast"
+    },
+    {
+      "id": "forecast-3day",
+      "label": "The Remarkables: 3-day forecast",
+      "sourceUrl": "https://open-meteo.com/",
+      "linkLabel": "Weather data by Open-Meteo.com",
+      "ok": true,
+      "value": "Today: -4° to -2°, snow showers · Tomorrow: -8° to -4°, heavy snow showers · Day after: -8° to -3°, overcast"
+    }
+  ],
+  "links": [
+    {
+      "id": "mountainwatch",
+      "label": "Mountainwatch snow forecast",
+      "sourceUrl": "https://www.mountainwatch.com/new-zealand/the-remarkables/weather/"
     }
   ]
 }

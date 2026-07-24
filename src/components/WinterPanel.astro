@@ -16,6 +16,7 @@ const updatedLabel = winterData.generatedAt
   : null;
 
 const items = winterData.items ?? [];
+const links = winterData.links ?? [];
 ---
 
 <div class="mt-10 rounded-2xl border border-[var(--color-stone-light)] bg-white p-6">
@@ -29,31 +30,41 @@ const items = winterData.items ?? [];
     )}
   </div>
   <p class="text-sm text-[var(--color-slate-mid)] mb-4">
-    Heading up the hill? These are the pages we check every winter morning, refreshed daily. Every figure links back to its source so you can double-check it yourself.
+    Heading up the hill? Live figures from The Remarkables and Open-Meteo, refreshed daily. Every figure links back to its source so you can double-check it yourself.
   </p>
-  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-    {items.map((item) => (
-      <li>
-        {item.ok && !isStale ? (
-          <div class="rounded-xl border border-[var(--color-stone-light)] p-3">
-            <span class="block text-sm font-semibold">{item.label}</span>
-            <span class="block text-sm text-[var(--color-slate-mid)] mt-0.5">{item.value}</span>
-            <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs mt-1.5">
-              Source <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        ) : (
-          <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2 rounded-xl border border-[var(--color-stone-light)] hover:border-[var(--color-alpine)] p-3 transition-colors h-full">
-            <span class="text-[var(--color-alpine)] mt-0.5" aria-hidden="true">↗</span>
-            <span>
-              <span class="block text-sm font-semibold group-hover:text-[var(--color-alpine)] transition-colors">{item.label}</span>
-              <span class="block text-xs text-[var(--color-slate-mid)]">{item.linkLabel}</span>
-            </span>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    {items.map((item) =>
+      item.ok && !isStale ? (
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-3">
+          <span class="block text-sm font-semibold">{item.label}</span>
+          <span class="block text-sm text-[var(--color-slate-mid)] mt-0.5">{item.value}</span>
+          <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs mt-1.5">
+            Source <span aria-hidden="true">↗</span>
           </a>
-        )}
-      </li>
-    ))}
-  </ul>
+        </div>
+      ) : (
+        <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2 rounded-xl border border-[var(--color-stone-light)] hover:border-[var(--color-alpine)] p-3 transition-colors">
+          <span class="text-[var(--color-alpine)] mt-0.5" aria-hidden="true">↗</span>
+          <span>
+            <span class="block text-sm font-semibold group-hover:text-[var(--color-alpine)] transition-colors">{item.label}</span>
+            <span class="block text-xs text-[var(--color-slate-mid)]">{item.linkLabel}</span>
+          </span>
+        </a>
+      )
+    )}
+  </div>
+
+  {links.length > 0 && (
+    <div class="flex flex-wrap gap-x-4 gap-y-1 mt-3 pt-3 border-t border-[var(--color-stone-light)]">
+      {links.map((link) => (
+        <a href={link.sourceUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-medium">
+          {link.label} <span aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  )}
+
   {isStale && (
     <p class="text-xs text-[var(--color-slate-mid)] mt-3">
       Live figures are due to refresh; showing source links until they're back.

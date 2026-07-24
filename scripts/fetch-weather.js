@@ -12,14 +12,17 @@
  * entirely if a build hasn't run in >48h (e.g. the daily Action stopped
  * firing).
  *
- * Scrapers break silently. Two of these six data points (Queenstown temp,
- * Remarkables temp, 3-day forecast) come from pages that render via
- * client-side JS with no server-rendered numbers to scrape, and Mountainwatch
- * has no stable public data endpoint we could confirm — those three are
- * intentionally always ok:false today and just link out. Only the two
- * Remarkables snow-report values (road/chain status, snow base + last 24h)
- * are actually parsed, from https://www.theremarkables.co.nz/weather-report/.
- * Revisit if/when a reliable source is confirmed for the rest.
+ * Two different strategies, deliberately:
+ *  - Remarkables temperature + 3-day forecast come from Open-Meteo
+ *    (open-meteo.com), a free no-auth JSON weather API keyed to the
+ *    Remarkables base coordinates. This is genuinely live, not scraped off
+ *    a page built for humans, so it's the most reliable point here.
+ *  - Snow base / last-24h snowfall and road/chain status are scraped from
+ *    https://www.theremarkables.co.nz/weather-report/, which does render
+ *    these server-side (verified against the live page on 2026-07-24).
+ *    MetService's town/mountain pages and Mountainwatch's snow-report pages
+ *    are client-rendered SPAs with nothing to scrape, so those stay as
+ *    plain outbound links.
  *
  * Usage: node scripts/fetch-weather.js
  * Writes: src/data/winter-conditions.json
@@ -32,11 +35,15 @@ import path from 'path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '../src/data/winter-conditions.json');
 
+// The Remarkables ski area base building, roughly.
+const REMARKABLES_LAT = -45.075;
+const REMARKABLES_LON = 168.831;
+const REMARKABLES_ELEVATION_M = 1610;
+
 const SOURCES = {
   remarkablesReport: 'https://www.theremarkables.co.nz/weather-report/',
-  metserviceQueenstown: 'https://www.metservice.com/towns-cities/regions/southern-lakes/locations/queenstown',
-  metserviceRemarkables: 'https://www.metservice.com/mountains-and-parks/ski-fields/remarkables',
   mountainwatchRemarkables: 'https://www.mountainwatch.com/new-zealand/the-remarkables/weather/',
+  openMeteo: 'https://open-meteo.com/',
 };
 
 async function fetchText(url) {
@@ -46,6 +53,12 @@ async function fetchText(url) {
   });
   if (!res.ok) throw new Error(`${url} responded ${res.status}`);
   return res.text();
+}
+
+async function fetchJson(url) {
+  const res = await fetch(url, { signal: AbortSignal.timeout(15000) });
+  if (!res.ok) throw new Error(`${url} responded ${res.status}`);
+  return res.json();
 }
 
 // Parses the Remarkables weather-report page's repeated
@@ -65,7 +78,7 @@ function parseRemarkablesStatusPairs(html) {
   return map;
 }
 
-async function getRemarkablesConditions() {
+async function getRemarkablesReportConditions() {
   const html = await fetchText(SOURCES.remarkablesReport);
   const data = parseRemarkablesStatusPairs(html);
 
@@ -93,73 +106,128 @@ async function getRemarkablesConditions() {
   return { chainRoad, snowfall };
 }
 
+// Minimal WMO weather_code -> short description map, covering the codes
+// that actually turn up for an alpine NZ winter forecast.
+const WMO_DESCRIPTIONS = {
+  0: 'Clear',
+  1: 'Mostly clear',
+  2: 'Partly cloudy',
+  3: 'Overcast',
+  45: 'Fog',
+  48: 'Fog',
+  51: 'Light drizzle',
+  53: 'Drizzle',
+  55: 'Heavy drizzle',
+  61: 'Light rain',
+  63: 'Rain',
+  65: 'Heavy rain',
+  66: 'Freezing rain',
+  67: 'Freezing rain',
+  71: 'Light snow',
+  73: 'Snow',
+  75: 'Heavy snow',
+  77: 'Snow grains',
+  80: 'Light showers',
+  81: 'Showers',
+  82: 'Heavy showers',
+  85: 'Snow showers',
+  86: 'Heavy snow showers',
+  95: 'Thunderstorm',
+  96: 'Thunderstorm, hail',
+  99: 'Thunderstorm, heavy hail',
+};
+
+async function getRemarkablesWeather() {
+  const url =
+    `https://api.open-meteo.com/v1/forecast?latitude=${REMARKABLES_LAT}&longitude=${REMARKABLES_LON}` +
+    `&elevation=${REMARKABLES_ELEVATION_M}&current=temperature_2m,weather_code` +
+    `&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Pacific%2FAuckland&forecast_days=3`;
+  const json = await fetchJson(url);
+
+  const currentTemp = json?.current?.temperature_2m;
+  const currentCode = json?.current?.weather_code;
+  const temp =
+    typeof currentTemp === 'number'
+      ? { ok: true, value: `${Math.round(currentTemp)}°C${currentCode in WMO_DESCRIPTIONS ? ` · ${WMO_DESCRIPTIONS[currentCode]}` : ''}` }
+      : { ok: false, value: null };
+
+  const days = json?.daily?.time ?? [];
+  const maxes = json?.daily?.temperature_2m_max ?? [];
+  const mins = json?.daily?.temperature_2m_min ?? [];
+  const codes = json?.daily?.weather_code ?? [];
+  const dayLabels = ['Today', 'Tomorrow', 'Day after'];
+  const forecastLines = days.slice(0, 3).map((_, i) => {
+    const desc = WMO_DESCRIPTIONS[codes[i]] || '';
+    return `${dayLabels[i]}: ${Math.round(mins[i])}° to ${Math.round(maxes[i])}°${desc ? `, ${desc.toLowerCase()}` : ''}`;
+  });
+  const forecast = forecastLines.length ? { ok: true, value: forecastLines.join(' · ') } : { ok: false, value: null };
+
+  return { temp, forecast };
+}
+
 async function main() {
   const generatedAt = new Date().toISOString();
 
   let chainRoad = { ok: false, value: null };
   let snowfall = { ok: false, value: null };
   try {
-    const result = await getRemarkablesConditions();
+    const result = await getRemarkablesReportConditions();
     chainRoad = result.chainRoad;
     snowfall = result.snowfall;
   } catch (err) {
     console.error(`[fetch-weather] Remarkables snow report fetch failed: ${err.message}`);
   }
 
+  let temp = { ok: false, value: null };
+  let forecast = { ok: false, value: null };
+  try {
+    const result = await getRemarkablesWeather();
+    temp = result.temp;
+    forecast = result.forecast;
+  } catch (err) {
+    console.error(`[fetch-weather] Open-Meteo fetch failed: ${err.message}`);
+  }
+
+  // Ordered snow-report facts first (what skiers check first thing), then
+  // live temp/forecast, then the one source we can only link out to.
   const items = [
     {
-      id: 'queenstown-temp',
-      label: 'Queenstown temperature',
-      sourceUrl: SOURCES.metserviceQueenstown,
-      linkLabel: 'MetService Queenstown',
-      ok: false,
-      value: null,
-    },
-    {
-      id: 'remarkables-temp',
-      label: 'The Remarkables temperature',
-      sourceUrl: SOURCES.metserviceRemarkables,
-      linkLabel: 'MetService, The Remarkables',
-      ok: false,
-      value: null,
-    },
-    {
       id: 'snowfall-depth',
-      label: 'Last snowfall & current base',
+      label: 'The Remarkables: last snowfall & current base',
       sourceUrl: SOURCES.remarkablesReport,
       linkLabel: 'The Remarkables snow report',
       ...snowfall,
     },
     {
-      id: 'forecast-3day',
-      label: '3-day forecast',
-      sourceUrl: SOURCES.metserviceRemarkables,
-      linkLabel: 'MetService, The Remarkables',
-      ok: false,
-      value: null,
-    },
-    {
-      id: 'mountainwatch',
-      label: 'Mountainwatch snow forecast',
-      sourceUrl: SOURCES.mountainwatchRemarkables,
-      linkLabel: 'Mountainwatch, The Remarkables',
-      ok: false,
-      value: null,
-    },
-    {
       id: 'chain-road',
-      label: 'Chain / road status',
+      label: 'The Remarkables: chain / road status',
       sourceUrl: SOURCES.remarkablesReport,
       linkLabel: 'The Remarkables snow report',
       ...chainRoad,
     },
+    {
+      id: 'remarkables-temp',
+      label: 'The Remarkables: current temperature',
+      sourceUrl: SOURCES.openMeteo,
+      linkLabel: 'Weather data by Open-Meteo.com',
+      ...temp,
+    },
+    {
+      id: 'forecast-3day',
+      label: 'The Remarkables: 3-day forecast',
+      sourceUrl: SOURCES.openMeteo,
+      linkLabel: 'Weather data by Open-Meteo.com',
+      ...forecast,
+    },
   ];
 
+  const links = [{ id: 'mountainwatch', label: 'Mountainwatch snow forecast', sourceUrl: SOURCES.mountainwatchRemarkables }];
+
   mkdirSync(path.dirname(OUT_PATH), { recursive: true });
-  writeFileSync(OUT_PATH, JSON.stringify({ generatedAt, items }, null, 2) + '\n');
+  writeFileSync(OUT_PATH, JSON.stringify({ generatedAt, items, links }, null, 2) + '\n');
 
   const ok = items.filter((i) => i.ok).length;
-  console.log(`[fetch-weather] Wrote ${items.length} items (${ok} live, ${items.length - ok} fallback-link) to ${path.relative(process.cwd(), OUT_PATH)}`);
+  console.log(`[fetch-weather] Wrote ${items.length} items (${ok} live, ${items.length - ok} fallback-link) + ${links.length} link-only to ${path.relative(process.cwd(), OUT_PATH)}`);
 }
 
 main().catch((err) => {
@@ -172,6 +240,7 @@ main().catch((err) => {
       {
         generatedAt: new Date().toISOString(),
         items: [],
+        links: [{ id: 'mountainwatch', label: 'Mountainwatch snow forecast', sourceUrl: 'https://www.mountainwatch.com/new-zealand/the-remarkables/weather/' }],
       },
       null,
       2
