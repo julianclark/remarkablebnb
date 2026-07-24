@@ -51,6 +51,8 @@ We want you to know exactly what you're booking. This is a room in our home, not
 
 Your queen room is private with its own door. The ensuite has marble-look tiling, a glass shower with brass fittings, and plenty of space. A custom wardrobe gives you somewhere to unpack properly rather than living out of a suitcase. There's also an outdoor BBQ on our deck, and you're welcome to use it.
 
+> **Host tip, cooking with Julian:** Julian loves to cook. If you want to cook steak or lamb, he'll happily help you out with our sous-vide setup, and he'll gladly cook your steak perfectly for you.
+
 ## The dogs
 
 Rocket and Luna live here too, and for a lot of our guests they're the highlight of the stay. Not a dog person, or a bit nervous? No problem, we'll keep them away from you completely. Just tell us when you book.

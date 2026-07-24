@@ -11,7 +11,7 @@ interface Props {
 
 const { bookedRanges, prices = {}, staySlug, stayType, monthsToShow = 12 } = Astro.props;
 const hasPrices = Object.keys(prices).length > 0;
-const DIRECT_MULTIPLIER = 0.95; // 5% off Airbnb when booking direct
+const DIRECT_MULTIPLIER = 0.9; // 10% off Airbnb when booking direct
 
 const months = buildMonths(monthsToShow, bookedRanges, new Date());
 const weekdayLabels = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
@@ -291,7 +291,7 @@ function enquireHref(date: string): string {
           const p = priceOf[cur];
           if (p) airbnb += p; else allPriced = false;
         }
-        return { nights, airbnb, direct: Math.round(airbnb * 0.95), allPriced };
+        return { nights, airbnb, direct: Math.round(airbnb * 0.9), allPriced };
       };
 
       const clearClasses = () =>

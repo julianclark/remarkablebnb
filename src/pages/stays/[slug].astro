@@ -39,7 +39,7 @@ try {
   console.error('Failed to load availability:', err);
 }
 
-// Per-night Airbnb pricing (captured from screenshots). Direct rate is 5% less.
+// Per-night Airbnb pricing (captured from screenshots). Direct rate is 10% less.
 let prices: Record<string, number> = {};
 let fromPrice: number | null = null;
 try {
@@ -54,7 +54,7 @@ try {
 } catch (err) {
   console.error('Failed to load prices:', err);
 }
-const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.95) : null;
+const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
 ---
 
 <BaseLayout
@@ -157,7 +157,7 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.95) : null;
                   <span class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">/ night direct</span>
                 </div>
                 <div class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mt-1">
-                  <span class="line-through">${fromPrice}</span> on Airbnb · you save 5% booking direct
+                  <span class="line-through">${fromPrice}</span> on Airbnb · you save 10% booking direct
                 </div>
               </div>
             )}
@@ -170,7 +170,7 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.95) : null;
             <ul class="space-y-2 text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">
               <li class="flex items-start gap-2">
                 <span class="mt-0.5">🏔️</span>
-                <span>The Remarkables: short drive</span>
+                <span>The Remarkables: base ~5 min drive, top ~30 min</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="mt-0.5">⛳</span>
@@ -182,7 +182,7 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.95) : null;
               </li>
               <li class="flex items-start gap-2">
                 <span class="mt-0.5">🏙️</span>
-                <span>Queenstown CBD: 15 min drive</span>
+                <span>Queenstown CBD: 20–25 min drive</span>
               </li>
             </ul>
           </div>

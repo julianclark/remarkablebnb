@@ -39,8 +39,8 @@ We'd really appreciate a Google review, it helps other travellers find us and me
 
 We loved having you. If you'd like to come back, book with us directly next time and save:
 
-- **5% off** when you book direct (vs Airbnb)
-- **15% off** as a returning guest
+- **10% off** when you book direct (vs Airbnb)
+- A better rate again as a returning guest, just mention you've stayed before
 
 Save our details:
 - **Website:** [remarkablebnb.nz](https://remarkablebnb.nz)

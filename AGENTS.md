@@ -18,8 +18,9 @@ Hanley's Farm (edge of Jack's Point, Queenstown, under The Remarkables):
 
 ## Pricing tiers
 - Airbnb: full rate + Airbnb service fee
-- Book Direct: 5% off Airbnb rate, no service fees
-- Returning Guest: 15% off Airbnb rate, no service fees
+- Book Direct: 10% off Airbnb rate, no service fees
+- Returning Guest: 15% off Airbnb rate, no service fees. Never publish
+  this percentage publicly, keep repeat-stay copy qualitative.
 - Always honest: direct is cheaper and personal; Airbnb offers
   AirCover and platform mediation. Let guests choose.
 
@@ -34,9 +35,9 @@ Hanley's Farm (edge of Jack's Point, Queenstown, under The Remarkables):
 - No login system. No client-side framework unless unavoidable.
 
 ## Airbnb listings
-- Two Bedroom Unit: https://www.airbnb.co.nz/h/hanleysfarm2bedunit
+- Two Bedroom Unit: https://www.airbnb.co.nz/h/remarkablebnb
   (ID: 1546885102092776257)
-- Guest Room: https://www.airbnb.co.nz/h/guestqueen
+- Guest Room: https://www.airbnb.co.nz/h/remarkablebnb-guest
   (ID: 1547499256999390723)
 
 ## Routes
@@ -61,7 +62,7 @@ Hanley's Farm (edge of Jack's Point, Queenstown, under The Remarkables):
   it in public amenities.
 - Every stay page has two booking CTAs: "Book direct" (primary) and
   "Book on Airbnb" (secondary, official listing link). Honest framing:
-  direct = 5% off + personal; Airbnb = platform protection.
+  direct = 10% off + personal; Airbnb = platform protection.
 - Stay page copy is rewritten from the Airbnb listings, never pasted
   verbatim (duplicate content). Target searches Airbnb can't own.
 - Never expose guest names or booking data in URLs or client JS.

@@ -1,0 +1,62 @@
+---
+import winterData from '../data/winter-conditions.json';
+
+const STALE_AFTER_MS = 48 * 60 * 60 * 1000;
+const generatedAt = new Date(winterData.generatedAt);
+const isStale = !winterData.generatedAt || Date.now() - generatedAt.getTime() > STALE_AFTER_MS;
+
+const updatedLabel = winterData.generatedAt
+  ? new Intl.DateTimeFormat('en-NZ', {
+      day: 'numeric',
+      month: 'short',
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZone: 'Pacific/Auckland',
+    }).format(generatedAt) + ' NZT'
+  : null;
+
+const items = winterData.items ?? [];
+---
+
+<div class="mt-10 rounded-2xl border border-[var(--color-stone-light)] bg-white p-6">
+  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+    <div class="flex items-center gap-2">
+      <span class="text-xl" aria-hidden="true">❄️</span>
+      <h3 class="font-bold">Winter conditions</h3>
+    </div>
+    {updatedLabel && !isStale && (
+      <span class="text-xs text-[var(--color-slate-mid)]">Last updated: {updatedLabel}</span>
+    )}
+  </div>
+  <p class="text-sm text-[var(--color-slate-mid)] mb-4">
+    Heading up the hill? These are the pages we check every winter morning, refreshed daily. Every figure links back to its source so you can double-check it yourself.
+  </p>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+    {items.map((item) => (
+      <li>
+        {item.ok && !isStale ? (
+          <div class="rounded-xl border border-[var(--color-stone-light)] p-3">
+            <span class="block text-sm font-semibold">{item.label}</span>
+            <span class="block text-sm text-[var(--color-slate-mid)] mt-0.5">{item.value}</span>
+            <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs mt-1.5">
+              Source <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        ) : (
+          <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2 rounded-xl border border-[var(--color-stone-light)] hover:border-[var(--color-alpine)] p-3 transition-colors h-full">
+            <span class="text-[var(--color-alpine)] mt-0.5" aria-hidden="true">↗</span>
+            <span>
+              <span class="block text-sm font-semibold group-hover:text-[var(--color-alpine)] transition-colors">{item.label}</span>
+              <span class="block text-xs text-[var(--color-slate-mid)]">{item.linkLabel}</span>
+            </span>
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+  {isStale && (
+    <p class="text-xs text-[var(--color-slate-mid)] mt-3">
+      Live figures are due to refresh; showing source links until they're back.
+    </p>
+  )}
+</div>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Review from '../components/Review.astro';
+import WinterPanel from '../components/WinterPanel.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import dogPhoto from '../assets/photos/guest-room/dogs.avif';
@@ -20,19 +21,26 @@ const testimonialIds = ['bu-riaz', 'gr-amy', 'bu-sherry', 'bu-eleanor', 'gr-kati
 const testimonials = testimonialIds.map(reviewById);
 
 const segments = [
-  { icon: '🎿', title: 'Ski trips', copy: '20 min to The Remarkables, a warm house, gear-drying space, and honest winter-driving advice.', reviewId: 'gr-wai-loon' },
-  { icon: '🐾', title: 'Dog-loving couples', copy: 'Meet Rocket & Luna, for many guests, the highlight of the stay.', reviewId: '' },
-  { icon: '👨‍👩‍👧', title: 'Families', copy: 'Travel cot available, a bunk room, playgrounds and short walks nearby, wet-weather ideas on tap.', reviewId: 'bu-sauda' },
-  { icon: '💼', title: 'Work trips & contractors', copy: 'Self-contained unit, fast Wi-Fi, and repeat-stay direct rates.', reviewId: '' },
+  { icon: '🎿', title: 'Ski trips', copy: '5 minutes to The Remarkables base, a warm house, underfloor heating that dries gear quickly, and honest winter-driving advice.', reviewId: 'gr-wai-loon' },
+  { icon: '🐾', title: 'Dog-loving couples', copy: 'Meet Rocket & Luna, for many guests, the highlight of the stay.', reviewId: 'gr-laura' },
+  { icon: '👨‍👩‍👧', title: 'Families', copy: 'Travel cot available, a bunk room with toys and board games, playgrounds and short walks nearby, wet-weather ideas on tap.', reviewId: 'bu-sauda' },
+  { icon: '💼', title: 'Work trips & contractors', copy: 'Self-contained unit, fast Wi-Fi, and repeat-stay direct rates.', reviewId: 'bu-hamish' },
 ];
 
 const locationRows = [
-  { icon: '🏔️', label: 'The Remarkables ski field', detail: '~20 min drive · Coronet Peak ~35 min' },
-  { icon: '🏙️', label: 'Queenstown CBD', detail: '15–20 min drive (~16 km)' },
-  { icon: '✈️', label: 'Frankton & the airport', detail: '5–8 min drive' },
+  { icon: '🏔️', label: 'The Remarkables ski field', detail: 'Base carpark ~5 min drive · top of the mountain ~30 min · Coronet Peak ~40 min' },
+  { icon: '🏙️', label: 'Queenstown CBD', detail: '20–25 min drive' },
+  { icon: '✈️', label: 'Frankton & the airport', detail: '8–10 min drive' },
   { icon: '⛳', label: 'Jack\'s Point golf', detail: 'Walking distance' },
   { icon: '🚌', label: 'Orbus bus stop', detail: '~10-min walk · regular but infrequent · cash or Bee Card only (no cards on board)' },
   { icon: '🚐', label: 'Milford Sound & coach tours', detail: 'Choose Frankton pickup, far easier than town' },
+];
+
+// Host tips: short, first-person, real. Placed alongside the distance facts,
+// which stay unchanged (skiers and airport arrivals scan for those).
+const hostTips = [
+  { icon: '☕', title: 'Coffee', copy: 'Our favourite coffee spot? Our own kitchen. If Julian\'s around, he\'ll gladly make you a coffee. The next nearest good coffee is the Jack\'s Point golf clubhouse, a lovely place to spend an hour or two with a stunning view.' },
+  { icon: '🚗', title: 'Getting up the mountain', copy: 'On busy days, leave around 7am to beat the queues and the traffic. Chat with us the night before and we\'ll tell you what the morning looks like.' },
 ];
 
 const bookDirectExtras = [
@@ -55,16 +63,9 @@ const hero = {
   subcopy: "Under The Remarkables. Hosted by Holly & Julian. Your base for mountains, snow, and Jack's Point.",
 };
 
-// Winter conditions links (plain outbound links, opened in a new tab).
-const winterLinks = [
-  { label: 'The Remarkables snow report', detail: 'Snow base, season snowfall, road and chain status, lifts', url: 'https://www.theremarkables.co.nz/weather-report/' },
-  { label: 'MetService ski forecast, The Remarkables', detail: 'Mountain weather forecast', url: 'https://www.metservice.com/mountains-and-parks/ski-fields/remarkables' },
-  { label: 'MetService Queenstown', detail: 'Current town temperature and 7-day forecast', url: 'https://www.metservice.com/towns-cities/regions/southern-lakes/locations/queenstown' },
-  { label: 'Coronet Peak snow report', detail: 'The other local ski field', url: 'https://www.coronetpeak.co.nz/weather-report/' },
-];
 ---
 
-<BaseLayout title="Remarkable BnB" description="Accommodation at Holly and Julian's home in Hanley's Farm, Queenstown. Near The Remarkables ski field and Jack's Point. Book direct and save 5%.">
+<BaseLayout title="Remarkable BnB" description="Accommodation at Holly and Julian's home in Hanley's Farm, Queenstown. Near The Remarkables ski field and Jack's Point. Book direct and save 10%.">
 
   <!-- Hero section -->
   <section class="relative h-[70vh] min-h-[500px] flex items-end overflow-hidden">
@@ -196,7 +197,10 @@ const winterLinks = [
           <span class="badge badge-forest mb-3">🐾 Meet the dogs</span>
           <h2 class="text-3xl font-bold mb-4">Rocket & Luna</h2>
           <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
-            Rocket and Luna are our two big, friendly dogs, and for a lot of our guests, they're the highlight of the stay. Rocket will greet you hoping for treats; Luna will supervise proceedings. Join us for a 45-minute dog walk along Lake Wakatipu, or just enjoy the company.
+            Fair warning: Rocket is an attention hog. He wants the pats, he'll try to sit on you, and he'll push his head into your legs like a bulldozer. Hold firm and push back, that's the game. Luna is perpetually hungry, sneaky, and an absolute slave for food.
+          </p>
+          <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
+            Two small asks: please don't feed them human food or from the table, and please don't let them into the kitchen. They're basically gremlins (the lovable kind).
           </p>
           <div class="rounded-xl border border-[var(--color-alpine)]/30 bg-[var(--color-alpine)]/5 dark:bg-[var(--color-alpine)]/10 p-4 mb-4">
             <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">
@@ -204,7 +208,7 @@ const winterLinks = [
             </p>
           </div>
           <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">
-            Dogs are never in the Two Bedroom Unit unless you invite them. Travelling with your own dog? Ask us, we're dog-friendly by arrangement.
+            Staying in the Two Bedroom Unit? The internal door between the unit and our home stays locked during your stay, so the dogs stay completely separate, ideal if you'd rather have minimal interaction with us. Want to meet Rocket and Luna anyway? Just ask. Travelling with your own dog? See the <a href="/stays/two-bedroom-unit" class="text-[var(--color-alpine)] font-medium hover:underline">Two Bedroom Unit page</a> for our by-arrangement policy.
           </p>
         </div>
       </div>
@@ -300,29 +304,21 @@ const winterLinks = [
         Full address, parking and arrival directions are sent as soon as you book.
       </p>
 
-      <!-- Winter conditions links -->
-      <div class="mt-10 rounded-2xl border border-[var(--color-stone-light)] bg-white p-6">
-        <div class="flex items-center gap-2 mb-1">
-          <span class="text-xl" aria-hidden="true">❄️</span>
-          <h3 class="font-bold">Winter conditions</h3>
-        </div>
-        <p class="text-sm text-[var(--color-slate-mid)] mb-4">
-          Heading up the hill? These are the pages we check every winter morning. Road and chain status live on the snow report, and we're always happy to talk through winter driving before you arrive.
-        </p>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {winterLinks.map((link) => (
-            <li>
-              <a href={link.url} target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2 rounded-xl border border-[var(--color-stone-light)] hover:border-[var(--color-alpine)] p-3 transition-colors">
-                <span class="text-[var(--color-alpine)] mt-0.5" aria-hidden="true">↗</span>
-                <span>
-                  <span class="block text-sm font-semibold group-hover:text-[var(--color-alpine)] transition-colors">{link.label}</span>
-                  <span class="block text-xs text-[var(--color-slate-mid)]">{link.detail}</span>
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
+      <!-- Host tips -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+        {hostTips.map((tip) => (
+          <div class="rounded-xl border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/5 p-4">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span aria-hidden="true">{tip.icon}</span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-[var(--color-gold)]">Host tip · {tip.title}</span>
+            </div>
+            <p class="text-sm text-[var(--color-slate-mid)] leading-relaxed">{tip.copy}</p>
+          </div>
+        ))}
       </div>
+
+      <!-- Winter conditions data panel -->
+      <WinterPanel />
     </div>
   </section>
 
@@ -345,12 +341,12 @@ const winterLinks = [
           <div class="text-xs text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mt-3">AirCover protection included</div>
         </div>
 
-        <div class="rounded-xl border-2 border-[var(--color-alpine)] bg-[var(--color-alpine)]/5 dark:bg-[var(--color-alpine)]/10 p-6 text-center relative">
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-            <span class="badge badge-alpine">Best value</span>
+        <div class="rounded-xl border-2 border-[var(--color-alpine)] bg-[var(--color-alpine)]/5 dark:bg-[var(--color-alpine)]/10 pt-8 pb-6 px-6 text-center relative">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+            <span class="inline-flex items-center rounded-full bg-[var(--color-alpine)] text-white text-xs font-semibold uppercase tracking-wider px-3 py-1 shadow-sm">Best value</span>
           </div>
           <div class="text-sm font-medium text-[var(--color-alpine)] uppercase tracking-wider mb-2">Book Direct</div>
-          <div class="text-2xl font-bold mb-1">5% off</div>
+          <div class="text-2xl font-bold mb-1">10% off</div>
           <div class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">No service fees</div>
           <div class="text-xs text-[var(--color-alpine)] font-medium mt-3">Deal with Holly & Julian directly</div>
         </div>
@@ -394,26 +390,48 @@ const winterLinks = [
     </div>
   </section>
 
-  <!-- Hosts -->
-  <section class="py-16 sm:py-20 bg-[var(--color-stone-light)]/30 dark:bg-[var(--color-slate-mid)]/10">
+  <!-- Meet your hosts -->
+  <section id="hosts" class="py-16 sm:py-20 bg-[var(--color-stone-light)]/30 dark:bg-[var(--color-slate-mid)]/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-6">Your hosts, Holly & Julian</h2>
-        <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
-          We live here, this is our home in Hanley's Farm, on the edge of Jack's Point, under The Remarkables. We host because we genuinely enjoy it, and because Queenstown is worth sharing properly, not just through a listing page.
-        </p>
-        <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-6">
-          Our 5-star record comes from caring about the details: a warm house when you arrive, honest local tips, and being here when you need us. We think that's worth more than a generic welcome booklet.
-        </p>
-        <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-8">
-          We host in English, but we're happy to message in your language, our Chinese-, Korean- and German-speaking guests will tell you nothing gets lost in translation.
-        </p>
-        <a href="/contact" class="inline-flex items-center gap-2 text-[var(--color-alpine)] font-semibold hover:underline" id="about-contact-link">
-          Get in touch with us
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-          </svg>
-        </a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <!-- Photo placeholder: real candid shot of Holly & Julian with Rocket and Luna
+             on the deck, Remarkables behind, to replace this before launch. -->
+        <div class="order-2 lg:order-1">
+          <div class="aspect-[4/5] rounded-2xl border-2 border-dashed border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)] bg-[var(--color-stone-light)]/50 dark:bg-[var(--color-slate-mid)]/20 flex flex-col items-center justify-center text-center p-8">
+            <span class="text-4xl mb-3" aria-hidden="true">📷</span>
+            <p class="text-sm font-semibold text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)]">Photo coming soon</p>
+            <p class="text-xs text-[var(--color-slate-mid)]/70 dark:text-[var(--color-stone-warm)]/70 mt-1 max-w-[16rem]">Holly & Julian with Rocket and Luna, on the deck under The Remarkables</p>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <span class="badge badge-forest mb-3">👋 Meet your hosts</span>
+          <h2 class="text-3xl font-bold mb-4">Holly & Julian</h2>
+          <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
+            We live here, this is our home in Hanley's Farm, on the edge of Jack's Point, under The Remarkables. We host because we genuinely enjoy it, and because Queenstown is worth sharing properly, not just through a listing page.
+          </p>
+          <div class="rounded-xl border border-[var(--color-alpine)]/30 bg-[var(--color-alpine)]/5 dark:bg-[var(--color-alpine)]/10 p-4 mb-4">
+            <p class="text-sm font-semibold text-[var(--color-slate-deep)] dark:text-white mb-1">Why we host</p>
+            <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed">
+              “We're social, and we love sharing what's special about this place. Meeting people from all over the world is honestly the best part of hosting.”
+            </p>
+          </div>
+          <p class="text-lg text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] leading-relaxed mb-4">
+            Our 5-star record comes from caring about the details: a warm house when you arrive, honest local tips, and being here when you need us. We think that's worth more than a generic welcome booklet.
+          </p>
+          <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-6">
+            We host in English, but we're happy to message in your language, our Chinese-, Korean- and German-speaking guests will tell you nothing gets lost in translation.
+          </p>
+          <p class="italic text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-6 pt-4 border-t border-[var(--color-stone-light)] dark:border-[var(--color-slate-mid)]">
+            See you soon.<br />Holly, Julian, Rocket & Luna.
+          </p>
+          <a href="/contact" class="inline-flex items-center gap-2 text-[var(--color-alpine)] font-semibold hover:underline" id="about-contact-link">
+            Get in touch with us
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>

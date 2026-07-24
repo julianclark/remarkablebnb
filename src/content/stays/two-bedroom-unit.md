@@ -15,7 +15,7 @@ facts:
   - "Queen + bunk"
   - "Up to 4 guests"
   - "Free street/driveway parking"
-  - "Dogs never inside unless invited"
+  - "Completely separate from the dogs"
 amenities:
   - "Private entrance"
   - "Full kitchen with cast-iron pan"
@@ -56,11 +56,14 @@ The unit is fully self-contained with its own entrance and a lockable internal d
 - **Underfloor heating** keeps the unit very cosy, but it's slow to respond, so we pre-warm the space before you arrive.
 - The **kitchen is fully stocked**, including a cast-iron pan.
 - **Parking** is free on the street and driveway (there's no garage).
+- The second bedroom is stocked with **toys, books and board games** for younger guests.
 
 ## The dogs
 
-Rocket and Luna are part of our home next door, but they're never in the unit unless you invite them. Travelling with your own dog? Ask us, we're dog-friendly by arrangement.
+Rocket and Luna are part of our home next door, but the internal door between the unit and our home stays locked during your stay, so they won't be coming through. The unit suits guests who'd like minimal interaction with us, if you'd like to meet Rocket and Luna, just ask.
+
+**Bringing your own dog?** The unit has a fenced outdoor space, so well-behaved medium and large dogs are welcome to stay with you, and we can provide a crate if needed. Small dogs might be able to fit through the fence, so please ask us before booking.
 
 ## Location
 
-Hanley's Farm sits at the Jack's Point end, under The Remarkables, a quieter, mountain-side alternative to Queenstown's CBD, without giving up easy access to the region. Remarkables Park (groceries and essentials) is a few minutes away, and the town centre is about 15 minutes by car. Full address, parking and arrival directions are sent as soon as you book.
+Hanley's Farm sits at the Jack's Point end, under The Remarkables, a quieter, mountain-side alternative to Queenstown's CBD, without giving up easy access to the region. Remarkables Park (groceries and essentials) is a few minutes away, and the town centre is about 20 to 25 minutes by car. Full address, parking and arrival directions are sent as soon as you book.

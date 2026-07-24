@@ -7,9 +7,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/fetch-weather.js && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "fetch-weather": "node scripts/fetch-weather.js"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.1.3",

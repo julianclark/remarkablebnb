@@ -69,6 +69,20 @@ h1, h2, h3, h4 {
   color: var(--color-slate-deep);
 }
 
+/* Brand link colour everywhere a link doesn't set its own (prose content,
+   FAQ answers, guest manual pages). Without this, unstyled anchors fall
+   back to browser-default blue with a purple :visited state. Components
+   that set their own text/utility colour classes are unaffected, class
+   selectors outrank this element selector. */
+a {
+  color: var(--color-alpine);
+  text-decoration-color: color-mix(in srgb, var(--color-alpine) 40%, transparent);
+}
+
+a:hover {
+  color: var(--color-alpine-dark);
+}
+
 /* ============================================
    Utility classes
    ============================================ */
