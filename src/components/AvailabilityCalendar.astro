@@ -6,10 +6,11 @@ interface Props {
   prices?: Record<string, number>;
   staySlug: string;
   stayType: string;
+  cleaningFee: number;
   monthsToShow?: number;
 }
 
-const { bookedRanges, prices = {}, staySlug, stayType, monthsToShow = 12 } = Astro.props;
+const { bookedRanges, prices = {}, staySlug, stayType, cleaningFee, monthsToShow = 12 } = Astro.props;
 const hasPrices = Object.keys(prices).length > 0;
 const DIRECT_MULTIPLIER = 0.9; // 10% off Airbnb when booking direct
 
@@ -32,7 +33,7 @@ function enquireHref(date: string): string {
 }
 ---
 
-<div class="availability" data-availability data-stay-type={stayType} data-stay-slug={staySlug}>
+<div class="availability" data-availability data-stay-type={stayType} data-stay-slug={staySlug} data-cleaning-fee={cleaningFee}>
   <p class="text-sm text-[var(--color-slate-mid)] dark:text-[var(--color-stone-warm)] mb-4" data-hint>
     Green dates are open. <span class="hidden sm:inline">Tap a check-in then a check-out date to enquire, or tap a single date.</span><span class="sm:hidden">Tap a date to enquire.</span>
   </p>
@@ -238,6 +239,7 @@ function enquireHref(date: string): string {
   :global(.dark) .cal-enquire-bar { background: color-mix(in srgb, var(--color-alpine) 15%, transparent); }
   .cal-enquire-text { font-size: 0.85rem; font-weight: 600; }
   .cal-was { font-weight: 400; text-decoration: line-through; opacity: 0.6; margin-left: 0.25rem; }
+  .cal-fee { font-weight: 400; opacity: 0.75; margin-left: 0.25rem; }
   .cal-enquire-actions { display: flex; align-items: center; gap: 0.75rem; }
   .cal-enquire-clear {
     background: none; border: 0; cursor: pointer; font-size: 0.8rem;
@@ -255,6 +257,7 @@ function enquireHref(date: string): string {
   function initAvailability() {
     document.querySelectorAll<HTMLElement>('[data-availability]').forEach((root) => {
       const stayType = root.dataset.stayType ?? 'general';
+      const cleaningFee = Number(root.dataset.cleaningFee) || 0;
       const days = Array.from(root.querySelectorAll<HTMLAnchorElement>('.cal-available'));
       const bar = root.querySelector<HTMLElement>('[data-enquire-bar]');
       const summary = root.querySelector<HTMLElement>('[data-enquire-summary]');
@@ -328,12 +331,13 @@ function enquireHref(date: string): string {
           });
           const { nights, airbnb, direct, allPriced } = totalFor(checkin, checkout);
           const nightsLabel = `${nights} night${nights > 1 ? 's' : ''}`;
+          const feeNote = cleaningFee > 0 ? ` <span class="cal-fee">+ $${cleaningFee} cleaning fee</span>` : '';
           if (allPriced && airbnb > 0) {
             summary.innerHTML =
               `${fmt(checkin)} → ${fmt(checkout)} · ${nightsLabel} · ` +
-              `<strong>$${direct}</strong> direct <span class="cal-was">$${airbnb} on Airbnb</span>`;
+              `<strong>$${direct}</strong> direct <span class="cal-was">$${airbnb} on Airbnb</span>${feeNote}`;
           } else {
-            summary.textContent = `${fmt(checkin)} → ${fmt(checkout)} · ${nightsLabel}`;
+            summary.innerHTML = `${fmt(checkin)} → ${fmt(checkout)} · ${nightsLabel}${feeNote}`;
           }
           cta.href = `/contact?stay=${encodeURIComponent(stayType)}&checkin=${checkin}&checkout=${checkout}`;
           bar.hidden = false;

@@ -25,6 +25,7 @@ amenities:
   - "Ski storage"
 airbnbUrl: "https://www.airbnb.co.nz/h/remarkablebnb-guest"
 airbnbListingId: "1547499256999390723"
+cleaningFee: 50
 directOnly: false
 guestFavourite: true
 topPercent: 5

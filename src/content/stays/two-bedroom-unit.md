@@ -28,6 +28,7 @@ amenities:
   - "WiFi"
 airbnbUrl: "https://www.airbnb.co.nz/h/remarkablebnb"
 airbnbListingId: "1546885102092776257"
+cleaningFee: 100
 directOnly: false
 guestFavourite: true
 topPercent: 1

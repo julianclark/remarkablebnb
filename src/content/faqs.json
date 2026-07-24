@@ -24,6 +24,12 @@
     "answer": "Underfloor heating throughout. It's very cosy but slow to respond, so we pre-warm the space before you arrive."
   },
   {
+    "id": "cleaning-fee",
+    "order": 5,
+    "question": "Is there a cleaning fee?",
+    "answer": "Yes: $50 for the Guest Room, $100 for the Two Bedroom Unit. It's a one-time fee and applies whether you book direct or via Airbnb."
+  },
+  {
     "id": "need-a-car",
     "order": 6,
     "question": "Do I need a car?",

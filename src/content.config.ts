@@ -20,6 +20,8 @@ const stays = defineCollection({
     amenities: z.array(z.string()),
     airbnbUrl: z.string().url(),
     airbnbListingId: z.string(),
+    // One-time fee, applies whether booked direct or via Airbnb.
+    cleaningFee: z.number(),
     directOnly: z.boolean().default(false),
     guestFavourite: z.boolean().default(false),
     // Airbnb's "top X% of eligible listings" distinction, when they have one.
