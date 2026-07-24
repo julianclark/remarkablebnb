@@ -25,7 +25,7 @@ const grouped = stays
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <div class="text-center mb-12">
       <span class="badge badge-gold mb-3">★ ★ ★ ★ ★</span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold mb-4">Guest Reviews</h1>
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Guest Reviews</h1>
       <p class="text-[var(--color-slate-mid)] max-w-xl mx-auto">
         Both of our stays are rated 5.0 on Airbnb. These are real guest reviews, shown under the stay they were written for.
       </p>
@@ -34,7 +34,7 @@ const grouped = stays
     <!-- Rating summary + Google review CTA -->
     <div class="bg-[var(--color-stone-light)]/40 rounded-2xl p-8 mb-12 border border-[var(--color-stone-light)] text-center">
       <div class="text-5xl font-extrabold text-[var(--color-slate-deep)] mb-2">5.0</div>
-      <div class="flex justify-center text-[var(--color-gold)] text-xl gap-0.5 mb-2" aria-hidden="true">
+      <div class="flex justify-center text-[var(--color-gold-dark)] text-xl gap-0.5 mb-2" aria-hidden="true">
         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
       </div>
       <p class="text-sm text-[var(--color-slate-mid)]">
@@ -56,11 +56,11 @@ const grouped = stays
     {grouped.map((group) => (
       <section class="mb-12">
         <div class="flex flex-wrap items-baseline justify-between gap-3 mb-6">
-          <h2 class="text-2xl font-bold">
+          <h2 class="text-3xl font-bold">
             <a href={`/stays/${group.stay.slug}`} class="hover:text-[var(--color-alpine)] transition-colors">{group.stay.title}</a>
           </h2>
           <span class="text-sm text-[var(--color-slate-mid)]">
-            <span class="text-[var(--color-gold)] font-semibold">★ {group.stay.rating}</span> · {group.stay.reviewCount} reviews on Airbnb
+            <span class="text-[var(--color-gold-dark)] font-semibold">★ {group.stay.rating}</span> · {group.stay.reviewCount} reviews on Airbnb
           </span>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

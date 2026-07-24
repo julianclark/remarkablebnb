@@ -22,6 +22,10 @@
   --color-alpine-dark: #2563eb;
   --color-gold: #d97706;
   --color-gold-light: #f59e0b;
+  /* Gold fails contrast (~3:1) as small text on snow/white — use this for
+     text-xs/text-sm gold usage instead (review stars, badge text, host tip
+     labels). ~6.8:1 against snow, comfortably passes WCAG AA. */
+  --color-gold-dark: #92400e;
   --color-forest: #166534;
   --color-forest-light: #22c55e;
 
@@ -74,7 +78,11 @@ h1, h2, h3, h4 {
    FAQ answers, guest manual pages). Without this, unstyled anchors fall
    back to browser-default blue with a purple :visited state. Components
    that set their own text/utility colour classes are unaffected, class
-   selectors outrank this element selector. */
+   selectors outrank this element selector.
+   All four states are deliberate, from the token palette: alpine sits close
+   to default link blue, which is only acceptable because every state below
+   is explicitly set — nothing is left to render as browser-default blue or
+   purple. */
 a {
   color: var(--color-alpine);
   text-decoration-color: color-mix(in srgb, var(--color-alpine) 40%, transparent);
@@ -82,6 +90,16 @@ a {
 
 a:hover {
   color: var(--color-alpine-dark);
+}
+
+a:visited {
+  color: var(--color-alpine-dark);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-alpine);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* ============================================
@@ -113,7 +131,7 @@ a:hover {
 }
 
 .badge-gold {
-  color: var(--color-gold);
+  color: var(--color-gold-dark);
   border: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent);
 }
 

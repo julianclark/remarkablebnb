@@ -1,0 +1,268 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const colors = [
+  { name: 'slate-deep', var: '--color-slate-deep', hex: '#1e293b', use: 'Body text, headings, dark section backgrounds' },
+  { name: 'slate-mid', var: '--color-slate-mid', hex: '#334155', use: 'Secondary text, borders on dark' },
+  { name: 'stone-warm', var: '--color-stone-warm', hex: '#d6cfc7', use: 'Warm neutral accents on dark backgrounds' },
+  { name: 'stone-light', var: '--color-stone-light', hex: '#e7e5e0', use: 'Card borders, section dividers, subtle fills' },
+  { name: 'snow', var: '--color-snow', hex: '#fafaf9', use: 'Page background' },
+  { name: 'alpine', var: '--color-alpine', hex: '#3b82f6', use: 'Primary brand accent: links, primary CTA' },
+  { name: 'alpine-dark', var: '--color-alpine-dark', hex: '#2563eb', use: 'Primary CTA hover/active' },
+  { name: 'gold', var: '--color-gold', hex: '#d97706', use: 'Borders, decorative fills, large text only, fails contrast at small sizes' },
+  { name: 'gold-dark', var: '--color-gold-dark', hex: '#92400e', use: 'Gold as text-xs/text-sm text (review stars, badge text, host tip labels): ~6.8:1 on snow' },
+  { name: 'gold-light', var: '--color-gold-light', hex: '#f59e0b', use: 'Gold accent, lighter tint, decorative use on dark surfaces only' },
+  { name: 'forest', var: '--color-forest', hex: '#166534', use: 'Positive/nature accent (dogs, outdoors)' },
+  { name: 'forest-light', var: '--color-forest-light', hex: '#22c55e', use: 'Forest accent, lighter tint' },
+];
+---
+
+<BaseLayout
+  title="Style Guide"
+  description="Internal design reference for Remarkable BnB: tokens and UI patterns."
+  noindex={true}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+    <header>
+      <p class="text-sm font-medium text-[var(--color-alpine)] uppercase tracking-widest mb-3">Internal reference</p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Remarkable BnB style guide</h1>
+      <p class="text-[var(--color-slate-mid)] max-w-2xl">
+        A living catalog of the tokens and UI patterns already in use across the site, pulled
+        straight from <code class="text-sm bg-[var(--color-stone-light)]/50 px-1.5 py-0.5 rounded">src/styles/global.css</code>
+        and the components in <code class="text-sm bg-[var(--color-stone-light)]/50 px-1.5 py-0.5 rounded">src/components/</code>.
+        Not linked in navigation; not indexed by search engines.
+      </p>
+    </header>
+
+    <!-- Voice -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Brand & voice</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">Who we are</span>
+          <span class="text-[var(--color-slate-mid)]">Personal hosts, not a property company. First-person plural ("we", "our home"). Holly & Julian named and visible.</span>
+        </div>
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">Positioning</span>
+          <span class="text-[var(--color-slate-mid)]">Destination stay: mountains, snow, Remarkables access, Jack's Point golf. Not Queenstown CBD.</span>
+        </div>
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">Tagline</span>
+          <span class="text-[var(--color-slate-mid)]">"Remarkable BnB, under The Remarkables."</span>
+        </div>
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">Tone</span>
+          <span class="text-[var(--color-slate-mid)]">Specific, warm, never salesy. No exclamation-mark marketing copy. Always honest about direct-vs-Airbnb tradeoffs.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Copy rules -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Copy rules</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">No em dashes</span>
+          <span class="text-[var(--color-slate-mid)]">Never in site copy. The only exception is verbatim guest review quotes, reproduced exactly as written.</span>
+        </div>
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">NZ English spelling</span>
+          <span class="text-[var(--color-slate-mid)]">favourite, cosy, neighbourhood, colour. Throughout, no exceptions.</span>
+        </div>
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">No exclamation-mark marketing</span>
+          <span class="text-[var(--color-slate-mid)]">Specific and warm, never salesy or hyped. State the honest fact rather than sell it.</span>
+        </div>
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">Real details and real reviews only</span>
+          <span class="text-[var(--color-slate-mid)]">Never invent tips, stories, years, personality traits or reviews. Guest quotes are verbatim and correctly attributed. Fabricated "personal" touches are worse than none.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Color -->
+    <section>
+      <h2 class="text-2xl font-bold mb-1">Color</h2>
+      <p class="text-sm text-[var(--color-slate-mid)] mb-6">Mountain-inspired palette. Defined once in the <code>@theme</code> block, used everywhere as <code>var(--color-*)</code>.</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        {colors.map((c) => (
+          <div class="rounded-xl border border-[var(--color-stone-light)] overflow-hidden">
+            <div class="h-20" style={`background-color:${c.hex}`}></div>
+            <div class="p-3">
+              <span class="block text-sm font-semibold">{c.name}</span>
+              <span class="block text-xs text-[var(--color-slate-mid)] font-mono">{c.hex}</span>
+              <span class="block text-xs text-[var(--color-slate-mid)] mt-1">{c.use}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section>
+      <h2 class="text-2xl font-bold mb-1">Typography</h2>
+      <p class="text-sm text-[var(--color-slate-mid)] mb-6">Inter, loaded via Google Fonts in <code>BaseLayout</code>. Headings: bold, tight leading, slightly negative tracking.</p>
+      <div class="space-y-4 rounded-xl border border-[var(--color-stone-light)] p-6">
+        <p class="text-sm font-medium text-[var(--color-slate-mid)] uppercase tracking-widest">Kicker: text-sm uppercase tracking-widest</p>
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">Hero headline: text-4xl/5xl font-extrabold</h1>
+        <h2 class="text-3xl font-bold">Section headline: text-3xl font-bold</h2>
+        <h3 class="text-lg font-bold">Card / panel title: font-bold</h3>
+        <p class="text-lg text-[var(--color-slate-mid)]">Lead paragraph: text-lg</p>
+        <p class="text-sm text-[var(--color-slate-mid)]">Body copy: text-sm, line-height 1.7 on body</p>
+        <p class="text-xs text-[var(--color-slate-mid)]">Meta / caption: text-xs</p>
+      </div>
+    </section>
+
+    <!-- Link states -->
+    <section>
+      <h2 class="text-2xl font-bold mb-1">Link states</h2>
+      <p class="text-sm text-[var(--color-slate-mid)] mb-6">
+        All four states are explicit, from the token palette, in <code>global.css</code>. Alpine sits close to
+        default browser link blue, which is acceptable only because every state below is deliberately set,
+        nothing is left to render as browser-default blue or purple.
+      </p>
+      <div class="flex flex-wrap gap-x-8 gap-y-3 text-sm rounded-xl border border-[var(--color-stone-light)] p-6">
+        <span><a href="#">Link</a>: alpine</span>
+        <span class="text-[var(--color-alpine-dark)]">Hover: alpine-dark</span>
+        <span class="text-[var(--color-alpine-dark)]">Visited: alpine-dark, never purple</span>
+        <span class="inline-flex items-center gap-2">Focus <kbd class="text-xs border border-[var(--color-alpine)] rounded px-1.5 py-0.5">Tab</kbd>: 2px alpine outline</span>
+      </div>
+    </section>
+
+    <!-- Spacing -->
+    <section>
+      <h2 class="text-2xl font-bold mb-1">Spacing & layout</h2>
+      <p class="text-sm text-[var(--color-slate-mid)] mb-6">Every section shares one wrapper shape. Content max-width is <code>max-w-6xl</code> (narrower, <code>max-w-3xl</code>/<code>max-w-4xl</code>, for text-heavy pages).</p>
+      <div class="rounded-xl border border-dashed border-[var(--color-alpine)]/40 p-4 font-mono text-xs text-[var(--color-slate-mid)] overflow-x-auto">
+        &lt;section class="py-16 sm:py-20"&gt;<br />
+        &nbsp;&nbsp;&lt;div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"&gt;...&lt;/div&gt;<br />
+        &lt;/section&gt;
+      </div>
+    </section>
+
+    <!-- Badges -->
+    <section>
+      <h2 class="text-2xl font-bold mb-1">Badges</h2>
+      <p class="text-sm text-[var(--color-slate-mid)] mb-6"><code>.badge</code> base class + one color modifier.</p>
+      <div class="flex flex-wrap gap-3">
+        <span class="badge badge-gold">Gold badge</span>
+        <span class="badge badge-alpine">Alpine badge</span>
+        <span class="badge badge-forest">Forest badge</span>
+      </div>
+    </section>
+
+    <!-- Buttons / CTAs -->
+    <section>
+      <h2 class="text-2xl font-bold mb-1">Buttons & CTAs</h2>
+      <p class="text-sm text-[var(--color-slate-mid)] mb-6">Always paired: primary (Book Direct) + secondary (Book on Airbnb), from <code>BookingCTA.astro</code>. Honest framing note underneath, never omitted.</p>
+      <div class="max-w-sm space-y-3">
+        <a href="#" class="group block w-full rounded-xl bg-[var(--color-alpine)] hover:bg-[var(--color-alpine-dark)] text-white px-5 py-4 transition-all duration-200 hover:shadow-lg hover:shadow-[var(--color-alpine)]/25 hover:-translate-y-0.5">
+          <div class="flex items-center justify-between gap-3">
+            <div class="min-w-0">
+              <div class="font-bold text-lg leading-tight">Book Direct: Save 10%</div>
+              <div class="text-sm text-white/80 mt-0.5">No platform fees, personal service</div>
+            </div>
+            <svg class="w-5 h-5 flex-shrink-0 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </div>
+        </a>
+        <a href="#" class="group block w-full rounded-xl border-2 border-[var(--color-stone-light)] hover:border-[var(--color-slate-mid)] px-5 py-4 transition-all duration-200 hover:shadow-sm">
+          <div class="flex items-center justify-between gap-3">
+            <div class="min-w-0">
+              <div class="font-semibold text-[var(--color-slate-deep)]">Book on Airbnb</div>
+              <div class="text-sm text-[var(--color-slate-mid)] mt-0.5">AirCover protection, platform support</div>
+            </div>
+          </div>
+        </a>
+        <p class="text-xs text-[var(--color-slate-mid)] text-center px-4">
+          Direct is cheaper and personal. Airbnb offers AirCover mediation. Choose what works for you.
+        </p>
+      </div>
+    </section>
+
+    <!-- Imagery & surfaces -->
+    <section>
+      <h2 class="text-2xl font-bold mb-1">Imagery & surfaces</h2>
+      <p class="text-sm text-[var(--color-slate-mid)] mb-6">Real photos, readable text over them, and a light page surface throughout.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">Real photos only</span>
+          <span class="text-[var(--color-slate-mid)]">Never stock, not even temporarily. A styled placeholder with the correct aspect ratio (see the homepage "Meet your hosts" photo) is fine while a real photo is pending.</span>
+        </div>
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">Hero text readability</span>
+          <span class="text-[var(--color-slate-mid)]">A gradient scrim (<code>.gradient-scrim</code>) behind hero text, never a highlight box. Badges over photos are near-opaque pill chips (see Badges), not translucent glass, translucent fills lose to unpredictable photo content.</span>
+        </div>
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">Dark surfaces: bands, not pages</span>
+          <span class="text-[var(--color-slate-mid)]">Dark section bands using <code>slate-deep</code> are allowed (see the hot tub section) and used deliberately for contrast/rhythm. A full dark page surface is not, the site is light-mode only. Low-contrast text over photos is never acceptable either way.</span>
+        </div>
+        <div class="rounded-xl border border-[var(--color-stone-light)] p-4">
+          <span class="block font-semibold mb-1">Badges are pill chips</span>
+          <span class="text-[var(--color-slate-mid)]">Near-opaque white fill, colour-tinted border and text. Never a low-opacity colour tint on its own, it disappears over photos (see Color notes on gold contrast).</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section>
+      <h2 class="text-2xl font-bold mb-1">Cards & panels</h2>
+      <p class="text-sm text-[var(--color-slate-mid)] mb-6">Two nesting depths: outer panel <code>rounded-2xl border p-6</code>, inner tile <code>rounded-xl border p-3</code>.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="rounded-2xl border border-[var(--color-stone-light)] bg-white p-6">
+          <h3 class="text-lg font-bold mb-3">Outer panel</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="rounded-xl border border-[var(--color-stone-light)] p-3">
+              <span class="block text-sm font-semibold">Inner tile</span>
+              <span class="block text-sm text-[var(--color-slate-mid)] mt-0.5">Detail row</span>
+            </div>
+            <div class="rounded-xl border border-[var(--color-stone-light)] p-3">
+              <span class="block text-sm font-semibold">Inner tile</span>
+              <span class="block text-sm text-[var(--color-slate-mid)] mt-0.5">Detail row</span>
+            </div>
+          </div>
+        </div>
+        <figure class="rounded-2xl border border-[var(--color-stone-light)] bg-white p-5">
+          <div class="text-[var(--color-gold-dark)] text-sm mb-2" aria-hidden="true">★★★★★</div>
+          <blockquote class="text-sm leading-relaxed text-[var(--color-slate-mid)]">"Review card: quote text sits here, warm and specific."</blockquote>
+          <figcaption class="mt-3 text-xs font-semibold text-[var(--color-slate-deep)]">Guest name · Location · Date</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Amenity chips -->
+    <section>
+      <h2 class="text-2xl font-bold mb-1">Amenity chips</h2>
+      <p class="text-sm text-[var(--color-slate-mid)] mb-6">Icon + label, from <code>AmenityGrid.astro</code>.</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg">
+        <div class="flex items-center gap-2 rounded-lg bg-[var(--color-stone-light)]/50 px-3 py-2.5">
+          <span class="text-lg flex-shrink-0" aria-hidden="true">🏔️</span>
+          <span class="text-sm font-medium text-[var(--color-slate-deep)]">Mountain views</span>
+        </div>
+        <div class="flex items-center gap-2 rounded-lg bg-[var(--color-stone-light)]/50 px-3 py-2.5">
+          <span class="text-lg flex-shrink-0" aria-hidden="true">🚪</span>
+          <span class="text-sm font-medium text-[var(--color-slate-deep)]">Own entrance</span>
+        </div>
+        <div class="flex items-center gap-2 rounded-lg bg-[var(--color-stone-light)]/50 px-3 py-2.5">
+          <span class="text-lg flex-shrink-0" aria-hidden="true">📶</span>
+          <span class="text-sm font-medium text-[var(--color-slate-deep)]">WiFi</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section header pattern -->
+    <section>
+      <h2 class="text-2xl font-bold mb-1">Section header pattern</h2>
+      <p class="text-sm text-[var(--color-slate-mid)] mb-6">Centered kicker-free heading + one-line supporting copy, used to open most homepage sections.</p>
+      <div class="rounded-xl border border-[var(--color-stone-light)] p-8">
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-4">Section title</h2>
+          <p class="text-[var(--color-slate-mid)] max-w-xl mx-auto">One line of supporting copy, centered, in slate-mid.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

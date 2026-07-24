@@ -42,7 +42,7 @@ searchThemes:
   - "Queenstown ski room outside the CBD"
 ---
 
-A queen room with your own private ensuite, inside our family home. You'll share the kitchen with us, and we clear the top shelf of the fridge just for you. You'll share the house with Holly, Julian, our teenager, and two large, friendly dogs. Perfect for couples who want a warm, social, genuinely local stay.
+A queen room with your own private ensuite, inside our family home. You'll share the kitchen with us, and we clear the top shelf of the fridge just for you. You'll share the house with Holly, Julian, and two large, friendly dogs. Perfect for couples who want a warm, social, genuinely local stay.
 
 ## A shared home, honestly
 
