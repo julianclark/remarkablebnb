@@ -9,20 +9,21 @@
  * written with ok:false and no value, so the panel falls back to a plain
  * link for that point instead of showing something wrong. The whole
  * snapshot also carries a generatedAt timestamp so the panel can fall back
- * entirely if a build hasn't run in >48h (e.g. the daily Action stopped
- * firing).
+ * entirely if a build hasn't run in >48h (e.g. the Action stopped firing).
  *
- * Two different strategies, deliberately:
- *  - Remarkables temperature + 3-day forecast come from Open-Meteo
- *    (open-meteo.com), a free no-auth JSON weather API keyed to the
- *    Remarkables base coordinates. This is genuinely live, not scraped off
- *    a page built for humans, so it's the most reliable point here.
+ * Covers three fields: The Remarkables, Coronet Peak, Cardrona. Two
+ * different strategies, deliberately:
+ *  - Current temperature + 3-day forecast for all three come from
+ *    Open-Meteo (open-meteo.com), a free no-auth JSON weather API keyed to
+ *    each field's base coordinates. This is genuinely live, not scraped off
+ *    a page built for humans, so it's the most reliable data here.
  *  - Snow base / last-24h snowfall and road/chain status are scraped from
  *    https://www.theremarkables.co.nz/weather-report/, which does render
  *    these server-side (verified against the live page on 2026-07-24).
- *    MetService's town/mountain pages and Mountainwatch's snow-report pages
- *    are client-rendered SPAs with nothing to scrape, so those stay as
- *    plain outbound links.
+ *    Coronet Peak's and Cardrona's equivalent pages were checked the same
+ *    day and are both client-rendered apps (Alpine.js / React) with no
+ *    values in the static HTML, so those stay as plain outbound links
+ *    rather than risk showing something wrong from a fragile scrape.
  *
  * Usage: node scripts/fetch-weather.js
  * Writes: src/data/winter-conditions.json
@@ -35,13 +36,17 @@ import path from 'path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '../src/data/winter-conditions.json');
 
-// The Remarkables ski area base building, roughly.
-const REMARKABLES_LAT = -45.075;
-const REMARKABLES_LON = 168.831;
-const REMARKABLES_ELEVATION_M = 1610;
+// Base-area coordinates, roughly, for each field.
+const FIELDS = {
+  remarkables: { name: 'The Remarkables', lat: -45.075, lon: 168.831, elevation: 1610 },
+  coronet: { name: 'Coronet Peak', lat: -44.9106, lon: 168.7346, elevation: 1229 },
+  cardrona: { name: 'Cardrona', lat: -44.8567, lon: 168.9436, elevation: 1670 },
+};
 
 const SOURCES = {
   remarkablesReport: 'https://www.theremarkables.co.nz/weather-report/',
+  coronetReport: 'https://www.coronetpeak.co.nz/weather-report/',
+  cardronaReport: 'https://cardrona-treblecone.com/snow-report',
   mountainwatchRemarkables: 'https://www.mountainwatch.com/new-zealand/the-remarkables/weather/',
   openMeteo: 'https://open-meteo.com/',
 };
@@ -137,10 +142,11 @@ const WMO_DESCRIPTIONS = {
   99: 'Thunderstorm, heavy hail',
 };
 
-async function getRemarkablesWeather() {
+// Current temperature + 3-day forecast for any field, from Open-Meteo.
+async function getFieldWeather(field) {
   const url =
-    `https://api.open-meteo.com/v1/forecast?latitude=${REMARKABLES_LAT}&longitude=${REMARKABLES_LON}` +
-    `&elevation=${REMARKABLES_ELEVATION_M}&current=temperature_2m,weather_code` +
+    `https://api.open-meteo.com/v1/forecast?latitude=${field.lat}&longitude=${field.lon}` +
+    `&elevation=${field.elevation}&current=temperature_2m,weather_code` +
     `&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Pacific%2FAuckland&forecast_days=3`;
   const json = await fetchJson(url);
 
@@ -178,18 +184,18 @@ async function main() {
     console.error(`[fetch-weather] Remarkables snow report fetch failed: ${err.message}`);
   }
 
-  let temp = { ok: false, value: null };
-  let forecast = { ok: false, value: null };
-  try {
-    const result = await getRemarkablesWeather();
-    temp = result.temp;
-    forecast = result.forecast;
-  } catch (err) {
-    console.error(`[fetch-weather] Open-Meteo fetch failed: ${err.message}`);
+  const fieldWeather = {};
+  for (const [key, field] of Object.entries(FIELDS)) {
+    try {
+      fieldWeather[key] = await getFieldWeather(field);
+    } catch (err) {
+      console.error(`[fetch-weather] ${field.name} Open-Meteo fetch failed: ${err.message}`);
+      fieldWeather[key] = { temp: { ok: false, value: null }, forecast: { ok: false, value: null } };
+    }
   }
 
   // Ordered snow-report facts first (what skiers check first thing), then
-  // live temp/forecast, then the one source we can only link out to.
+  // live temp/forecast per field, then the sources we can only link out to.
   const items = [
     {
       id: 'snowfall-depth',
@@ -210,18 +216,50 @@ async function main() {
       label: 'The Remarkables: current temperature',
       sourceUrl: SOURCES.openMeteo,
       linkLabel: 'Weather data by Open-Meteo.com',
-      ...temp,
+      ...fieldWeather.remarkables.temp,
     },
     {
-      id: 'forecast-3day',
+      id: 'remarkables-forecast',
       label: 'The Remarkables: 3-day forecast',
       sourceUrl: SOURCES.openMeteo,
       linkLabel: 'Weather data by Open-Meteo.com',
-      ...forecast,
+      ...fieldWeather.remarkables.forecast,
+    },
+    {
+      id: 'coronet-temp',
+      label: 'Coronet Peak: current temperature',
+      sourceUrl: SOURCES.openMeteo,
+      linkLabel: 'Weather data by Open-Meteo.com',
+      ...fieldWeather.coronet.temp,
+    },
+    {
+      id: 'coronet-forecast',
+      label: 'Coronet Peak: 3-day forecast',
+      sourceUrl: SOURCES.openMeteo,
+      linkLabel: 'Weather data by Open-Meteo.com',
+      ...fieldWeather.coronet.forecast,
+    },
+    {
+      id: 'cardrona-temp',
+      label: 'Cardrona: current temperature',
+      sourceUrl: SOURCES.openMeteo,
+      linkLabel: 'Weather data by Open-Meteo.com',
+      ...fieldWeather.cardrona.temp,
+    },
+    {
+      id: 'cardrona-forecast',
+      label: 'Cardrona: 3-day forecast',
+      sourceUrl: SOURCES.openMeteo,
+      linkLabel: 'Weather data by Open-Meteo.com',
+      ...fieldWeather.cardrona.forecast,
     },
   ];
 
-  const links = [{ id: 'mountainwatch', label: 'Mountainwatch snow forecast', sourceUrl: SOURCES.mountainwatchRemarkables }];
+  const links = [
+    { id: 'mountainwatch', label: 'Mountainwatch snow forecast', sourceUrl: SOURCES.mountainwatchRemarkables },
+    { id: 'coronet-report', label: 'Coronet Peak snow report', sourceUrl: SOURCES.coronetReport },
+    { id: 'cardrona-report', label: 'Cardrona snow report', sourceUrl: SOURCES.cardronaReport },
+  ];
 
   mkdirSync(path.dirname(OUT_PATH), { recursive: true });
   writeFileSync(OUT_PATH, JSON.stringify({ generatedAt, items, links }, null, 2) + '\n');
@@ -240,7 +278,11 @@ main().catch((err) => {
       {
         generatedAt: new Date().toISOString(),
         items: [],
-        links: [{ id: 'mountainwatch', label: 'Mountainwatch snow forecast', sourceUrl: 'https://www.mountainwatch.com/new-zealand/the-remarkables/weather/' }],
+        links: [
+          { id: 'mountainwatch', label: 'Mountainwatch snow forecast', sourceUrl: 'https://www.mountainwatch.com/new-zealand/the-remarkables/weather/' },
+          { id: 'coronet-report', label: 'Coronet Peak snow report', sourceUrl: 'https://www.coronetpeak.co.nz/weather-report/' },
+          { id: 'cardrona-report', label: 'Cardrona snow report', sourceUrl: 'https://cardrona-treblecone.com/snow-report' },
+        ],
       },
       null,
       2
