@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T18:19:42.193Z",
+  "generatedAt": "2026-07-25T18:48:44.302Z",
   "fields": [
     {
       "id": "remarkables",
@@ -12,7 +12,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Snow base 15 - 80cm · 5cm in the last 24 hours"
+          "value": "Snow base 15 - 80cm"
         },
         {
           "id": "chain-road",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-4.3°C · Fine"
+          "value": "-4.1°C · Fine"
         },
         {
           "id": "forecast",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Road: chains on 2WD · Chains from Chain Bay 1"
+          "value": "Road: chain free · Chains from Chain Bay 1"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-11°C · Clear"
+          "value": "-11°C · Mostly clear"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -12° to -5°, partly cloudy · Tomorrow: -9° to -1°, overcast · Day after: -4° to -1°, overcast"
+          "value": "Today: -12° to -5°, overcast · Tomorrow: -9° to -1°, overcast · Day after: -4° to -1°, overcast"
         }
       ]
     }
