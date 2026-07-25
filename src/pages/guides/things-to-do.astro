@@ -11,6 +11,7 @@ const sections = (await getCollection('guideSections'))
   .sort((a, b) => a.data.order - b.data.order)
   .map((s) => s.data);
 const guestTypes = guide!.data.guestTypes ?? [];
+const quickTips = guide!.data.quickTips ?? [];
 ---
 
 <BaseLayout
@@ -32,13 +33,34 @@ const guestTypes = guide!.data.guestTypes ?? [];
     <span class="text-4xl" aria-hidden="true">{guide!.data.icon}</span>
     <h1 class="text-4xl sm:text-5xl font-medium mt-4 mb-4">{guide!.data.title}</h1>
     {guide!.data.tagline && (
-      <p class="text-lg font-serif italic text-[var(--color-ember)] leading-relaxed mb-8">{guide!.data.tagline}</p>
+      <p class="text-lg font-serif italic text-[var(--color-ember)] leading-relaxed mb-4">{guide!.data.tagline}</p>
     )}
 
-    {guide!.data.extraBoxTitle && (
+    <p class="text-sm text-[var(--color-stone-grey)] mb-8">
+      Looking for where to eat instead? See <a href="/guides/eat-and-drink" class="text-[var(--color-ember)] font-medium hover:underline">Where to eat and drink</a>.
+    </p>
+
+    {quickTips.length > 0 && (
       <div class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-fill)] p-5 mb-10">
-        <h3 class="text-lg font-medium mb-1">{guide!.data.extraBoxTitle}</h3>
-        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">{guide!.data.extraBoxText}</p>
+        <h3 class="text-lg font-medium mb-3">Before you book anything</h3>
+        <ul class="space-y-2">
+          {quickTips.map((tip) => (
+            <li class="flex flex-wrap items-start gap-2 text-sm text-[var(--color-stone-grey)] leading-relaxed">
+              <span class="text-[var(--color-ember)] mt-0.5" aria-hidden="true">•</span>
+              <span class="flex-1 min-w-0">{tip.text}</span>
+              {tip.link && (
+                <a
+                  href={tip.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-xs bg-[var(--color-ember)]/10 text-[var(--color-ember)] font-medium rounded-full px-2.5 py-1 hover:bg-[var(--color-ember)]/20 transition-colors flex-shrink-0"
+                >
+                  {tip.link.label} <span aria-hidden="true">↗</span>
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
     )}
 
@@ -50,7 +72,7 @@ const guestTypes = guide!.data.guestTypes ?? [];
           {section.entries.length > 0 && (
             <div class="space-y-3">
               {section.entries.map((e) => (
-                <GuideEntry name={e.name} tier={e.tier} meta={e.meta} note={e.note} />
+                <GuideEntry name={e.name} tier={e.tier} meta={e.meta} note={e.note} website={e.website} />
               ))}
             </div>
           )}
@@ -68,8 +90,8 @@ const guestTypes = guide!.data.guestTypes ?? [];
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {guestTypes.map((g) => (
               <div class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-snow)] p-4">
-                <span class="block font-semibold text-[var(--color-graphite)] mb-1">{g.type}</span>
-                <span class="text-sm text-[var(--color-stone-grey)] leading-relaxed">{g.note}</span>
+                <h4 class="font-semibold text-[var(--color-graphite)] mb-1">{g.type}</h4>
+                <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">{g.note}</p>
               </div>
             ))}
           </div>
@@ -87,12 +109,18 @@ const guestTypes = guide!.data.guestTypes ?? [];
       </div>
     )}
 
-    <div class="mt-12">
+    <div class="mt-12 pt-8 border-t border-[var(--color-hairline)] flex flex-wrap items-center justify-between gap-4">
       <a href="/" class="inline-flex items-center gap-2 text-[var(--color-ember)] font-semibold hover:underline">
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
         </svg>
         Back to home
+      </a>
+      <a href="/guides/eat-and-drink" class="inline-flex items-center gap-2 text-[var(--color-ember)] font-semibold hover:underline">
+        Where to eat and drink
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
       </a>
     </div>
   </div>
