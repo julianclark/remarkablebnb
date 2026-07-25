@@ -129,28 +129,32 @@ h1, h2, h3, h4 {
 
 /* Brand link colour everywhere a link doesn't set its own (prose content,
    FAQ answers, guest manual pages). Without this, unstyled anchors fall
-   back to browser-default blue with a purple :visited state. Components
-   that set their own text/utility colour classes are unaffected, class
-   selectors outrank this element selector.
+   back to browser-default blue with a purple :visited state. Wrapped in
+   Tailwind's `base` layer (not left unlayered) so components that set
+   their own text/utility colour classes, e.g. `text-white` on a button,
+   still win: Tailwind's `utilities` layer is ordered after `base`, but an
+   unlayered rule here would beat utility classes regardless of specificity.
    All four states are deliberate, from the token palette, per the design
    system's "links & interactive states" ground rule. */
-a {
-  color: var(--color-ember);
-  text-decoration-color: color-mix(in srgb, var(--color-ember) 40%, transparent);
-}
+@layer base {
+  a {
+    color: var(--color-ember);
+    text-decoration-color: color-mix(in srgb, var(--color-ember) 40%, transparent);
+  }
 
-a:hover {
-  color: var(--color-link-hover);
-}
+  a:hover {
+    color: var(--color-link-hover);
+  }
 
-a:visited {
-  color: var(--color-visited);
-}
+  a:visited {
+    color: var(--color-visited);
+  }
 
-a:focus-visible {
-  outline: 2px solid var(--color-ember);
-  outline-offset: 2px;
-  border-radius: 2px;
+  a:focus-visible {
+    outline: 2px solid var(--color-ember);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 }
 
 /* ============================================

@@ -12,14 +12,18 @@
  * timestamp so the panel can fall back entirely if a build hasn't run in
  * >48h (e.g. the Action stopped firing).
  *
- * All three fields are genuinely live, official sources, found by
- * inspecting each field's own website network requests on 2026-07-25
- * (not screen-scraped HTML built for humans):
- *  - The Remarkables & Coronet Peak (both NZSki) share one JSON API:
- *    https://webcams-awb2e0ceg7cccsba.a02.azurefd.net/{slug}-data.json
+ * All three fields are genuinely live, official sources:
+ *  - Coronet Peak (NZSki) has a JSON API, confirmed fresh (checked
+ *    2026-07-25): https://webcams-awb2e0ceg7cccsba.a02.azurefd.net/{slug}-data.json
  *    This is the exact endpoint their own site's weather widget calls, and
  *    covers temperature, forecast, snow base, and road/chain status in one
- *    response.
+ *    response. NZSki's site is mid-migration between two templates, and
+ *    Coronet Peak has moved to a new one that reads this JSON client-side.
+ *  - The Remarkables is still on NZSki's older, server-rendered template,
+ *    and its equivalent JSON feed has gone stale upstream (an
+ *    `updatedAt` weeks old, wrong snow base). This script instead reads
+ *    the same weather-report page a visitor sees, since the page itself is
+ *    kept current even though the JSON API behind it isn't.
  *  - Cardrona's site (a Contentful-backed Next.js app) calls
  *    https://cardrona-treblecone.com/api/snowreport/get-snow-report with a
  *    fixed Contentful contentId for the combined Cardrona/Treble Cone
@@ -57,6 +61,16 @@ async function fetchJson(url, init) {
   const res = await fetch(url, { signal: AbortSignal.timeout(15000), ...init });
   if (!res.ok) throw new Error(`${url} responded ${res.status}`);
   return res.json();
+}
+
+async function fetchText(url, init) {
+  const res = await fetch(url, {
+    signal: AbortSignal.timeout(15000),
+    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; RemarkableBnB-WeatherFetch/1.0)' },
+    ...init,
+  });
+  if (!res.ok) throw new Error(`${url} responded ${res.status}`);
+  return res.text();
 }
 
 // Minimal WMO weather_code -> short description map, for Open-Meteo
@@ -121,6 +135,64 @@ async function getNzskiField(slug) {
       : fail();
 
   const status = typeof d?.MountainStatus === 'string' ? d.MountainStatus : null;
+
+  return { temp, forecast, snowBase, chainRoad, status };
+}
+
+// The Remarkables: the-remarkables-data.json (the same NZSki JSON API
+// Coronet Peak uses) is stale upstream, so this reads the numbers straight
+// off the live weather-report page instead, using the same label/value
+// pairs and forecast cards a visitor sees.
+async function getRemarkablesHtmlField() {
+  const html = await fetchText(SOURCES.remarkablesReport);
+
+  const stats = {};
+  const statRe = /w_weather-status__description">\s*([^<]+?)\s*<\/p>\s*<p class="w_weather-status__data">\s*([^<]+?)\s*<\/p>/g;
+  let m;
+  while ((m = statRe.exec(html))) stats[m[1].trim()] = m[2].trim();
+
+  const status = stats['Mountain Status'] ?? null;
+
+  const chainRoad =
+    stats['Road Status'] || stats['Chains']
+      ? ok(
+          [
+            stats['Road Status'] && `Road ${fixKnownTypos(stats['Road Status']).toLowerCase()}`,
+            stats['Chains'] && `Chains: ${fixKnownTypos(stats['Chains'])}`,
+          ]
+            .filter(Boolean)
+            .join(' · ')
+        )
+      : fail();
+
+  const snowBase =
+    stats['Snow Base'] || stats['Last 24 Hours']
+      ? ok(
+          [
+            stats['Snow Base'] && `Snow base ${stats['Snow Base']}`,
+            stats['Last 24 Hours'] && `${stats['Last 24 Hours']} in the last 24 hours`,
+          ]
+            .filter(Boolean)
+            .join(' · ')
+        )
+      : fail();
+
+  const tempMatch = html.match(/weather-report__weather__temperture text-reveal">\s*(-?[\d.]+)&deg;<span class="c">c<\/span>/);
+  const conditionMatch = html.match(/weather-report__weather__name">\s*([^<]+?)\s*</);
+  const temp = tempMatch ? ok(`${tempMatch[1]}°C${conditionMatch ? ` · ${conditionMatch[1].trim()}` : ''}`) : fail();
+
+  // The page repeats the same 3-day forecast cards for desktop/mobile
+  // layouts; the first 3 matches are the real, distinct days.
+  const forecastRe =
+    /forcast-item__title">([^<]+)<\/h3>\s*<div class="l-forcast-item-flex">\s*<svg class="forcast-item__icon i-weather-([a-z-]+)">.*?<p class="forcast-item__temperature">\s*(-?\d+)&deg;c<span class="forcast-item_backslash">\/<\/span><span class="forcast-item__temperature__low">(-?\d+)&deg;c/gs;
+  const forecastDays = [];
+  let fm;
+  while ((fm = forecastRe.exec(html)) && forecastDays.length < 3) {
+    forecastDays.push({ day: fm[1], icon: fm[2].replace(/-/g, ' '), high: fm[3], low: fm[4] });
+  }
+  const forecast = forecastDays.length
+    ? ok(forecastDays.map((f) => `${f.day}: ${f.low}° to ${f.high}°, ${f.icon}`).join(' · '))
+    : fail();
 
   return { temp, forecast, snowBase, chainRoad, status };
 }
@@ -192,7 +264,7 @@ async function main() {
 
   // The Remarkables
   try {
-    const r = await getNzskiField('the-remarkables');
+    const r = await getRemarkablesHtmlField();
     fields.push({
       id: 'remarkables',
       name: 'The Remarkables',
