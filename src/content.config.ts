@@ -99,6 +99,70 @@ const guideSections = defineCollection({
   }),
 });
 
+// Homepage "Who we're great for" cards.
+const segments = defineCollection({
+  loader: file('./src/content/home/segments.json'),
+  schema: z.object({
+    id: z.string(),
+    order: z.number(),
+    icon: z.string(),
+    title: z.string(),
+    copy: z.string(),
+    reviewId: z.string().optional(),
+  }),
+});
+
+// Homepage "Location & getting around" distance/travel-time facts.
+const locationRows = defineCollection({
+  loader: file('./src/content/home/location-rows.json'),
+  schema: z.object({
+    id: z.string(),
+    order: z.number(),
+    icon: z.string(),
+    label: z.string(),
+    detail: z.string(),
+  }),
+});
+
+// Homepage host tips (short, first-person, real), shown alongside the
+// location facts.
+const hostTips = defineCollection({
+  loader: file('./src/content/home/host-tips.json'),
+  schema: z.object({
+    id: z.string(),
+    order: z.number(),
+    icon: z.string(),
+    title: z.string(),
+    copy: z.string(),
+  }),
+});
+
+// Homepage "Why book with us" bullet list of direct-booking extras.
+const bookDirectExtras = defineCollection({
+  loader: file('./src/content/home/book-direct-extras.json'),
+  schema: z.object({
+    id: z.string(),
+    order: z.number(),
+    icon: z.string(),
+    text: z.string(),
+  }),
+});
+
+// Homepage hero. Swap these values (and the image at /public/images/hero.jpg)
+// to re-theme the hero by season, e.g. winter snow imagery + ski messaging vs
+// summer trails/sunsets/hot-tub. Same layout and palette either way.
+const hero = defineCollection({
+  loader: file('./src/content/home/hero.json'),
+  schema: z.object({
+    id: z.string(),
+    image: z.string(),
+    imageAlt: z.string(),
+    kicker: z.string(),
+    heading: z.string(),
+    subcopy: z.string(),
+  }),
+});
+
 const manual = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/manual' }),
   schema: z.object({
@@ -133,4 +197,17 @@ const reviews = defineCollection({
   }),
 });
 
-export const collections = { stays, guides, manual, faqs, reviews, homeSections, guideSections };
+export const collections = {
+  stays,
+  guides,
+  manual,
+  faqs,
+  reviews,
+  homeSections,
+  guideSections,
+  segments,
+  locationRows,
+  hostTips,
+  bookDirectExtras,
+  hero,
+};

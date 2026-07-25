@@ -1,0 +1,7 @@
+[
+  { "id": "hot-tub", "order": 1, "icon": "🔥", "text": "Wood-fired hot tub sessions, bookable as an add-on" },
+  { "id": "early-checkin", "order": 2, "icon": "🕐", "text": "Early check-in and bag drop where we can" },
+  { "id": "homely-extra", "order": 3, "icon": "🎁", "text": "The occasional homely extra when we're around (nothing promised)" },
+  { "id": "date-changes", "order": 4, "icon": "📅", "text": "Flexible date changes, deal with us, not a platform" },
+  { "id": "repeat-stay", "order": 5, "icon": "🔁", "text": "Repeat-stay rates for regular Queenstown trips" }
+]

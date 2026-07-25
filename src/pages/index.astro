@@ -26,48 +26,17 @@ const totalReviews = stays.reduce((sum, s) => sum + (s.data.reviewCount ?? 0), 0
 const testimonialIds = ['bu-riaz', 'gr-amy', 'bu-sherry', 'bu-eleanor', 'gr-katie'];
 const testimonials = testimonialIds.map(reviewById);
 
-const segments = [
-  { icon: '🎿', title: 'Ski trips', copy: '5 minutes to The Remarkables base, a warm house, underfloor heating that dries gear quickly, and honest winter-driving advice.', reviewId: 'gr-wai-loon' },
-  { icon: '🐾', title: 'Dog-loving couples', copy: 'Meet Rocket & Luna, for many guests, the highlight of the stay.', reviewId: 'gr-laura' },
-  { icon: '👨‍👩‍👧', title: 'Families', copy: 'Travel cot available, a bunk room with toys and board games, playgrounds and short walks nearby, wet-weather ideas on tap.', reviewId: 'bu-sauda' },
-  { icon: '💼', title: 'Work trips & contractors', copy: 'Self-contained unit, fast Wi-Fi, and repeat-stay direct rates.', reviewId: 'bu-hamish' },
-];
-
-const locationRows = [
-  { icon: '🏔️', label: 'The Remarkables ski field', detail: 'Base carpark ~5 min drive · top of the mountain ~30 min · Coronet Peak ~40 min' },
-  { icon: '🏙️', label: 'Queenstown CBD', detail: '20–25 min drive' },
-  { icon: '✈️', label: 'Frankton & the airport', detail: '8–10 min drive' },
-  { icon: '⛳', label: 'Jack\'s Point golf', detail: 'Walking distance' },
-  { icon: '🚌', label: 'Orbus bus stop', detail: '~10-min walk · regular but infrequent · cash or Bee Card only (no cards on board)' },
-  { icon: '🚐', label: 'Milford Sound & coach tours', detail: 'Choose Frankton pickup, far easier than town' },
-];
-
+const segments = (await getCollection('segments')).sort((a, b) => a.data.order - b.data.order).map((s) => s.data);
+const locationRows = (await getCollection('locationRows')).sort((a, b) => a.data.order - b.data.order).map((s) => s.data);
 // Host tips: short, first-person, real. Placed alongside the distance facts,
 // which stay unchanged (skiers and airport arrivals scan for those).
-const hostTips = [
-  { icon: '☕', title: 'Coffee', copy: 'Our favourite coffee spot? Our own kitchen. If Julian\'s around, he\'ll gladly make you a coffee. The next nearest good coffee is the Jack\'s Point golf clubhouse, a lovely place to spend an hour or two with a stunning view.' },
-  { icon: '🚗', title: 'Getting up the mountain', copy: 'On busy days, leave around 7am to beat the queues and the traffic. Chat with us the night before and we\'ll tell you what the morning looks like.' },
-];
+const hostTips = (await getCollection('hostTips')).sort((a, b) => a.data.order - b.data.order).map((s) => s.data);
+const bookDirectExtras = (await getCollection('bookDirectExtras')).sort((a, b) => a.data.order - b.data.order).map((s) => s.data);
 
-const bookDirectExtras = [
-  { icon: '🔥', text: 'Wood-fired hot tub sessions, bookable as an add-on' },
-  { icon: '🕐', text: 'Early check-in and bag drop where we can' },
-  { icon: '🎁', text: 'The occasional homely extra when we\'re around (nothing promised)' },
-  { icon: '📅', text: 'Flexible date changes, deal with us, not a platform' },
-  { icon: '🔁', text: 'Repeat-stay rates for regular Queenstown trips' },
-];
-
-// ─── Seasonal hero ────────────────────────────────────────────────────
-// Swap these values (and the image at /public/images/hero.jpg) to re-theme
-// the hero by season. Winter: snow imagery + ski messaging. Summer: trails,
-// sunsets, hot tub. Same layout and palette, seasonal content only.
-const hero = {
-  image: '/images/hero.jpg',
-  imageAlt: "The Remarkables mountain range from Hanley's Farm",
-  kicker: "Hanley's Farm, Queenstown",
-  heading: 'Remarkable BnB',
-  subcopy: "Under The Remarkables. Hosted by Holly & Julian. Your base for mountains, snow, and Jack's Point.",
-};
+// Seasonal hero: swap src/content/home/hero.json (and the image at
+// /public/images/hero.jpg) to re-theme by season. Winter: snow imagery + ski
+// messaging. Summer: trails, sunsets, hot tub. Same layout and palette either way.
+const hero = (await getEntry('hero', 'default'))!.data;
 
 ---
 

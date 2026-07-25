@@ -1,0 +1,8 @@
+[
+  { "id": "remarkables", "order": 1, "icon": "🏔️", "label": "The Remarkables ski field", "detail": "Base carpark ~5 min drive · top of the mountain ~30 min · Coronet Peak ~40 min" },
+  { "id": "cbd", "order": 2, "icon": "🏙️", "label": "Queenstown CBD", "detail": "20–25 min drive" },
+  { "id": "airport", "order": 3, "icon": "✈️", "label": "Frankton & the airport", "detail": "8–10 min drive" },
+  { "id": "golf", "order": 4, "icon": "⛳", "label": "Jack's Point golf", "detail": "Walking distance" },
+  { "id": "bus", "order": 5, "icon": "🚌", "label": "Orbus bus stop", "detail": "~10-min walk · regular but infrequent · cash or Bee Card only (no cards on board)" },
+  { "id": "milford", "order": 6, "icon": "🚐", "label": "Milford Sound & coach tours", "detail": "Choose Frankton pickup, far easier than town" }
+]

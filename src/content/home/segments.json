@@ -1,0 +1,6 @@
+[
+  { "id": "ski-trips", "order": 1, "icon": "🎿", "title": "Ski trips", "copy": "5 minutes to The Remarkables base, a warm house, underfloor heating that dries gear quickly, and honest winter-driving advice.", "reviewId": "gr-wai-loon" },
+  { "id": "dog-loving-couples", "order": 2, "icon": "🐾", "title": "Dog-loving couples", "copy": "Meet Rocket & Luna, for many guests, the highlight of the stay.", "reviewId": "gr-laura" },
+  { "id": "families", "order": 3, "icon": "👨‍👩‍👧", "title": "Families", "copy": "Travel cot available, a bunk room with toys and board games, playgrounds and short walks nearby, wet-weather ideas on tap.", "reviewId": "bu-sauda" },
+  { "id": "work-trips", "order": 4, "icon": "💼", "title": "Work trips & contractors", "copy": "Self-contained unit, fast Wi-Fi, and repeat-stay direct rates.", "reviewId": "bu-hamish" }
+]

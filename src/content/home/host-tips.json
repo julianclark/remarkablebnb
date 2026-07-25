@@ -1,0 +1,4 @@
+[
+  { "id": "coffee", "order": 1, "icon": "☕", "title": "Coffee", "copy": "Our favourite coffee spot? Our own kitchen. If Julian's around, he'll gladly make you a coffee. The next nearest good coffee is the Jack's Point golf clubhouse, a lovely place to spend an hour or two with a stunning view." },
+  { "id": "mountain", "order": 2, "icon": "🚗", "title": "Getting up the mountain", "copy": "On busy days, leave around 7am to beat the queues and the traffic. Chat with us the night before and we'll tell you what the morning looks like." }
+]
