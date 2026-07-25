@@ -61,7 +61,7 @@ The unit is fully self-contained with its own entrance and a lockable internal d
 
 ## The dogs
 
-Rocket and Luna are part of our home next door, but the internal door between the unit and our home stays locked during your stay, so they won't be coming through. The unit suits guests who'd like minimal interaction with us, if you'd like to meet Rocket and Luna, just ask.
+Rocket and Luna are part of our home next door, but the internal door between the unit and our home stays locked during your stay, so they won't be coming through. If you'd like to meet Rocket and Luna, just ask.
 
 **Bringing your own dog?** The unit has a fenced outdoor space, so well-behaved medium and large dogs are welcome to stay with you, and we can provide a crate if needed. Small dogs might be able to fit through the fence, so please ask us before booking.
 

@@ -11,4 +11,4 @@ Two small asks: please don't feed them human food or from the table, and please 
 
 > **Not a dog person, or a bit nervous?** No problem. We'll keep them away from you completely, and the unit has its own private entrance. Just tell us when you book.
 
-Staying in the Two Bedroom Unit? The internal door between the unit and our home stays locked during your stay, so the dogs stay completely separate, ideal if you'd rather have minimal interaction with us. Want to meet Rocket and Luna anyway? Just ask. Travelling with your own dog? See the [Two Bedroom Unit page](/stays/two-bedroom-unit) for our by-arrangement policy.
+Staying in the Two Bedroom Unit? The internal door between the unit and our home stays locked during your stay, so the dogs stay completely separate. Want to meet Rocket and Luna anyway? Just ask. Travelling with your own dog? See the [Two Bedroom Unit page](/stays/two-bedroom-unit) for our by-arrangement policy.
