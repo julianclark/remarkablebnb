@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T10:35:56.306Z",
+  "generatedAt": "2026-07-25T10:29:37.201Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-9°C · few showers"
+          "value": "-9°C · FewShowers"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -11° to -8°, few showers · Tomorrow: -10° to -5°, fine · Day after: -5° to -1°, few showers"
+          "value": "Today: -11° to -8°, fewshowers · Tomorrow: -10° to -5°, fine · Day after: -5° to -1°, fewshowers"
         }
       ]
     },
@@ -59,7 +59,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Road open · Chains: Required on 2WD vehicles"
+          "value": "Road open · Chains: Required on 2WD Vechicles"
         },
         {
           "id": "temp",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "-5°C · snow"
+          "value": "-5°C · Snow"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -8° to -6°, few showers · Tomorrow: -7° to -2°, fine · Day after: -3° to 2°, fine"
+          "value": "Today: -8° to -6°, fewshowers · Tomorrow: -7° to -2°, fine · Day after: -3° to 2°, fine"
         }
       ]
     },
