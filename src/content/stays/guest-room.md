@@ -43,11 +43,11 @@ searchThemes:
   - "Queenstown ski room outside the CBD"
 ---
 
-A queen room with your own private ensuite, inside our family home. You'll share the kitchen with us, and we clear the top shelf of the fridge just for you. You'll share the house with Holly, Julian, and two large, friendly dogs. Perfect for couples who want a warm, social, genuinely local stay.
+A queen room with your own private ensuite, inside our family home. You'll share the kitchen with us, and we clear the top shelf of the fridge just for you. You'll share the house with Holly, Julian, and two large, friendly dogs. Best for couples happy to share a kitchen and meet the people, and dogs, who live here.
 
 ## A shared home, honestly
 
-We want you to know exactly what you're booking. This is a room in our home, not a separate apartment, the kitchen and living areas are shared with us. For the right guests, that's the whole appeal: real local knowledge, a warm house, and hosts who are around when you need them. If you'd rather have your own front door and full kitchen, our [Two Bedroom Unit](/stays/two-bedroom-unit) is the one for you.
+We want you to know exactly what you're booking. This is a room in our home, not a separate apartment, the kitchen and living areas are shared with us. For the right guests, that's the whole appeal: local knowledge, a warm house, and hosts who are around when you need them. If you'd rather have your own front door and full kitchen, our [Two Bedroom Unit](/stays/two-bedroom-unit) is the one for you.
 
 ## The room
 
@@ -61,7 +61,7 @@ Rocket and Luna live here too, and for a lot of our guests they're the highlight
 
 ## Personal hosting
 
-Staying in our home means personal recommendations, honest local tips, and the kind of hosting that's earned us a 5-star rating and Airbnb Guest Favourite status from 28 reviews. We're here if you need us, and out of your way when you don't.
+Staying in our home means local recommendations, straight answers, and the kind of hosting that's earned us a 5-star rating and Airbnb Guest Favourite status from 28 reviews. We're here if you need us, and out of your way when you don't.
 
 ## Location
 

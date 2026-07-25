@@ -1,7 +1,7 @@
 ---
 title: "Two Bedroom Unit"
 slug: "two-bedroom-unit"
-tagline: "Your own completely separate, brand-new two-bedroom unit"
+tagline: "Your own private, self-contained two-bedroom unit"
 type: "unit"
 bedrooms: 2
 bathrooms: 1
@@ -37,7 +37,7 @@ reviewCount: 34
 heroImage: "/images/stays/unit-hero.jpg"
 heroAlt: "Two Bedroom Unit with The Remarkables mountain range behind"
 seoTitle: "Private 2 Bedroom Unit near The Remarkables and Jack's Point | Remarkable BnB"
-seoDescription: "A completely separate, self-contained two-bedroom unit attached to Holly and Julian's family home in Hanley's Farm. Own kitchen, laundry and bathroom, sleeps up to 4, near The Remarkables and Jack's Point."
+seoDescription: "A private, self-contained two-bedroom unit attached to Holly and Julian's family home in Hanley's Farm, with its own entrance. Own kitchen, laundry and bathroom, sleeps up to 4, near The Remarkables and Jack's Point."
 searchThemes:
   - "Two-bedroom accommodation near The Remarkables"
   - "Jack's Point accommodation"
@@ -46,7 +46,7 @@ searchThemes:
   - "Self-contained unit near Jack's Point golf course"
 ---
 
-Your own completely separate, brand-new two-bedroom unit with its own bathroom, laundry and kitchen. The unit is attached to our family home. We're right there if you need anything, and otherwise you won't see us. Sleeps up to 4: a queen room, plus a second bunk room.
+A private, self-contained two-bedroom unit with its own entrance, bathroom, laundry and kitchen, and a lockable internal door. The unit is attached to our family home. We're right there if you need anything, and otherwise you won't see us. Sleeps up to 4: a queen room, plus a second bunk room.
 
 ## Your own space
 
@@ -67,4 +67,4 @@ Rocket and Luna are part of our home next door, but the internal door between th
 
 ## Location
 
-Hanley's Farm sits at the Jack's Point end, under The Remarkables, a quieter, mountain-side alternative to Queenstown's CBD, without giving up easy access to the region. Remarkables Park (groceries and essentials) is a few minutes away, and the town centre is about 20 to 25 minutes by car. Full address, parking and arrival directions are sent as soon as you book.
+Hanley's Farm sits at the Jack's Point end, under The Remarkables, a quieter, mountain-side alternative to Queenstown's CBD, without giving up easy access to the region. Remarkables Park (groceries and essentials) is a few minutes away, and Queenstown CBD is about 20 to 25 minutes by car. Full address, parking and arrival directions are sent as soon as you book.

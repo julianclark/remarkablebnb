@@ -6,6 +6,7 @@ import { Image } from 'astro:assets';
 import { getCollection, getEntry, render } from 'astro:content';
 import dogPhoto from '../assets/photos/guest-room/dogs.avif';
 import hotTubPhoto from '../assets/photos/hot-tub/hot-tub-sunset.jpg';
+import deckPhoto from '../assets/photos/two-bedroom-unit/deck view.avif';
 
 export const prerender = true;
 
@@ -137,9 +138,8 @@ const hero = (await getEntry('hero', 'default'))!.data;
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {stays.map((stay) => (
-          <a
-            href={`/stays/${stay.data.slug}`}
-            class="group card rounded-2xl overflow-hidden border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] bg-white dark:bg-[var(--color-schist-ink)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+          <div
+            class="group card relative rounded-2xl overflow-hidden border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] bg-white dark:bg-[var(--color-schist-ink)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             id={`stay-card-${stay.data.slug}`}
           >
             <div class="relative h-56 sm:h-64 overflow-hidden bg-[var(--color-hairline)]">
@@ -157,7 +157,9 @@ const hero = (await getEntry('hero', 'default'))!.data;
             </div>
 
             <div class="p-6">
-              <h3 class="text-lg font-medium mb-1 group-hover:text-[var(--color-ember)] transition-colors">{stay.data.title}</h3>
+              <h3 class="text-lg font-medium mb-1">
+                <a href={`/stays/${stay.data.slug}`} class="stretched-link group-hover:text-[var(--color-ember)] transition-colors">{stay.data.title}</a>
+              </h3>
               <p class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4">{stay.data.tagline}</p>
 
               {stay.data.facts.length > 0 && (
@@ -176,8 +178,21 @@ const hero = (await getEntry('hero', 'default'))!.data;
                   </span>
                 </div>
               )}
+
+              <div class="relative z-10 mt-5 flex flex-wrap items-center gap-4">
+                <a
+                  href={`/stays/${stay.data.slug}#book`}
+                  class="no-underline inline-flex items-center gap-2 bg-[var(--color-ember)] hover:bg-[var(--color-link-hover)] text-white font-semibold px-4 py-2.5 rounded-xl transition-colors text-sm"
+                  id={`stay-card-cta-${stay.data.slug}`}
+                >
+                  Check availability & book
+                </a>
+                <a href={`/stays/${stay.data.slug}`} class="relative z-10 text-sm font-medium text-[var(--color-ember)] hover:underline">
+                  View this stay →
+                </a>
+              </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </div>
@@ -187,14 +202,10 @@ const hero = (await getEntry('hero', 'default'))!.data;
   <section id="hosts" class="py-16 sm:py-20 bg-[var(--color-hairline)]/30 dark:bg-[var(--color-stone-grey)]/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <!-- Photo placeholder: real candid shot of Holly & Julian with Rocket and Luna
-             on the deck, Remarkables behind, to replace this before launch. -->
-        <div class="order-2 lg:order-1">
-          <div class="aspect-[4/5] rounded-2xl border-2 border-dashed border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] bg-[var(--color-hairline)]/50 dark:bg-[var(--color-stone-grey)]/20 flex flex-col items-center justify-center text-center p-8">
-            <span class="text-4xl mb-3" aria-hidden="true">📷</span>
-            <p class="text-sm font-semibold text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">Photo coming soon</p>
-            <p class="text-xs text-[var(--color-stone-grey)]/70 dark:text-[var(--color-stone)]/70 mt-1 max-w-[16rem]">{hostsSection!.data.photoAlt}</p>
-          </div>
+        <!-- Stopgap: the deck view, until a candid shot of Holly & Julian with
+             Rocket and Luna is ready to replace it. -->
+        <div class="order-2 lg:order-1 rounded-2xl overflow-hidden shadow-sm aspect-[4/5]">
+          <Image src={deckPhoto} alt={hostsSection!.data.photoAlt} widths={[480, 768, 1024]} sizes="(max-width: 1024px) 100vw, 560px" class="w-full h-full object-cover" />
         </div>
 
         <div class="order-1 lg:order-2">
@@ -220,18 +231,18 @@ const hero = (await getEntry('hero', 'default'))!.data;
   </section>
 
   <!-- Meet Rocket & Luna -->
-  <section id="dogs" class="py-16 sm:py-20 bg-[var(--color-hairline)]/30 dark:bg-[var(--color-stone-grey)]/10">
+  <section id="dogs" class="py-16 sm:py-20">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div class="rounded-2xl overflow-hidden shadow-sm order-2 lg:order-1">
-          <Image src={dogPhoto} alt={dogsSection!.data.photoAlt} widths={[480, 768, 1024]} sizes="(max-width: 1024px) 100vw, 560px" class="w-full h-full object-cover" />
-        </div>
-        <div class="order-1 lg:order-2">
-          <span class="badge badge-forest mb-3">{dogsSection!.data.badge}</span>
+        <div class="order-1">
+          <span class="badge badge-gold mb-3">{dogsSection!.data.badge}</span>
           <h2 class="text-3xl font-medium mb-4">{dogsSection!.data.heading}</h2>
           <div class={homeProse}>
             <DogsContent />
           </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-sm order-2">
+          <Image src={dogPhoto} alt={dogsSection!.data.photoAlt} widths={[480, 768, 1024]} sizes="(max-width: 1024px) 100vw, 560px" class="w-full h-full object-cover" />
         </div>
       </div>
 
@@ -254,10 +265,10 @@ const hero = (await getEntry('hero', 'default'))!.data;
           <span class="badge badge-gold mb-3">🔥 Add-on</span>
           <h2 class="text-3xl sm:text-4xl font-medium mb-4 !text-[var(--color-cream)]">Wood-fired hot tub, under the Southern sky</h2>
           <p class="text-lg text-[var(--color-cream)]/85 leading-relaxed mb-4">
-            Book an evening in our wood-fired hot tub under the Southern sky. We light the fire, manage the temperature, and leave the stars to do the rest. Sessions run about 1.5 hours, and the 9pm slot catches the sunset fading over The Remarkables.
+            We light the fire and get the tub to temperature (37 to 42 degrees), show you how to keep it where you like it, then close our blinds and leave you to it.
           </p>
           <p class="text-[var(--color-cream)]/70 text-sm leading-relaxed mb-6">
-            Up to 4 people. Bookable as an add-on when you book direct, with pricing on request. Swimwear required; please shower before use. Add-ons like this are easiest to arrange when you book directly with us.
+            Up to 4 people. We heat the tub to order, so pricing and availability depend on the day, ask us when you enquire. Swimwear required; please shower before use.
           </p>
           <a href="/contact" class="inline-flex items-center gap-2 bg-white text-[var(--color-graphite)] font-semibold px-6 py-3 rounded-xl hover:bg-[var(--color-hairline)] transition-all duration-200">
             Ask about the hot tub
@@ -308,7 +319,7 @@ const hero = (await getEntry('hero', 'default'))!.data;
       <div class="text-center mb-10">
         <h2 class="text-3xl font-medium mb-4">Location & getting around</h2>
         <p class="text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] max-w-xl mx-auto">
-          We're in Hanley's Farm, at the Jack's Point end, under The Remarkables.
+          We're in Hanley's Farm, at the Jack's Point end, under The Remarkables. A car is strongly recommended. The nearest bus stop is about a 10-minute walk, but services are limited.
         </p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -323,7 +334,7 @@ const hero = (await getEntry('hero', 'default'))!.data;
         ))}
       </div>
       <p class="text-center text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mt-8">
-        Full address, parking and arrival directions are sent as soon as you book.
+        Full address, parking and arrival directions are sent as soon as you book. See our guides for <a href="/guides/eat-and-drink" class="text-[var(--color-ember)] font-medium hover:underline">where we eat</a> and <a href="/guides/things-to-do" class="text-[var(--color-ember)] font-medium hover:underline">what we do</a> nearby.
       </p>
 
       <!-- Host tips -->
@@ -345,13 +356,13 @@ const hero = (await getEntry('hero', 'default'))!.data;
   </section>
 
   <!-- Why Book Direct -->
-  <section class="py-16 sm:py-20 bg-gradient-to-b from-[var(--color-ember)]/5 to-transparent dark:from-[var(--color-ember)]/10">
+  <section id="why-book-direct" class="py-16 sm:py-20 bg-gradient-to-b from-[var(--color-ember)]/5 to-transparent dark:from-[var(--color-ember)]/10 scroll-mt-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mx-auto text-center mb-10">
         <span class="badge badge-ember mb-3">Save when you book direct</span>
         <h2 class="text-3xl font-medium mb-4">Why book with us?</h2>
         <p class="text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">
-          We're on Airbnb too, but booking directly means a better deal and a more personal experience.
+          We're on Airbnb too, but booking directly means a better deal and dealing with us, not a platform.
         </p>
       </div>
 
@@ -375,7 +386,7 @@ const hero = (await getEntry('hero', 'default'))!.data;
       </div>
 
       <div class="max-w-2xl mx-auto">
-        <p class="text-center text-sm font-semibold uppercase tracking-widest text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4">And the personal extras, only easy direct</p>
+        <p class="text-center text-sm font-semibold uppercase tracking-widest text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4">Direct-booking extras</p>
         <ul class="space-y-2">
           {bookDirectExtras.map((extra) => (
             <li class="flex items-start gap-3 text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">
@@ -470,6 +481,14 @@ const hero = (await getEntry('hero', 'default'))!.data;
   </script>
 
   <style>
+    /* Whole stay card stays clickable via this stretched link, while the
+       "Check availability & book" button and "View this stay" link sit
+       above it (relative z-10) so they remain independently tappable. */
+    .stretched-link::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
     .section-nav.is-visible {
       transform: translateY(0);
       opacity: 1;

@@ -4,18 +4,14 @@ interface Props {
   tier: 'proven' | 'research';
   meta?: string[];
   note: string;
-  todo?: string;
 }
 
-const { name, tier, meta = [], note, todo } = Astro.props;
+const { name, meta = [], note } = Astro.props;
 ---
 
 <div class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-snow)] p-4">
   <div class="flex flex-wrap items-center gap-2 mb-1.5">
     <span class="font-serif text-lg text-[var(--color-graphite)]">{name}</span>
-    {tier === 'research' && (
-      <span class="badge badge-gold">Research · verify before publish</span>
-    )}
   </div>
   {meta.length > 0 && (
     <ul class="flex flex-wrap gap-2 mb-2">
@@ -27,9 +23,4 @@ const { name, tier, meta = [], note, todo } = Astro.props;
   <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">
     <span class="font-semibold text-[var(--color-graphite)]">Host note:</span> {note}
   </p>
-  {todo && (
-    <p class="text-xs text-[var(--color-sun-gold-dark)] mt-2 font-semibold">
-      Draft, awaiting host edit: {todo}
-    </p>
-  )}
 </div>

@@ -1,0 +1,129 @@
+---
+// TV mode: a 10-foot ambient display for a TV browser or cast tab in the
+// stay itself. Dark, huge type, zero interaction required. Carries wifi,
+// so it lives behind the same token rules as the rest of /stay/{token}/*:
+// noindex, unlisted, never linked from the public site.
+import { env } from 'cloudflare:workers';
+import { getCollection } from 'astro:content';
+import winterData from '../../../data/winter-conditions.json';
+// The svg-only browser build avoids the Node-only fs/canvas paths in the
+// package's default entry, which don't exist in the Workers runtime.
+import QRCode from 'qrcode/lib/browser.js';
+
+export const prerender = false;
+
+const { token } = Astro.params;
+
+if (!token) {
+  return new Response('Not Found', { status: 404 });
+}
+
+let stay: { room: string; checkIn: string; checkOut: string } | null = null;
+const db = env.DB;
+if (db) {
+  try {
+    const { results } = await db.prepare('SELECT * FROM stays WHERE token = ?').bind(token).all();
+    if (results && results.length > 0) {
+      const row = results[0] as any;
+      stay = { room: row.room, checkIn: row.check_in, checkOut: row.check_out };
+    }
+  } catch (err) {
+    console.error('D1 database query failed: ', err);
+  }
+}
+
+if (!stay && token === 'demo') {
+  stay = {
+    room: 'two-bedroom-unit',
+    checkIn: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    checkOut: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+  };
+}
+
+if (!stay) {
+  return new Response('Invalid stay token', { status: 404 });
+}
+
+const now = new Date();
+const checkInDate = new Date(stay.checkIn);
+const checkOutDate = new Date(stay.checkOut);
+const accessStart = new Date(checkInDate);
+accessStart.setDate(accessStart.getDate() - 3);
+const accessEnd = new Date(checkOutDate);
+accessEnd.setDate(accessEnd.getDate() + 7);
+accessEnd.setHours(23, 59, 59, 999);
+
+if (now < accessStart || now > accessEnd) {
+  return new Response('Not Found', { status: 404 });
+}
+
+const stays = await getCollection('stays');
+const stayEntry = stays.find((s) => s.data.slug === stay!.room);
+const stayTitle = stayEntry?.data.title ?? 'your stay';
+
+// WiFi network name is real (from the house manual); the password is
+// handed to guests in the welcome folder, not stored in the repo or D1, so
+// TV mode points at it rather than inventing a value.
+const wifiNetwork = 'RemarkableBnB';
+
+const manualUrl = `${Astro.url.origin}/stay/${token}/manual`;
+const qrSvg = await QRCode.toString(manualUrl, { type: 'svg', margin: 1, width: 320, color: { dark: '#1a1714', light: '#f0e6d8' } });
+
+const STALE_AFTER_MS = 48 * 60 * 60 * 1000;
+const generatedAt = new Date(winterData.generatedAt);
+const isWeatherStale = !winterData.generatedAt || Date.now() - generatedAt.getTime() > STALE_AFTER_MS;
+const fields = winterData.fields ?? [];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome, {stayTitle} | Remarkable BnB</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style is:global>
+    @import '../../../styles/global.css';
+  </style>
+</head>
+<body class="bg-[var(--color-schist-ink)] text-[var(--color-cream)] min-h-screen flex items-center justify-center p-10">
+  <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-3 gap-10 items-center">
+    <div class="lg:col-span-2 space-y-8">
+      <div>
+        <p class="text-2xl sm:text-3xl text-[var(--color-cream-muted)] mb-2">Welcome to</p>
+        <h1 class="text-5xl sm:text-6xl font-serif !text-[var(--color-cream)]">{stayTitle}</h1>
+        <p class="text-2xl text-[var(--color-cream-muted)] mt-3">Holly & Julian, your hosts</p>
+      </div>
+
+      <div class="rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-8">
+        <p class="text-lg uppercase tracking-widest text-[var(--color-cream-muted)] mb-2">WiFi</p>
+        <p class="text-4xl sm:text-5xl font-semibold">{wifiNetwork}</p>
+        <p class="text-xl text-[var(--color-cream-muted)] mt-2">Password: on the card in your welcome folder</p>
+      </div>
+
+      <div class="rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-8">
+        <p class="text-lg uppercase tracking-widest text-[var(--color-cream-muted)] mb-3">❄️ Winter conditions</p>
+        {!isWeatherStale && fields.length > 0 ? (
+          <div class="space-y-3">
+            {fields.map((field) => (
+              <div class="flex flex-wrap items-baseline gap-x-4">
+                <span class="text-2xl font-semibold w-40 flex-shrink-0">{field.name}</span>
+                <span class="text-xl text-[var(--color-cream-muted)]">
+                  {field.facts.find((f) => f.id === 'snow-base' && f.ok)?.value ?? field.status}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="text-xl text-[var(--color-cream-muted)]">Live figures are due to refresh, check theremarkables.co.nz for the latest.</p>
+        )}
+      </div>
+    </div>
+
+    <div class="rounded-2xl bg-[var(--color-cream)] p-6 text-center">
+      <div set:html={qrSvg} class="mx-auto" />
+      <p class="text-[var(--color-schist-ink)] text-lg font-semibold mt-3">Scan for the full guest manual</p>
+    </div>
+  </div>
+</body>
+</html>
