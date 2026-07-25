@@ -1,7 +1,7 @@
 name: Refresh winter conditions data
 
-# Daily snapshot for the homepage winter conditions panel. This site is a
-# single Cloudflare Worker (wrangler deploy, no Pages git integration), so
+# Snapshot for the homepage winter conditions panel. This site is a single
+# Cloudflare Worker (wrangler deploy, no Pages git integration), so
 # refreshing the data requires an actual `wrangler deploy`, not just a
 # commit. If the fetch fails, fetch-weather.js still writes an all-fallback
 # snapshot, so the panel degrades to plain source links rather than showing
@@ -9,9 +9,16 @@ name: Refresh winter conditions data
 #
 # Requires a CLOUDFLARE_API_TOKEN repo secret (Workers Scripts: Edit
 # permission) for the deploy step to run.
+#
+# Schedule: half-hourly through NZ mornings, hourly the rest of the day.
+# GitHub Actions cron is UTC-only and NZ shifts between NZST (UTC+12) and
+# NZDT (UTC+13), so the 18:00-21:00 UTC block below covers a 7-9am local
+# window plus a bit of drift either side depending on daylight saving,
+# rather than trying to track the DST switch dates exactly.
 on:
   schedule:
-    - cron: '0 17 * * *' # ~5am NZST / 6am NZDT
+    - cron: '0,30 18-21 * * *'   # half-hourly, ~7-9am NZ (both NZST/NZDT)
+    - cron: '0 0-17,22-23 * * *' # hourly the rest of the day
   workflow_dispatch: {}
 
 permissions:
