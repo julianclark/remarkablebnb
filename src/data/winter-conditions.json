@@ -1,86 +1,122 @@
 {
-  "generatedAt": "2026-07-25T06:15:58.705Z",
-  "items": [
+  "generatedAt": "2026-07-25T06:26:15.632Z",
+  "fields": [
     {
-      "id": "snowfall-depth",
-      "label": "The Remarkables: last snowfall & current base",
-      "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
-      "linkLabel": "The Remarkables snow report",
-      "ok": true,
-      "value": "Base 15 - 80cm · 5cm in the last 24 hours"
+      "id": "remarkables",
+      "name": "The Remarkables",
+      "status": "Open",
+      "facts": [
+        {
+          "id": "snow-base",
+          "label": "Snow base",
+          "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
+          "linkLabel": "The Remarkables snow report",
+          "ok": true,
+          "value": "4-12cm · 16cm in the last 7 days"
+        },
+        {
+          "id": "chain-road",
+          "label": "Chains / road",
+          "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
+          "linkLabel": "The Remarkables snow report",
+          "ok": true,
+          "value": "Road open · Chains: Please Carry Chains"
+        },
+        {
+          "id": "temp",
+          "label": "Temperature",
+          "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
+          "linkLabel": "The Remarkables snow report",
+          "ok": true,
+          "value": "-9°C · Snow"
+        },
+        {
+          "id": "forecast",
+          "label": "3-day forecast",
+          "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
+          "linkLabel": "The Remarkables snow report",
+          "ok": true,
+          "value": "Today: -11° to -8°, snow · Tomorrow: -10° to -5°, fine · Day after: -5° to -1°, snow"
+        }
+      ]
     },
     {
-      "id": "chain-road",
-      "label": "The Remarkables: chain / road status",
-      "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
-      "linkLabel": "The Remarkables snow report",
-      "ok": true,
-      "value": "Road open · Chains: Chains Carried"
+      "id": "coronet",
+      "name": "Coronet Peak",
+      "status": "Open",
+      "facts": [
+        {
+          "id": "snow-base",
+          "label": "Snow base",
+          "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
+          "linkLabel": "Coronet Peak snow report",
+          "ok": true,
+          "value": "20-30cm · 11cm in the last 7 days"
+        },
+        {
+          "id": "chain-road",
+          "label": "Chains / road",
+          "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
+          "linkLabel": "Coronet Peak snow report",
+          "ok": true,
+          "value": "Road open · Chains: Required on 2WD Vechicles"
+        },
+        {
+          "id": "temp",
+          "label": "Temperature",
+          "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
+          "linkLabel": "Coronet Peak snow report",
+          "ok": true,
+          "value": "-5°C · Snow"
+        },
+        {
+          "id": "forecast",
+          "label": "3-day forecast",
+          "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
+          "linkLabel": "Coronet Peak snow report",
+          "ok": true,
+          "value": "Today: -8° to -6°, snow · Tomorrow: -7° to -2°, fine · Day after: -3° to 2°, fine"
+        }
+      ]
     },
     {
-      "id": "remarkables-temp",
-      "label": "The Remarkables: current temperature",
-      "sourceUrl": "https://open-meteo.com/",
-      "linkLabel": "Weather data by Open-Meteo.com",
-      "ok": true,
-      "value": "-8°C · Clear"
-    },
-    {
-      "id": "remarkables-forecast",
-      "label": "The Remarkables: 3-day forecast",
-      "sourceUrl": "https://open-meteo.com/",
-      "linkLabel": "Weather data by Open-Meteo.com",
-      "ok": true,
-      "value": "Today: -8° to -4°, heavy snow showers · Tomorrow: -8° to -3°, overcast · Day after: -7° to -2°, overcast"
-    },
-    {
-      "id": "coronet-temp",
-      "label": "Coronet Peak: current temperature",
-      "sourceUrl": "https://open-meteo.com/",
-      "linkLabel": "Weather data by Open-Meteo.com",
-      "ok": true,
-      "value": "-10°C · Clear"
-    },
-    {
-      "id": "coronet-forecast",
-      "label": "Coronet Peak: 3-day forecast",
-      "sourceUrl": "https://open-meteo.com/",
-      "linkLabel": "Weather data by Open-Meteo.com",
-      "ok": true,
-      "value": "Today: -13° to -3°, heavy snow showers · Tomorrow: -14° to -1°, overcast · Day after: -13° to 1°, overcast"
-    },
-    {
-      "id": "cardrona-temp",
-      "label": "Cardrona: current temperature",
-      "sourceUrl": "https://open-meteo.com/",
-      "linkLabel": "Weather data by Open-Meteo.com",
-      "ok": true,
-      "value": "-13°C · Clear"
-    },
-    {
-      "id": "cardrona-forecast",
-      "label": "Cardrona: 3-day forecast",
-      "sourceUrl": "https://open-meteo.com/",
-      "linkLabel": "Weather data by Open-Meteo.com",
-      "ok": true,
-      "value": "Today: -14° to -6°, heavy snow showers · Tomorrow: -13° to -5°, overcast · Day after: -10° to -2°, overcast"
-    }
-  ],
-  "links": [
-    {
-      "id": "mountainwatch",
-      "label": "Mountainwatch snow forecast",
-      "sourceUrl": "https://www.mountainwatch.com/new-zealand/the-remarkables/weather/"
-    },
-    {
-      "id": "coronet-report",
-      "label": "Coronet Peak snow report",
-      "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/"
-    },
-    {
-      "id": "cardrona-report",
-      "label": "Cardrona snow report",
-      "sourceUrl": "https://cardrona-treblecone.com/snow-report"
+      "id": "cardrona",
+      "name": "Cardrona",
+      "status": "Closed",
+      "facts": [
+        {
+          "id": "snow-base",
+          "label": "Snow base",
+          "sourceUrl": "https://cardrona-treblecone.com/snow-report",
+          "linkLabel": "Cardrona snow report",
+          "ok": true,
+          "value": "40cm"
+        },
+        {
+          "id": "chain-road",
+          "label": "Chains / road",
+          "sourceUrl": "https://cardrona-treblecone.com/snow-report",
+          "linkLabel": "Cardrona snow report",
+          "ok": true,
+          "value": "Road: chains on 2WD · Chains from Chain Bay 1"
+        },
+        {
+          "id": "temp",
+          "label": "Temperature",
+          "sourceUrl": "https://cardrona-treblecone.com/snow-report",
+          "linkLabel": "Cardrona snow report",
+          "ok": true,
+          "value": "-13°C · Clear"
+        },
+        {
+          "id": "forecast",
+          "label": "3-day forecast",
+          "sourceUrl": "https://cardrona-treblecone.com/snow-report",
+          "linkLabel": "Cardrona snow report",
+          "ok": true,
+          "value": "Today: -14° to -6°, heavy snow showers · Tomorrow: -13° to -5°, overcast · Day after: -10° to -2°, overcast"
+        }
+      ]
     }
   ]
 }
