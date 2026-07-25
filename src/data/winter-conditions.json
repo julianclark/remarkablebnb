@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T11:15:14.716Z",
+  "generatedAt": "2026-07-25T19:31:38.808Z",
   "fields": [
     {
       "id": "remarkables",
@@ -12,7 +12,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Snow base 15 - 80cm · 5cm in the last 24 hours"
+          "value": "Snow base 15 - 80cm"
         },
         {
           "id": "chain-road",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-4.3°C · Snow"
+          "value": "-4°C · Fine"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Sat: -11° to -8°, snow · Sun: -10° to -5°, fine · Mon: -5° to -1°, few showers"
+          "value": "Sun: -10° to -6°, fine · Mon: -4° to -1°, fine · Tue: -5° to 0°, partly cloudy"
         }
       ]
     },
@@ -59,7 +59,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Road open · Chains: Required on 2WD vehicles"
+          "value": "Road open · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "-5°C · snow"
+          "value": "-2°C · fine"
         },
         {
           "id": "forecast",
@@ -75,14 +75,14 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -8° to -6°, few showers · Tomorrow: -7° to -2°, fine · Day after: -3° to 2°, fine"
+          "value": "Today: -8° to -4°, fine · Tomorrow: -2° to 1°, fine · Day after: -3° to 2°, part cloudy"
         }
       ]
     },
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Road: chains on 2WD · Chains from Chain Bay 1"
+          "value": "Road: chain free · Chains from Chain Bay 1"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-13°C · Clear"
+          "value": "-10°C · Mostly clear"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -13° to -6°, heavy snow showers · Tomorrow: -13° to -5°, partly cloudy · Day after: -9° to -2°, overcast"
+          "value": "Today: -13° to -4°, overcast · Tomorrow: -9° to -2°, overcast · Day after: -5° to -1°, overcast"
         }
       ]
     }

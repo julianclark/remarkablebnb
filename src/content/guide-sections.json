@@ -6,9 +6,9 @@
     "title": "Closest to us: Jack's Point and Hanley's Farm",
     "intro": "",
     "entries": [
-      { "name": "Jack's Point Golf Clubhouse", "tier": "proven", "meta": ["Jack's Point", "Walking distance", "Coffee, breakfast, an hour with a view"], "note": "Our nearest good coffee and a lovely place to spend an hour or two with a stunning view." },
-      { "name": "Jack's Point food trucks", "tier": "proven", "meta": ["Jack's Point", "A few minutes away", "Easy dinner after a travel day"], "note": "Zero-effort dinner close to the house. Our default suggestion for tired late arrivals." },
-      { "name": "The Farmhouse", "tier": "proven", "meta": ["Ayrburn", "Families"], "note": "A family favourite of ours.", "todo": "Confirm exact venue name and location" }
+      { "name": "Jack's Point Golf Clubhouse", "tier": "proven", "meta": ["Jack's Point", "Walking distance", "Coffee, breakfast, an hour with a view"], "note": "Our nearest good coffee and a lovely place to spend an hour or two with a stunning view. They do meals too, though it's a limited menu and they close early: around 6 or 7pm most nights, with a locals night on Fridays running to about 8pm." },
+      { "name": "Jack's Point food trucks", "tier": "proven", "meta": ["Hanley's Farm and Jack's Point", "A few minutes"], "note": "Low-effort dinner close to the house and our default suggestion for tired late arrivals. They're around most days, not every day, so do a quick Facebook search for the current Hanley's Farm food trucks.", "website": { "href": "https://www.facebook.com/Hanleysfarm/", "label": "Hanley's Farm Facebook" } },
+      { "name": "The Farmhouse", "tier": "proven", "meta": ["Hanley's Farm", "A few minutes", "Cafe brunch and a few groceries"], "note": "The cafe at the other end of the suburb. A good cafe with a small selection of groceries, and they can pour you a beer at the end of the day." }
     ]
   },
   {
@@ -18,9 +18,11 @@
     "title": "Frankton, Five Mile and Remarkables Park",
     "intro": "",
     "entries": [
-      { "name": "Frankton Alehouse", "tier": "proven", "meta": ["Frankton", "8 to 10 min", "Dinner without going into town"], "note": "One of our regular Frankton picks." },
-      { "name": "No.8 Noodle House", "tier": "proven", "meta": ["Frankton", "8 to 10 min", "Noodles"], "note": "Our go-to for noodles." },
-      { "name": "Boatshed", "tier": "proven", "meta": ["Frankton", "8 to 10 min", "Breakfast"], "note": "Our breakfast pick on this side of town." }
+      { "name": "Frankton Alehouse", "tier": "proven", "meta": ["Frankton", "8 to 10 min", "Chinese"], "note": "To be clear, it's a Chinese restaurant, and a favourite Chinese restaurant in the area. It's pretty good." },
+      { "name": "No.8 Noodle House", "tier": "proven", "meta": ["Frankton", "8 to 10 min", "Chinese noodles"], "note": "Our go-to for Chinese noodles." },
+      { "name": "Boatshed", "tier": "proven", "meta": ["Frankton", "8 to 10 min", "Breakfast and brunch"], "note": "Our breakfast pick on this side of town. There's often a queue, so put your name down about half an hour before you want to eat, or phone ahead." },
+      { "name": "Podium", "tier": "proven", "meta": ["Five Mile, at the Sudima hotel", "An underrated dinner"], "note": "Quite underrated. It's attached to the Sudima hotel at Five Mile, and being a hotel restaurant there's a lot of good food but it's often quiet, which means it shows up on First Table more than most." },
+      { "name": "Wakatipu Grill", "tier": "proven", "meta": ["Kelvin Heights, at the Hilton", "Waterfront dining on this side of the city"], "note": "At the Hilton in Kelvin Heights, between us and Frankton. Nice dining on the waterfront without going into town.", "todo": "Confirm drive time from Hanley's Farm" }
     ]
   },
   {
@@ -30,12 +32,8 @@
     "title": "Queenstown CBD",
     "intro": "",
     "entries": [
-      { "name": "Fergburger", "tier": "proven", "meta": ["Queenstown CBD", "20 to 25 min", "The classic Queenstown feed"], "note": "The icon, and it earns it. There are non-beef options too." },
-      { "name": "Little India", "tier": "proven", "meta": ["Queenstown CBD", "20 to 25 min", "Curry in town"], "note": "Our curry pick in the centre of town." },
-      { "name": "Wakatipu Grill", "tier": "proven", "meta": ["Queenstown CBD", "20 to 25 min", "A nicer dinner in town"], "note": "Where we point people for a nicer dinner in town." },
-      { "name": "The Cow", "tier": "research", "meta": ["Queenstown CBD", "20 to 25 min", "Guests chasing a hearty meal"], "note": "On our list from research and guest chat; we have not eaten here ourselves yet.", "todo": "Confirm current menu and opening days" },
-      { "name": "The Bunker", "tier": "research", "meta": ["Queenstown CBD", "20 to 25 min", "A special dinner"], "note": "On our list from research; we have not eaten here ourselves yet.", "todo": "Confirm roast availability and days" },
-      { "name": "Public Kitchen & Bar", "tier": "research", "meta": ["Queenstown CBD", "20 to 25 min", "Waterfront dining"], "note": "On our list from research; we have not eaten here ourselves yet.", "todo": "Confirm roast availability and days" }
+      { "name": "Fergburger", "tier": "proven", "meta": ["Queenstown CBD", "20 to 25 min", "The classic Queenstown feed"], "note": "They are good burgers. Julian's a burger snob and reckons he can make a better one himself, but everyone will tell you that in Queenstown you \"have to get a Fergburger\"." },
+      { "name": "Bunker", "tier": "proven", "meta": ["Queenstown CBD", "20 to 25 min", "A special dinner"], "note": "We've been before, and it's our pick for a special dinner in town." }
     ]
   },
   {
@@ -45,12 +43,11 @@
     "title": "Arrowtown and Gibbston",
     "intro": "",
     "entries": [
-      { "name": "Ayrburn precinct", "tier": "proven", "meta": ["Ayrburn", "Making a day of it"], "note": "Several venues in one spot; easy to make a day of it." },
-      { "name": "Mantra", "tier": "proven", "meta": ["Arrowtown", "Indian"], "note": "Our favourite Indian. Pairs well with an Arrowtown wander." },
-      { "name": "Amisfield", "tier": "proven", "meta": ["Gibbston", "A big occasion"], "note": "For a big occasion. Book well ahead." },
-      { "name": "Rosewood Matakauri", "tier": "proven", "meta": [], "note": "One we have recommended before.", "todo": "Confirm current name and offering" },
-      { "name": "Gibbston Valley wineries", "tier": "proven", "meta": ["Gibbston", "A wine afternoon"], "note": "Make an afternoon of the Gibbston cellar doors." },
-      { "name": "Cardrona Hotel", "tier": "proven", "meta": ["Cardrona", "Lunch on a Cardrona or Wanaka day"], "note": "The lunch stop on a Cardrona or Wanaka day trip." }
+      { "name": "Ayrburn precinct", "tier": "proven", "meta": ["Ayrburn", "Making a day of it"], "note": "There's a lot here: multiple restaurants, some of it fancy and expensive, plus a golf course. The easy option is the Bakehouse cafe: no booking needed, just rock up for a cafe brunch.", "todo": "Confirm the Ayrburn cafe name (Bakehouse?)" },
+      { "name": "Mantra", "tier": "proven", "meta": ["Arrowtown", "Indian"], "note": "Good Indian in Arrowtown. Pairs well with an Arrowtown wander." },
+      { "name": "Amisfield", "tier": "proven", "meta": ["Gibbston", "A big occasion"], "note": "We highly recommend it. The food is amazing and so is the experience. It is very expensive, so save it for a big occasion and book well ahead.", "website": { "href": "https://amisfield.co.nz/", "label": "Amisfield" } },
+      { "name": "Rosewood Matakauri", "tier": "proven", "meta": ["Fine dining on First Table"], "note": "A fine dining experience that's worth it on First Table, where they appear regularly." },
+      { "name": "Gibbston Valley wineries", "tier": "proven", "meta": ["Gibbston", "A wine afternoon"], "note": "Make an afternoon of the cellar doors. You can self-drive, or take the hop-on hop-off wine bus that loops the wineries; it's on Bookme. There are other tours too, but the hop-on hop-off is enough for starters.", "website": { "href": "https://www.bookme.co.nz/", "label": "Bookme" } }
     ]
   },
   {
@@ -60,18 +57,8 @@
     "title": "Quick and cheap",
     "intro": "",
     "entries": [
-      { "name": "Sangas", "tier": "proven", "meta": ["Pies"], "note": "Great pies. That is the whole note." },
-      { "name": "Queenstown Arts & Crafts Market", "tier": "proven", "meta": ["Earnslaw Park, Steamer Wharf", "20 to 25 min", "Saturday browsing and food stalls"], "note": "Saturdays by the lake.", "todo": "Confirm seasonal hours" }
-    ]
-  },
-  {
-    "id": "eat-6-family",
-    "guide": "eat-and-drink",
-    "order": 6,
-    "title": "Family-friendly",
-    "intro": "See also The Farmhouse and Jack's Point food trucks, above.",
-    "entries": [
-      { "name": "Fergburger takeaway by the lake", "tier": "proven", "meta": ["Queenstown CBD", "20 to 25 min", "Kids and queues"], "note": "Grab takeaway and eat by the lake; easier than a restaurant table with kids." }
+      { "name": "Sangas", "tier": "proven", "meta": ["Cromwell (industrial area)", "Pies, if you're passing through Cromwell"], "note": "Amazing pies, but the shop is in Cromwell's industrial area, so realistically it's a Monday to Friday, middle-of-the-day stop. You can buy Sangas pies elsewhere, but they're just not as good as fresh from the source." },
+      { "name": "Remarkables Market", "tier": "proven", "meta": ["Frankton, the big red barn near Remarkables Park", "8 to 10 min", "Saturday browsing and food stalls"], "note": "Saturdays at the big red barn near Remarkables Park.", "todo": "Confirm seasonal dates and hours", "website": { "href": "https://remarkablesmarket.com/", "label": "Remarkables Market" } }
     ]
   },
   {
@@ -81,11 +68,12 @@
     "title": "Walks from our door (free)",
     "intro": "",
     "entries": [
-      { "name": "Jack's Point Track", "tier": "proven", "meta": ["Free", "Trails and sunsets"], "note": "Straight from the neighbourhood. The trails and sunsets here get name-checked in our guest reviews." },
-      { "name": "Lake Wakatipu dog walks with us", "tier": "proven", "meta": ["Free", "About 45 min", "Dog lovers"], "note": "Join us and the dogs for a lake walk. Guests love it, and so do Rocket and Luna." },
-      { "name": "Neighbourhood loop, the beach and Jardine Park", "tier": "proven", "meta": ["Free", "Young families"], "note": "An easy loop for young families." },
-      { "name": "Stargazing from the hammock spot", "tier": "proven", "meta": ["Free", "Clear nights"], "note": "On a clear night, head for the hammock." },
-      { "name": "Homestead Bay", "tier": "proven", "meta": ["Free", "A quiet stretch of lakefront"], "note": "A quiet stretch of lakefront close by." }
+      { "name": "Jack's Point Track", "tier": "proven", "meta": ["Free", "5 minutes' walk"], "note": "We often walk Rocket and Luna along parts of this track, about five minutes' walk from the house. Proper lake-and-mountain scenery without driving into town, and some sections are fenced and dog friendly." },
+      { "name": "Lake Wakatipu dog walk with us", "tier": "proven", "meta": ["Free", "3 to 5 min drive"], "note": "We usually drive the three to five minutes to the lake. If the timing lines up, dog-loving guests are welcome to come along, it feels like part of the household rather than another tourist stop." },
+      { "name": "Hanley's Farm neighbourhood loop", "tier": "proven", "meta": ["Free"], "note": "Good for families, late arrivals, or stretching your legs after a flight. Not a tourist attraction, just easy, safe and from the door." },
+      { "name": "Jardine Park and nearby playgrounds", "tier": "proven", "meta": ["Free", "Young families"], "note": "The practical family option: close, easy, and a good way to let the kids burn energy without turning the day into logistics." },
+      { "name": "Stargazing from the hammock spot", "tier": "proven", "meta": ["Free", "Clear nights"], "note": "At the top of the local playground near our house, up a small hill, three hammocks are stretched into a star shape. On a clear night it's the simple local spot for looking up rather than driving anywhere." },
+      { "name": "Jack's Point Golf Clubhouse", "tier": "proven", "meta": ["Coffee stop"], "note": "Arrived too early, need coffee, need a view? This is our go-to. See the full write-up in our eat and drink guide." }
     ]
   },
   {
@@ -95,60 +83,84 @@
     "title": "Easy wins nearby",
     "intro": "",
     "entries": [
-      { "name": "Lake Hayes Walkway", "tier": "proven", "meta": ["Free", "2 to 3 hours, 8 km loop", "A half-day walk"], "note": "A gentle 8 km loop around the lake." },
-      { "name": "Bob's Cove", "tier": "proven", "meta": ["Free", "A short scenic walk"], "note": "A short walk to a beautiful bit of lake." },
-      { "name": "Tobins Track and Wye Creek", "tier": "proven", "meta": ["Free", "A bit more climb"], "note": "Our moderate options when you want more of a workout." },
-      { "name": "Arrowtown wander", "tier": "proven", "meta": ["Free", "An easy half day"], "note": "Pairs well with lunch at Mantra or Ayrburn." },
-      { "name": "Onsen Hot Pools", "tier": "proven", "meta": ["Rainy days and post-ski recovery"], "note": "Book ahead. Our rainy-day and recovery pick." },
-      { "name": "Buzzstop", "tier": "research", "meta": ["A quirky hour"], "note": "On our list; we have not been ourselves yet.", "todo": "Confirm current offering and hours" }
+      { "name": "Lake Hayes Loop", "tier": "proven", "meta": ["Free", "2 to 3 hours, 8 km loop"], "note": "A loop track around Lake Hayes on the other side of town. Active and scenic without turning into a serious hike." },
+      { "name": "Bob's Cove", "tier": "proven", "meta": ["Free"], "note": "More than a short walk to a pretty bit of lake. The loop up to the viewpoint gives you an amazing 360-degree view. It's become Instagram-popular, so expect people, but it's still worth doing." },
+      { "name": "Arrowtown wander", "tier": "proven", "meta": ["Half day"], "note": "Heritage streets, the river walk, coffee, lunch and shops. Pairs well with Lake Hayes or Ayrburn when you want pretty and relaxed rather than adrenaline." },
+      { "name": "Tobin's Track", "tier": "proven", "meta": ["Moderate to hard"], "note": "A proper uphill walk above Arrowtown. Good if you want to earn the view back over the town." },
+      { "name": "Wye Creek", "tier": "proven", "meta": ["More adventurous"], "note": "More adventurous, with great views. Best for guests who are fit, have decent footwear and actually want a climb." },
+      { "name": "Buzzstop and Country Lane", "tier": "proven", "meta": ["Country Lane area"], "note": "A cafe with honey options, beer and more going on than just a tasting stop, in the Country Lane area with boutique shops and markets nearby. A gentle local browse rather than a must-do." }
     ]
   },
   {
-    "id": "do-3-winter",
+    "id": "do-3-scenic",
     "guide": "things-to-do",
     "order": 3,
-    "title": "On the mountain (winter)",
+    "title": "Scenic and relaxed",
     "intro": "",
-    "entries": [],
-    "linkOut": { "href": "/guides/snow", "label": "See our Snow Access Guide" }
+    "entries": [
+      { "name": "Onsen Hot Pools", "tier": "proven", "meta": ["Book well ahead"], "note": "Worth doing if you can get a booking, and \"book ahead\" really means well ahead.", "website": { "href": "https://www.onsen.co.nz/", "label": "Onsen Hot Pools" } },
+      { "name": "Skyline Gondola and luge", "tier": "proven", "meta": ["Go on a clear day"], "note": "The gondola is about the view, so go when you can actually see something. The luge is outdoors and good fun with friends or family." }
+    ]
   },
   {
-    "id": "do-4-daytrips",
+    "id": "do-4-winter",
     "guide": "things-to-do",
     "order": 4,
+    "title": "Winter and mountain days",
+    "intro": "",
+    "entries": [
+      { "name": "The Remarkables", "tier": "proven", "meta": ["Closest ski field"], "note": "Close to the access road, warm house, and Julian can give practical advice on timing, chains, lessons and whether the day looks worth it." },
+      { "name": "Coronet Peak", "tier": "proven", "meta": ["Further, still doable"], "note": "Further but doable, good for variety and night skiing when available." },
+      { "name": "Cardrona ski field", "tier": "proven", "meta": ["Full-day mission"], "note": "One of NZ's biggest fields and a genuinely amazing mountain, more of a full-day mission, works well as part of a Wanaka day over the Crown Range." },
+      { "name": "Lake Alta", "tier": "proven", "meta": ["Alpine, check conditions"], "note": "Don't oversell it as casual. It's alpine, weather matters, check conditions before heading up." }
+    ],
+    "linkOut": { "href": "/guides/snow", "label": "Chains, gear and lesson advice: see our Snow Access Guide" }
+  },
+  {
+    "id": "do-5-daytrips",
+    "guide": "things-to-do",
+    "order": 5,
     "title": "Big day trips",
     "intro": "",
     "entries": [
-      { "name": "Milford Sound", "tier": "proven", "meta": ["Full day"], "note": "A big day and worth it. Book the Frankton pickup and take waterproofs." },
-      { "name": "Doubtful Sound overnight cruise", "tier": "proven", "meta": ["Overnight"], "note": "We recommend the overnight cruise if you can spare the night." },
-      { "name": "Glenorchy and the Routeburn", "tier": "proven", "meta": ["Full day"], "note": "Drive the Glenorchy road and walk a section of the Routeburn." },
-      { "name": "Wanaka and Cardrona", "tier": "proven", "meta": ["Full day"], "note": "Hotel lunch plus the sightseeing chairlift makes a great day loop." },
-      { "name": "Te Anau glowworm caves", "tier": "proven", "meta": ["Full day"], "note": "Worth building into a Fiordland day." },
-      { "name": "TSS Earnslaw and Walter Peak", "tier": "proven", "meta": [], "note": "The steamship across the lake to Walter Peak." },
-      { "name": "Dart River jet boat", "tier": "proven", "meta": [], "note": "Jet boating up the Dart from Glenorchy." }
+      { "name": "Milford Sound", "tier": "proven", "meta": ["Full day"], "note": "A big day, but it feels different from everything else. Choose the Frankton pickup, take proper waterproofs, and assume you'll get wet. It's one of the wettest parts of New Zealand, so rain is not a failed Milford day. It's kind of the point." },
+      { "name": "Doubtful Sound overnight cruise", "tier": "proven", "meta": ["Overnight"], "note": "Slower, bigger and less rushed than a Milford day trip. The special-trip version for guests with time." },
+      { "name": "Glenorchy", "tier": "proven", "meta": ["Full day"], "note": "One of the easiest spectacular days. The drive is part of it, so take your time and stop when the lake tells you to." },
+      { "name": "Routeburn day walk", "tier": "proven", "meta": ["Full day, active"], "note": "A proper day out for active guests. Beautiful, but it needs sensible shoes, weather awareness and enough time." },
+      { "name": "Te Anau glowworm caves", "tier": "proven", "meta": ["Full day"], "note": "Good if you're already heading toward Te Anau or Milford, a nice option for planners, not a tired-day squeeze." },
+      { "name": "Wanaka and Cardrona day loop", "tier": "proven", "meta": ["Full day"], "note": "Cardrona sits on the Crown Range road over to Wanaka, so it works as a day loop: the Cardrona Hotel (we call it the lunch stop hotel, and it's the pub you go to after a day of skiing at Cardrona), the Cardrona Distillery, the Bradrona fence, and the mountain road up to the ski field." },
+      { "name": "TSS Earnslaw and Walter Peak", "tier": "proven", "meta": [], "note": "A historic coal-fired steamship across the lake to Walter Peak. Big, slow and beautiful, with a triple-expansion steam engine that made Julian's dad very happy." },
+      { "name": "Dart River jet boat", "tier": "proven", "meta": ["Holly's pick"], "note": "Holly rates this as the best jet-boating experience because it gives you so much more than just speed. The Glenorchy and Dart River setting is the point." }
     ]
   },
   {
-    "id": "do-5-rainy",
+    "id": "do-6-rainy",
     "guide": "things-to-do",
-    "order": 5,
+    "order": 6,
     "title": "Rainy day",
     "intro": "",
     "entries": [
-      { "name": "Onsen Hot Pools", "tier": "proven", "meta": [], "note": "See Easy wins, above; the classic rainy-day booking." },
-      { "name": "Skyline gondola and luge", "tier": "research", "meta": [], "note": "Guests rate it; a solid wet-weather standby.", "todo": "Confirm prices and weather policy" },
-      { "name": "iFLY, Game Over, Thrillzone and escape rooms", "tier": "research", "meta": [], "note": "Indoor options from our research list; we have not tried these ourselves.", "todo": "Confirm each is still operating before publish" },
-      { "name": "Movie room at ours", "tier": "proven", "meta": ["Free"], "note": "The zero-effort option: the movie room at ours." }
+      { "name": "iFLY", "tier": "proven", "meta": [], "note": "Useful when the weather ruins outdoor plans but you still want an activity." },
+      { "name": "Game Over", "tier": "proven", "meta": [], "note": "Indoor go-karting and easy activities. A solid backup for families, teens or mixed-weather days." },
+      { "name": "Clip 'n Climb / indoor climbing", "tier": "proven", "meta": [], "note": "Good for kids and active families who need an indoor option that still burns energy." },
+      { "name": "Site Trampoline", "tier": "proven", "meta": [], "note": "A useful kid-friendly option when children need to move and the weather isn't cooperating." },
+      { "name": "Silky Otter Cinema", "tier": "proven", "meta": [], "note": "A nicer cinema and a good low-effort fallback, but not cheap. An expensive movie option, honestly framed." },
+      { "name": "Thrillzone and escape rooms", "tier": "proven", "meta": [], "note": "Good central options when you're already in town and the weather turns. Fun backup, not the reason you came to Queenstown." },
+      { "name": "Movie room at ours", "tier": "proven", "meta": ["Free"], "note": "The zero-effort option." }
     ]
   },
   {
-    "id": "do-6-adrenaline",
+    "id": "do-7-adrenaline",
     "guide": "things-to-do",
-    "order": 6,
+    "order": 7,
     "title": "Adrenaline",
     "intro": "",
     "entries": [
-      { "name": "Bungy and canyon swings", "tier": "research", "meta": [], "note": "Guests do these and come back buzzing. Ask us and we'll point you at the current options. The hot tub afterwards is the recovery plan.", "todo": "Recommend the category; verify operators before naming any" }
+      { "name": "Bungy", "tier": "proven", "meta": [], "note": "If it's on your list, do it here. The hot tub afterwards is the recovery plan." },
+      { "name": "Shotover Canyon Swing", "tier": "research", "meta": [], "note": "Guest-done. The hot tub afterwards makes a lot of sense too.", "todo": "Verify current operator details before publishing specifics" },
+      { "name": "Jet boating", "tier": "proven", "meta": [], "note": "Recommend by style and location once we know the rest of their plans." },
+      { "name": "NZONE Skydive", "tier": "research", "meta": [], "note": "The drop zone is basically in Jack's Point and visible from around our area, one of the closest big-ticket activities to us.", "todo": "Verify details before publishing" },
+      { "name": "Mountain biking", "tier": "proven", "meta": [], "note": "Queenstown is excellent for it. Tell us your level and we'll point you somewhere sensible." }
     ]
   }
 ]

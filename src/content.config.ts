@@ -52,6 +52,17 @@ const guides = defineCollection({
     askUsText: z.string().optional(),
     extraBoxTitle: z.string().optional(),
     extraBoxText: z.string().optional(),
+    // extraBoxText sometimes names a booking/savings tool (First Table);
+    // this renders as a small "Website" pill next to the box rather than
+    // an inline link inside the prose (Claude Build Brief 9, Priority 2).
+    extraBoxLink: z.object({ href: z.string(), label: z.string() }).optional(),
+    // Short practical bullets shown near the top of a guide (Claude Build
+    // Brief 9, Priority 4). A bullet may carry its own external link
+    // (e.g. Bookme), rendered as a pill, never inline in the text.
+    quickTips: z.array(z.object({
+      text: z.string(),
+      link: z.object({ href: z.string(), label: z.string() }).optional(),
+    })).optional(),
     guestTypes: z.array(z.object({
       type: z.string(),
       note: z.string(),
@@ -93,6 +104,10 @@ const guideSections = defineCollection({
       meta: z.array(z.string()).default([]),
       note: z.string(),
       todo: z.string().optional(),
+      // External link, shown as a small "Website" fact pill, never inline
+      // in the host note. Selective by design (Claude Build Brief 9,
+      // Priority 2): only where a guest needs the link to act.
+      website: z.object({ href: z.string(), label: z.string().default('Website') }).optional(),
     })).default([]),
     linkOut: z.object({ href: z.string(), label: z.string() }).optional(),
     todoSection: z.string().optional(),

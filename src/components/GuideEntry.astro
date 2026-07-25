@@ -4,20 +4,36 @@ interface Props {
   tier: 'proven' | 'research';
   meta?: string[];
   note: string;
+  website?: { href: string; label: string };
 }
 
-const { name, meta = [], note } = Astro.props;
+const { name, tier, meta = [], note, website } = Astro.props;
 ---
 
 <div class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-snow)] p-4">
   <div class="flex flex-wrap items-center gap-2 mb-1.5">
     <span class="font-serif text-lg text-[var(--color-graphite)]">{name}</span>
+    {tier === 'research' && (
+      <span class="badge badge-gold">Still checking details</span>
+    )}
   </div>
-  {meta.length > 0 && (
+  {(meta.length > 0 || website) && (
     <ul class="flex flex-wrap gap-2 mb-2">
       {meta.map((m) => (
         <li class="text-xs bg-[var(--color-fill)] text-[var(--color-stone-grey)] rounded-full px-2.5 py-1">{m}</li>
       ))}
+      {website && (
+        <li>
+          <a
+            href={website.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 text-xs bg-[var(--color-ember)]/10 text-[var(--color-ember)] font-medium rounded-full px-2.5 py-1 hover:bg-[var(--color-ember)]/20 transition-colors"
+          >
+            {website.label} <span aria-hidden="true">↗</span>
+          </a>
+        </li>
+      )}
     </ul>
   )}
   <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">
