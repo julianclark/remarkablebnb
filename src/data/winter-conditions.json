@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T17:30:29.415Z",
+  "generatedAt": "2026-07-25T06:07:03.248Z",
   "items": [
     {
       "id": "snowfall-depth",
@@ -7,7 +7,7 @@
       "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
       "linkLabel": "The Remarkables snow report",
       "ok": true,
-      "value": "Base 15 - 80cm · 3cm in the last 24 hours"
+      "value": "Base 15 - 80cm · 5cm in the last 24 hours"
     },
     {
       "id": "chain-road",
@@ -15,7 +15,7 @@
       "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
       "linkLabel": "The Remarkables snow report",
       "ok": true,
-      "value": "Road open · Chains: 2WD"
+      "value": "Road open · Chains: Chains Carried"
     },
     {
       "id": "remarkables-temp",
@@ -23,7 +23,7 @@
       "sourceUrl": "https://open-meteo.com/",
       "linkLabel": "Weather data by Open-Meteo.com",
       "ok": true,
-      "value": "-7°C · Overcast"
+      "value": "-8°C · Clear"
     },
     {
       "id": "forecast-3day",
@@ -31,7 +31,7 @@
       "sourceUrl": "https://open-meteo.com/",
       "linkLabel": "Weather data by Open-Meteo.com",
       "ok": true,
-      "value": "Today: -9° to -4°, heavy snow showers · Tomorrow: -9° to -3°, overcast · Day after: -7° to -2°, overcast"
+      "value": "Today: -8° to -4°, heavy snow showers · Tomorrow: -8° to -3°, overcast · Day after: -7° to -2°, overcast"
     }
   ],
   "links": [
