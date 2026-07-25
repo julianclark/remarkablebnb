@@ -15,7 +15,7 @@ const ORDER: Record<string, string[]> = {
     'Masterbed4 view.avif',
     'deck view.avif',
     'Deck.avif',
-    'Dininig Area.avif',
+    'Dining Area.avif',
     'Dining Area 9.avif',
     'Unit Kitchen.avif',
     'Unit Kitchen2.avif',

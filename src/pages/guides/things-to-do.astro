@@ -50,7 +50,7 @@ const guestTypes = guide!.data.guestTypes ?? [];
           {section.entries.length > 0 && (
             <div class="space-y-3">
               {section.entries.map((e) => (
-                <GuideEntry name={e.name} tier={e.tier} meta={e.meta} note={e.note} todo={e.todo} />
+                <GuideEntry name={e.name} tier={e.tier} meta={e.meta} note={e.note} />
               ))}
             </div>
           )}

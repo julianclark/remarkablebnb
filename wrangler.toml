@@ -9,10 +9,6 @@ crons = ["*/30 * * * *"]
 pattern = "remarkablebnb.nz"
 custom_domain = true
 
-[[routes]]
-pattern = "remarkablebnb.co.nz"
-custom_domain = true
-
 [[d1_databases]]
 binding = "DB"
 database_name = "remarkablebnb"

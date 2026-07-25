@@ -41,12 +41,9 @@ const sections = (await getCollection('guideSections'))
           {section.intro && <p class="text-sm text-[var(--color-stone-grey)] mb-4">{section.intro}</p>}
           <div class="space-y-3">
             {section.entries.map((e) => (
-              <GuideEntry name={e.name} tier={e.tier} meta={e.meta} note={e.note} todo={e.todo} />
+              <GuideEntry name={e.name} tier={e.tier} meta={e.meta} note={e.note} />
             ))}
           </div>
-          {section.todoSection && (
-            <p class="text-xs text-[var(--color-sun-gold-dark)] mt-3 font-semibold">Draft, awaiting host edit: {section.todoSection}</p>
-          )}
         </section>
       ))}
 

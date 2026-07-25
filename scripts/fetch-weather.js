@@ -75,18 +75,31 @@ const WMO_DESCRIPTIONS = {
 const ok = (value) => ({ ok: true, value });
 const fail = () => ({ ok: false, value: null });
 
+// NZSki's weatherIcon field is a raw PascalCase token (e.g. "FewShowers")
+// meant for an icon lookup, not prose; split it into readable words.
+function humanizeWeatherIcon(icon) {
+  return icon.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+}
+
+// NZSki's own ChainStatus/RoadStatus text occasionally carries a typo
+// ("Vechicles"). Fixed here rather than trusting the upstream feed, since
+// this file is regenerated from live data on every build.
+function fixKnownTypos(text) {
+  return text.replace(/\bVechicles?\b/gi, 'vehicles');
+}
+
 // The Remarkables / Coronet Peak: NZSki's own JSON data feed. Covers
 // temperature, 3-day forecast, snow base, and road/chain status together.
 async function getNzskiField(slug) {
   const d = await fetchJson(NZSKI_DATA_URL(slug));
 
   const sensorTemp = d?.temperature?.sensor;
-  const temp = typeof sensorTemp === 'number' ? ok(`${Math.round(sensorTemp)}°C${d.weatherIcon ? ` · ${d.weatherIcon}` : ''}`) : fail();
+  const temp = typeof sensorTemp === 'number' ? ok(`${Math.round(sensorTemp)}°C${d.weatherIcon ? ` · ${humanizeWeatherIcon(d.weatherIcon)}` : ''}`) : fail();
 
   const dayLabels = ['Today', 'Tomorrow', 'Day after'];
   const forecastLines = (d?.forecast ?? []).slice(0, 3).map((f, i) => {
     const label = dayLabels[i] ?? f.day;
-    return `${label}: ${Math.round(f.low)}° to ${Math.round(f.high)}°${f.weatherIcon ? `, ${f.weatherIcon.toLowerCase()}` : ''}`;
+    return `${label}: ${Math.round(f.low)}° to ${Math.round(f.high)}°${f.weatherIcon ? `, ${humanizeWeatherIcon(f.weatherIcon)}` : ''}`;
   });
   const forecast = forecastLines.length ? ok(forecastLines.join(' · ')) : fail();
 
@@ -104,7 +117,7 @@ async function getNzskiField(slug) {
 
   const chainRoad =
     d?.RoadStatus || d?.ChainStatus
-      ? ok([d.RoadStatus && `Road ${String(d.RoadStatus).toLowerCase()}`, d.ChainStatus && `Chains: ${d.ChainStatus}`].filter(Boolean).join(' · '))
+      ? ok([d.RoadStatus && `Road ${fixKnownTypos(String(d.RoadStatus)).toLowerCase()}`, d.ChainStatus && `Chains: ${fixKnownTypos(String(d.ChainStatus))}`].filter(Boolean).join(' · '))
       : fail();
 
   const status = typeof d?.MountainStatus === 'string' ? d.MountainStatus : null;
@@ -129,7 +142,7 @@ async function getCardronaSnowReport() {
 
   const chainRoad =
     mi.roadConditions || mi.chains2wdLocation
-      ? ok([mi.roadConditions && `Road: ${mi.roadConditions}`, mi.chains2wdLocation && `Chains from ${mi.chains2wdLocation}`].filter(Boolean).join(' · '))
+      ? ok([mi.roadConditions && `Road: ${fixKnownTypos(mi.roadConditions)}`, mi.chains2wdLocation && `Chains from ${fixKnownTypos(mi.chains2wdLocation)}`].filter(Boolean).join(' · '))
       : fail();
 
   const status = typeof mi.resortStatus === 'string' && mi.resortStatus ? mi.resortStatus[0].toUpperCase() + mi.resortStatus.slice(1) : null;

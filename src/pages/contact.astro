@@ -40,13 +40,20 @@ export const prerender = true;
         </div>
 
         <div class="rounded-xl bg-[var(--color-hairline)]/40 p-6 text-sm">
-          <h3 class="text-lg font-medium mb-2">💡 Direct Booking Benefits</h3>
-          <ul class="space-y-1.5 list-disc pl-5 marker:text-[var(--color-ember)] text-[var(--color-stone-grey)]">
-            <li>10% discount on Airbnb rates</li>
-            <li>No platform service fees</li>
-            <li>Returning guest loyalty rates</li>
-            <li>More flexible check-in when available</li>
-          </ul>
+          <h3 class="text-lg font-medium mb-2">💡 Booking direct</h3>
+          <p class="text-[var(--color-stone-grey)] leading-relaxed">10% off Airbnb rates, no platform fees. <a href="/#why-book-direct" class="text-[var(--color-ember)] font-medium hover:underline">See the full comparison</a>.</p>
+        </div>
+
+        <div class="rounded-xl border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] p-6 bg-white dark:bg-[var(--color-schist-ink)]">
+          <h3 class="text-lg font-medium mb-3">How direct booking works</h3>
+          <ol class="space-y-2 text-sm text-[var(--color-stone-grey)] list-decimal pl-4 marker:font-semibold marker:text-[var(--color-ember)]">
+            <li>Send your preferred dates.</li>
+            <li>We confirm availability and the exact total.</li>
+            <li>We send secure payment details and your booking confirmation.</li>
+          </ol>
+          <p class="text-xs text-[var(--color-stone-grey)] mt-4">
+            Read the full <a href="/terms" class="text-[var(--color-ember)] font-medium hover:underline">booking terms</a>, including cancellations, payment timing and house policies.
+          </p>
         </div>
       </div>
 
@@ -81,6 +88,12 @@ export const prerender = true;
             <label for="company">Company (leave blank)</label>
             <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
           </div>
+
+          <!-- Populated by JS from calendar deep-links (?checkin=&checkout=) so
+               the enquiry email can carry a price estimate. Empty for
+               free-text date entries; the email simply omits the estimate. -->
+          <input type="hidden" id="checkin" name="checkin" value="" />
+          <input type="hidden" id="checkout" name="checkout" value="" />
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -179,9 +192,23 @@ export const prerender = true;
       const checkout = params.get('checkout');
       const single = params.get('date');
       const datesInput = form.elements.namedItem('dates') as HTMLInputElement | null;
+      const checkinField = form.elements.namedItem('checkin') as HTMLInputElement | null;
+      const checkoutField = form.elements.namedItem('checkout') as HTMLInputElement | null;
       if (datesInput) {
-        if (checkin && checkout) datesInput.value = `${fmt(checkin)} – ${fmt(checkout)}`;
-        else if (single) datesInput.value = fmt(single);
+        if (checkin && checkout) {
+          datesInput.value = `${fmt(checkin)} – ${fmt(checkout)}`;
+          if (checkinField) checkinField.value = checkin;
+          if (checkoutField) checkoutField.value = checkout;
+        } else if (single) {
+          datesInput.value = fmt(single);
+        }
+        // If the guest edits the prefilled dates by hand, the ISO hidden
+        // fields no longer describe what they typed, clear them so the
+        // enquiry email doesn't carry a stale estimate.
+        datesInput.addEventListener('input', () => {
+          if (checkinField) checkinField.value = '';
+          if (checkoutField) checkoutField.value = '';
+        });
       }
 
       // Show status banner if we came back from a no-JS POST redirect
