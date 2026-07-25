@@ -1,42 +1,42 @@
 {
-  "generatedAt": "2026-07-25T20:23:19.398Z",
+  "generatedAt": "2026-07-25T20:47:00.184Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": null,
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
           "label": "Snow base",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Snow base 15 - 80cm"
         },
         {
           "id": "chain-road",
           "label": "Chains / road",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Road open · Chains: Chains Carried"
         },
         {
           "id": "temp",
           "label": "Temperature",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "-5.2°C · Fine"
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Sun: -9° to -6°, fine · Mon: -4° to -1°, fine · Tue: -6° to 0°, partly cloudy"
         }
       ]
     },
