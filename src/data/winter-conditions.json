@@ -1,42 +1,42 @@
 {
-  "generatedAt": "2026-07-25T19:56:59.761Z",
+  "generatedAt": "2026-07-25T20:23:19.398Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Open",
+      "status": null,
       "facts": [
         {
           "id": "snow-base",
           "label": "Snow base",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "Snow base 15 - 80cm"
+          "ok": false,
+          "value": null
         },
         {
           "id": "chain-road",
           "label": "Chains / road",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "Road open · Chains: Chains Carried"
+          "ok": false,
+          "value": null
         },
         {
           "id": "temp",
           "label": "Temperature",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "-4.7°C · Fine"
+          "ok": false,
+          "value": null
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "Sun: -10° to -6°, fine · Mon: -4° to -1°, fine · Tue: -5° to 0°, partly cloudy"
+          "ok": false,
+          "value": null
         }
       ]
     },
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -8° to -4°, fine · Tomorrow: -2° to 1°, fine · Day after: -3° to 2°, part cloudy"
+          "value": "Today: -7° to -4°, fine · Tomorrow: -2° to 1°, fine · Day after: -5° to 2°, part cloudy"
         }
       ]
     },
