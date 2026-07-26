@@ -59,10 +59,7 @@ Your queen room is private with its own door. The ensuite has marble-look tiling
 
 Rocket and Luna live here too, and for a lot of our guests they're the highlight of the stay. Not a dog person, or a bit nervous? No problem, we'll keep them away from you completely. Just tell us when you book.
 
-## Personal hosting
-
-Staying in our home means local recommendations, straight answers, and the kind of hosting that's earned us a 5-star rating and Airbnb Guest Favourite status from 28 reviews. We're here if you need us, and out of your way when you don't.
 
 ## Location
 
-Hanley's Farm sits at the Jack's Point end, under The Remarkables, a quieter, mountain-side alternative to Queenstown's CBD. Full address, parking and arrival directions are sent as soon as you book.
+At the Jack's Point end of Hanley's Farm, under The Remarkables, a quieter, mountain-side alternative to Queenstown CBD. Full address, parking and arrival directions are sent as soon as you book.
