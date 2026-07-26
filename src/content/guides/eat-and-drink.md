@@ -11,6 +11,6 @@ askUsText: "Tell us the kind of food you're into and we'll point you at our favo
 extraBoxTitle: "First Table"
 extraBoxText: "Happy to eat early? First Table takes a big chunk off the food bill at plenty of Queenstown restaurants. It's worth browsing everything on there, not just the obvious names."
 extraBoxLink:
-  href: "https://www.firsttable.co.nz/"
+  href: "https://www.firsttable.co.nz/invite/julianc26"
   label: "First Table"
 ---

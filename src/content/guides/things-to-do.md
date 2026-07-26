@@ -21,7 +21,7 @@ guestTypes:
     note: "Playgrounds, short walks, the luge, Arrowtown, Lake Hayes, Clip 'n Climb, Site Trampoline, Game Over, Silky Otter for a nicer cinema, food trucks and an early night. The best family advice is often making the day easier, not doing more."
   - type: "Dog-loving couples"
     note: "Meet Rocket and Luna, the fenced dog field, Lake Wakatipu if timing works, hot tub if available, and a slower local day."
-  - type: "Older active guests"
+  - type: "Active guests"
     note: "Arrowtown, Lake Hayes, wineries, Glenorchy, Routeburn section walks, and a sensible dinner plan."
   - type: "Car-free guests"
     note: "A car is easier out here, but walks from the door, Frankton pickups for tours, and Uber or taxi for the airport and Frankton all work."
