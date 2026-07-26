@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-26T19:28:02.789Z",
+  "generatedAt": "2026-07-26T19:56:43.345Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-2.4°C · Fine"
+          "value": "-2.9°C · Fine"
         },
         {
           "id": "forecast",
