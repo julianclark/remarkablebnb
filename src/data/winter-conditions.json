@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T18:21:06.861Z",
+  "generatedAt": "2026-08-01T18:48:47.347Z",
   "fields": [
     {
       "id": "remarkables",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road open · Chains: All Vehicles"
+          "value": "Road open · Chains: 2WD"
         },
         {
           "id": "temp",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-0.2°C · Snow"
+          "value": "-0.3°C · Snow Showers"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Sun: -4° to -2°, snow · Mon: -13° to -2°, snow · Tue: -10° to -9°, fine"
+          "value": "Sun: -4° to -2°, snow showers · Mon: -13° to -2°, snow · Tue: -10° to -9°, fine"
         }
       ]
     },
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Road: chains on 2WD · Chains from Heli corner"
+          "value": "Road: chain free · Chains from Heli corner"
         },
         {
           "id": "temp",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -5° to -1°, overcast · Tomorrow: -7° to -1°, snow showers · Day after: -11° to -5°, overcast"
+          "value": "Today: -5° to -1°, overcast · Tomorrow: -6° to -1°, snow showers · Day after: -11° to -5°, overcast"
         }
       ]
     }
