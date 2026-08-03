@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T17:32:18.095Z",
+  "generatedAt": "2026-08-03T18:36:18.692Z",
   "fields": [
     {
       "id": "remarkables",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road open · Chains: Chains Carried"
+          "value": "Road open · Chains: 2WD"
         },
         {
           "id": "temp",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-6.7°C · Wind"
+          "value": "-7.3°C · Snow"
         },
         {
           "id": "forecast",
@@ -36,14 +36,14 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Tue: -12° to -9°, wind · Wed: -7° to -5°, fine · Thu: -7° to -4°, fine"
+          "value": "Tue: -12° to -9°, snow · Wed: -7° to -5°, fine · Thu: -7° to -4°, fine"
         }
       ]
     },
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -51,7 +51,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "20-30cm · 14cm in the last 7 days"
+          "value": "20-30cm · 17cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -59,7 +59,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Road open · Chains: Please Carry Chains"
+          "value": "Road open · Chains: Required on 2WD vehicles"
         },
         {
           "id": "temp",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "-5°C · wind"
+          "value": "-5°C · snow"
         },
         {
           "id": "forecast",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Delayed",
       "facts": [
         {
           "id": "snow-base",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Road: chain free · Chains from Heli corner"
+          "value": "Road: chains on 2WD · Chains from Chain Bay 1"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-7°C · Overcast"
+          "value": "-9°C · Partly cloudy"
         },
         {
           "id": "forecast",
