@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T05:10:31.108Z",
+  "generatedAt": "2026-08-03T07:02:34.495Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-1.1°C · Wind"
+          "value": "-2.8°C · Wind"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Mon: -13° to -2°, wind · Tue: -12° to -9°, snow · Wed: -7° to -4°, fine"
+          "value": "Mon: -13° to -1°, wind · Tue: -12° to -9°, snow · Wed: -7° to -4°, fine"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "3°C · wind"
+          "value": "0°C · wind"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -11° to 0°, snow · Tomorrow: -10° to -8°, snow · Day after: -5° to -3°, fine"
+          "value": "Today: -11° to 1°, snow · Tomorrow: -10° to -8°, few showers · Day after: -5° to -3°, fine"
         }
       ]
     },
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-3°C · Mostly clear"
+          "value": "-5°C · Partly cloudy"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -7° to -1°, snow showers · Tomorrow: -13° to -6°, snow showers · Day after: -13° to -3°, mostly clear"
+          "value": "Today: -7° to -1°, light drizzle · Tomorrow: -12° to -7°, snow showers · Day after: -13° to -3°, mostly clear"
         }
       ]
     }
