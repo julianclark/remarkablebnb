@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T17:31:50.752Z",
+  "generatedAt": "2026-08-04T18:33:25.463Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-4.8°C · Snow"
+          "value": "-2.8°C · Fine"
         },
         {
           "id": "forecast",
@@ -36,14 +36,14 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Wed: -7° to -6°, snow · Thu: -6° to -4°, fine · Fri: -7° to -1°, snow"
+          "value": "Wed: -7° to -6°, fine · Thu: -6° to -4°, fine · Fri: -7° to -1°, snow"
         }
       ]
     },
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -51,7 +51,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "20-30cm · 17cm in the last 7 days"
+          "value": "30-40cm · 17cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "-3°C · snow"
+          "value": "-2°C · fine"
         },
         {
           "id": "forecast",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
