@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T08:53:45.235Z",
+  "generatedAt": "2026-08-05T09:51:53.786Z",
   "fields": [
     {
       "id": "remarkables",
@@ -43,7 +43,7 @@
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
