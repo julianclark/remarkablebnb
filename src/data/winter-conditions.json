@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T12:33:18.645Z",
+  "generatedAt": "2026-08-05T13:32:16.607Z",
   "fields": [
     {
       "id": "remarkables",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -5° to -2°, fine · Tomorrow: -1° to 3°, few showers"
+          "value": "Today: -5° to -2°, fine · Tomorrow: -2° to 3°, few showers · Day after: -7° to 1°, snow"
         }
       ]
     },
