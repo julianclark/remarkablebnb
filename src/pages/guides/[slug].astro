@@ -1,19 +1,34 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideEntry from '../../components/GuideEntry.astro';
 import { getCollection, render } from 'astro:content';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
   const guides = await getCollection('guides');
+  const allSections = await getCollection('guideSections');
   return guides.map((guide) => ({
     params: { slug: guide.data.slug },
-    props: { guide },
+    props: {
+      guide,
+      sections: allSections
+        .filter((s) => s.data.guide === guide.data.slug)
+        .sort((a, b) => a.data.order - b.data.order)
+        .map((s) => s.data),
+    },
   }));
 }
 
-const { guide } = Astro.props;
+const { guide, sections } = Astro.props;
 const { Content } = await render(guide);
+
+// Two shapes of guide share this route: the fully-built ones are assembled
+// from structured `guideSections` entry cards, while stubs (and any future
+// long-form guide) are just a markdown body. Presence of sections decides
+// which layout renders, so neither needs its own page component.
+const isStructured = sections.length > 0;
+const { sibling, quickTips = [], guestTypes = [] } = guide.data;
 ---
 
 <BaseLayout
@@ -21,8 +36,11 @@ const { Content } = await render(guide);
   description={guide.data.seoDescription}
   noindex={guide.data.draft}
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-    <!-- Breadcrumb -->
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    {guide.data.draft && (
+      <p class="badge badge-gold mb-6">Draft, awaiting host edit and sign-off</p>
+    )}
+
     <nav class="mb-6 text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">
       <a href="/" class="hover:text-[var(--color-ember)] transition-colors">Home</a>
       <span class="mx-2">›</span>
@@ -31,29 +49,134 @@ const { Content } = await render(guide);
       <span class="text-[var(--color-graphite)] dark:text-[var(--color-snow)]">{guide.data.title}</span>
     </nav>
 
-    <div class="max-w-3xl">
-      <div class="flex items-center gap-3 mb-6">
-        <span class="text-4xl">{guide.data.icon}</span>
-        <h1 class="text-4xl sm:text-5xl font-medium">{guide.data.title}</h1>
-      </div>
+    <span class="text-4xl" aria-hidden="true">{guide.data.icon}</span>
+    <h1 class="text-4xl sm:text-5xl font-medium mt-4 mb-4">{guide.data.title}</h1>
 
+    {guide.data.tagline && (
+      <p class="text-lg font-serif italic text-[var(--color-ember)] leading-relaxed mb-4">{guide.data.tagline}</p>
+    )}
+
+    {sibling && (
+      <p class="text-sm text-[var(--color-stone-grey)] mb-8">
+        {sibling.prompt} See <a href={`/guides/${sibling.slug}`} class="text-[var(--color-ember)] font-medium hover:underline">{sibling.label}</a>.
+      </p>
+    )}
+
+    {!isStructured && (
       <p class="text-lg text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] leading-relaxed mb-8 border-l-4 border-[var(--color-ember)] pl-4">
         {guide.data.description}
       </p>
+    )}
 
+    {quickTips.length > 0 && (
+      <div class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-fill)] p-5 mb-10">
+        <h3 class="text-lg font-medium mb-3">Before you book anything</h3>
+        <ul class="space-y-2">
+          {quickTips.map((tip) => (
+            <li class="flex flex-wrap items-start gap-2 text-sm text-[var(--color-stone-grey)] leading-relaxed">
+              <span class="text-[var(--color-ember)] mt-0.5" aria-hidden="true">•</span>
+              <span class="flex-1 min-w-0">{tip.text}</span>
+              {tip.link && (
+                <a
+                  href={tip.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-xs bg-[var(--color-ember)]/10 text-[var(--color-ember)] font-medium rounded-full px-2.5 py-1 hover:bg-[var(--color-ember)]/20 transition-colors flex-shrink-0"
+                >
+                  {tip.link.label} <span aria-hidden="true">↗</span>
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {isStructured ? (
+      <div class="space-y-12">
+        {sections.map((section) => (
+          <section>
+            <h2 class="text-2xl font-medium mb-2">{section.title}</h2>
+            {section.intro && <p class="text-sm text-[var(--color-stone-grey)] mb-4">{section.intro}</p>}
+            {section.entries.length > 0 && (
+              <div class="space-y-3">
+                {section.entries.map((e) => (
+                  <GuideEntry name={e.name} tier={e.tier} meta={e.meta} note={e.note} website={e.website} />
+                ))}
+              </div>
+            )}
+            {section.linkOut && (
+              <a href={section.linkOut.href} class="inline-flex items-center gap-2 text-[var(--color-ember)] font-semibold hover:underline">
+                {section.linkOut.label} →
+              </a>
+            )}
+          </section>
+        ))}
+
+        {guestTypes.length > 0 && (
+          <section>
+            <h2 class="text-2xl font-medium mb-4">By guest type</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {guestTypes.map((g) => (
+                <div class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-snow)] p-4">
+                  <h4 class="font-semibold text-[var(--color-graphite)] mb-1">{g.type}</h4>
+                  <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">{g.note}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {guide.data.extraBoxTitle && (
+          <section class="rounded-xl border border-[var(--color-hairline)] bg-[var(--color-fill)] p-5">
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <h3 class="text-lg font-medium">{guide.data.extraBoxTitle}</h3>
+              {guide.data.extraBoxLink && (
+                <a
+                  href={guide.data.extraBoxLink.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-xs bg-[var(--color-ember)]/10 text-[var(--color-ember)] font-medium rounded-full px-2.5 py-1 hover:bg-[var(--color-ember)]/20 transition-colors"
+                >
+                  {guide.data.extraBoxLink.label} <span aria-hidden="true">↗</span>
+                </a>
+              )}
+            </div>
+            <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">{guide.data.extraBoxText}</p>
+          </section>
+        )}
+      </div>
+    ) : (
       <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-medium prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-[var(--color-stone-grey)] dark:prose-p:text-[var(--color-stone)] prose-p:leading-relaxed">
         <Content />
       </div>
-      
-      <!-- Back CTA -->
-      <div class="mt-12 pt-8 border-t border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)]">
-        <a href="/" class="inline-flex items-center gap-2 text-[var(--color-ember)] font-semibold hover:underline">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-          </svg>
-          Back to home
-        </a>
+    )}
+
+    {guide.data.askUsText && (
+      <div class="mt-12 pt-8 border-t border-[var(--color-hairline)]">
+        <h2 class="text-2xl font-medium mb-2">Ask us</h2>
+        <p class="text-[var(--color-stone-grey)] leading-relaxed">
+          {guide.data.askUsText}
+          {' '}<a href="/contact" class="text-[var(--color-ember)] font-semibold hover:underline">Get in touch</a>.
+        </p>
       </div>
+    )}
+
+    <div class="mt-12 pt-8 border-t border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] flex flex-wrap items-center justify-between gap-4">
+      <a href="/" class="inline-flex items-center gap-2 text-[var(--color-ember)] font-semibold hover:underline">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+        Back to home
+      </a>
+      {sibling && (
+        <a href={`/guides/${sibling.slug}`} class="inline-flex items-center gap-2 text-[var(--color-ember)] font-semibold hover:underline">
+          {sibling.label}
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      )}
     </div>
   </div>
 </BaseLayout>

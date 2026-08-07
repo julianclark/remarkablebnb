@@ -8,6 +8,7 @@ import Carousel from '../../components/Carousel.astro';
 import Review from '../../components/Review.astro';
 import { getCollection, render } from 'astro:content';
 import { getGallery } from '../../lib/galleries';
+import { getSiteFacts, getDirectMultiplier } from '../../lib/site-facts';
 import { env } from 'cloudflare:workers';
 
 export const prerender = false;
@@ -54,7 +55,8 @@ try {
 } catch (err) {
   console.error('Failed to load prices:', err);
 }
-const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
+const facts = await getSiteFacts();
+const fromDirect = fromPrice !== null ? Math.round(fromPrice * (await getDirectMultiplier())) : null;
 ---
 
 <BaseLayout
@@ -157,7 +159,7 @@ const fromDirect = fromPrice !== null ? Math.round(fromPrice * 0.9) : null;
                   <span class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">/ night direct</span>
                 </div>
                 <div class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mt-1">
-                  <span class="line-through">${fromPrice}</span> on Airbnb · you save 10% booking direct
+                  <span class="line-through">${fromPrice}</span> on Airbnb · you save {facts.directDiscountPercent}% booking direct
                 </div>
               </div>
             )}

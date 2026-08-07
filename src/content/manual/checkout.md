@@ -7,7 +7,7 @@ order: 4
 
 ## Checkout time
 
-**Please check out by 10:00 AM** so we can get everything ready for the next guests.
+**Please check out by 10:00am** so we can get everything ready for the next guests.
 
 ---
 

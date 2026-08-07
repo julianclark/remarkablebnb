@@ -1,20 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
+import { getSiteFacts } from '../lib/site-facts';
 
 export const prerender = true;
+
+// Page copy lives in src/content/pages/contact.md; contact details and the
+// direct-booking discount come from site-facts.json.
+const page = (await getEntry('pages', 'contact'))!;
+const { Content } = await render(page);
+const facts = await getSiteFacts();
 ---
 
-<BaseLayout
-  title="Contact Us"
-  description="Get in touch with Holly and Julian to enquire about direct bookings at Remarkable BnB."
->
+<BaseLayout title={page.data.seoTitle} description={page.data.seoDescription}>
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <div class="text-center mb-12">
-      <span class="badge badge-ember mb-3">Enquiries & Direct Bookings</span>
-      <h1 class="text-4xl sm:text-5xl font-medium mb-4">Contact Holly & Julian</h1>
-      <p class="text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] max-w-xl mx-auto">
-        Have questions about the stays, availability, or planning your trip? Send us a message and we'll get right back to you.
-      </p>
+      {page.data.badge && <span class="badge badge-ember mb-3">{page.data.badge}</span>}
+      <h1 class="text-4xl sm:text-5xl font-medium mb-4">{page.data.heading}</h1>
+      {page.data.intro && (
+        <p class="text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] max-w-xl mx-auto">{page.data.intro}</p>
+      )}
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -25,32 +30,26 @@ export const prerender = true;
           <div class="space-y-4">
             <div>
               <p class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">Your Hosts</p>
-              <p class="text-sm font-medium">Holly & Julian</p>
+              <p class="text-sm font-medium">{facts.hostNames}</p>
             </div>
             <div>
               <p class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">Location</p>
-              <p class="text-sm font-medium">Hanley's Farm, Queenstown, NZ</p>
+              <p class="text-sm font-medium">{facts.locationLabel}</p>
             </div>
             <div>
               <p class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">Email Enquiries</p>
-              <!-- Placeholder for email as per TODO -->
-              <p class="text-sm font-medium text-[var(--color-ember)]">stay@remarkablebnb.nz</p>
+              <p class="text-sm font-medium text-[var(--color-ember)]">{facts.email}</p>
             </div>
           </div>
         </div>
 
         <div class="rounded-xl bg-[var(--color-hairline)]/40 p-6 text-sm">
           <h3 class="text-lg font-medium mb-2">💡 Booking direct</h3>
-          <p class="text-[var(--color-stone-grey)] leading-relaxed">10% off Airbnb rates, no platform fees. <a href="/#why-book-direct" class="text-[var(--color-ember)] font-medium hover:underline">See the full comparison</a>.</p>
+          <p class="text-[var(--color-stone-grey)] leading-relaxed">{facts.directDiscountPercent}% off Airbnb rates, no platform fees. <a href="/#why-book-direct" class="text-[var(--color-ember)] font-medium hover:underline">See the full comparison</a>.</p>
         </div>
 
-        <div class="rounded-xl border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] p-6 bg-white dark:bg-[var(--color-schist-ink)]">
-          <h3 class="text-lg font-medium mb-3">How direct booking works</h3>
-          <ol class="space-y-2 text-sm text-[var(--color-stone-grey)] list-decimal pl-4 marker:font-semibold marker:text-[var(--color-ember)]">
-            <li>Send your preferred dates.</li>
-            <li>We confirm availability and the exact total.</li>
-            <li>We send secure payment details and your booking confirmation.</li>
-          </ol>
+        <div class="rounded-xl border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] p-6 bg-white dark:bg-[var(--color-schist-ink)] prose prose-slate dark:prose-invert prose-sm max-w-none prose-headings:font-medium prose-h2:text-lg prose-h2:mt-0 prose-h2:mb-3 prose-li:text-[var(--color-stone-grey)] prose-li:my-1 marker:font-semibold marker:text-[var(--color-ember)]">
+          <Content />
           <p class="text-xs text-[var(--color-stone-grey)] mt-4">
             Read the full <a href="/terms" class="text-[var(--color-ember)] font-medium hover:underline">booking terms</a>, including cancellations, payment timing and house policies.
           </p>
@@ -65,14 +64,14 @@ export const prerender = true;
           id="enquiry-success"
           role="status"
         >
-          <strong>Thanks, your enquiry is on its way.</strong> We'll get back to you soon. For anything urgent, email us at <a class="text-[var(--color-ember)] underline" href="mailto:stay@remarkablebnb.nz">stay@remarkablebnb.nz</a>.
+          <strong>Thanks, your enquiry is on its way.</strong> We'll get back to you soon. For anything urgent, email us at <a class="text-[var(--color-ember)] underline" href={`mailto:${facts.email}`}>{facts.email}</a>.
         </div>
         <div
           class="hidden rounded-xl border border-[var(--color-sun-gold)]/40 bg-[var(--color-sun-gold)]/10 p-4 mb-4 text-sm"
           id="enquiry-error"
           role="alert"
         >
-          Sorry, something went wrong sending that. Please email us directly at <a class="text-[var(--color-ember)] underline" href="mailto:stay@remarkablebnb.nz">stay@remarkablebnb.nz</a>.
+          Sorry, something went wrong sending that. Please email us directly at <a class="text-[var(--color-ember)] underline" href={`mailto:${facts.email}`}>{facts.email}</a>.
         </div>
 
         <form

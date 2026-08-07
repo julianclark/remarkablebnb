@@ -1,0 +1,17 @@
+[
+  {
+    "id": "default",
+    "hostNames": "Holly & Julian",
+    "email": "stay@remarkablebnb.nz",
+    "locationLabel": "Hanley's Farm, Queenstown, NZ",
+    "checkInTime": "3:00pm",
+    "checkOutTime": "10:00am",
+    "directDiscountPercent": 10,
+    "googleReviewUrl": "https://g.page/r/CWD9piIhv0DIEAE/review",
+    "hotTub": {
+      "maxPeople": 4,
+      "tempRange": "37 to 42 degrees",
+      "rules": "Swimwear required, please shower before use."
+    }
+  }
+]

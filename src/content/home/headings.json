@@ -1,0 +1,28 @@
+[
+  {
+    "id": "stays",
+    "heading": "Our stays",
+    "intro": "Two ways to stay at our home in Hanley's Farm, a private room inside the house, or your own self-contained unit."
+  },
+  {
+    "id": "segments",
+    "heading": "Who we're great for"
+  },
+  {
+    "id": "location",
+    "heading": "Location & getting around",
+    "intro": "We're in Hanley's Farm, at the Jack's Point end, under The Remarkables. A car is strongly recommended. The nearest bus stop is about a 10-minute walk, but services are limited.",
+    "footnote": "Full address, parking and arrival directions are sent as soon as you book."
+  },
+  {
+    "id": "book-direct",
+    "badge": "Save when you book direct",
+    "heading": "Why book with us?",
+    "intro": "We're on Airbnb too, but booking directly means a better deal and dealing with us, not a platform."
+  },
+  {
+    "id": "faq",
+    "heading": "Before you book",
+    "intro": "The questions guests ask us most."
+  }
+]

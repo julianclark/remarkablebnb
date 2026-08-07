@@ -36,6 +36,75 @@ const stays = defineCollection({
   }),
 });
 
+// Single source of truth for facts repeated across pages: contact details,
+// check-in/out times, the direct-booking discount, hot tub limits. Anything
+// that appears in more than one place belongs here, not inline in a template,
+// so a change lands everywhere at once. The discount is also imported by the
+// pricing code (calendar, stay page, enquiry estimate) so the published
+// percentage and the arithmetic can never disagree.
+const siteFacts = defineCollection({
+  loader: file('./src/content/site-facts.json'),
+  schema: z.object({
+    id: z.string(),
+    hostNames: z.string(),
+    email: z.string(),
+    locationLabel: z.string(),
+    checkInTime: z.string(),
+    checkOutTime: z.string(),
+    directDiscountPercent: z.number(),
+    googleReviewUrl: z.string().url(),
+    hotTub: z.object({
+      maxPeople: z.number(),
+      tempRange: z.string(),
+      rules: z.string(),
+    }),
+  }),
+});
+
+// Standalone prose pages (terms, contact) — the body is markdown so the whole
+// document is editable without touching a component. `sections` in the body
+// are plain h2s; the template supplies only chrome (badge, heading, intro).
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
+  schema: z.object({
+    slug: z.string(),
+    badge: z.string().optional(),
+    heading: z.string(),
+    intro: z.string().optional(),
+    seoTitle: z.string(),
+    seoDescription: z.string(),
+  }),
+});
+
+// Guest hub copy behind /stay/{token}/*: the extras offer, both checkout
+// variants (airbnb vs direct/repeat), and the expired-stay page. Markdown
+// bodies so host-voice copy is edited as prose, never as JSX.
+const guestCopy = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/guest' }),
+  schema: z.object({
+    slug: z.string(),
+    heading: z.string(),
+    icon: z.string().optional(),
+    ctaLabel: z.string().optional(),
+    ctaHref: z.string().optional(),
+    ctaNote: z.string().optional(),
+  }),
+});
+
+// Homepage section headings and intro paragraphs. The cards under each of
+// these already come from JSON (segments, locationRows, faqs...); this puts
+// the headings above them on the same footing.
+const homeHeadings = defineCollection({
+  loader: file('./src/content/home/headings.json'),
+  schema: z.object({
+    id: z.string(),
+    badge: z.string().optional(),
+    heading: z.string(),
+    intro: z.string().default(''),
+    footnote: z.string().default(''),
+  }),
+});
+
 const guides = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/guides' }),
   schema: z.object({
@@ -46,6 +115,9 @@ const guides = defineCollection({
     draft: z.boolean().default(true),
     seoTitle: z.string(),
     seoDescription: z.string(),
+    // Cross-link to the companion guide, rendered top and bottom. Data-driven
+    // so the pair isn't hardcoded in two near-identical page components.
+    sibling: z.object({ slug: z.string(), label: z.string(), prompt: z.string() }).optional(),
     // Italic host-voice tagline shown under the H1, used by eat-and-drink /
     // things-to-do (Claude Build Brief 7). Optional: older guide stubs don't set it.
     tagline: z.string().optional(),
@@ -77,12 +149,16 @@ const guides = defineCollection({
 const homeSections = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/home' }),
   schema: z.object({
-    slug: z.enum(['hosts', 'dogs']),
+    slug: z.enum(['hosts', 'dogs', 'hot-tub']),
     badge: z.string(),
     heading: z.string(),
     photoAlt: z.string(),
     signoffLine: z.string().optional(),
     signoffNames: z.string().optional(),
+    // Hot tub band only: it's a feature section with a CTA rather than a
+    // hosts-style prose block.
+    ctaLabel: z.string().optional(),
+    ctaHref: z.string().optional(),
   }),
 });
 
@@ -218,7 +294,11 @@ export const collections = {
   manual,
   faqs,
   reviews,
+  siteFacts,
+  pages,
+  guestCopy,
   homeSections,
+  homeHeadings,
   guideSections,
   segments,
   locationRows,

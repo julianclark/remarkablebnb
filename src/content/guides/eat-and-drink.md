@@ -6,6 +6,10 @@ icon: "🍽️"
 draft: false
 seoTitle: "Where to eat and drink near The Remarkables | Remarkable BnB"
 seoDescription: "Where Holly & Julian actually send their guests to eat, from Jack's Point to Queenstown CBD, Arrowtown and Gibbston."
+sibling:
+  slug: "things-to-do"
+  label: "Things to do near The Remarkables"
+  prompt: "Looking for things to do instead?"
 tagline: "The best coffee around here is our own kitchen, and Julian's sous-vide steak is hard to beat. When we do go out, this is where we go."
 askUsText: "Tell us the kind of food you're into and we'll point you at our favourites."
 extraBoxTitle: "First Table"

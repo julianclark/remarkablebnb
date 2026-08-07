@@ -4,6 +4,7 @@ import Review from '../components/Review.astro';
 import WinterPanel from '../components/WinterPanel.astro';
 import { Image } from 'astro:assets';
 import { getCollection, getEntry, render } from 'astro:content';
+import { getSiteFacts } from '../lib/site-facts';
 import dogPhoto from '../assets/photos/guest-room/dogs.avif';
 import hotTubPhoto from '../assets/photos/hot-tub/hot-tub-sunset.jpg';
 import deckPhoto from '../assets/photos/two-bedroom-unit/deck view.avif';
@@ -15,8 +16,20 @@ const faqs = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.
 
 const hostsSection = await getEntry('homeSections', 'hosts');
 const dogsSection = await getEntry('homeSections', 'dogs');
+const hotTubSection = await getEntry('homeSections', 'hot-tub');
 const { Content: HostsContent } = await render(hostsSection!);
 const { Content: DogsContent } = await render(dogsSection!);
+const { Content: HotTubContent } = await render(hotTubSection!);
+
+// Section headings and intros (src/content/home/headings.json), so the copy
+// above each block is as editable as the cards inside it.
+const headings = Object.fromEntries(
+  (await getCollection('homeHeadings')).map((h) => [h.data.id, h.data])
+);
+
+// Shared facts (hot tub limits, the direct-booking discount) — see
+// src/content/site-facts.json.
+const facts = await getSiteFacts();
 const homeProse = 'prose prose-slate max-w-none prose-headings:font-medium prose-p:text-lg prose-p:text-[var(--color-stone-grey)] prose-p:leading-relaxed prose-a:text-[var(--color-ember)] prose-a:font-medium prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-l-0 prose-blockquote:border prose-blockquote:border-[var(--color-ember)]/30 prose-blockquote:bg-[var(--color-ember)]/5 prose-blockquote:rounded-xl prose-blockquote:px-4 prose-blockquote:py-3 prose-blockquote:text-sm prose-blockquote:text-[var(--color-stone-grey)] prose-strong:text-[var(--color-graphite)]';
 
 const reviews = (await getCollection('reviews')).map((r) => r.data);
@@ -130,9 +143,9 @@ const hero = (await getEntry('hero', 'default'))!.data;
   <section id="stays" class="py-16 sm:py-20">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-medium mb-4">Our stays</h2>
+        <h2 class="text-3xl font-medium mb-4">{headings.stays.heading}</h2>
         <p class="text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] max-w-xl mx-auto">
-          Two ways to stay at our home in Hanley's Farm, a private room inside the house, or your own self-contained unit.
+          {headings.stays.intro}
         </p>
       </div>
 
@@ -259,19 +272,19 @@ const hero = (await getEntry('hero', 'default'))!.data;
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div class="rounded-2xl overflow-hidden shadow-xl order-2 lg:order-1">
-          <Image src={hotTubPhoto} alt="Our wood-fired hot tub on the deck at dusk, with alpenglow on The Remarkables" widths={[480, 768, 1080]} sizes="(max-width: 1024px) 100vw, 560px" class="w-full h-auto object-cover" />
+          <Image src={hotTubPhoto} alt={hotTubSection!.data.photoAlt} widths={[480, 768, 1080]} sizes="(max-width: 1024px) 100vw, 560px" class="w-full h-auto object-cover" />
         </div>
         <div class="order-1 lg:order-2">
-          <span class="badge badge-gold mb-3">🔥 Add-on</span>
-          <h2 class="text-3xl sm:text-4xl font-medium mb-4 !text-[var(--color-cream)]">Wood-fired hot tub, under the Southern sky</h2>
-          <p class="text-lg text-[var(--color-cream)]/85 leading-relaxed mb-4">
-            We light the fire and get the tub to temperature (37 to 42 degrees), show you how to keep it where you like it, then close our blinds and leave you to it.
-          </p>
+          <span class="badge badge-gold mb-3">{hotTubSection!.data.badge}</span>
+          <h2 class="text-3xl sm:text-4xl font-medium mb-4 !text-[var(--color-cream)]">{hotTubSection!.data.heading}</h2>
+          <div class="prose prose-invert max-w-none prose-p:text-lg prose-p:text-[var(--color-cream)]/85 prose-p:leading-relaxed mb-4">
+            <HotTubContent />
+          </div>
           <p class="text-[var(--color-cream)]/70 text-sm leading-relaxed mb-6">
-            Up to 4 people. We heat the tub to order, so pricing and availability depend on the day, ask us when you enquire. Swimwear required; please shower before use.
+            Up to {facts.hotTub.maxPeople} people, heated to {facts.hotTub.tempRange}. We heat the tub to order, so pricing and availability depend on the day, ask us when you enquire. {facts.hotTub.rules}
           </p>
-          <a href="/contact" class="inline-flex items-center gap-2 bg-white text-[var(--color-graphite)] font-semibold px-6 py-3 rounded-xl hover:bg-[var(--color-hairline)] transition-all duration-200">
-            Ask about the hot tub
+          <a href={hotTubSection!.data.ctaHref} class="inline-flex items-center gap-2 bg-white text-[var(--color-graphite)] font-semibold px-6 py-3 rounded-xl hover:bg-[var(--color-hairline)] transition-all duration-200">
+            {hotTubSection!.data.ctaLabel}
           </a>
         </div>
       </div>
@@ -293,7 +306,7 @@ const hero = (await getEntry('hero', 'default'))!.data;
   <section class="py-16 sm:py-20">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-medium mb-4">Who we're great for</h2>
+        <h2 class="text-3xl font-medium mb-4">{headings.segments.heading}</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {segments.map((s) => (
@@ -334,7 +347,7 @@ const hero = (await getEntry('hero', 'default'))!.data;
         ))}
       </div>
       <p class="text-center text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mt-8">
-        Full address, parking and arrival directions are sent as soon as you book. See our guides for <a href="/guides/eat-and-drink" class="text-[var(--color-ember)] font-medium hover:underline">where we eat</a> and <a href="/guides/things-to-do" class="text-[var(--color-ember)] font-medium hover:underline">what we do</a> nearby.
+        {headings.location.footnote} See our guides for <a href="/guides/eat-and-drink" class="text-[var(--color-ember)] font-medium hover:underline">where we eat</a> and <a href="/guides/things-to-do" class="text-[var(--color-ember)] font-medium hover:underline">what we do</a> nearby.
       </p>
 
       <!-- Host tips -->
@@ -359,10 +372,10 @@ const hero = (await getEntry('hero', 'default'))!.data;
   <section id="why-book-direct" class="py-16 sm:py-20 bg-gradient-to-b from-[var(--color-ember)]/5 to-transparent dark:from-[var(--color-ember)]/10 scroll-mt-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mx-auto text-center mb-10">
-        <span class="badge badge-ember mb-3">Save when you book direct</span>
-        <h2 class="text-3xl font-medium mb-4">Why book with us?</h2>
+        <span class="badge badge-ember mb-3">{headings['book-direct'].badge}</span>
+        <h2 class="text-3xl font-medium mb-4">{headings['book-direct'].heading}</h2>
         <p class="text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">
-          We're on Airbnb too, but booking directly means a better deal and dealing with us, not a platform.
+          {headings['book-direct'].intro}
         </p>
       </div>
 
@@ -379,7 +392,7 @@ const hero = (await getEntry('hero', 'default'))!.data;
             <span class="inline-flex items-center rounded-full bg-[var(--color-ember)] text-[var(--color-cream)] text-xs font-semibold uppercase tracking-widest px-3 py-1 shadow-sm">Best value</span>
           </div>
           <div class="text-sm font-medium text-[var(--color-ember)] uppercase tracking-widest mb-2">Book Direct</div>
-          <div class="text-2xl font-bold mb-1">10% off</div>
+          <div class="text-2xl font-bold mb-1">{facts.directDiscountPercent}% off</div>
           <div class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">No service fees</div>
           <div class="text-xs text-[var(--color-ember)] font-medium mt-3">Deal with Holly & Julian directly</div>
         </div>
@@ -406,8 +419,8 @@ const hero = (await getEntry('hero', 'default'))!.data;
   <section class="py-16 sm:py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-10">
-        <h2 class="text-3xl font-medium mb-4">Before you book</h2>
-        <p class="text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">The questions guests ask us most.</p>
+        <h2 class="text-3xl font-medium mb-4">{headings.faq.heading}</h2>
+        <p class="text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">{headings.faq.intro}</p>
       </div>
       <div class="space-y-3">
         {faqs.map((faq) => (

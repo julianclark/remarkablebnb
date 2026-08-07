@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getEntry, render } from 'astro:content';
+import { getSiteFacts } from '../../../lib/site-facts';
 import { env } from 'cloudflare:workers';
 
 export const prerender = false;
@@ -100,22 +101,42 @@ if (page !== 'extras') {
     pageIcon = entry.data.icon;
   }
 } else {
-  // "Extras" is generated dynamically since it includes interactive Stripe links / requests
+  // "Extras" wraps host-written copy in an interactive request/Stripe flow.
   pageTitle = "Paid Extras";
   pageIcon = "🛁";
 }
+
+// Guest-hub copy blocks (extras offer, both checkout variants, the expired
+// page) live in src/content/guest/*.md so host-voice prose is edited as
+// markdown rather than inline in this template.
+const extrasCopy = (await getEntry('guestCopy', 'extras'))!;
+const { Content: ExtrasContent } = await render(extrasCopy);
+
+const checkoutCopy = (await getEntry(
+  'guestCopy',
+  stay.source === 'airbnb' ? 'checkout-airbnb' : 'checkout-direct'
+))!;
+const { Content: CheckoutContent } = await render(checkoutCopy);
+
+const endedCopy = (await getEntry('guestCopy', 'stay-ended'))!;
+const { Content: EndedContent } = await render(endedCopy);
+
+const facts = await getSiteFacts();
+
+// Shared prose styling for the small guest-hub copy blocks.
+const guestProse = 'prose prose-slate dark:prose-invert prose-sm max-w-none prose-p:text-[var(--color-stone-grey)] dark:prose-p:text-[var(--color-stone)] prose-p:leading-relaxed prose-strong:text-[var(--color-graphite)] dark:prose-strong:text-white';
 ---
 
 {tooLate ? (
   <BaseLayout title="Stay Ended" description="This stay has ended." noindex={true}>
     <div class="max-w-md mx-auto px-4 py-20 text-center">
-      <div class="text-6xl mb-6">🏔️</div>
-      <h1 class="text-2xl font-medium mb-4">This stay page has ended</h1>
-      <p class="text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-6 text-sm">
-        Stay links are valid until 7 days after checkout. If you need to contact Holly & Julian, please get in touch directly.
-      </p>
-      <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-ember)] hover:bg-[var(--color-link-hover)] text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors">
-        Contact Hosts
+      <div class="text-6xl mb-6">{endedCopy.data.icon}</div>
+      <h1 class="text-2xl font-medium mb-4">{endedCopy.data.heading}</h1>
+      <div class={`${guestProse} mb-6`}>
+        <EndedContent />
+      </div>
+      <a href={endedCopy.data.ctaHref} class="inline-flex items-center gap-2 bg-[var(--color-ember)] hover:bg-[var(--color-link-hover)] text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors">
+        {endedCopy.data.ctaLabel}
       </a>
     </div>
   </BaseLayout>
@@ -199,20 +220,23 @@ if (page !== 'extras') {
       {page === 'extras' ? (
         <div class="space-y-6">
           <div class="rounded-2xl border-2 border-[var(--color-ember)] bg-[var(--color-ember)]/5 dark:bg-[var(--color-ember)]/10 p-6 sm:p-8">
-            <h2 class="text-lg font-medium mb-3">Hot Tub Access</h2>
-            <p class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4 leading-relaxed">
-              We heat the tub to order, so pricing and availability depend on the day. Want to soak under the stars and watch the snow on The Remarkables? Ask us and we'll confirm.
+            <h2 class="text-lg font-medium mb-3">{extrasCopy.data.heading}</h2>
+            <div class={`${guestProse} mb-4`}>
+              <ExtrasContent />
+            </div>
+            <p class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4">
+              Up to {facts.hotTub.maxPeople} people, heated to {facts.hotTub.tempRange}. {facts.hotTub.rules}
             </p>
 
             <div class="space-y-3">
-              <a 
-                href="/contact" 
+              <a
+                href={extrasCopy.data.ctaHref}
                 class="inline-flex justify-center items-center w-full rounded-xl bg-[var(--color-ember)] hover:bg-[var(--color-link-hover)] text-white px-5 py-3 font-semibold text-sm transition-colors text-center"
               >
-                Request Hot Tub Access
+                {extrasCopy.data.ctaLabel}
               </a>
               <p class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] text-center">
-                Once confirmed by us, we'll send a Stripe Payment Link.
+                {extrasCopy.data.ctaNote}
               </p>
             </div>
           </div>
@@ -226,30 +250,31 @@ if (page !== 'extras') {
       <!-- Adapt checkout page based on token source -->
       {page === 'checkout' && (
         <div class="mt-12 pt-8 border-t border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)]">
-          {stay.source === 'airbnb' ? (
-            <div class="rounded-xl border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] p-6 bg-white dark:bg-[var(--color-schist-ink)]">
-              <h3 class="font-medium text-lg mb-2">✨ Save on your next stay!</h3>
-              <p class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] leading-relaxed mb-4">
-                Thank you for staying with us. We hope you enjoyed your time under The Remarkables.
-              </p>
-              <p class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] leading-relaxed mb-4">
-                If you book directly on our website for your next trip, we'll give you a **returning guest discount** (and you'll save on platform fees).
-              </p>
-              <p class="text-sm font-semibold text-[var(--color-graphite)] dark:text-white">
-                Save our details: <span class="text-[var(--color-ember)]">stay@remarkablebnb.nz</span>
-              </p>
+          <div
+            class:list={[
+              'rounded-xl p-6',
+              stay.source === 'airbnb'
+                ? 'border border-[var(--color-hairline)] dark:border-[var(--color-stone-grey)] bg-white dark:bg-[var(--color-schist-ink)]'
+                : 'border border-[var(--color-sun-gold)]/30 bg-[var(--color-sun-gold)]/5 dark:bg-[var(--color-sun-gold)]/10',
+            ]}
+          >
+            <h3
+              class:list={[
+                'font-medium text-lg mb-2',
+                stay.source !== 'airbnb' && 'text-[var(--color-sun-gold-dark)]',
+              ]}
+            >
+              {checkoutCopy.data.heading}
+            </h3>
+            <div class={guestProse}>
+              <CheckoutContent />
             </div>
-          ) : (
-            <div class="rounded-xl border border-[var(--color-sun-gold)]/30 p-6 bg-[var(--color-sun-gold)]/5 dark:bg-[var(--color-sun-gold)]/10">
-              <h3 class="font-medium text-lg text-[var(--color-sun-gold-dark)] mb-2">👋 Welcome back discount active</h3>
-              <p class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] leading-relaxed mb-4">
-                Thank you for booking directly with us again. As a valued return guest, you got our best rate on this stay.
+            {stay.source === 'airbnb' && (
+              <p class="text-sm font-semibold text-[var(--color-graphite)] dark:text-white mt-4">
+                Save our details: <span class="text-[var(--color-ember)]">{facts.email}</span>
               </p>
-              <p class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] leading-relaxed">
-                Whenever you're ready to come back to Queenstown, just drop us an email or book direct for your repeat-guest rate.
-              </p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       )}
     </div>

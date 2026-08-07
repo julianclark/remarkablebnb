@@ -21,7 +21,7 @@ Park in the driveway, there's space for your vehicle right outside.
 
 ## Arrival
 
-**Check-in time:** 3:00 PM onwards
+**Check-in time:** 3:00pm onwards
 
 <!-- TODO: Add lockbox/smart lock instructions -->
 

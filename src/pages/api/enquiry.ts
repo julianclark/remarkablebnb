@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { env } from 'cloudflare:workers';
 import { getCollection } from 'astro:content';
+import { getDirectMultiplier } from '../../lib/site-facts';
 
 export const prerender = false;
 
@@ -22,7 +23,8 @@ const STAY_SLUGS: Record<string, string> = {
   room: 'guest-room',
 };
 
-const DIRECT_MULTIPLIER = 0.9; // 10% off Airbnb when booking direct, same as the stay page calendar.
+// Direct-booking discount comes from site-facts.json, the same source the
+// calendar and stay pages read, so the estimate can't drift from the copy.
 
 interface PriceEstimate {
   nights: number;
@@ -72,7 +74,7 @@ async function computeEstimate(
   }
   if (nights === 0) return null;
 
-  const directTotal = Math.round(airbnbTotal * DIRECT_MULTIPLIER);
+  const directTotal = Math.round(airbnbTotal * (await getDirectMultiplier()));
   const cleaningFee = stay.data.cleaningFee;
   const nightlyLabel = nights === 1 ? `$${directTotal}` : `$${Math.round(directTotal / nights)} average`;
 

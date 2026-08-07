@@ -1,85 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
 
 export const prerender = true;
+
+// All copy lives in src/content/pages/terms.md, this page is chrome only.
+const page = (await getEntry('pages', 'terms'))!;
+const { Content } = await render(page);
 ---
 
-<BaseLayout
-  title="Booking Terms"
-  description="Cancellation, payment and house terms for direct bookings at Remarkable BnB in Hanley's Farm, Queenstown."
->
+<BaseLayout title={page.data.seoTitle} description={page.data.seoDescription}>
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <div class="mb-12">
-      <span class="badge badge-ember mb-3">Booking terms</span>
-      <h1 class="text-4xl sm:text-5xl font-medium mb-4">Direct booking terms</h1>
-      <p class="text-[var(--color-stone-grey)] max-w-xl">
-        The plain-language terms for booking direct with us. If anything here is unclear, just ask when you enquire.
-      </p>
+      {page.data.badge && <span class="badge badge-ember mb-3">{page.data.badge}</span>}
+      <h1 class="text-4xl sm:text-5xl font-medium mb-4">{page.data.heading}</h1>
+      {page.data.intro && (
+        <p class="text-[var(--color-stone-grey)] max-w-xl">{page.data.intro}</p>
+      )}
     </div>
 
-    <div class="space-y-10">
-      <section>
-        <h2 class="text-2xl font-medium mb-3">Cancellations and changes</h2>
-        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed mb-3">
-          We mirror our Airbnb cancellation policy for direct bookings, Moderate:
-        </p>
-        <ul class="list-disc pl-5 space-y-1.5 text-sm text-[var(--color-stone-grey)] leading-relaxed mb-3 marker:text-[var(--color-ember)]">
-          <li>Full refund if you cancel at least 5 days before check-in.</li>
-          <li>Partial refund if you cancel less than 5 days before check-in.</li>
-          <li>If you cancel within 5 days of check-in, or during your trip, you're charged for 1 extra night and refunded 50% of the unspent nights.</li>
-        </ul>
-        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed mb-3">
-          The cleaning fee is always refunded on cancellation, regardless of timing.
-        </p>
-        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">
-          We do try to be reasonable. If we can rebook your cancelled dates, we'll refund the nights we rebook.
-        </p>
-      </section>
-
-      <section>
-        <h2 class="text-2xl font-medium mb-3">Payment</h2>
-        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">
-          Payment in full is required to confirm your booking. We'll send a secure payment link when we reply to your enquiry with your dates and total.
-        </p>
-      </section>
-
-      <section>
-        <h2 class="text-2xl font-medium mb-3">Check-in and check-out</h2>
-        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">
-          Check-in from 3:00pm, check-out by 10:00am. Early check-in and bag drop are often possible, just ask.
-        </p>
-      </section>
-
-      <section>
-        <h2 class="text-2xl font-medium mb-3">Smoking and parties</h2>
-        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">
-          No smoking inside the house or unit, there's outdoor space if you need it. No parties or events, we live here and our neighbours are close.
-        </p>
-      </section>
-
-      <section>
-        <h2 class="text-2xl font-medium mb-3">Hot tub</h2>
-        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed">
-          The wood-fired hot tub is a paid add-on, not a standard amenity. We heat it to order, so pricing and availability depend on the day, ask us when you enquire. Up to 4 people, swimwear required, please shower before use.
-        </p>
-      </section>
-
-      <section>
-        <h2 class="text-2xl font-medium mb-3">Pets</h2>
-        <p class="text-sm text-[var(--color-stone-grey)] leading-relaxed mb-3">
-          Two Bedroom Unit: well-behaved medium and large dogs are welcome by arrangement, the unit has a fenced outdoor space and we can provide a crate if needed. Small dogs might fit through the fence, so please ask before booking.
-        </p>
-        <p class="text-xs text-[var(--color-sun-gold-dark)] font-semibold">
-          TODO, hosts to confirm: pet policy for the Guest Room, where Rocket and Luna already live.
-        </p>
-      </section>
-
-      <section>
-        <h2 class="text-2xl font-medium mb-3">Children and the guest limit</h2>
-        <p class="text-xs text-[var(--color-sun-gold-dark)] font-semibold">
-          TODO, hosts to confirm: whether children count toward the maximum guest number for each stay.
-        </p>
-      </section>
+    <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-medium prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-3 prose-p:text-sm prose-p:text-[var(--color-stone-grey)] prose-p:leading-relaxed prose-li:text-sm prose-li:text-[var(--color-stone-grey)] prose-li:leading-relaxed prose-strong:text-[var(--color-graphite)] dark:prose-strong:text-[var(--color-cream)] marker:text-[var(--color-ember)]">
+      <Content />
     </div>
 
     <div class="mt-12 pt-8 border-t border-[var(--color-hairline)]">

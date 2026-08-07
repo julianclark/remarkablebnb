@@ -6,6 +6,10 @@ icon: "🧭"
 draft: false
 seoTitle: "Things to do near The Remarkables | Remarkable BnB"
 seoDescription: "What Holly & Julian actually send their guests to do, from walks out our door to day trips around Queenstown, by mood and weather."
+sibling:
+  slug: "eat-and-drink"
+  label: "Where to eat and drink"
+  prompt: "Looking for where to eat instead?"
 tagline: "We live under The Remarkables, so our default answer is usually \"get outside if the weather lets you.\" Queenstown has plenty of paid activities, but some of the best things from our place are simple: a walk from the door, a coffee with a view, a lake stop, or a hot tub after a big day. Tell us what kind of trip you want, scenic, foodie, sporty, snow-focused, relaxed, family-friendly, or full adrenaline, and we'll point you in the right direction."
 askUsText: "Nature, adventure, foodie, sporty, scenic, relaxation or wine: tell us your style and we'll share favourites."
 quickTips:

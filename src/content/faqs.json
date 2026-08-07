@@ -3,7 +3,7 @@
     "id": "late-check-in",
     "order": 1,
     "question": "Can I check in late?",
-    "answer": "Yes, genuinely fine. Self check-in from 3pm, arrive whenever suits."
+    "answer": "Yes, genuinely fine. Self check-in from 3:00pm, arrive whenever suits."
   },
   {
     "id": "early-check-in",
