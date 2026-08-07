@@ -147,8 +147,14 @@ async function getCardronaSnowReport() {
       ? ok([mi.snowBaseStr, hasLast7Days ? `${last7Days}cm in the last 7 days` : null].filter(Boolean).join(' · '))
       : fail();
 
-  const chainRoad =
-    mi.roadConditions || mi.chains2wdLocation
+  // roadConditions is a fixed enum (e.g. "chain free") that can lag behind
+  // actual conditions; roadConditionsText is the free-text override editors
+  // update live and takes precedence when set (same pattern as
+  // resortStatusText elsewhere in this API).
+  const roadConditionsText = typeof mi.roadConditionsText === 'string' ? mi.roadConditionsText.trim() : '';
+  const chainRoad = roadConditionsText
+    ? ok(fixKnownTypos(roadConditionsText))
+    : mi.roadConditions || mi.chains2wdLocation
       ? ok([mi.roadConditions && `Road: ${fixKnownTypos(mi.roadConditions)}`, mi.chains2wdLocation && `Chains from ${fixKnownTypos(mi.chains2wdLocation)}`].filter(Boolean).join(' · '))
       : fail();
 
