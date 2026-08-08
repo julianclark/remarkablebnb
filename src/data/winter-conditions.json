@@ -1,42 +1,42 @@
 {
-  "generatedAt": "2026-08-08T09:13:25.643Z",
+  "generatedAt": "2026-08-08T10:08:06.995Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": null,
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
           "label": "Snow base",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "20-95cm · 38cm in the last 7 days"
         },
         {
           "id": "chain-road",
           "label": "Chains / road",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Road open · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
           "label": "Temperature",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "1°C · partly cloudy"
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Today: -5° to -1°, few showers · Tomorrow: -6° to -1°, snow · Day after: -5° to -1°, few showers"
         }
       ]
     },
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-3°C · Overcast"
+          "value": "-2°C · Light drizzle"
         },
         {
           "id": "forecast",
