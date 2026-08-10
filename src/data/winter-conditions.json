@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T01:30:41.419Z",
+  "generatedAt": "2026-08-10T02:44:06.257Z",
   "fields": [
     {
       "id": "remarkables",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road open · Chains: Required on 2WD vehicles"
+          "value": "Road open · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "1°C · part cloudy"
+          "value": "0°C · part cloudy"
         },
         {
           "id": "forecast",
