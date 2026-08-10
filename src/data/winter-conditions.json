@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T03:32:53.403Z",
+  "generatedAt": "2026-08-10T04:29:51.964Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "2°C · part cloudy"
+          "value": "1°C · part cloudy"
         },
         {
           "id": "forecast",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
