@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T08:27:45.176Z",
+  "generatedAt": "2026-08-12T09:24:11.950Z",
   "fields": [
     {
       "id": "remarkables",
@@ -43,7 +43,7 @@
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "5°C · wind"
+          "value": "5°C · showers"
         },
         {
           "id": "forecast",
