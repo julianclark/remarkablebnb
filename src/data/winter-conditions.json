@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T12:05:38.738Z",
+  "generatedAt": "2026-08-18T13:17:10.824Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "2°C · fine"
+          "value": "1°C · fine"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -6° to -3°, fine · Tomorrow: -5° to 1°, fine · Day after: -4° to 1°, fine"
+          "value": "Today: -6° to 1°, fine · Tomorrow: -5° to 1°, fine · Day after: -3° to 1°, cloud"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "1°C · partly cloudy"
+          "value": "2°C · partly cloudy"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -4° to -1°, fine · Tomorrow: -3° to 2°, fine · Day after: -2° to 4°, fine"
+          "value": "Today: -4° to 2°, fine · Tomorrow: -3° to 3°, fine · Day after: -1° to 3°, cloud"
         }
       ]
     },
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-3°C · Overcast"
+          "value": "-4°C · Overcast"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -4° to 1°, overcast · Tomorrow: -4° to 4°, partly cloudy · Day after: -6° to 2°, snow"
+          "value": "Today: -4° to 2°, overcast · Tomorrow: -5° to 2°, overcast · Day after: -5° to 2°, overcast"
         }
       ]
     }
