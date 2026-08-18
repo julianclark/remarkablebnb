@@ -1,42 +1,42 @@
 {
-  "generatedAt": "2026-08-18T15:07:35.013Z",
+  "generatedAt": "2026-08-18T16:05:57.579Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": null,
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
           "label": "Snow base",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "20-85cm · 14cm in the last 7 days"
         },
         {
           "id": "chain-road",
           "label": "Chains / road",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Road open · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
           "label": "Temperature",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "1°C · fine"
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Today: -6° to 1°, fine · Tomorrow: -5° to 1°, fine · Day after: -3° to 1°, cloud"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "2°C · partly cloudy"
+          "value": "3°C · partly cloudy"
         },
         {
           "id": "forecast",
