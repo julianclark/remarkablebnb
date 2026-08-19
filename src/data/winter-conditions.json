@@ -1,42 +1,42 @@
 {
-  "generatedAt": "2026-08-19T15:07:43.821Z",
+  "generatedAt": "2026-08-19T16:06:10.385Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Open",
+      "status": null,
       "facts": [
         {
           "id": "snow-base",
           "label": "Snow base",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "20-85cm · 14cm in the last 7 days"
+          "ok": false,
+          "value": null
         },
         {
           "id": "chain-road",
           "label": "Chains / road",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "Road open · Chains: Please Carry Chains"
+          "ok": false,
+          "value": null
         },
         {
           "id": "temp",
           "label": "Temperature",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "1°C · fine"
+          "ok": false,
+          "value": null
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "Today: -4° to 1°, fine · Tomorrow: -3° to 1°, part cloudy · Day after: -5° to 2°, snow"
+          "ok": false,
+          "value": null
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "3°C · cloudy"
+          "value": "4°C · cloudy"
         },
         {
           "id": "forecast",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-3°C · Clear"
+          "value": "-4°C · Clear"
         },
         {
           "id": "forecast",
