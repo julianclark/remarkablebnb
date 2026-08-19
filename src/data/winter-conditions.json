@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T03:17:23.889Z",
+  "generatedAt": "2026-08-19T04:12:22.490Z",
   "fields": [
     {
       "id": "remarkables",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "6°C · cloudy"
+          "value": "7°C · cloudy"
         },
         {
           "id": "forecast",
