@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T18:07:38.625Z",
+  "generatedAt": "2026-08-19T18:45:06.808Z",
   "fields": [
     {
       "id": "remarkables",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "50cm · 5cm in the last 7 days"
+          "value": "50cm · 2cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-4°C · Mostly clear"
+          "value": "-5°C · Mostly clear"
         },
         {
           "id": "forecast",
