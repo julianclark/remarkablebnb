@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T18:45:11.979Z",
+  "generatedAt": "2026-08-21T19:11:17.074Z",
   "fields": [
     {
       "id": "remarkables",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "4°C · wind rain"
+          "value": "3°C · wind rain"
         },
         {
           "id": "forecast",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Onhold",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
