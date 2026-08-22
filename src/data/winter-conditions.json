@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T22:02:59.333Z",
+  "generatedAt": "2026-08-22T23:03:04.841Z",
   "fields": [
     {
       "id": "remarkables",
@@ -12,7 +12,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "20-85cm · 5cm in the last 7 days"
+          "value": "20-85cm · 15cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-4°C · snow"
+          "value": "-5°C · snow"
         },
         {
           "id": "forecast",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "-1°C · wind"
+          "value": "-3°C · wind"
         },
         {
           "id": "forecast",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-5°C · Mostly clear"
+          "value": "-5°C · Partly cloudy"
         },
         {
           "id": "forecast",
