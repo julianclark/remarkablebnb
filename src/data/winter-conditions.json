@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T18:04:50.216Z",
+  "generatedAt": "2026-08-22T18:43:29.870Z",
   "fields": [
     {
       "id": "remarkables",
@@ -59,7 +59,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Road open · Chains: Please Carry Chains"
+          "value": "Road closed · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "1°C · snow"
+          "value": "1°C · wind"
         },
         {
           "id": "forecast",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Onhold",
       "facts": [
         {
           "id": "snow-base",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "50cm · 2cm in the last 7 days"
+          "value": "60cm · 2cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains must always be carried!"
+          "value": "Chains on 2WD from Heli Corner\nChains on 4Wd from Valley View"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-3°C · Light drizzle"
+          "value": "-4°C · Heavy snow showers"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -6° to -1°, heavy snow showers · Tomorrow: -6° to 0°, overcast · Day after: -2° to 3°, drizzle"
+          "value": "Today: -6° to 0°, heavy snow showers · Tomorrow: -7° to 0°, overcast · Day after: -2° to 3°, drizzle"
         }
       ]
     }
