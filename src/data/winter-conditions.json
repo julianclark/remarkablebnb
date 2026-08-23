@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T17:04:52.440Z",
+  "generatedAt": "2026-08-23T18:05:07.768Z",
   "fields": [
     {
       "id": "remarkables",
@@ -43,7 +43,7 @@
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-4°C · Overcast"
+          "value": "-3°C · Overcast"
         },
         {
           "id": "forecast",
