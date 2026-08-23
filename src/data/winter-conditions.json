@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T22:02:51.814Z",
+  "generatedAt": "2026-08-23T23:03:23.021Z",
   "fields": [
     {
       "id": "remarkables",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road open · Chains: Required on 2WD Vehicles"
+          "value": "Road one up, one down · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on 2WD from Chain Bay 1\nChains on 4Wd from Heli Corner"
+          "value": "Chains on 2WD from Valley View"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-2°C · Partly cloudy"
+          "value": "-1°C · Partly cloudy"
         },
         {
           "id": "forecast",
