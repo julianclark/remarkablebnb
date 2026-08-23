@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T18:43:25.092Z",
+  "generatedAt": "2026-08-23T19:07:19.898Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-1°C · partly cloudy"
+          "value": "0°C · partly cloudy"
         },
         {
           "id": "forecast",
