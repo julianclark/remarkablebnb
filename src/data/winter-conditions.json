@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T19:40:57.693Z",
+  "generatedAt": "2026-08-24T20:07:47.752Z",
   "fields": [
     {
       "id": "remarkables",
@@ -12,7 +12,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "40-130cm · 30cm in the last 7 days"
+          "value": "40-130cm · 35cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "2°C · drizzle"
+          "value": "3°C · cloudy"
         },
         {
           "id": "forecast",
