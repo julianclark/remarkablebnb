@@ -34,15 +34,10 @@ CREATE TABLE IF NOT EXISTS ical_sync_log (
   event_count INTEGER DEFAULT 0
 );
 
--- Per-night pricing per room, captured occasionally from Airbnb host
--- calendar screenshots via vision extraction (scripts/import-prices.js).
-CREATE TABLE IF NOT EXISTS prices (
-  room TEXT NOT NULL,              -- 'two-bedroom-unit' | 'guest-room'
-  date TEXT NOT NULL,             -- ISO date YYYY-MM-DD (the night)
-  price_nzd INTEGER NOT NULL,     -- Airbnb nightly rate, whole NZD
-  captured_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (room, date)
-);
+-- There is deliberately no `prices` table. We mirrored Airbnb's per-night
+-- rates here once, but that figure moves with extra-guest fees, so a single
+-- published number was wrong for larger parties. The site now quotes the
+-- direct discount as a percentage and the hosts price each enquiry by hand.
 
 -- Guest enquiries submitted via the contact form. Persisted first so an
 -- enquiry is never lost even if the notification email fails to send.
@@ -52,6 +47,8 @@ CREATE TABLE IF NOT EXISTS enquiries (
   email TEXT NOT NULL,
   stay TEXT,
   dates TEXT,
+  adults INTEGER DEFAULT 0,        -- party size, recorded but not capacity-checked
+  children INTEGER DEFAULT 0,
   message TEXT NOT NULL,
   emailed INTEGER DEFAULT 0,       -- 1 once the notification email was sent
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP

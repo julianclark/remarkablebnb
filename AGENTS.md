@@ -23,6 +23,12 @@ Hanley's Farm (edge of Jack's Point, Queenstown, under The Remarkables):
   this percentage publicly, keep repeat-stay copy qualitative.
 - Always honest: direct is cheaper and personal; Airbnb offers
   AirCover and platform mediation. Let guests choose.
+- Never publish a nightly dollar rate on the site. Airbnb's nightly
+  figure moves with extra-guest fees, so any single number we mirror is
+  wrong for larger parties. State the discount as a percentage, point
+  guests at Airbnb for the live rate, and quote by hand on reply. We
+  built a screenshot-to-D1 price sync once and removed it for exactly
+  this reason; do not rebuild it.
 
 ## Stack
 - Astro + Tailwind v4. Content collections (markdown) for ALL copy,

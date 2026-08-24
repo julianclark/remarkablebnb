@@ -11,13 +11,3 @@ export async function getSiteFacts() {
   if (!entry) throw new Error('site-facts.json is missing the "default" row');
   return entry.data;
 }
-
-/**
- * Multiplier applied to the Airbnb nightly rate for direct bookings, derived
- * from the published discount so the calendar, the stay page "from" price and
- * the enquiry email estimate can never drift apart from the copy.
- */
-export async function getDirectMultiplier(): Promise<number> {
-  const { directDiscountPercent } = await getSiteFacts();
-  return (100 - directDiscountPercent) / 100;
-}

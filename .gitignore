@@ -25,8 +25,5 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# local pricing import (derived from Airbnb calendar)
-/prices-import.sql
-
 # generated per-token QR sheets (npm run generate-qr), never token secrets in git history
 /qr/
