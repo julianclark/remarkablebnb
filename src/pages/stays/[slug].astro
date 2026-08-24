@@ -85,8 +85,14 @@ const facts = await getSiteFacts();
   )}
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16">
-    <h2 class="text-3xl font-medium mb-6">Availability & pricing</h2>
-    <AvailabilityCalendar bookedRanges={bookedRanges} staySlug={stay.data.slug} stayType={stay.data.type} />
+    <h2 class="text-3xl font-medium mb-6">Availability</h2>
+    <AvailabilityCalendar
+      bookedRanges={bookedRanges}
+      staySlug={stay.data.slug}
+      stayType={stay.data.type}
+      maxGuests={stay.data.maxGuests}
+      airbnbUrl={stay.data.airbnbUrl}
+    />
   </div>
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -145,12 +151,9 @@ const facts = await getSiteFacts();
                 <span class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)]">the Airbnb rate</span>
               </div>
               <div class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mt-1">
-                Check the current rate for your dates on Airbnb, then book direct with us for {facts.directDiscountPercent}% less, with no service fees.
+                Pick your dates and guests above to check the price on Airbnb, then book direct with us for {facts.directDiscountPercent}% less, with no platform fees. Cleaning is already included in the Airbnb total.
               </div>
             </div>
-            <p class="text-xs text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4">
-              + ${stay.data.cleaningFee} one-time cleaning fee, applies whether you book direct or via Airbnb
-            </p>
             <BookingCTA airbnbUrl={stay.data.airbnbUrl} stayTitle={stay.data.title} />
           </div>
 

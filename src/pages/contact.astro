@@ -88,12 +88,6 @@ const facts = await getSiteFacts();
             <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
           </div>
 
-          <!-- Populated by JS from calendar deep-links (?checkin=&checkout=) so
-               the enquiry email can carry a price estimate. Empty for
-               free-text date entries; the email simply omits the estimate. -->
-          <input type="hidden" id="checkin" name="checkin" value="" />
-          <input type="hidden" id="checkout" name="checkout" value="" />
-
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label for="name" class="block text-xs font-semibold uppercase tracking-widest text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-1">Your Name</label>
@@ -222,24 +216,26 @@ const facts = await getSiteFacts();
       const checkout = params.get('checkout');
       const single = params.get('date');
       const datesInput = form.elements.namedItem('dates') as HTMLInputElement | null;
-      const checkinField = form.elements.namedItem('checkin') as HTMLInputElement | null;
-      const checkoutField = form.elements.namedItem('checkout') as HTMLInputElement | null;
       if (datesInput) {
         if (checkin && checkout) {
           datesInput.value = `${fmt(checkin)} – ${fmt(checkout)}`;
-          if (checkinField) checkinField.value = checkin;
-          if (checkoutField) checkoutField.value = checkout;
         } else if (single) {
           datesInput.value = fmt(single);
         }
-        // If the guest edits the prefilled dates by hand, the ISO hidden
-        // fields no longer describe what they typed, clear them so the
-        // enquiry email doesn't carry a stale estimate.
-        datesInput.addEventListener('input', () => {
-          if (checkinField) checkinField.value = '';
-          if (checkoutField) checkoutField.value = '';
-        });
       }
+
+      // Party size chosen on the availability calendar carries through, so
+      // the guest is not asked the same question twice.
+      const prefillCount = (field: 'adults' | 'children') => {
+        const raw = params.get(field);
+        if (raw === null) return;
+        const n = Number.parseInt(raw, 10);
+        if (!Number.isFinite(n) || n < 0) return;
+        const input = form.elements.namedItem(field) as HTMLInputElement | null;
+        if (input) input.value = String(n);
+      };
+      prefillCount('adults');
+      prefillCount('children');
 
       // Show status banner if we came back from a no-JS POST redirect
       if (params.get('sent')) success?.classList.remove('hidden');

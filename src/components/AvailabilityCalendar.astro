@@ -1,17 +1,24 @@
 ---
 import { buildMonths, type DateRange } from '../lib/availability';
+import { getSiteFacts } from '../lib/site-facts';
 
 interface Props {
   bookedRanges: DateRange[];
   staySlug: string;
   stayType: string;
+  maxGuests: number;
+  airbnbUrl: string;
   monthsToShow?: number;
 }
 
 // Availability only. We publish no nightly rate here: Airbnb's figure varies
 // with extra-guest fees, so a mirrored number would be wrong for larger
-// parties. Guests check the live rate on Airbnb and we quote direct on reply.
-const { bookedRanges, staySlug, stayType, monthsToShow = 12 } = Astro.props;
+// parties. Instead the guest picks dates and party size here, and both the
+// enquiry link and the Airbnb link carry that through, so the price Airbnb
+// shows them is the price for their actual party.
+const { bookedRanges, staySlug, stayType, maxGuests, airbnbUrl, monthsToShow = 12 } = Astro.props;
+
+const { directDiscountPercent: discountPercent } = await getSiteFacts();
 
 const months = buildMonths(monthsToShow, bookedRanges, new Date());
 const weekdayLabels = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
@@ -32,10 +39,36 @@ function enquireHref(date: string): string {
 }
 ---
 
-<div class="availability" data-availability data-stay-type={stayType} data-stay-slug={staySlug}>
+<div
+  class="availability"
+  data-availability
+  data-stay-type={stayType}
+  data-stay-slug={staySlug}
+  data-max-guests={maxGuests}
+  data-airbnb-url={airbnbUrl}
+>
   <p class="text-sm text-[var(--color-stone-grey)] dark:text-[var(--color-stone)] mb-4" data-hint>
     Green dates are open. Tap a date to enquire, or tap a check-in then a check-out date for a range.
   </p>
+
+  <!-- Party size. Airbnb prices extra guests, so this travels with both the
+       enquiry and the Airbnb link rather than being asked for later. -->
+  <fieldset class="cal-guests">
+    <legend class="cal-guests-legend">How many guests?</legend>
+    <div class="cal-guests-fields">
+      <label class="cal-guest-field">
+        <span>Adults</span>
+        <input type="number" inputmode="numeric" min="1" max={maxGuests} step="1" value="2" data-guests-adults />
+      </label>
+      <label class="cal-guest-field">
+        <span>Children</span>
+        <input type="number" inputmode="numeric" min="0" max={maxGuests - 1} step="1" value="0" data-guests-children />
+      </label>
+    </div>
+    <p class="cal-guests-note" data-guests-note aria-live="polite">
+      This stay sleeps up to {maxGuests}.
+    </p>
+  </fieldset>
 
   <!-- Pager (revealed by JS; without JS all months stack and remain browsable) -->
   <div class="cal-pager" data-pager hidden>
@@ -101,9 +134,18 @@ function enquireHref(date: string): string {
     </div>
     <div class="cal-enquire-actions">
       <button type="button" class="cal-enquire-clear" data-enquire-clear>Clear</button>
-      <a class="cal-enquire-cta" data-enquire-cta href="#">Enquire about these dates →</a>
+      <a class="cal-enquire-airbnb" data-enquire-airbnb href="#" target="_blank" rel="noopener noreferrer">
+        Check the price on Airbnb ↗
+      </a>
+      <a class="cal-enquire-cta" data-enquire-cta href="#">Enquire to book direct →</a>
     </div>
   </div>
+
+  <p class="cal-pricing-note">
+    We do not list nightly rates here because Airbnb's price changes with your
+    dates and party size. Check the price on Airbnb for the dates you want,
+    then book direct with us for {discountPercent}% less, with no platform fees.
+  </p>
 </div>
 
 <style>
@@ -238,18 +280,93 @@ function enquireHref(date: string): string {
     transition: background 0.12s;
   }
   .cal-enquire-cta:hover { background: var(--color-link-hover); }
+  .cal-enquire-airbnb {
+    font-size: 0.8rem; font-weight: 600; text-decoration: underline;
+    color: var(--color-graphite);
+  }
+  :global(.dark) .cal-enquire-airbnb { color: var(--color-stone); }
+  .cal-enquire-airbnb:hover { color: var(--color-ember); }
+
+  .cal-guests {
+    border: 1px solid var(--color-hairline);
+    border-radius: 0.75rem; padding: 0.85rem 1rem; margin-bottom: 1rem;
+  }
+  :global(.dark) .cal-guests { border-color: var(--color-stone-grey); }
+  .cal-guests-legend {
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--color-stone-grey); padding: 0 0.25rem;
+  }
+  :global(.dark) .cal-guests-legend { color: var(--color-stone); }
+  .cal-guests-fields { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .cal-guest-field { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 600; }
+  .cal-guest-field input {
+    width: 4.25rem; box-sizing: border-box; font: inherit;
+    border: 1px solid var(--color-hairline); border-radius: 0.5rem;
+    padding: 0.35rem 0.5rem; background: white; color: var(--color-graphite);
+  }
+  :global(.dark) .cal-guest-field input {
+    background: var(--color-schist-ink); color: var(--color-stone);
+    border-color: var(--color-stone-grey);
+  }
+  .cal-guest-field input:focus-visible { outline: 3px solid var(--color-ember); outline-offset: 1px; }
+  .cal-guests-note {
+    margin-top: 0.5rem; font-size: 0.75rem; color: var(--color-stone-grey);
+  }
+  :global(.dark) .cal-guests-note { color: var(--color-stone); }
+  .cal-guests-note.is-capped { color: var(--color-ember); font-weight: 600; }
+
+  .cal-pricing-note {
+    margin-top: 1rem; font-size: 0.8rem; line-height: 1.6;
+    color: var(--color-stone-grey);
+  }
+  :global(.dark) .cal-pricing-note { color: var(--color-stone); }
 </style>
 
 <script>
+  import { airbnbListingUrl } from '../lib/airbnb-links';
+
   function initAvailability() {
     document.querySelectorAll<HTMLElement>('[data-availability]').forEach((root) => {
       const stayType = root.dataset.stayType ?? 'general';
+      const maxGuests = Number(root.dataset.maxGuests) || 2;
+      const airbnbUrl = root.dataset.airbnbUrl ?? '';
       const days = Array.from(root.querySelectorAll<HTMLAnchorElement>('.cal-available'));
       const bar = root.querySelector<HTMLElement>('[data-enquire-bar]');
       const summary = root.querySelector<HTMLElement>('[data-enquire-summary]');
       const cta = root.querySelector<HTMLAnchorElement>('[data-enquire-cta]');
+      const airbnbCta = root.querySelector<HTMLAnchorElement>('[data-enquire-airbnb]');
       const clearBtn = root.querySelector<HTMLButtonElement>('[data-enquire-clear]');
+      const adultsInput = root.querySelector<HTMLInputElement>('[data-guests-adults]');
+      const childrenInput = root.querySelector<HTMLInputElement>('[data-guests-children]');
+      const guestsNote = root.querySelector<HTMLElement>('[data-guests-note]');
       if (days.length === 0 || !bar || !summary || !cta) return;
+
+      // Party size, clamped to what the stay actually sleeps. Adults win when
+      // the total overflows, since dropping an adult can invalidate the whole
+      // booking whereas trimming a child count is usually a typo.
+      const readGuests = () => {
+        let adults = Math.max(1, Math.floor(Number(adultsInput?.value) || 1));
+        let children = Math.max(0, Math.floor(Number(childrenInput?.value) || 0));
+        let capped = false;
+
+        if (adults > maxGuests) { adults = maxGuests; capped = true; }
+        if (adults + children > maxGuests) { children = maxGuests - adults; capped = true; }
+
+        if (adultsInput && Number(adultsInput.value) !== adults) adultsInput.value = String(adults);
+        if (childrenInput && Number(childrenInput.value) !== children) childrenInput.value = String(children);
+
+        if (guestsNote) {
+          guestsNote.textContent = capped
+            ? `This stay sleeps up to ${maxGuests}, so we have adjusted your party to fit.`
+            : `This stay sleeps up to ${maxGuests}.`;
+          guestsNote.classList.toggle('is-capped', capped);
+        }
+        return { adults, children };
+      };
+
+      const guestLabel = (adults: number, children: number) =>
+        `${adults} adult${adults === 1 ? '' : 's'}` +
+        (children > 0 ? `, ${children} child${children === 1 ? '' : 'ren'}` : '');
 
       const dates = days.map((d) => d.dataset.date!).sort();
       let checkin: string | null = null;
@@ -289,13 +406,32 @@ function enquireHref(date: string): string {
         return true;
       };
 
+      // Both CTAs carry the party size: the enquiry so we quote the right
+      // price, and Airbnb so the rate it shows already includes extra-guest
+      // fees for this party rather than a two-person default.
+      const contactHref = (
+        adults: number,
+        children: number,
+        dateParams: Record<string, string>
+      ) => {
+        const qs = new URLSearchParams({ stay: stayType, ...dateParams });
+        qs.set('adults', String(adults));
+        qs.set('children', String(children));
+        return `/contact?${qs.toString()}`;
+      };
+
       const render = () => {
         clearClasses();
+        const { adults, children } = readGuests();
+
         if (checkin && !checkout) {
           const el = days.find((d) => d.dataset.date === checkin);
           el?.classList.add('is-selected-start');
           summary.textContent = `Check-in ${fmt(checkin)}, now pick a check-out date`;
-          cta.href = `/contact?stay=${encodeURIComponent(stayType)}&date=${checkin}`;
+          cta.href = contactHref(adults, children, { date: checkin });
+          if (airbnbCta && airbnbUrl) {
+            airbnbCta.href = airbnbListingUrl(airbnbUrl, { checkIn: checkin, adults, children });
+          }
           bar.hidden = false;
         } else if (checkin && checkout) {
           days.forEach((d) => {
@@ -306,13 +442,26 @@ function enquireHref(date: string): string {
           });
           const nights = nightsBetween(checkin, checkout);
           summary.textContent =
-            `${fmt(checkin)} → ${fmt(checkout)} · ${nights} night${nights > 1 ? 's' : ''}`;
-          cta.href = `/contact?stay=${encodeURIComponent(stayType)}&checkin=${checkin}&checkout=${checkout}`;
+            `${fmt(checkin)} → ${fmt(checkout)} · ${nights} night${nights > 1 ? 's' : ''}` +
+            ` · ${guestLabel(adults, children)}`;
+          cta.href = contactHref(adults, children, { checkin, checkout });
+          if (airbnbCta && airbnbUrl) {
+            airbnbCta.href = airbnbListingUrl(airbnbUrl, {
+              checkIn: checkin,
+              checkOut: checkout,
+              adults,
+              children,
+            });
+          }
           bar.hidden = false;
         } else {
           bar.hidden = true;
         }
       };
+
+      // Changing party size after picking dates must update both links.
+      adultsInput?.addEventListener('input', render);
+      childrenInput?.addEventListener('input', render);
 
       days.forEach((day) => {
         day.addEventListener('click', (e) => {
