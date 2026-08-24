@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-24T04:15:04.959Z",
+  "generatedAt": "2026-08-24T05:14:01.068Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
