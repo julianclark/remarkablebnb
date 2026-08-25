@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T18:09:50.990Z",
+  "generatedAt": "2026-08-25T18:45:33.386Z",
   "fields": [
     {
       "id": "remarkables",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains must be carried"
+          "value": "Chains required in all vehicles to come up the mountain."
         },
         {
           "id": "temp",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -4° to -2°, heavy snow showers · Tomorrow: -5° to -1°, heavy snow showers · Day after: -8° to 0°, light showers"
+          "value": "Today: -4° to -1°, heavy snow · Tomorrow: -5° to 0°, heavy snow · Day after: -7° to 1°, rain"
         }
       ]
     }
