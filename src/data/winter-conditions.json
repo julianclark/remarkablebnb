@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-26T04:13:25.449Z",
+  "generatedAt": "2026-08-26T05:09:52.886Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road open · Chains: Required on All Vehicles"
+          "value": "Road open · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "1°C · showers"
+          "value": "0°C · showers"
         },
         {
           "id": "forecast",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-4°C · Snow"
+          "value": "-5°C · Snow"
         },
         {
           "id": "forecast",
