@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T20:48:17.229Z",
+  "generatedAt": "2026-08-26T21:56:49.602Z",
   "fields": [
     {
       "id": "remarkables",
@@ -59,7 +59,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Road open · Chains: Required on 2WD Vehicles"
+          "value": "Road open · Chains: Required on All Vehicles"
         },
         {
           "id": "temp",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on All VEHICLES from Heli corner. \nThe road is closed to up hill traffic."
+          "value": "Chains on All VEHICLES from Chain bay 1.\nThe road is closed to all traffic."
         },
         {
           "id": "temp",
