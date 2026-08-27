@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T00:14:11.412Z",
+  "generatedAt": "2026-08-27T02:31:52.586Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-2°C · snow"
+          "value": "2°C · snow"
         },
         {
           "id": "forecast",
@@ -51,7 +51,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "60-70cm · 8cm in the last 7 days"
+          "value": "60-90cm · 25cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "-1°C · snow"
+          "value": "0°C · snow"
         },
         {
           "id": "forecast",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on All VEHICLES from Chain bay 1.\nThe road is closed to all traffic."
+          "value": "Chains on All VEHICLES from the TOLL GATE!\nThe road is closed to all traffic."
         },
         {
           "id": "temp",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -4° to -1°, snow showers · Tomorrow: -5° to 0°, snow showers · Day after: -5° to -2°, heavy snow showers"
+          "value": "Today: -5° to 0°, snow showers · Tomorrow: -6° to 0°, rain · Day after: -7° to -2°, snow showers"
         }
       ]
     }
