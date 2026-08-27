@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-27T19:30:00.746Z",
+  "generatedAt": "2026-08-27T21:12:30.016Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "On Hold",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road on hold · Chains: Required on 2WD Vehicles"
+          "value": "Road closed · Chains: Required on 2WD Vehicles"
         },
         {
           "id": "temp",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "2°C · snow"
+          "value": "1°C · snow"
         },
         {
           "id": "forecast",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "4°C · few showers"
+          "value": "3°C · few showers"
         },
         {
           "id": "forecast",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Resort operation Delayed \nChain on 2wds from Heli corner"
+          "value": "Resort operation delayed \nChain on 2WD's from Heli Corner and 4WD's from Valley View"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-1°C · Overcast"
+          "value": "0°C · Light drizzle"
         },
         {
           "id": "forecast",
