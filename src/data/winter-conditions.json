@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T21:12:30.016Z",
+  "generatedAt": "2026-08-28T00:30:33.261Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "1°C · snow"
+          "value": "3°C · snow"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -6° to -1°, snow · Tomorrow: -5° to -2°, snow · Day after: -8° to -3°, snow"
+          "value": "Today: -6° to -1°, snow · Tomorrow: -5° to -2°, snow · Day after: -8° to -4°, snow"
         }
       ]
     },
@@ -59,7 +59,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Road open · Chains: Please Carry Chains"
+          "value": "Road at capacity · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "3°C · few showers"
+          "value": "5°C · few showers"
         },
         {
           "id": "forecast",
@@ -75,14 +75,14 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -4° to 2°, few showers · Tomorrow: -2° to 1°, snow · Day after: -6° to 0°, snow"
+          "value": "Today: -3° to 2°, part cloudy · Tomorrow: -2° to 1°, snow · Day after: -6° to -1°, snow"
         }
       ]
     },
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Delayed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Resort operation delayed \nChain on 2WD's from Heli Corner and 4WD's from Valley View"
+          "value": "Chains to be carried"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "0°C · Light drizzle"
+          "value": "-1°C · Partly cloudy"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -8° to 0°, snow showers · Tomorrow: -8° to -3°, snow · Day after: -6° to -1°, snow showers"
+          "value": "Today: -7° to 0°, snow showers · Tomorrow: -7° to -3°, snow · Day after: -5° to -1°, snow showers"
         }
       ]
     }
