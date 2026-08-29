@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T18:09:58.264Z",
+  "generatedAt": "2026-08-29T18:35:31.087Z",
   "fields": [
     {
       "id": "remarkables",
@@ -43,7 +43,7 @@
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -59,7 +59,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Road at capacity · Chains: Please Carry Chains"
+          "value": "Road open · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "100cm · 76cm in the last 7 days"
+          "value": "100cm · 51cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains to be carried"
+          "value": "Chains MUST be carried"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-2°C · Partly cloudy"
+          "value": "-3°C · Overcast"
         },
         {
           "id": "forecast",
