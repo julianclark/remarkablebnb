@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T20:33:37.302Z",
+  "generatedAt": "2026-08-29T21:06:58.746Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-2°C · snow"
+          "value": "-1°C · snow"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -8° to -2°, snow · Tomorrow: -11° to -6°, snow · Day after: -4° to -3°, snow"
+          "value": "Today: -8° to -2°, snow · Tomorrow: -11° to -6°, snow · Day after: -5° to -3°, snow"
         }
       ]
     },
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -5° to 0°, snow · Tomorrow: -9° to -3°, snow · Day after: -3° to 0°, part cloudy"
+          "value": "Today: -5° to 0°, snow · Tomorrow: -9° to -3°, snow · Day after: -2° to 0°, part cloudy"
         }
       ]
     },
