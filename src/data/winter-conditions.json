@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T17:03:00.097Z",
+  "generatedAt": "2026-08-29T18:09:58.264Z",
   "fields": [
     {
       "id": "remarkables",
@@ -12,7 +12,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "62-130cm · 52cm in the last 7 days"
+          "value": "62-130cm · 57cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road open · Chains: Please Carry Chains"
+          "value": "Road open · Chains: Required on All Vehicles"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-1°C · Snow showers"
+          "value": "-2°C · Partly cloudy"
         },
         {
           "id": "forecast",
