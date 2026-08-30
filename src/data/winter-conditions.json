@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T20:33:27.391Z",
+  "generatedAt": "2026-08-30T21:07:14.339Z",
   "fields": [
     {
       "id": "remarkables",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on 2WD from Valley View"
+          "value": "All vehicles must carry chains"
         },
         {
           "id": "temp",
