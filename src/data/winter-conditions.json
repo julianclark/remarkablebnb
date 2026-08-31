@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T18:37:43.304Z",
+  "generatedAt": "2026-08-31T19:07:11.273Z",
   "fields": [
     {
       "id": "remarkables",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -4° to -3°, snow · Tomorrow: -5° to 2°, snow · Day after: -5° to 1°, few showers"
+          "value": "Today: -3° to -2°, snow · Tomorrow: -5° to 2°, snow · Day after: -5° to 1°, snow"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "-3°C · part cloudy"
+          "value": "-3°C · few showers"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -1° to 0°, part cloudy · Tomorrow: -2° to 5°, snow · Day after: -4° to 4°, part cloudy"
+          "value": "Today: 0° to 1°, few showers · Tomorrow: -2° to 5°, part cloudy · Day after: -4° to 4°, part cloudy"
         }
       ]
     },
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "100cm · 63cm in the last 7 days"
+          "value": "108cm · 63cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-9°C · Overcast"
+          "value": "-8°C · Overcast"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -11° to -2°, overcast · Tomorrow: -5° to 2°, drizzle · Day after: -1° to 2°, light drizzle"
+          "value": "Today: -10° to -2°, overcast · Tomorrow: -6° to 1°, heavy drizzle · Day after: -2° to 2°, drizzle"
         }
       ]
     }
