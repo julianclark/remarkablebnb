@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T23:02:49.927Z",
+  "generatedAt": "2026-08-31T00:10:08.042Z",
   "fields": [
     {
       "id": "remarkables",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "All vehicles must carry chains"
+          "value": "Chains on all vehicles from Valley View"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-5°C · Snow"
+          "value": "-5°C · Snow showers"
         },
         {
           "id": "forecast",
