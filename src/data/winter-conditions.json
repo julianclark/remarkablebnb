@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T19:07:11.273Z",
+  "generatedAt": "2026-08-31T19:33:54.357Z",
   "fields": [
     {
       "id": "remarkables",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on all vehicles from Valley View"
+          "value": "Chains on 2WD's from Valley View"
         },
         {
           "id": "temp",
