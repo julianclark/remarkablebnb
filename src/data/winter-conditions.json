@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-02T02:15:20.048Z",
+  "generatedAt": "2026-09-02T03:06:05.082Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "9°C · wind"
+          "value": "8°C · wind"
         },
         {
           "id": "forecast",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "0°C · Light drizzle"
+          "value": "1°C · Light drizzle"
         },
         {
           "id": "forecast",
