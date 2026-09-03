@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T19:07:29.075Z",
+  "generatedAt": "2026-09-03T19:33:51.452Z",
   "fields": [
     {
       "id": "remarkables",
@@ -43,7 +43,7 @@
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-2°C · Light drizzle"
+          "value": "-3°C · Light drizzle"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -5° to 0°, snow showers · Tomorrow: -6° to 0°, snow showers · Day after: -7° to -2°, heavy snow showers"
+          "value": "Today: -6° to 0°, heavy snow showers · Tomorrow: -7° to -1°, heavy snow showers · Day after: -7° to -1°, light drizzle"
         }
       ]
     }
