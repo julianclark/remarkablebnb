@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T18:11:02.714Z",
+  "generatedAt": "2026-09-04T18:36:48.117Z",
   "fields": [
     {
       "id": "remarkables",
@@ -43,7 +43,7 @@
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Closed",
+      "status": "On Hold",
       "facts": [
         {
           "id": "snow-base",
@@ -51,7 +51,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "50-80cm · 0cm in the last 7 days"
+          "value": "50-80cm · 5cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "1°C · showers"
+          "value": "1°C · wind"
         },
         {
           "id": "forecast",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "108cm · 53cm in the last 7 days"
+          "value": "115cm · 17cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains to be carried!"
+          "value": "Chains on 2wds from Valley view"
         },
         {
           "id": "temp",
