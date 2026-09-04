@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T21:33:47.357Z",
+  "generatedAt": "2026-09-04T22:03:34.232Z",
   "fields": [
     {
       "id": "remarkables",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -4° to 0°, snow · Tomorrow: -9° to -3°, snow · Day after: -6° to -3°, part cloudy"
+          "value": "Today: -5° to -2°, snow · Tomorrow: -8° to -2°, snow · Day after: -6° to -3°, part cloudy"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "1°C · wind"
+          "value": "2°C · wind"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -2° to 2°, snow · Tomorrow: -7° to -1°, snow · Day after: -5° to 1°, part cloudy"
+          "value": "Today: -2° to 1°, snow · Tomorrow: -7° to 0°, snow · Day after: -6° to -1°, part cloudy"
         }
       ]
     },
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on 2WD's from Valley view"
+          "value": "Chains to always be carried!"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-3°C · Snow"
+          "value": "-2°C · Snow"
         },
         {
           "id": "forecast",
