@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T21:06:44.875Z",
+  "generatedAt": "2026-09-05T21:33:55.739Z",
   "fields": [
     {
       "id": "remarkables",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains MUST be carried today."
+          "value": "Chains on 2WD from Heli Corner"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-3°C · Light drizzle"
+          "value": "-3°C · Snow"
         },
         {
           "id": "forecast",
