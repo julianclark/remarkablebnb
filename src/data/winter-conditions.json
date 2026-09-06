@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T01:18:48.134Z",
+  "generatedAt": "2026-09-06T02:05:09.189Z",
   "fields": [
     {
       "id": "remarkables",
@@ -12,7 +12,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "62-130cm · 25cm in the last 7 days"
+          "value": "62-130cm · 35cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on 2WD from Heli Corner and\nChains on 4WD from Valley View"
+          "value": "Chains on 2WD from Heli Corner"
         },
         {
           "id": "temp",
