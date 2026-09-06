@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T23:03:02.436Z",
+  "generatedAt": "2026-09-06T00:10:00.474Z",
   "fields": [
     {
       "id": "remarkables",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "1°C · partly cloudy"
+          "value": "1°C · snow"
         },
         {
           "id": "forecast",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on 2WD from Heli Corner"
+          "value": "Chains on 2WD from Heli Corner and\nChains on 4WD from Valley View"
         },
         {
           "id": "temp",
