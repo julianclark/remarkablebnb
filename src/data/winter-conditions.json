@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T18:10:00.028Z",
+  "generatedAt": "2026-09-06T18:35:11.722Z",
   "fields": [
     {
       "id": "remarkables",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road open · Chains: Please Carry Chains"
+          "value": "Road open · Chains: Required on 2WD Vehicles"
         },
         {
           "id": "temp",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "115cm · 17cm in the last 7 days"
+          "value": "115cm · 22cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on 2WD from Heli Corner"
+          "value": "Chains must always be carried"
         },
         {
           "id": "temp",
