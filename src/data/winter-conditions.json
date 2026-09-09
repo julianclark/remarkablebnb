@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-09T03:04:40.072Z",
+  "generatedAt": "2026-09-09T04:04:20.509Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
