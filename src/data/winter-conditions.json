@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-09T18:11:29.026Z",
+  "generatedAt": "2026-09-09T18:38:15.155Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -12,7 +12,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "62-130cm · 35cm in the last 7 days"
+          "value": "62-130cm · 15cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road open · Chains: Please Carry Chains"
+          "value": "Road open · Chains: Required on 2WD Vehicles"
         },
         {
           "id": "temp",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "115cm · 22cm in the last 7 days"
+          "value": "115cm · 32cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains must always be carried"
+          "value": "Chains on 2wds from Valleyview"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-8°C · Overcast"
+          "value": "-9°C · Overcast"
         },
         {
           "id": "forecast",
