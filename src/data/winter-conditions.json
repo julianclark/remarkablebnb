@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T19:34:26.834Z",
+  "generatedAt": "2026-09-10T20:08:31.219Z",
   "fields": [
     {
       "id": "remarkables",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Open",
+      "status": "Onhold",
       "facts": [
         {
           "id": "snow-base",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-4°C · Overcast"
+          "value": "-3°C · Overcast"
         },
         {
           "id": "forecast",
