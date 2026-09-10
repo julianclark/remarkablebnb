@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T23:03:59.801Z",
+  "generatedAt": "2026-09-10T00:08:48.969Z",
   "fields": [
     {
       "id": "remarkables",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on 2WD's from Valley View"
+          "value": "Chains to be carried."
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-7°C · Overcast"
+          "value": "-6°C · Overcast"
         },
         {
           "id": "forecast",
