@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T11:03:31.638Z",
+  "generatedAt": "2026-09-10T12:05:16.971Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-3°C · few showers"
+          "value": "-3°C · snow"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -8° to -3°, few showers · Tomorrow: -9° to -3°, snow · Day after: -6° to -3°, snow"
+          "value": "Today: -9° to -3°, snow · Tomorrow: -6° to -3°, snow"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "0°C · fine"
+          "value": "-1°C · snow"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -6° to -2°, fine · Tomorrow: -6° to 1°, snow · Day after: -3° to 0°, snow"
+          "value": "Today: -6° to 1°, snow · Tomorrow: -3° to 0°, snow"
         }
       ]
     },
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-8°C · Mostly clear"
+          "value": "-8°C · Clear"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -9° to -4°, heavy snow showers · Tomorrow: -9° to -1°, light drizzle · Day after: -7° to -2°, light snow"
+          "value": "Today: -9° to -1°, light drizzle · Tomorrow: -7° to -2°, light snow · Day after: -3° to 1°, light drizzle"
         }
       ]
     }
