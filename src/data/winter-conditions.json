@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T17:03:16.331Z",
+  "generatedAt": "2026-09-11T18:10:24.522Z",
   "fields": [
     {
       "id": "remarkables",
@@ -43,7 +43,7 @@
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -51,7 +51,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "55-90cm · 5cm in the last 7 days"
+          "value": "55-90cm · 0cm in the last 7 days"
         },
         {
           "id": "chain-road",
