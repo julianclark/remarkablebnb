@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-11T03:04:14.181Z",
+  "generatedAt": "2026-09-11T04:04:12.749Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "6°C · snow"
+          "value": "5°C · snow"
         },
         {
           "id": "forecast",
