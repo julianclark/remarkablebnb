@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T05:03:58.009Z",
+  "generatedAt": "2026-09-15T06:06:17.763Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "4°C · fine"
+          "value": "3°C · fine"
         },
         {
           "id": "forecast",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "3°C · Partly cloudy"
+          "value": "2°C · Partly cloudy"
         },
         {
           "id": "forecast",
