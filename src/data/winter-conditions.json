@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T21:34:55.236Z",
+  "generatedAt": "2026-09-16T22:03:13.055Z",
   "fields": [
     {
       "id": "remarkables",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road open · Chains: Required on 2WD Vehicles"
+          "value": "Road open · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-5°C · snow"
+          "value": "-3°C · snow"
         },
         {
           "id": "forecast",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains must be fitted at Valley View."
+          "value": "Chains to always be carried!"
         },
         {
           "id": "temp",
