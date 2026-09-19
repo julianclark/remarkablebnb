@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T22:02:59.517Z",
+  "generatedAt": "2026-09-19T23:02:51.443Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-2°C · snow"
+          "value": "-1°C · snow"
         },
         {
           "id": "forecast",
@@ -51,7 +51,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "55-90cm · 18cm in the last 7 days"
+          "value": "55-90cm · 0cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "0°C · wind"
+          "value": "1°C · wind"
         },
         {
           "id": "forecast",
