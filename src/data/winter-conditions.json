@@ -1,42 +1,42 @@
 {
-  "generatedAt": "2026-09-20T14:03:03.418Z",
+  "generatedAt": "2026-09-20T15:02:55.629Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": null,
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
           "label": "Snow base",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "70-180cm · 3cm in the last 7 days"
         },
         {
           "id": "chain-road",
           "label": "Chains / road",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Road open · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
           "label": "Temperature",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "6°C · snow"
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Today: -9° to 3°, snow · Tomorrow: -10° to -3°, snow · Day after: -3° to -5°, snow"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "7°C · snow"
+          "value": "6°C · snow"
         },
         {
           "id": "forecast",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-3°C · Overcast"
+          "value": "-4°C · Overcast"
         },
         {
           "id": "forecast",
