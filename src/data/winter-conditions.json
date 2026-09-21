@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T18:39:54.412Z",
+  "generatedAt": "2026-09-21T19:07:53.323Z",
   "fields": [
     {
       "id": "remarkables",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -11° to -3°, snow · Tomorrow: -9° to -5°, fine · Day after: -4° to -2°, snow"
+          "value": "Today: -11° to -3°, snow · Tomorrow: -10° to -6°, few showers · Day after: -4° to -2°, snow"
         }
       ]
     },
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -8° to -1°, snow · Tomorrow: -6° to -2°, fine · Day after: -2° to 1°, few showers"
+          "value": "Today: -8° to -1°, snow · Tomorrow: -7° to -3°, few showers · Day after: -2° to 1°, few showers"
         }
       ]
     },
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on 2wd from Valley View"
+          "value": "Chains on 2WD's from Valley View"
         },
         {
           "id": "temp",
