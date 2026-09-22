@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-22T18:11:54.080Z",
+  "generatedAt": "2026-09-22T18:39:29.348Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -12,7 +12,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "70-180cm · 3cm in the last 7 days"
+          "value": "70-180cm · 5cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "112cm · 17cm in the last 7 days"
+          "value": "112cm · 21cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-9°C · Mostly clear"
+          "value": "-9°C · Partly cloudy"
         },
         {
           "id": "forecast",
