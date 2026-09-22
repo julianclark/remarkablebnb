@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T19:07:50.603Z",
+  "generatedAt": "2026-09-22T19:33:40.752Z",
   "fields": [
     {
       "id": "remarkables",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road open · Chains: Please Carry Chains"
+          "value": "Road open · Chains: Required on 2WD Vehicles"
         },
         {
           "id": "temp",
