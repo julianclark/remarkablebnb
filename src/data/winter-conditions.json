@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T07:06:32.778Z",
+  "generatedAt": "2026-09-24T08:04:58.340Z",
   "fields": [
     {
       "id": "remarkables",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -7° to 2°, light drizzle · Tomorrow: -5° to 2°, snow showers · Day after: -3° to 6°, light drizzle"
+          "value": "Today: -7° to 2°, overcast · Tomorrow: -5° to 3°, snow showers · Day after: -2° to 6°, light drizzle"
         }
       ]
     }
