@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T19:07:30.870Z",
+  "generatedAt": "2026-09-25T19:34:08.527Z",
   "fields": [
     {
       "id": "remarkables",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-2°C · Overcast"
+          "value": "-1°C · Overcast"
         },
         {
           "id": "forecast",
