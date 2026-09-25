@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-25T18:11:28.336Z",
+  "generatedAt": "2026-09-25T18:38:50.113Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -43,7 +43,7 @@
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-3°C · Light drizzle"
+          "value": "-2°C · Overcast"
         },
         {
           "id": "forecast",
