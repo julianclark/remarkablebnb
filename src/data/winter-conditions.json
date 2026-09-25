@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T21:08:10.322Z",
+  "generatedAt": "2026-09-25T21:35:14.661Z",
   "fields": [
     {
       "id": "remarkables",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "112cm · 12cm in the last 7 days"
+          "value": "112cm · 6cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "0°C · Overcast"
+          "value": "1°C · Overcast"
         },
         {
           "id": "forecast",
