@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T18:10:27.963Z",
+  "generatedAt": "2026-09-26T18:39:00.849Z",
   "fields": [
     {
       "id": "remarkables",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Onhold",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Chains on ALL from Pine Trees Carpak"
+          "value": "Chains on 2WD from Pines\nChains on 4WD from Chain Bay 1"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-6°C · Heavy snow"
+          "value": "-6°C · Snow"
         },
         {
           "id": "forecast",
