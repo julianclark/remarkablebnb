@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T20:35:33.612Z",
+  "generatedAt": "2026-09-26T21:07:46.480Z",
   "fields": [
     {
       "id": "remarkables",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -8° to -5°, snow · Tomorrow: -6° to -2°, snow · Day after: -2° to 1°, snow"
+          "value": "Today: -8° to -4°, snow · Tomorrow: -6° to -2°, snow · Day after: -7° to 1°, few showers"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "-4°C · snow"
+          "value": "-3°C · snow"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: -6° to -2°, snow · Tomorrow: -3° to 0°, cloud · Day after: -1° to 3°, fine"
+          "value": "Today: -5° to -2°, snow · Tomorrow: -3° to 0°, part cloudy · Day after: -4° to 3°, fine"
         }
       ]
     },
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-6°C · Overcast"
+          "value": "-6°C · Partly cloudy"
         },
         {
           "id": "forecast",
