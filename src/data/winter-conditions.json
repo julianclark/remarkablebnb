@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T20:08:30.285Z",
+  "generatedAt": "2026-09-26T20:35:33.612Z",
   "fields": [
     {
       "id": "remarkables",
@@ -59,7 +59,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Road open · Chains: Required on All Vehicles"
+          "value": "Road open · Chains: Required on 2WD Vehicles"
         },
         {
           "id": "temp",
