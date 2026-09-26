@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T19:34:45.026Z",
+  "generatedAt": "2026-09-26T20:08:30.285Z",
   "fields": [
     {
       "id": "remarkables",
@@ -20,7 +20,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Road on hold · Chains: Required on All Vehicles"
+          "value": "Road closed · Chains: Required on All Vehicles"
         },
         {
           "id": "temp",
