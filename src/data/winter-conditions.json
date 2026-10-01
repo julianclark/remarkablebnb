@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-01T02:16:45.368Z",
+  "generatedAt": "2026-10-01T03:08:53.366Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -43,7 +43,7 @@
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
