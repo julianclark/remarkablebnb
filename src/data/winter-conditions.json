@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-05T03:10:18.150Z",
+  "generatedAt": "2026-10-05T04:09:48.342Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "10°C · fine"
+          "value": "9°C · fine"
         },
         {
           "id": "forecast",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "9°C · Clear"
+          "value": "8°C · Clear"
         },
         {
           "id": "forecast",
