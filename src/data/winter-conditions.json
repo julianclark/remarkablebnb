@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-06T17:03:12.858Z",
+  "generatedAt": "2026-10-06T18:11:59.346Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "112cm · 0cm in the last 7 days"
+          "value": "105cm · 0cm in the last 7 days"
         },
         {
           "id": "chain-road",
