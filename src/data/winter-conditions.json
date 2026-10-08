@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T10:04:31.523Z",
+  "generatedAt": "2026-10-08T11:03:39.125Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "5°C · few showers"
+          "value": "5°C · fine"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: 1° to 7°, few showers · Tomorrow: 1° to 9°, fine · Day after: 0° to 7°, part cloudy"
+          "value": "Today: 1° to 9°, fine · Tomorrow: 0° to 7°, part cloudy"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "9°C · cloud"
+          "value": "9°C · fine"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: 3° to 9°, cloud · Tomorrow: 3° to 10°, fine · Day after: 3° to 9°, part cloudy"
+          "value": "Today: 3° to 10°, fine · Tomorrow: 3° to 9°, part cloudy"
         }
       ]
     },
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "3°C · Partly cloudy"
+          "value": "3°C · Clear"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: 2° to 9°, light drizzle · Tomorrow: 1° to 11°, overcast · Day after: 2° to 10°, light drizzle"
+          "value": "Today: 1° to 11°, overcast · Tomorrow: 2° to 10°, light drizzle · Day after: 1° to 11°, overcast"
         }
       ]
     }
