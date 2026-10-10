@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T04:05:33.071Z",
+  "generatedAt": "2026-10-10T05:03:52.298Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "10°C · fine"
+          "value": "9°C · fine"
         },
         {
           "id": "forecast",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "12°C · fine"
+          "value": "11°C · fine"
         },
         {
           "id": "forecast",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "10°C · Mostly clear"
+          "value": "9°C · Mostly clear"
         },
         {
           "id": "forecast",
