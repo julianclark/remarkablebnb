@@ -1,42 +1,42 @@
 {
-  "generatedAt": "2026-10-12T13:25:04.694Z",
+  "generatedAt": "2026-10-12T14:10:15.234Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": null,
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
           "label": "Snow base",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "40-160cm · 0cm in the last 7 days"
         },
         {
           "id": "chain-road",
           "label": "Chains / road",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Road open · Chains: Please Carry Chains"
         },
         {
           "id": "temp",
           "label": "Temperature",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "5°C · few showers"
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Today: -1° to 5°, few showers · Tomorrow: -5° to 5°, snow · Day after: -5° to -1°, snow"
         }
       ]
     },
