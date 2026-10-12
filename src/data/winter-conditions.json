@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T03:14:56.690Z",
+  "generatedAt": "2026-10-12T04:12:38.448Z",
   "fields": [
     {
       "id": "remarkables",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
