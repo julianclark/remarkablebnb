@@ -1,42 +1,42 @@
 {
-  "generatedAt": "2026-10-12T12:08:00.105Z",
+  "generatedAt": "2026-10-12T13:25:04.694Z",
   "fields": [
     {
       "id": "remarkables",
       "name": "The Remarkables",
-      "status": "Closed",
+      "status": null,
       "facts": [
         {
           "id": "snow-base",
           "label": "Snow base",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "40-160cm · 0cm in the last 7 days"
+          "ok": false,
+          "value": null
         },
         {
           "id": "chain-road",
           "label": "Chains / road",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "Road open · Chains: Please Carry Chains"
+          "ok": false,
+          "value": null
         },
         {
           "id": "temp",
           "label": "Temperature",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "6°C · few showers"
+          "ok": false,
+          "value": null
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
-          "ok": true,
-          "value": "Today: -1° to 5°, few showers · Tomorrow: -5° to 5°, snow · Day after: -5° to -1°, snow"
+          "ok": false,
+          "value": null
         }
       ]
     },
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "1°C · Clear"
+          "value": "2°C · Mostly clear"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: 1° to 7°, light rain · Tomorrow: -1° to 8°, light rain · Day after: -7° to 1°, snow showers"
+          "value": "Today: 1° to 8°, drizzle · Tomorrow: -1° to 7°, drizzle · Day after: -5° to 0°, heavy snow showers"
         }
       ]
     }
