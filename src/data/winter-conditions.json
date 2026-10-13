@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T15:05:21.042Z",
+  "generatedAt": "2026-10-13T16:04:17.156Z",
   "fields": [
     {
       "id": "remarkables",
@@ -105,16 +105,16 @@
           "label": "Temperature",
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "3°C · Light drizzle"
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Today: -1° to 4°, heavy drizzle · Tomorrow: -5° to -1°, snow showers · Day after: -7° to 0°, snow showers"
         }
       ]
     }
