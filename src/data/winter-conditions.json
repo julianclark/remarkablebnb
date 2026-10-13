@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T11:04:30.033Z",
+  "generatedAt": "2026-10-13T12:06:30.397Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "5°C · snow"
+          "value": "5°C · few showers"
         },
         {
           "id": "forecast",
@@ -36,14 +36,14 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -5° to 4°, snow · Tomorrow: -10° to -1°, snow"
+          "value": "Today: -6° to 3°, few showers · Tomorrow: -10° to 0°, snow · Day after: -2° to -1°, fine"
         }
       ]
     },
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": null,
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -58,24 +58,24 @@
           "label": "Chains / road",
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Road open · Chains: No Chains Required"
         },
         {
           "id": "temp",
           "label": "Temperature",
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "8°C · snow"
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Today: -5° to 5°, snow · Tomorrow: -8° to 1°, snow · Day after: 0° to 0°, fine"
         }
       ]
     },
