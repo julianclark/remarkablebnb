@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T17:03:49.071Z",
+  "generatedAt": "2026-10-13T18:13:23.569Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "4°C · few showers"
+          "value": "3°C · few showers"
         },
         {
           "id": "forecast",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "7°C · snow"
+          "value": "6°C · snow"
         },
         {
           "id": "forecast",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "75cm · 0cm in the last 7 days"
+          "value": "65cm · 0cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Road: chain free · Chains from Valley view"
+          "value": "Road: closed · Chains from Valley view"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "3°C · Drizzle"
+          "value": "3°C · Heavy drizzle"
         },
         {
           "id": "forecast",
