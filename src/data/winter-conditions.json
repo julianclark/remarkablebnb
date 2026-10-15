@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T19:07:22.696Z",
+  "generatedAt": "2026-10-15T19:34:08.273Z",
   "fields": [
     {
       "id": "remarkables",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Road: chains on 2WD · Chains from Heli corner"
+          "value": "Chains on 2WD from Valley View"
         },
         {
           "id": "temp",
