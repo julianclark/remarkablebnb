@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T21:09:19.162Z",
+  "generatedAt": "2026-10-15T21:37:04.884Z",
   "fields": [
     {
       "id": "remarkables",
@@ -12,7 +12,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "40-160cm · 8cm in the last 7 days"
+          "value": "0-0cm · 0cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-6°C · Overcast"
+          "value": "-5°C · Overcast"
         },
         {
           "id": "forecast",
