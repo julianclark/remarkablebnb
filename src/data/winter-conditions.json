@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T17:03:04.566Z",
+  "generatedAt": "2026-10-15T18:11:39.335Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "-7°C · fine"
+          "value": "-6°C · fine"
         },
         {
           "id": "forecast",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "-3°C · part cloudy"
+          "value": "-4°C · part cloudy"
         },
         {
           "id": "forecast",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -90,7 +90,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "65cm · 20cm in the last 7 days"
+          "value": "87cm · 24cm in the last 7 days"
         },
         {
           "id": "chain-road",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Road: closed · Chains from Valley view"
+          "value": "Road: chains on 2WD · Chains from Heli corner"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "-5°C · Overcast"
+          "value": "-6°C · Overcast"
         },
         {
           "id": "forecast",
