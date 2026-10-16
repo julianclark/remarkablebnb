@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T04:04:11.005Z",
+  "generatedAt": "2026-10-16T05:03:41.939Z",
   "fields": [
     {
       "id": "remarkables",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Open",
+      "status": "Closed",
       "facts": [
         {
           "id": "snow-base",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Road: chain free · Chains from Valley view"
+          "value": "Road: closed · Chains from Valley view"
         },
         {
           "id": "temp",
