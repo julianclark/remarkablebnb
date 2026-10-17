@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T17:03:05.590Z",
+  "generatedAt": "2026-10-17T18:09:39.632Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "8°C · fine"
+          "value": "7°C · fine"
         },
         {
           "id": "forecast",
@@ -82,7 +82,7 @@
     {
       "id": "cardrona",
       "name": "Cardrona",
-      "status": "Closed",
+      "status": "Open",
       "facts": [
         {
           "id": "snow-base",
@@ -98,7 +98,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Road: closed · Chains from Valley view"
+          "value": "Road: chain free · Chains from Valley view"
         },
         {
           "id": "temp",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "1°C · Clear"
+          "value": "0°C · Clear"
         },
         {
           "id": "forecast",
