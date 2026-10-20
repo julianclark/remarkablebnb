@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T10:03:09.768Z",
+  "generatedAt": "2026-10-20T11:03:31.030Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "7°C · fine"
+          "value": "6°C · fine"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -3° to 8°, fine · Tomorrow: -2° to 6°, fine · Day after: 0° to 6°, part cloudy"
+          "value": "Today: -2° to 6°, fine · Tomorrow: 0° to 6°, part cloudy"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "8°C · fine"
+          "value": "7°C · fine"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: 0° to 11°, fine · Tomorrow: 1° to 9°, fine · Day after: 3° to 8°, fine"
+          "value": "Today: 1° to 9°, fine · Tomorrow: 3° to 8°, fine"
         }
       ]
     },
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "1°C · Clear"
+          "value": "0°C · Clear"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: 0° to 13°, partly cloudy · Tomorrow: -2° to 10°, clear · Day after: -2° to 10°, fog"
+          "value": "Today: -2° to 10°, clear · Tomorrow: -2° to 10°, fog · Day after: 1° to 13°, fog"
         }
       ]
     }
