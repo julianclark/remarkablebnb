@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T03:04:30.817Z",
+  "generatedAt": "2026-10-21T04:04:08.382Z",
   "fields": [
     {
       "id": "remarkables",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -2° to 10°, mostly clear · Tomorrow: -2° to 10°, overcast · Day after: 2° to 13°, partly cloudy"
+          "value": "Today: -2° to 10°, fog · Tomorrow: -2° to 10°, fog · Day after: 2° to 13°, fog"
         }
       ]
     }
