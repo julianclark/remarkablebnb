@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T10:03:16.203Z",
+  "generatedAt": "2026-10-24T11:02:44.035Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "5°C · fine"
+          "value": "5°C · part cloudy"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: 1° to 6°, fine · Tomorrow: 4° to 7°, part cloudy · Day after: -8° to 7°, snow"
+          "value": "Today: 4° to 7°, part cloudy · Tomorrow: -8° to 7°, snow"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "8°C · fine"
+          "value": "8°C · part cloudy"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: 3° to 8°, fine · Tomorrow: 7° to 10°, part cloudy · Day after: -6° to 9°, snow"
+          "value": "Today: 7° to 10°, part cloudy · Tomorrow: -6° to 9°, snow"
         }
       ]
     },
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "3°C · Partly cloudy"
+          "value": "2°C · Partly cloudy"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -3° to 11°, fog · Tomorrow: 1° to 11°, overcast · Day after: 4° to 8°, rain"
+          "value": "Today: 1° to 11°, overcast · Tomorrow: 4° to 8°, rain · Day after: -5° to 4°, snow showers"
         }
       ]
     }
