@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T01:19:58.527Z",
+  "generatedAt": "2026-10-26T02:10:04.593Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "8°C · showers"
+          "value": "7°C · showers"
         },
         {
           "id": "forecast",
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "12°C · snow"
+          "value": "10°C · snow"
         },
         {
           "id": "forecast",
