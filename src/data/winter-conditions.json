@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T13:01:54.220Z",
+  "generatedAt": "2026-10-31T14:02:06.391Z",
   "fields": [
     {
       "id": "remarkables",
@@ -43,7 +43,7 @@
     {
       "id": "coronet",
       "name": "Coronet Peak",
-      "status": "Closed",
+      "status": null,
       "facts": [
         {
           "id": "snow-base",
@@ -58,24 +58,24 @@
           "label": "Chains / road",
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
-          "ok": true,
-          "value": "Road open · Chains: No Chains Required"
+          "ok": false,
+          "value": null
         },
         {
           "id": "temp",
           "label": "Temperature",
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
-          "ok": true,
-          "value": "-2°C · wind"
+          "ok": false,
+          "value": null
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
-          "ok": true,
-          "value": "Today: 4° to 5°, wind · Tomorrow: -1° to 10°, few showers · Day after: 6° to 11°, part cloudy"
+          "ok": false,
+          "value": null
         }
       ]
     },
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: -3° to 5°, light drizzle · Tomorrow: 1° to 10°, rain · Day after: 0° to 10°, overcast"
+          "value": "Today: -3° to 5°, light drizzle · Tomorrow: 2° to 10°, rain · Day after: -2° to 11°, fog"
         }
       ]
     }
