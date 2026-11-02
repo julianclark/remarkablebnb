@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T12:03:59.443Z",
+  "generatedAt": "2026-11-02T13:03:32.351Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "4°C · few showers"
+          "value": "5°C · few showers"
         },
         {
           "id": "forecast",
@@ -106,7 +106,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "3°C · Clear"
+          "value": "2°C · Partly cloudy"
         },
         {
           "id": "forecast",
@@ -114,7 +114,7 @@
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
           "ok": true,
-          "value": "Today: 2° to 6°, light showers · Tomorrow: 4° to 10°, showers · Day after: 3° to 12°, light drizzle"
+          "value": "Today: 2° to 7°, light rain · Tomorrow: 3° to 10°, showers · Day after: 4° to 12°, light drizzle"
         }
       ]
     }
