@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T10:01:57.536Z",
+  "generatedAt": "2026-11-13T11:01:51.478Z",
   "fields": [
     {
       "id": "remarkables",
@@ -28,7 +28,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "5°C · part cloudy"
+          "value": "5°C · fine"
         },
         {
           "id": "forecast",
@@ -36,7 +36,7 @@
           "sourceUrl": "https://www.theremarkables.co.nz/weather-report/",
           "linkLabel": "The Remarkables snow report",
           "ok": true,
-          "value": "Today: -2° to 5°, part cloudy · Tomorrow: 1° to 9°, fine · Day after: -1° to 8°, showers"
+          "value": "Today: 1° to 9°, fine · Tomorrow: -1° to 8°, showers"
         }
       ]
     },
@@ -67,7 +67,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "-2°C · part cloudy"
+          "value": "-2°C · fine"
         },
         {
           "id": "forecast",
@@ -75,7 +75,7 @@
           "sourceUrl": "https://www.coronetpeak.co.nz/weather-report/",
           "linkLabel": "Coronet Peak snow report",
           "ok": true,
-          "value": "Today: 1° to 8°, part cloudy · Tomorrow: 3° to 12°, fine · Day after: 1° to 11°, showers"
+          "value": "Today: 3° to 12°, fine · Tomorrow: 1° to 11°, showers"
         }
       ]
     },
@@ -105,16 +105,16 @@
           "label": "Temperature",
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "1°C · Clear"
         },
         {
           "id": "forecast",
           "label": "3-day forecast",
           "sourceUrl": "https://cardrona-treblecone.com/snow-report",
           "linkLabel": "Cardrona snow report",
-          "ok": false,
-          "value": null
+          "ok": true,
+          "value": "Today: 0° to 12°, light drizzle · Tomorrow: 2° to 10°, drizzle · Day after: -2° to 8°, light drizzle"
         }
       ]
     }
