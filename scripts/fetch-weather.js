@@ -38,6 +38,32 @@ import { writeFileSync, mkdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
+/**
+ * Checks whether the current date (in NZ time) falls within the winter ski season.
+ * Winter season runs from May 30 through October 31.
+ * Outside this window, ski fields are closed and updates are disabled to avoid
+ * unnecessary git churn, builds, and stale off-season reports.
+ */
+function isWinterSeason(date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-NZ', {
+    timeZone: 'Pacific/Auckland',
+    month: 'numeric',
+    day: 'numeric',
+  }).formatToParts(date);
+  const month = parseInt(parts.find((p) => p.type === 'month')?.value ?? '0', 10);
+  const day = parseInt(parts.find((p) => p.type === 'day')?.value ?? '0', 10);
+
+  // Active from May 30 through October 31
+  if (month > 5 && month <= 10) return true; // June - October
+  if (month === 5 && day >= 30) return true; // May 30 - 31
+  return false;
+}
+
+if (!isWinterSeason() && !process.argv.includes('--force')) {
+  console.log('[fetch-weather] Outside winter season (disabled until May 30). Skipping weather fetch.');
+  process.exit(0);
+}
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '../src/data/winter-conditions.json');
 
